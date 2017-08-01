@@ -1,0 +1,61 @@
+{% extends 'wine/base.html' %}
+
+{% block content %}
+<!--Insert all of the page specific content here-->
+	
+	<!--Small devices (landscape phones, 576px and down)  -->	
+	<div class="container hidden-md-up">
+		{% if results_list %}
+		<table class="table" style="margin-bottom: 50px">
+			<thead class="thead">
+				<tr>
+					<th>Name</th>
+					<th>Rating /10</th>
+					<th>Minimum Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for merchantwine in results_list %}
+				<tr>
+				  <td scope="row"><a class="text-primary" href="{% url 'wine:wine_detail' merchantwine.wine_vintage.id %}">{{ merchantwine.wine_vintage.wine.producer }} </br>{{ merchantwine.wine_vintage.wine.short_name }} {{ merchantwine.wine_vintage.year }}</a></th>
+				  <td>{{ merchantwine.rating }}</td>
+				  <td>R {{ merchantwine.price }} </br><a class="text-primary" href={{ merchantwine.url }} target="_blank"> Buy </a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+			<p style="text-align: center; padding-top: 10%; margin-bottom: 450px">No results are available. Adjust criteria and search again.</p>
+		{% endif %}
+	</div>
+	
+	<!--Medium devices (tablets, 768px and up)-->	
+	<div class="container hidden-sm-down">
+		{% if results_list %}
+		<table class="table" style="margin-bottom: 30%; margin-top: 50px">
+			<thead class="thead">
+				<tr>
+					<th>Name</th>
+					<th>Rating /10</th>
+					<th>Minimum Price</th>
+					<th>Buy</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for merchantwine in results_list %}
+				<tr>
+				  <td scope="row"><a class="text-primary" href="{% url 'wine:wine_detail' merchantwine.wine_vintage.id %}">{{ merchantwine.wine_vintage }} </a></th>
+				  <td>{{ merchantwine.rating }}</td>
+				  <td>R {{ merchantwine.price }} </td>
+				  <td><a class="text-primary" href={{ merchantwine.url }} target="_blank"> Buy </a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+			<p style="text-align: center; padding-top: 10%; margin-bottom: 450px">No results are available. Adjust criteria and search again.</p>
+		{% endif %}
+	</div>
+
+{% endblock %}
+

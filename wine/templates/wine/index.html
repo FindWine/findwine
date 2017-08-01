@@ -1,0 +1,60 @@
+{% extends 'wine/base.html' %}
+
+{% block content %}
+<!--Insert all of the page specific content here-->
+
+	<!--Small devices (landscape phones, 576px and down)  -->	
+	<div class="container hidden-md-up" style="padding-left: 0px; padding-right: 0px">
+		{% if winevintage_list %}
+		<table class="table table-striped table-responsive" style="margin-bottom: 100px">
+			<thead class="thead">
+				<tr>
+					<th>Producer</th>
+					<th>Wine</th>
+					<th>Rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for winevintage in winevintage_list %}
+				<tr>
+					<td scope="row"><a class="text-primary" href="{% url 'wine:producer_detail' winevintage.wine.producer.id %}">{{ winevintage.wine.producer }}</a></th>
+					<td><a class="text-primary" href="{% url 'wine:wine_detail' winevintage.id %}">{{ winevintage.wine.long_name }} {{ winevintage.year }}</a></td>
+					<td>{{ winevintage.rating.avg_rating|floatformat:1  }} </td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+			<p style="text-align: center; padding-top: 10%; margin-bottom: 450px">No wine vintages are available.</p>
+		{% endif %}
+	</div>
+	
+	<!--Medium devices (tablets, 768px and up)-->	
+	<div class="container hidden-sm-down " style="margin: 0px auto">
+		{% if winevintage_list %}
+		<table class="table table-striped" style="margin-bottom: 30%; margin-top: 10px">
+			<thead class="thead">
+				<tr>
+					<th>Producer</th>
+					<th>Wine</th>
+					<th>Rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for winevintage in winevintage_list %}
+				<tr>
+					<td scope="row"><a class="text-primary" href="{% url 'wine:producer_detail' winevintage.wine.producer.id %}">{{ winevintage.wine.producer }}</a></th>
+					<td><a class="text-primary" href="{% url 'wine:wine_detail' winevintage.id %}">{{ winevintage.wine.long_name }} {{ winevintage.year }}</a></td>
+					<td>{{ winevintage.rating.avg_rating|floatformat:1  }} </td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+			<p style="text-align: center; padding-top: 10%; margin-bottom: 450px">No wine vintages are available.</p>
+		{% endif %}
+	</div>
+	
+{% endblock %}
+
+

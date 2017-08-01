@@ -1,0 +1,86 @@
+{% load staticfiles %}<!doctype html>
+<!--The static folder consists of .css, .js, fonts, etc -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" href="{% static 'wine/favicon.png' %}">
+		<title>FindWine</title>
+		<meta name="keywords" content="Find award winning wine in a price range and where to buy it">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<!-- Custom styles for this template -->
+		<link rel="stylesheet" type="text/css" href="{% static 'wine/style.css' %}" />
+	</head>
+	<body>
+		<!-- This is the navigation bar at the top of the page-->
+		<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="{%url 'wine:search' %}">
+				<img src="{% static 'wine/images/logo/logo.png' %}" class="d-inline-block align-top" alt="FindWine">
+			</a>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<!-- use to show an active link: <a class="nav-item nav-link active" href="{%url 'wine:search' %}">Search <span class="sr-only">(current)</span></a> -->
+					<a class="nav-item nav-link" href="{%url 'wine:search' %}">Search</a> 
+			</div>
+		</nav>	
+
+		<!-- OTHER PAGES -->
+		{% block content %}
+		<!--No need to input anything here. This is where the body of code will go from the other .html pages-->
+		{% endblock %}
+		
+		<!-- This is where the footer begins -->
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<a class="d-inline text-primary" href="https://www.facebook.com/FindWineSA/">Facebook</a>
+						<a class="d-inline text-primary" href="https://twitter.com/FindWineSA" style="margin-left: 18px;">Twitter</a>
+						<a class="d-inline text-primary" href="{% url 'wine:index' %}" style="margin-left: 18px;">Index</a>
+						<a class="d-inline text-primary" href="{% url 'admin:index' %}" style="margin-left: 18px;">Admin</a>
+						<!--ADD LATER <a class="d-inline text-primary" href="{% url 'wine:advanced_search' %}" style="margin-left: 18px;">Advanced search</a>-->
+					</div>
+					<div class="col-md-4">
+						<span class="text-muted" style="text-align: center">Copyright FindWine 2017</span>
+					</div>
+				 </div>
+			</div>
+		</footer>
+	
+	
+		<!--This is a javascript block. If javascript files are included in the 'static' folder then there's no need to 
+		put this here -->
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			$("#id_category").change(function () {
+				var category = $(this).val();
+				$.ajax({
+					url: '{% url "wine:update_subcategories" %}',
+					data: {
+						'category': category,
+					},
+					success: function (data) { 
+						var  new_options =  data; 
+						// alert(new_options[0].name);  // works Blend on mobile but not desktop due to duplicates?
+						$('#id_sub_category').empty(); 
+						$.each(new_options, function(key, value) {   
+							$('#id_sub_category')
+								.append($('<option>', { key : value })
+								.text(value.name)); 
+						});			
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

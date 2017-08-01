@@ -1,0 +1,114 @@
+{% extends 'wine/base.html' %}
+
+{% block content %}
+
+<!--Insert all of the page specific content here-->
+	<div class="container" style="margin-bottom: 200px; margin-top: 2%">
+		<div class="row">
+			<div class="col-4 col-md-auto">
+				{% if producer.logo %}
+					<img src="{{ producer.logo.url }}" alt="..." class="img-fluid rounded float-left" style="max-height: 300px">
+				{% endif %}
+			</div>
+			<div class="col-8">
+				<h2 style="margin-bottom: 10px;">{{ producer.name }} </h2>
+				<h5><small class="text-muted">{% if producer.appellation_primary %}{{ producer.appellation_primary.name }}, {% endif %}{{ producer.country }}</small></h5>
+				<a href={{ producer.url }} target="_blank"> {{ producer.url }} </a>
+			</div>
+		</div>
+		<div class="row">		
+			<div class="col-12" style="margin-top: 8%">
+				<h4>Wines</h4>
+				{% if producer.wine_set.all %}
+				<ul class="list-group list-group-flush">
+					{% for wine in producer.wine_set.all %}
+					<li class="list-group-item">{{ wine }}</li>
+					{% endfor %}
+				{% else %}
+					<p style="margin-left:20px">No wines captured.</p>
+				{% endif %}
+				</ul>
+			</div>
+			<div class="col-12" style="margin-top: 8%">
+				<h4>Tasting</h4>
+				<p>Minimum price: {% if producer.tasting_price %}{{ producer.tasting_currency }} {% endif %}{{ producer.tasting_price }}</p>
+				<br>
+				<h6>Hours</h6>
+				<table class="table table-responsive table-sm">
+					<tbody>
+						<tr>
+							<td>Mon:</td>
+							<td>{{ producer.opening_hours_mon }}</td>
+						</tr>
+						<tr>
+							<td>Tue:</td>
+							<td>{{ producer.opening_hours_tue }}</td>
+						</tr>
+						<tr>
+							<td>Wed:</td>
+							<td>{{ producer.opening_hours_wed }}</td>
+						</tr>
+						<tr>
+							<td>Thu:</td>
+							<td>{{ producer.opening_hours_thu }}</td>
+						</tr>
+						<tr>
+							<td>Fri:</td>
+							<td>{{ producer.opening_hours_fri }}</td>
+						</tr>
+						<tr>
+							<td>Sat:</td>
+							<td>{{ producer.opening_hours_sat }}</td>
+						</tr>
+						<tr>
+							<td>Sun:</td>
+							<td>{{ producer.opening_hours_sun }}</td>
+						</tr>
+						<tr>
+							<td>Public holidays:</td>
+							<td>{{ producer.opening_hours_holidays }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>Closed on these days: {{ producer.closed_days }}</p>
+				<br>
+				<h6>Contact</h6>
+				<table class="table table-responsive table-sm">
+					<tbody>
+						<tr>
+							<td>Tel:</td>
+							<td><a class="text-primary" href="tel:{{ producer.telephone_tasting }}" target="_self"> {{ producer.telephone_tasting }} </a></td>
+						</tr>
+						<tr>
+							<td>Email: </td>
+							<td><a class="text-primary" href="mailto:{{ producer.email_tasting }}" target="_self"> {{ producer.email_tasting }}</a></td>
+						</tr>
+					</tbody>
+				</table>	
+			</div>
+			<div class="col-12 col-md-auto" style="margin-top: 8%">
+				<h5>Location</h5>
+				<table class="table table-responsive table-sm">
+					<tbody>
+						<tr>
+							<td>Address:</td>
+							<td>{{ producer.address }}</td>
+						</tr>
+						{% if producer.coordinates_text %}
+						<tr>
+							<td>GPS: </td>
+							<td>{{ producer.coordinates_text }}</td>
+						</tr>
+						{% endif %}
+						<tr>
+							<td>Google: </td>
+							<td><a class="text-primary" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank"> Open in maps</a></td>
+						</tr>
+					</tbody>
+				</table>	
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
