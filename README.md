@@ -29,6 +29,12 @@ Edit the file as needed.
 `./manage.py migrate`
 
 
+# Production Setup/Install
+
+## Install MySQL (MariaDB) client
+
+`sudo apt-get install libmysqlclient-dev`
+
 # Building requirements
 
 Dependencies should be added to requirements.in and then compiled to requirements.txt.
