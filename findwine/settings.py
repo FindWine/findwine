@@ -25,9 +25,7 @@ SECRET_KEY = '****'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'ec2-54-194-34-232.eu-west-1.compute.amazonaws.com'
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -135,9 +133,6 @@ USE_TZ = True
 ##MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-#set S3 as the place to store files.
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = '***'  # override with localsettings
 AWS_SECRET_ACCESS_KEY = '***'  # override with localsettings
