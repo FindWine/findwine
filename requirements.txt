@@ -4,9 +4,16 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
+boto3==1.4.5
+botocore==1.5.91          # via boto3, s3transfer
 django-geoposition==0.3.0
 django-storages==1.6.5
 django==1.11.4
+docutils==0.13.1          # via botocore
+jmespath==0.9.3           # via boto3, botocore
 olefile==0.44             # via pillow
 pillow==4.2.1
+python-dateutil==2.6.1    # via botocore
 pytz==2017.2              # via django
+s3transfer==0.1.10        # via boto3
+six==1.10.0               # via python-dateutil

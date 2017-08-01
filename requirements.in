@@ -2,3 +2,4 @@ django
 django-geoposition
 django-storages
 Pillow
+boto3  # for s3 storage - production only
