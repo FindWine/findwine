@@ -1,7 +1,14 @@
 Find Wine Source Code
 ---------------------
+A wine listing and review site built in Django.
 
 # Installation
+
+## Prerequisites
+
+- [Python 3](https://www.python.org/downloads/)
+- [Virtualenv](https://virtualenv.pypa.io/en/stable/)
+- [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
 
 ## Setup Virtualenv
 
