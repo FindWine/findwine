@@ -31,9 +31,7 @@ Edit the file as needed.
 
 # Production Setup/Install
 
-## Install MySQL (MariaDB) client
-
-`sudo apt-get install libmysqlclient-dev`
+See [deploy README](../deploy/README.md) for details on production setup / install.
 
 # Building requirements
 
