@@ -237,6 +237,16 @@ Restore:
 mysql -u root -p findwine < findwine.sql
 ```
 
+# Setup remote login
+
+Add your public key to `/home/findwine/.ssh/authorized_keys` to setup passwordless ssh access.
+
+Test using:
+
+```bash
+$ ssh findwine@ec2-54-229-166-59.eu-west-1.compute.amazonaws.com
+```
+
 # Todos
 
 - Static files
