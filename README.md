@@ -80,6 +80,22 @@ Edit the file with your MySQL user/password as needed.
 
 See [deploy README](../deploy/README.md) for details on production setup / install.
 
+# Deploying code to production
+
+Make sure you have fabric installed:
+
+```bash
+$ pip install -r requirements/dev-requirements.txt
+```
+
+Then just run:
+
+```bash
+$ fab production deploy
+```
+
+You will need the password for the `findwine` user on production.
+
 # Building requirements
 
 Dependencies should be added to requirements.in and then compiled to requirements.txt.
