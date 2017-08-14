@@ -33,7 +33,7 @@ Alternatively use HTTPS:
 
 Make sure you are in the root directory of the `findwine` repository (`cd findwine`) then run:
 
-`pip install -r requirements.txt`
+`pip install -r requirements/requirements.txt`
 
 ## Setup database
 
@@ -90,7 +90,7 @@ To do this, first install pip-tools:
 
 Then run:
 
-`pip-compile --output-file requirements.txt requirements.in`
+`pip-compile --output-file requirements/requirements.txt requirements/requirements.in`
 
 # Todos
 

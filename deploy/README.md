@@ -66,7 +66,7 @@ $ which python
 
 ```bash
 cd code_root
-pip install -r requirements.txt
+pip install -r requirements/requirements.txt
 ```
 
 ## Setup localsettings
@@ -104,7 +104,7 @@ http://ec2-54-229-166-59.eu-west-1.compute.amazonaws.com:8000/ (or whatever URL 
 ## Install gunicorn
 
 ```bash
-$ pip install -r deploy/prod-requirements.txt
+$ pip install -r requirements/prod-requirements.txt
 ```
 
 Again you can test by running something like the below with curl or in a browser:
