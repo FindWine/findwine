@@ -69,25 +69,34 @@ class ResultsView(generic.ListView):
             results_list = results_list.filter(wine_vintage__sub_category__name__exact=sub_category)
 
         #7 Restrict MerchantWines to lowest price version(s) of same wine_vintage
-        minimum_prices = results_list.values('wine_vintage').annotate(lowest_price=Min('price'))
-        results_list = results_list.filter(price__in=minimum_prices.values('lowest_price'))
-        #8 Restrict MerchantWines to preferred merchant of same wine_vintage and price
-        preferred_merchants = results_list.values('wine_vintage').annotate(
-            lowest_priority=Min('merchant__priority')
+        wines = WineVintage.objects.distinct().filter(merchantwine__in=results_list)
+        #8 Only show lowest price and add average rating
+        wines = wines.annotate(
+            price=Round(Min('merchantwine__price')),
+            avg_rating=Round(Avg('wineaward__award__tier__normalised_rating')),
+
         )
-        results_list = results_list.filter(merchant__priority__in=preferred_merchants.values('lowest_priority'))
-        #9 Restrict MerchantWines to lowest minimum_purchase_unit of same wine_vintage, price and merchant
-        # NOT WORKING min_units = results_list.values('wine_vintage').annotate(smallest_unit=Min('minimum_purchase_unit'))
-        # NOT WORKING results_list = results_list.filter(minimum_purchase_unit__in=min_units.values('smallest_unit'))
-        #10 Remove duplicates
-        # TO DO
-        #11 Add the rating to each MerchantWine
-        results_list = results_list.annotate(
-            rating=Round(Avg('wine_vintage__wineaward__award__tier__normalised_rating')))
-        #12 Order by rating and then price
-        orders = ['-rating', 'price']
-        results_list = results_list.order_by(*orders)
-        return results_list
+        wines = wines.order_by(
+            '-avg_rating', 'price'
+        )
+        # todo: remove this code and add back any necessary logic
+        # minimum_prices = results_list.values('wine_vintage').annotate(lowest_price=Min('price'))
+        # results_list = results_list.filter(price__in=minimum_prices.values('lowest_price'))
+        # preferred_merchants = results_list.values('wine_vintage').annotate(
+        #     lowest_priority=Min('merchant__priority')
+        # )
+        # results_list = results_list.filter(merchant__priority__in=preferred_merchants.values('lowest_priority'))
+        # #9 Restrict MerchantWines to lowest minimum_purchase_unit of same wine_vintage, price and merchant
+        # # NOT WORKING min_units = results_list.values('wine_vintage').annotate(smallest_unit=Min('minimum_purchase_unit'))
+        # # NOT WORKING results_list = results_list.filter(minimum_purchase_unit__in=min_units.values('smallest_unit'))
+        # #10 Remove duplicates
+        # # TO DO
+        # results_list = results_list.annotate(
+        #
+        # #12 Order by rating and then price
+        # orders = ['-rating', 'price']
+        # results_list = results_list.order_by(*orders)
+        return wines
 
 
 class WineDetailView(generic.DetailView):

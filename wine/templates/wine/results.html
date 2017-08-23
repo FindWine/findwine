@@ -15,11 +15,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for merchantwine in results_list %}
+				{% for winevintage in results_list %}
 				<tr>
-				  <td scope="row"><a class="text-primary" href="{% url 'wine:wine_detail' merchantwine.wine_vintage.id %}">{{ merchantwine.wine_vintage.wine.producer }} </br>{{ merchantwine.wine_vintage.wine.short_name }} {{ merchantwine.wine_vintage.year }}</a></th>
-				  <td>{{ merchantwine.rating }}</td>
-				  <td>R {{ merchantwine.price }} </br><a class="text-primary" href={{ merchantwine.url }} target="_blank"> Buy </a></td>
+				  <td scope="row"><a class="text-primary" href="{% url 'wine:wine_detail' winevintage.id %}">{{ winevintage.wine.producer }} </br>{{ winevintage.wine.short_name }} {{ winevintage.year }}</a></td>
+				  <td>{{ winevintage.avg_rating }}</td>
+				  <td>R {{ winevintage.price }} </br><a class="text-primary" href={{ winevintage.preferred_merchant.url }} target="_blank"> Buy </a></td>
 				</tr>
 				{% endfor %}
 			</tbody>
@@ -42,12 +42,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for merchantwine in results_list %}
+				{% for winevintage in results_list %}
 				<tr>
-				  <td scope="row"><a class="text-primary" href="{% url 'wine:wine_detail' merchantwine.wine_vintage.id %}">{{ merchantwine.wine_vintage }} </a></th>
-				  <td>{{ merchantwine.rating }}</td>
-				  <td>R {{ merchantwine.price }} </td>
-				  <td><a class="text-primary" href={{ merchantwine.url }} target="_blank"> Buy </a></td>
+				  <td scope="row"><a class="text-primary" href="{% url 'wine:wine_detail' winevintage.id %}">{{ winevintage }} </a></td>
+                    <td>{{ winevintage.avg_rating }}</td>
+				  <td>R {{ winevintage.price }} </td>
+				  <td><a class="text-primary" href={{ winevintage.preferred_merchant.url }} target="_blank"> Buy </a></td>
 				</tr>
 				{% endfor %}
 			</tbody>

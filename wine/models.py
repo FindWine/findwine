@@ -167,6 +167,17 @@ class WineVintage(models.Model):
                                                blank=True)
     tasting_notes = models.FileField(upload_to='documents/tasting_notes/', null=True, blank=True)
 
+    @property
+    def preferred_merchant(self):
+        """
+        Tiebreaking Rules (in order):
+         - Choose the cheapest
+         - Choose the lowest merchant priority
+         - Choose by ID (arbitrary)
+        """
+        qs = self.merchantwine_set.order_by('price', 'merchant__priority')
+        if qs.exists():
+            return qs[0]
 
     @property
     def long_name(self):
