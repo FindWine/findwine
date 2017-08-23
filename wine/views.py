@@ -52,26 +52,29 @@ class ResultsView(generic.ListView):
         sub_category = self.request.GET.get('sub_category', '')
         min_price = self.request.GET.get('min_price', '')
         max_price = self.request.GET.get('max_price', '')
-        #1 Add country
-        #2 Restrict MerchantWines to those that are available
-        results_list = MerchantWine.objects.filter(available__exact="True")
-        #3 Restrict MerchantWines to those that are above or equal to the minimum price
-        results_list = results_list.filter(price__gte=min_price)
-        #4 Restrict MerchantWines to those that are below or equal to the maximum price
-        results_list = results_list.filter(price__lte=max_price)
-        #5 Restrict MerchantWines to the selected category
-        results_list = results_list.filter(wine_vintage__category__name__exact=category)
+        #1 todo: Add country
+        results_list = MerchantWine.objects.filter(
+            #2 Restrict MerchantWines to those that are available
+            available__exact="True",
+            #3 Restrict MerchantWines to those that are above or equal to the minimum price
+            price__gte=min_price,
+            #4 Restrict MerchantWines to those that are below or equal to the maximum price
+            price__lte=max_price,
+            #5 Restrict MerchantWines to the selected category
+            wine_vintage__category__name__exact=category,
+        )
+
         #6 Restrict MerchantWines to the selected sub_category or leave if no sub_category is selected NB! UPDATE FOR MULTIPLE SELECT
         if sub_category != 'All':
             results_list = results_list.filter(wine_vintage__sub_category__name__exact=sub_category)
-        else:
-            results_list = results_list
+
         #7 Restrict MerchantWines to lowest price version(s) of same wine_vintage
         minimum_prices = results_list.values('wine_vintage').annotate(lowest_price=Min('price'))
         results_list = results_list.filter(price__in=minimum_prices.values('lowest_price'))
         #8 Restrict MerchantWines to preferred merchant of same wine_vintage and price
         preferred_merchants = results_list.values('wine_vintage').annotate(
-            lowest_priority=Min('merchant__priority'))
+            lowest_priority=Min('merchant__priority')
+        )
         results_list = results_list.filter(merchant__priority__in=preferred_merchants.values('lowest_priority'))
         #9 Restrict MerchantWines to lowest minimum_purchase_unit of same wine_vintage, price and merchant
         # NOT WORKING min_units = results_list.values('wine_vintage').annotate(smallest_unit=Min('minimum_purchase_unit'))
