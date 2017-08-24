@@ -43,5 +43,26 @@
 
 
 {% endblock %}
-
- 
+{% block page_scripts %}
+    <script>
+        $("#id_category").change(function () {
+            var category = $(this).val();
+            $.ajax({
+                url: '{% url "wine:update_subcategories" %}',
+                data: {
+                    'category': category,
+                },
+                success: function (data) {
+                    var  new_options =  data;
+                    // alert(new_options[0].name);  // works Blend on mobile but not desktop due to duplicates?
+                    $('#id_sub_category').empty();
+                    $.each(new_options, function(key, value) {
+                        $('#id_sub_category')
+                            .append($('<option>', { key : value })
+                            .text(value.name));
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}

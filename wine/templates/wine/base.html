@@ -62,26 +62,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script>
-			$("#id_category").change(function () {
-				var category = $(this).val();
-				$.ajax({
-					url: '{% url "wine:update_subcategories" %}',
-					data: {
-						'category': category,
-					},
-					success: function (data) { 
-						var  new_options =  data; 
-						// alert(new_options[0].name);  // works Blend on mobile but not desktop due to duplicates?
-						$('#id_sub_category').empty(); 
-						$.each(new_options, function(key, value) {   
-							$('#id_sub_category')
-								.append($('<option>', { key : value })
-								.text(value.name)); 
-						});			
-					}
-				});
-			});
-		</script>
+        {% block page_scripts %}{% endblock %}
 	</body>
 </html>
