@@ -4,6 +4,7 @@ from django.db.models import Avg, Min, Func
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import generic
+from django.views.decorators.http import require_GET
 
 from .models import WineVintage, MerchantWine, Producer, SubCategory
 from .forms import BasicSearchForm, AdvancedSearchForm
@@ -17,23 +18,10 @@ class IndexView(generic.ListView):
         """Return the first 500 wine vintages ordered by name."""
         return WineVintage.objects.all()[:500]
 
-
+@require_GET
 def search(request):
-    # REMOVE POST STUFF? ADD???
-    if request.method == 'POST':
-        form = BasicSearchForm(request.POST)
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            category = form.cleaned_data['category']
-            sub_category = form.cleaned_data[
-                'sub_category']  #SubCategory.objects.filter(category__name__exact=category)
-            min_price = form.cleaned_data['min_price']
-            max_price = form.cleaned_data['max_price']
-            # redirect to a new URL:
-            return render(request, 'wine/search.html', {'form': form})
-    else:
-        form = BasicSearchForm()
-        return render(request, 'wine/search.html', {'form': form})
+    form = BasicSearchForm()
+    return render(request, 'wine/search.html', {'form': form})
 
 
 def update_subcategories(request):
