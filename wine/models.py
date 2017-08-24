@@ -139,14 +139,15 @@ class WineVintage(models.Model):
     winemaker = models.ForeignKey("Winemaker", null=True, blank=True)
     year = models.PositiveIntegerField()
     notes = models.TextField(blank=True)
-    sweetness = models.CharField(choices=(
-    ('Bone Dry', "Bone Dry"),
-    ('Dry', "Dry"),
-    ('Semi-Sweet', "Semi-Sweet"),
-    ('Sweet', "Sweet"),
-    ('Very Sweet', "Very Sweet"),
-    ),
-                                 max_length=20, null=True, blank=True
+    sweetness = models.CharField(
+        choices=(
+            ('Bone Dry', "Bone Dry"),
+            ('Dry', "Dry"),
+            ('Semi-Sweet', "Semi-Sweet"),
+            ('Sweet', "Sweet"),
+            ('Very Sweet', "Very Sweet"),
+        ),
+        max_length=20, null=True, blank=True
     )
     wooded = models.NullBooleanField()
     organic = models.NullBooleanField()
@@ -175,7 +176,7 @@ class WineVintage(models.Model):
          - Choose the lowest merchant priority
          - Choose by ID (arbitrary)
         """
-        qs = self.merchantwine_set.order_by('price', 'merchant__priority')
+        qs = self.merchantwine_set.order_by('price', 'merchant__priority', 'pk')
         if qs.exists():
             return qs[0]
 
