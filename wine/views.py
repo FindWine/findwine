@@ -67,23 +67,10 @@ class ResultsView(generic.ListView):
         wines = wines.order_by(
             '-avg_rating', 'price'
         )
-        # todo: remove this code and add back any necessary logic
-        # minimum_prices = results_list.values('wine_vintage').annotate(lowest_price=Min('price'))
-        # results_list = results_list.filter(price__in=minimum_prices.values('lowest_price'))
-        # preferred_merchants = results_list.values('wine_vintage').annotate(
-        #     lowest_priority=Min('merchant__priority')
-        # )
-        # results_list = results_list.filter(merchant__priority__in=preferred_merchants.values('lowest_priority'))
+        # todo: if necessary
         # #9 Restrict MerchantWines to lowest minimum_purchase_unit of same wine_vintage, price and merchant
         # # NOT WORKING min_units = results_list.values('wine_vintage').annotate(smallest_unit=Min('minimum_purchase_unit'))
         # # NOT WORKING results_list = results_list.filter(minimum_purchase_unit__in=min_units.values('smallest_unit'))
-        # #10 Remove duplicates
-        # # TO DO
-        # results_list = results_list.annotate(
-        #
-        # #12 Order by rating and then price
-        # orders = ['-rating', 'price']
-        # results_list = results_list.order_by(*orders)
         return wines
 
 
