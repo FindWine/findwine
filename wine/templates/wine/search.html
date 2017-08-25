@@ -45,23 +45,16 @@
 {% endblock %}
 {% block page_scripts %}
     <script>
+        var CATEGORY_MAP = {{ category_mapping|safe }};
         function setSubCategories(category) {
-            $.ajax({
-                url: '{% url "wine:update_subcategories" %}',
-                data: {
-                    'category': category,
-                },
-                success: function (data) {
-                    var  new_options =  data;
-                    // alert(new_options[0].name);  // works Blend on mobile but not desktop due to duplicates?
-                    $('#id_sub_category').empty();
-                    $.each(new_options, function(key, value) {
-                        $('#id_sub_category')
-                            .append($('<option>', { key : value })
-                            .text(value.name));
-                    });
-                }
-            });
+            var subcategories = CATEGORY_MAP[category];
+            var $select = $('#id_sub_category');
+            // wipe list
+            $select.html('');
+            // add subcategories
+            for (var i = 0; i < subcategories.length; i++) {
+                $select.append($('<option>', { value: subcategories[i], html: subcategories[i] }));
+            }
         }
         $("#id_category").change(function () {
             setSubCategories($(this).val());
