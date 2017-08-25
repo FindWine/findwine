@@ -41,12 +41,6 @@ def _build_category_subcategory_mapping():
     }
 
 
-def update_subcategories(request):
-    category = request.GET.get('category', None)
-    sub_category = list(SubCategory.objects.filter(category__name__exact=category).values('name'))
-    return JsonResponse(sub_category, safe=False)
-
-
 class ResultsView(generic.ListView):
     template_name = 'wine/results.html'
     context_object_name = 'results_list'
