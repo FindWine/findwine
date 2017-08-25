@@ -11,11 +11,10 @@ class BasicSearchForm(forms.Form):
         to_field_name="name",
         empty_label=None,
         initial="Red")
-    sub_category = forms.ModelMultipleChoiceField(
+    # dynamic selection is handled by javascript so no need to base this off a model/queryset
+    sub_category = forms.ChoiceField(
         required=False,
         label='Type',
-        queryset= SubCategory.objects.filter(category__name__exact="Red"),
-        to_field_name="name",
         widget=forms.Select) # forms.SelectMultiple or forms.CheckboxSelectMultiple for multiple
     # How to have an all option? How to limit depending on category?
     min_price = forms.IntegerField(label='Minimum Price', min_value=0, initial=0)

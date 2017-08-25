@@ -59,8 +59,6 @@
         $("#id_category").change(function () {
             setSubCategories($(this).val());
         });
-        if ($("#id_category").val() !== "Red") {
-            setSubCategories($("#id_category").val())
-        }
+        setSubCategories($("#id_category").val());
     </script>
 {% endblock %}
