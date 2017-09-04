@@ -167,6 +167,16 @@ class WineVintage(models.Model):
     image_label_horizontal = models.ImageField(upload_to='images/winevintage_label_horizontal/', null=True,
                                                blank=True)
     tasting_notes = models.FileField(upload_to='documents/tasting_notes/', null=True, blank=True)
+    status = models.CharField(
+        choices=(
+            ('Incomplete_Unavailable', "Incomplete and Unavailable"),
+            ('Incomplete_Available', "Incomplete but Available"),
+            ('Complete_Unavailable', "Complete but Unavailable"),
+            ('Complete_Available', "Complete and Available"),
+            ('Approved', "Approved"),
+        ),
+        max_length=30, default='Incomplete_Unavailable'
+    )
 
     @property
     def preferred_merchant(self):
