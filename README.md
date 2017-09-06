@@ -90,6 +90,14 @@ And your server should be running at http://localhost:8000/
 
 To get the latest version of the code running in a local environment you can run the following (requires installing fabric):
 
+First make sure you are in the virtualenv:
+
+```bash
+workon findwine
+```
+
+Then:
+
 ```bash
 fab update_local
 ./manage.py runserver
