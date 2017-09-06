@@ -136,7 +136,6 @@ class WineVintage(models.Model):
     sub_category = models.ForeignKey("SubCategory")
     blend = models.ForeignKey("Blend", null=True, blank=True)
     appellation = models.ForeignKey("Appellation", null=True, blank=True)
-    winemaker = models.ForeignKey("Winemaker", null=True, blank=True, related_name='winemaker')
     winemakers = models.ManyToManyField("Winemaker", blank=True, related_name='winemakers')
     year = models.PositiveIntegerField()
     notes = models.TextField(blank=True)
