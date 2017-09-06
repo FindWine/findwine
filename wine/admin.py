@@ -1,6 +1,7 @@
 # Register your models here.
 
 from django.contrib import admin
+from django.urls import reverse
 from .models import Appellation
 from .models import Producer
 from .models import Wine
@@ -74,7 +75,11 @@ class WineVintageAdmin(admin.ModelAdmin):
     inlines = [WineGrapeInline, MerchantWineInline, WineAwardInline, WineFoodPairingInline]
     list_display = ('wine', 'year', 'category', 'sub_category')
     search_fields = ['wine__short_name', 'wine__producer__name']
-    
+
+    def view_on_site(self, obj):
+        return reverse('wine:wine_detail', kwargs={'pk': obj.pk})
+
+
 admin.site.register(WineVintage, WineVintageAdmin)
 
 
