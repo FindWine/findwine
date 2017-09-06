@@ -139,6 +139,7 @@ class WineVintage(models.Model):
     winemakers = models.ManyToManyField("Winemaker", blank=True, related_name='winemakers')
     year = models.PositiveIntegerField()
     notes = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     sweetness = models.CharField(
         choices=(
             ('Bone Dry', "Bone Dry"),
