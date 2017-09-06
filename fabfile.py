@@ -1,5 +1,5 @@
 from fabric.context_managers import cd
-from fabric.operations import require
+from fabric.operations import require, local
 from fabric.api import execute, task, sudo, env
 import os
 import posixpath
@@ -26,6 +26,21 @@ def _setup_path():
     env.virtualenv_root = posixpath.join(env.home, '.virtualenvs', 'findwine')
     env.services = posixpath.join(env.home, 'services')
     env.db = '%s_%s' % (env.project, env.environment)
+
+
+@task
+def update_local():
+    # checkout master branch locally
+    local('git checkout master')
+    # pull remote code changes
+    local('git pull origin master')
+    # install any new requirements, if necessary
+    local('pip install -r requirements/requirements.txt')
+    # delete .pyc files (in case anything removed)
+    local("find . -name '*.pyc' -delete")
+    # migrate database tables if necessary
+    local('./manage.py migrate')
+
 
 @task
 def production():

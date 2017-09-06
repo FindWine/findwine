@@ -76,6 +76,25 @@ cp findwine/localsettings.example.py findwine/localsettings.py
 
 Edit the file with your MySQL user/password as needed.
 
+#### Run server
+
+Finally you can run the server:
+
+```bash
+./manage.py runserver
+```
+
+And your server should be running at http://localhost:8000/
+
+# Getting Updates
+
+To get the latest version of the code running in a local environment you can run the following (requires installing fabric):
+
+```bash
+fab update_local
+./manage.py runserver
+```
+
 # Production Setup/Install
 
 See [deploy README](../deploy/README.md) for details on production setup / install.
