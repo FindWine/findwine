@@ -30,8 +30,10 @@
 					{% if winevintage.appellation %}
 					<p>Origin: {{ winevintage.appellation.name }}</p>
 					{% endif %}
-					{% if winevintage.winemaker %}
-					<p>Winemaker: {{ winevintage.winemaker }} </p>
+					{% if winevintage.winemakers.count %}
+                        {% for winemaker in winevintage.winemakers.all  %}
+                            <p>Winemaker: {{ winemaker }} </p>
+                        {% endfor  %}
 					{% endif %}
 					{% if winevintage.winegrape_set.all %}
 						<ul class="list-inline">
