@@ -39,7 +39,7 @@ def update_local():
     # delete .pyc files (in case anything removed) - commented out for windows support
     # local("find . -name '*.pyc' -delete")
     # migrate database tables if necessary
-    local('./manage.py migrate')
+    local('python manage.py migrate')
 
 
 @task
