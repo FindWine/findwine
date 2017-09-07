@@ -4,12 +4,13 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models import Avg
 from geoposition.fields import GeopositionField
-from wine.const import get_all_country_choices
+from wine.const import get_all_country_choices, get_all_country_wine_choices, get_all_merchant_country_choices, \
+    get_all_currency_choices
 
 
 class Appellation(models.Model):
     name = models.CharField(max_length=256)
-    country = models.CharField(choices=get_all_country_choices(), max_length=2,)
+    country = models.CharField(choices=get_all_country_wine_choices(), max_length=2,)
     level1 = models.CharField(null=True, blank=True, max_length=256)
     level2 = models.CharField(null=True, blank=True, max_length=256)
     level3 = models.CharField(null=True, blank=True, max_length=256)
@@ -25,7 +26,7 @@ class Appellation(models.Model):
 
 class Producer(models.Model):
     name = models.CharField(max_length=256)
-    country = models.CharField(choices=get_all_country_choices(), max_length=2)
+    country = models.CharField(choices=get_all_country_wine_choices(), max_length=2)
     appellation_primary = models.ForeignKey("Appellation", null=True)
     address = models.CharField(max_length=256)
     coordinates_text = models.CharField(null=True, blank=True, max_length=256)
@@ -259,26 +260,12 @@ class WineAward(models.Model):
 
 class Merchant(models.Model):
     name = models.CharField(max_length=256)
-    country = models.CharField(choices=(
-    ('ZA', "South Africa"),
-    ('AU', "Australia"),
-    ('GB', "United Kingdom"),
-    ('US', "United States"),
-    ),
-                               max_length=2,
-    )
+    country = models.CharField(choices=get_all_merchant_country_choices(), max_length=2)
     priority = models.PositiveIntegerField()
     sales_commission_percentage = models.DecimalField(null=True, blank=True, max_digits=5, decimal_places=2,
                                                       help_text="Full percentage e.g. 8 for 8%")
     cost_per_click = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
-    currency = models.CharField(choices=(
-    ('ZAR', "South Africa"),
-    ('AUD', "Australia"),
-    ('GBP', "United Kingdom"),
-    ('USD', "United States"),
-    ),
-                                max_length=3,
-    )
+    currency = models.CharField(choices=get_all_currency_choices(), max_length=3)
     merchant_type = models.CharField(choices=(
     ('1', "CPS or Commission on sale"),
     ('2', "CPC or Cost Per Click"),
@@ -323,22 +310,8 @@ class Customer(models.Model):
 class MerchantWine(models.Model):
     merchant = models.ForeignKey("Merchant")
     wine_vintage = models.ForeignKey("WineVintage")
-    country = models.CharField(choices=(
-    ('ZA', "South Africa"),
-    ('AU', "Australia"),
-    ('GB', "United Kingdom"),
-    ('US', "United States"),
-    ),
-                               max_length=2,
-    )
-    currency = models.CharField(choices=(
-    ('ZAR', "South Africa"),
-    ('AUD', "Australia"),
-    ('GBP', "United Kingdom"),
-    ('USD', "United States"),
-    ),
-                                max_length=3,
-    )
+    country = models.CharField(choices=get_all_merchant_country_choices(), max_length=2)
+    currency = models.CharField(choices=get_all_currency_choices(), max_length=3)
     price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2, help_text="e.g. 150.00")
     url = models.URLField(max_length=256)
     external_id = models.CharField(null=True, blank=True, max_length=256)
