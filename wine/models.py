@@ -45,7 +45,7 @@ class Producer(models.Model):
     email_tasting = models.EmailField(max_length=254, null=True, blank=True)
     url = models.URLField(null=True, blank=True, max_length=256)
     tasting_price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
-    tasting_currency = models.CharField(null=True, blank=True, max_length=3)
+    tasting_currency = models.CharField(null=True, blank=True, choices=get_all_currency_choices(), max_length=3)
     logo = models.ImageField(upload_to='images/producer_logos/', null=True, blank=True)
 
     @property
