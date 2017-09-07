@@ -4,8 +4,9 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models import Avg
 from geoposition.fields import GeopositionField
-from wine.const import get_all_country_choices, get_all_country_wine_choices, get_all_merchant_country_choices, \
+from wine.const import get_all_country_wine_choices, get_all_merchant_country_choices, \
     get_all_currency_choices
+from wine.geoposition import geoposition_to_dms_string
 
 
 class Appellation(models.Model):
@@ -46,6 +47,13 @@ class Producer(models.Model):
     tasting_price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     tasting_currency = models.CharField(null=True, blank=True, max_length=3)
     logo = models.ImageField(upload_to='images/producer_logos/', null=True, blank=True)
+
+    @property
+    def coordinates_display(self):
+        if self.coordinates_google:
+            return geoposition_to_dms_string(self.coordinates_google)
+        else:
+            return self.coordinates_text
 
     def __str__(self):
         return self.name
@@ -180,7 +188,6 @@ class WineVintage(models.Model):
         "Aggregate normalised rating from the wine awards."
         return WineAward.objects.filter(wine_vintage=self).aggregate(
             avg_rating=Avg('award__tier__normalised_rating'))
-
 
     def __str__(self):
         return self.long_name
