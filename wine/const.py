@@ -1,5 +1,11 @@
 from collections import namedtuple
 
+
+# To add a country you can copy the format below.
+# For the metadata fields you can add:
+# 'is_producer': False to add a country that should not show up in wine choices
+# 'is_merchant': True to add a country that should show up in merchant choices
+# 'currency': 'XXX' to set a merchant country's currency
 COUNTRY_DATA = [
     ('ZA', "South Africa", {'is_merchant': True, 'currency': 'ZAR'}),
     ('AU', "Australia", {'is_merchant': True, 'currency': 'AUD'}),
@@ -7,14 +13,14 @@ COUNTRY_DATA = [
     ('FR', "France"),
     ('ES', "Spain"),
     ('IT', "Italy"),
-    ('GB', "United Kingdom", {'is_wine': False, 'is_merchant': True, 'currency': 'GBP'}),
+    ('GB', "United Kingdom", {'is_merchant': True, 'currency': 'GBP'}),
     ('US', "United States", {'is_merchant': True, 'currency': 'USD'}),
     ('AR', "Argentina"),
     ('CL', "Chile"),
 ]
 
 
-class Country(namedtuple('Country', ['code', 'name', 'is_wine', 'is_merchant', 'currency'])):
+class Country(namedtuple('Country', ['code', 'name', 'is_producer', 'is_merchant', 'currency'])):
 
     def to_model_choice(self):
         # for use in model "choices"
@@ -30,7 +36,7 @@ def _make_country(country_tuple):
         assert len(country_tuple) == 3
         metadata = country_tuple[2]
 
-    return Country(country_tuple[0], country_tuple[1], metadata.get('is_wine', True),
+    return Country(country_tuple[0], country_tuple[1], metadata.get('is_producer', True),
                    metadata.get('is_merchant', False), metadata.get('currency', None))
 
 COUNTRIES = [_make_country(c) for c in COUNTRY_DATA]
@@ -41,7 +47,7 @@ def get_all_country_choices():
 
 
 def get_all_country_wine_choices():
-    return [c.to_model_choice() for c in COUNTRIES if c.is_wine]
+    return [c.to_model_choice() for c in COUNTRIES if c.is_producer]
 
 
 def get_all_merchant_country_choices():

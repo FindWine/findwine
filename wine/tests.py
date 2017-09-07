@@ -11,6 +11,7 @@ EXPECTED_WINE_CHOICES = [
     ('FR', "France"),
     ('ES', "Spain"),
     ('IT', "Italy"),
+    ('GB', "United Kingdom"),
     ('US', "United States"),
     ('AR', "Argentina"),
     ('CL', "Chile"),
