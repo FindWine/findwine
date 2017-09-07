@@ -36,8 +36,8 @@ def update_local():
     local('git pull origin master')
     # install any new requirements, if necessary
     local('pip install -r requirements/requirements.txt')
-    # delete .pyc files (in case anything removed)
-    local("find . -name '*.pyc' -delete")
+    # delete .pyc files (in case anything removed) - commented out for windows support
+    # local("find . -name '*.pyc' -delete")
     # migrate database tables if necessary
     local('./manage.py migrate')
 
