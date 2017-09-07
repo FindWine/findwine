@@ -4,23 +4,12 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models import Avg
 from geoposition.fields import GeopositionField
+from wine.const import get_all_country_choices
 
 
 class Appellation(models.Model):
     name = models.CharField(max_length=256)
-    country = models.CharField(choices=(
-    ('ZA', "South Africa"),
-    ('AU', "Australia"),
-    ('NZ', "New Zealand"),
-    ('FR', "France"),
-    ('ES', "Spain"),
-    ('IT', "Italy"),
-    ('US', "United States"),
-    ('AR', "Argentina"),
-    ('CL', "Chile"),
-    ),
-                               max_length=2,
-    )
+    country = models.CharField(choices=get_all_country_choices(), max_length=2,)
     level1 = models.CharField(null=True, blank=True, max_length=256)
     level2 = models.CharField(null=True, blank=True, max_length=256)
     level3 = models.CharField(null=True, blank=True, max_length=256)
@@ -36,19 +25,7 @@ class Appellation(models.Model):
 
 class Producer(models.Model):
     name = models.CharField(max_length=256)
-    country = models.CharField(choices=(
-    ('ZA', "South Africa"),
-    ('AU', "Australia"),
-    ('NZ', "New Zealand"),
-    ('FR', "France"),
-    ('ES', "Spain"),
-    ('IT', "Italy"),
-    ('US', "United States"),
-    ('AR', "Argentina"),
-    ('CL', "Chile"),
-    ),
-                               max_length=2,
-    )
+    country = models.CharField(choices=get_all_country_choices(), max_length=2)
     appellation_primary = models.ForeignKey("Appellation", null=True)
     address = models.CharField(max_length=256)
     coordinates_text = models.CharField(null=True, blank=True, max_length=256)
