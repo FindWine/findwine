@@ -75,7 +75,8 @@ class WineVintageAdmin(admin.ModelAdmin):
         ('Status',      {'fields': ['status']}),
     ]
     inlines = [WineGrapeInline, MerchantWineInline, WineAwardInline, WineFoodPairingInline]
-    list_display = ('wine', 'year', 'category', 'sub_category')
+    list_display = ('wine', 'year', 'category', 'sub_category', 'status')
+    list_filter = ('status', )
     search_fields = ['wine__short_name', 'wine__producer__name']
 
     def view_on_site(self, obj):
