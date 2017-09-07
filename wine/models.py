@@ -102,10 +102,11 @@ class Winemaker(models.Model):
     surname = models.CharField(max_length=256)
 
     def __str__(self):
-        return str(self.forename_1) + ' ' + str(self.forename_2) + ' ' + str(self.surname)
+        return '{}, {}{}'.format(self.surname, self.forename_1,
+                                 '' if not self.forename_2 else ' {}'.format(self.forename_2))
 
     class Meta:
-        ordering = ['surname']
+        ordering = ['surname', 'forename_1', 'forename_2']
 
 
 class WineVintage(models.Model):
