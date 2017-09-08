@@ -1,13 +1,17 @@
 from collections import namedtuple
 
 
+SOUTH_AFRICA_CODE = 'ZA'
+SOUTH_AFRICAN_RAND_CODE = 'ZAR'
+
+
 # To add a country you can copy the format below.
 # For the metadata fields you can add:
 # 'is_producer': False to add a country that should not show up in wine choices
 # 'is_merchant': True to add a country that should show up in merchant choices
 # 'currency': 'XXX' to set a merchant country's currency
 COUNTRY_DATA = [
-    ('ZA', "South Africa", {'is_merchant': True, 'currency': 'ZAR'}),
+    (SOUTH_AFRICA_CODE, "South Africa", {'is_merchant': True, 'currency': SOUTH_AFRICAN_RAND_CODE}),
     ('AU', "Australia", {'is_merchant': True, 'currency': 'AUD'}),
     ('NZ', "New Zealand"),
     ('FR', "France"),
@@ -18,6 +22,7 @@ COUNTRY_DATA = [
     ('AR', "Argentina"),
     ('CL', "Chile"),
 ]
+
 
 
 class Country(namedtuple('Country', ['code', 'name', 'is_producer', 'is_merchant', 'currency'])):
