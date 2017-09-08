@@ -30,7 +30,6 @@ class Producer(models.Model):
     country = models.CharField(choices=get_all_country_wine_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
     appellation_primary = models.ForeignKey("Appellation", null=True)
     address = models.CharField(max_length=256)
-    coordinates_text = models.CharField(null=True, blank=True, max_length=256)
     coordinates_google = GeopositionField(null=True, blank=True)
     opening_hours_mon = models.CharField(null=True, blank=True, max_length=256)
     opening_hours_tue = models.CharField(null=True, blank=True, max_length=256)
