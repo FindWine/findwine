@@ -121,6 +121,17 @@ $ pip install -r requirements/dev-requirements.txt
 $ ./manage.py test
 ```
 
+You can also run subsets of the tests as needed:
+
+```bash
+# by module
+$ ./manage.py test wine.tests.test_countries
+# by test case
+$ ./manage.py test wine.tests.test_countries:CountriesTest
+# by test method
+$ ./manage.py test wine.tests.test_countries:CountriesTest.test_all_choices
+```
+
 # Production Setup/Install
 
 See [deploy README](../deploy/README.md) for details on production setup / install.
