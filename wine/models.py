@@ -116,6 +116,7 @@ class Winemaker(models.Model):
 
 
 class WineVintage(models.Model):
+    slug = models.CharField(max_length=255, unique=True, null=True, blank=True)
     wine = models.ForeignKey("Wine")
     category = models.ForeignKey("Category")
     sub_category = models.ForeignKey("SubCategory")
