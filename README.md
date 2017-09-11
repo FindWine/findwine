@@ -132,6 +132,19 @@ $ ./manage.py test wine.tests.test_countries:CountriesTest
 $ ./manage.py test wine.tests.test_countries:CountriesTest.test_all_choices
 ```
 
+## Using Sniffer
+
+It is highly recommended to use sniffer to run tests when doing active development.
+Sniffer will automatically watch files for changes and rerun tests as needed.
+
+To run sniffer just use the following:
+
+```bash
+$ sniffer -x -s ./manage.py -x wine.tests.test_countries
+```
+
+Like normal tests, you can use sniffer to run any subset of the tests using the same syntax as above.
+
 # Production Setup/Install
 
 See [deploy README](../deploy/README.md) for details on production setup / install.
