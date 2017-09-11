@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -162,6 +163,7 @@ GEOPOSITION_GOOGLE_MAPS_API_KEY = '***'  # override with localsettings
 # Google Analytics
 GOOGLE_ANALYTICS_TRACKING_ID  = 'UA-99343389-1'
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 try:
     from .localsettings import *

@@ -103,6 +103,24 @@ fab update_local
 ./manage.py runserver
 ```
 
+# Running Tests
+
+To run tests, first make sure you have the dev requirements installed:
+
+```bash
+$ pip install -r requirements/dev-requirements.txt
+```
+
+Then run the following:
+
+```bash
+$ pip install -r requirements/dev-requirements.txt
+```
+
+```bash
+$ ./manage.py test
+```
+
 # Production Setup/Install
 
 See [deploy README](../deploy/README.md) for details on production setup / install.
