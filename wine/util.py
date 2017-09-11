@@ -1,5 +1,6 @@
 from django.utils.text import slugify
 
+MAX_UNIQUE_CHARFIELD = 191
 
 def generate_unique_slug(wine_vintage):
     from wine.models import WineVintage
@@ -35,4 +36,4 @@ def generate_slug_from_parts(producer_name, wine_name, year):
         producer=slugify(producer_name),
         wine=slugify(wine_name),
         year=year,
-    )[:255]
+    )[:MAX_UNIQUE_CHARFIELD]

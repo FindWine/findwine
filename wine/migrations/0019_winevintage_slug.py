@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='winevintage',
             name='slug',
-            field=models.CharField(blank=True, max_length=255, null=True, unique=True),
+            field=models.CharField(blank=True, max_length=191, null=True, unique=True),
         ),
     ]

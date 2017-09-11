@@ -20,7 +20,7 @@ class WineVintageSlugTest(TestCase):
             (('Bouchard Finlayson', 'Galpin Peak', 2015), 'bouchard-finlayson-galpin-peak-2015'),
             (("Apostrophe's", "And other spec!@l C#arachters", 2015), 'apostrophes-and-other-specl-carachters-2015'),
             (("   leading and ", " trailing whitespace    ", 2015), 'leading-and-trailing-whitespace-2015'),
-            (("something that is really just significantly (very very significantly) longer than you would expect it to be. like really much longer.", "much longer. so much longer. really so much longer. as in, it's still going and going and going. nothing outlasts this field. it is the energizer bunny of fields.", 2015), 'something-that-is-really-just-significantly-very-very-significantly-longer-than-you-would-expect-it-to-be-like-really-much-longer-much-longer-so-much-longer-really-so-much-longer-as-in-its-still-going-and-going-and-going-nothing-outlasts-this-field-it-is-'),
+            (("something that is really just significantly (very very significantly) longer than you would expect it to be. like really much longer.", "much longer. so much longer. really so much longer. as in, it's still going and going and going. nothing outlasts this field. it is the energizer bunny of fields.", 2015), 'something-that-is-really-just-significantly-very-very-significantly-longer-than-you-would-expect-it-to-be-like-really-much-longer-much-longer-so-much-longer-really-so-much-longer-as-in-its-st'),
             ((None, None, 2015), 'unknown-producer-unknown-wine-2015'),
             (('', '', 2015), 'unknown-producer-unknown-wine-2015'),
         )

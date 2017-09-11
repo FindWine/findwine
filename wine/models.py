@@ -7,7 +7,7 @@ from geoposition.fields import GeopositionField
 from wine.const import get_all_country_wine_choices, get_all_merchant_country_choices, \
     get_all_currency_choices, SOUTH_AFRICA_CODE, SOUTH_AFRICAN_RAND_CODE
 from wine.geoposition import geoposition_to_dms_string
-from wine.util import generate_unique_slug
+from wine.util import generate_unique_slug, MAX_UNIQUE_CHARFIELD
 
 
 class Appellation(models.Model):
@@ -117,7 +117,7 @@ class Winemaker(models.Model):
 
 
 class WineVintage(models.Model):
-    slug = models.CharField(max_length=255, unique=True, editable=False)
+    slug = models.CharField(max_length=MAX_UNIQUE_CHARFIELD, unique=True, editable=False)
     wine = models.ForeignKey("Wine")
     category = models.ForeignKey("Category")
     sub_category = models.ForeignKey("SubCategory")
