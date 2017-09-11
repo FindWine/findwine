@@ -1,5 +1,6 @@
 from django.test import TestCase
-from wine.util import generate_slug_from_parts
+from wine.models import Producer, Wine, WineVintage
+from wine.util import generate_slug_from_parts, generate_slug
 
 
 class WineVintageSlugTest(TestCase):
@@ -14,3 +15,9 @@ class WineVintageSlugTest(TestCase):
         )
         for inputs, expected_output in TEST_CASES:
             self.assertEqual(expected_output, generate_slug_from_parts(*inputs))
+
+    def test_slugs_from_fields(self):
+        producer = Producer(name='Warwick')
+        wine = Wine(producer=producer, name='Grey Lady')
+        vintage = WineVintage(wine=wine, year=2015)
+        self.assertEqual(generate_slug(vintage), 'warwick-grey-lady-2015')

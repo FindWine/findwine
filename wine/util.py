@@ -6,7 +6,7 @@ def generate_slug(wine_vintage):
     Slug format should be: [producer name]-[wine name]-[winevintage year]
     """
     return generate_slug_from_parts(
-        producer_name=wine_vintage.producer.name,
+        producer_name=wine_vintage.wine.producer.name,
         wine_name=slugify(wine_vintage.wine.name),
         year=wine_vintage.year,
     )
