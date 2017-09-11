@@ -18,6 +18,7 @@ def add_slugs(apps, schema_editor):
             wine_vintage.slug = generate_unique_slug(wine_vintage)
             wine_vintage.save()
         assert wine_vintage.slug
+        print('setting slug: {}'.format(wine_vintage.slug))
 
 
 class Migration(migrations.Migration):
