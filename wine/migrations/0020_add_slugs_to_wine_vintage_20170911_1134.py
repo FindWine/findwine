@@ -16,9 +16,9 @@ def add_slugs(apps, schema_editor):
             # have to do this explicitly since overridden saves don't work in migrations
             # see: https://docs.djangoproject.com/en/1.8/topics/migrations/#historical-models
             wine_vintage.slug = generate_unique_slug(wine_vintage)
+            print('setting slug: {}'.format(wine_vintage.slug))
             wine_vintage.save()
         assert wine_vintage.slug
-        print('setting slug: {}'.format(wine_vintage.slug))
 
 
 class Migration(migrations.Migration):
