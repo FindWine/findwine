@@ -18,7 +18,7 @@
 				{% for winevintage in winevintage_list %}
 				<tr>
 					<td scope="row"><a class="text-primary" href="{% url 'wine:producer_detail' winevintage.wine.producer.id %}">{{ winevintage.wine.producer }}</a></th>
-					<td><a class="text-primary" href="{% url 'wine:wine_detail' winevintage.id %}">{{ winevintage.wine.long_name }} {{ winevintage.year }}</a></td>
+					<td><a class="text-primary" href="{% url 'wine:wine_detail' winevintage.id %}">{{ winevintage.wine.short_name }} {{ winevintage.year }}</a></td>
 					<td>{{ winevintage.rating.avg_rating|floatformat:1  }} </td>
 				</tr>
 				{% endfor %}
@@ -44,7 +44,7 @@
 				{% for winevintage in winevintage_list %}
 				<tr>
 					<td scope="row"><a class="text-primary" href="{% url 'wine:producer_detail' winevintage.wine.producer.id %}">{{ winevintage.wine.producer }}</a></th>
-					<td><a class="text-primary" href="{% url 'wine:wine_detail' winevintage.id %}">{{ winevintage.wine.long_name }} {{ winevintage.year }}</a></td>
+					<td><a class="text-primary" href="{% url 'wine:wine_detail' winevintage.id %}">{{ winevintage.wine.short_name }} {{ winevintage.year }}</a></td>
 					<td>{{ winevintage.rating.avg_rating|floatformat:1  }} </td>
 				</tr>
 				{% endfor %}

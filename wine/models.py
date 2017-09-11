@@ -64,7 +64,6 @@ class Producer(models.Model):
 class Wine(models.Model):
     producer = models.ForeignKey("Producer")
     short_name = models.CharField(max_length=256)
-    long_name = models.CharField(max_length=512)
     wine_range = models.CharField(null=True, blank=True, max_length=256)
 
     def __str__(self):
