@@ -1,6 +1,10 @@
 from django.utils.text import slugify
 
+
+# see https://stackoverflow.com/a/31474509/8207 for more context
+# utf8mb4 is the encoding used in production, thus this number
 MAX_UNIQUE_CHARFIELD = 191
+
 
 def generate_unique_slug(wine_vintage):
     from wine.models import WineVintage
