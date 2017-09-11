@@ -35,5 +35,4 @@ def generate_slug_from_parts(producer_name, wine_name, year):
         producer=slugify(producer_name),
         wine=slugify(wine_name),
         year=year,
-    )
-
+    )[:255]
