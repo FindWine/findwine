@@ -63,14 +63,14 @@ class Producer(models.Model):
 
 class Wine(models.Model):
     producer = models.ForeignKey("Producer")
-    short_name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256)
     wine_range = models.CharField(null=True, blank=True, max_length=256)
 
     def __str__(self):
-        return self.producer.name + ' - ' + self.short_name
+        return self.producer.name + ' - ' + self.name
 
     class Meta:
-        ordering = ['producer', 'short_name']
+        ordering = ['producer', 'name']
 
 
 class Category(models.Model):

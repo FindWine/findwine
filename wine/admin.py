@@ -87,6 +87,6 @@ admin.site.register(WineVintage, WineVintageAdmin)
 
 
 class WineAdmin(admin.ModelAdmin):
-    list_display = ('producer', 'short_name')
+    list_display = ('producer', 'name')
 
 admin.site.register(Wine, WineAdmin)
