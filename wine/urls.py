@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^index/$', views.IndexView.as_view(), name='index'),
     # ex: /wine/2/  
     url(r'^wine/(?P<pk>[0-9]+)/$', views.WineDetailView.as_view(), name='wine_detail'),
+    url(r'^wine/(?P<slug>[A-Za-z0-9_-]+)/$', views.WineDetailView.as_view(), name='wine_detail_by_slug'),
     # ex: /advanced_search/
     url(r'^advanced_search/$', views.AdvancedSearch, name='advanced_search'),
     # ex: /producer/3/  
