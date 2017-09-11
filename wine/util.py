@@ -1,6 +1,22 @@
 from django.utils.text import slugify
 
 
+def generate_unique_slug(wine_vintage):
+    from wine.models import WineVintage
+    slug = generate_slug(wine_vintage)
+    if WineVintage.objects.filter(slug=slug).count():
+        # conflict - find the next available number
+        existing_slugs = set(WineVintage.objects.filter(slug__startswith=slug).values_list('slug', flat=True))
+        suffix = 2
+        candidate_slug = slug
+        while candidate_slug in existing_slugs:
+            candidate_slug = '{}-{}'.format(slug, suffix)
+            suffix += 1
+        return candidate_slug
+    else:
+        return slug
+
+
 def generate_slug(wine_vintage):
     """
     Slug format should be: [producer name]-[wine name]-[winevintage year]

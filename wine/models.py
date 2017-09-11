@@ -7,6 +7,7 @@ from geoposition.fields import GeopositionField
 from wine.const import get_all_country_wine_choices, get_all_merchant_country_choices, \
     get_all_currency_choices, SOUTH_AFRICA_CODE, SOUTH_AFRICAN_RAND_CODE
 from wine.geoposition import geoposition_to_dms_string
+from wine.util import generate_unique_slug
 
 
 class Appellation(models.Model):
@@ -164,6 +165,12 @@ class WineVintage(models.Model):
         ),
         max_length=30, default='Incomplete_Unavailable'
     )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = generate_unique_slug(self)
+        super(WineVintage, self).save(*args, **kwargs)
+
 
     @property
     def preferred_merchant(self):
