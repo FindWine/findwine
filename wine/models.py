@@ -171,7 +171,6 @@ class WineVintage(models.Model):
             self.slug = generate_unique_slug(self)
         super(WineVintage, self).save(*args, **kwargs)
 
-
     @property
     def preferred_merchant(self):
         """
