@@ -45,7 +45,8 @@ class Producer(models.Model):
     email_tasting = models.EmailField(max_length=254, null=True, blank=True)
     url = models.URLField(null=True, blank=True, max_length=256)
     tasting_price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
-    tasting_currency = models.CharField(null=True, blank=True, choices=get_all_currency_choices(), max_length=3)
+    tasting_currency = models.CharField(null=True, blank=True, choices=get_all_currency_choices(), max_length=3,
+                                        default=SOUTH_AFRICAN_RAND_CODE)
     logo = models.ImageField(upload_to='images/producer_logos/', null=True, blank=True)
 
     @property
@@ -278,7 +279,7 @@ class Merchant(models.Model):
     sales_commission_percentage = models.DecimalField(null=True, blank=True, max_digits=5, decimal_places=2,
                                                       help_text="Full percentage e.g. 8 for 8%")
     cost_per_click = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
-    currency = models.CharField(choices=get_all_currency_choices(), max_length=3)
+    currency = models.CharField(choices=get_all_currency_choices(), max_length=3, default=SOUTH_AFRICAN_RAND_CODE)
     merchant_type = models.CharField(choices=(
     ('1', "CPS or Commission on sale"),
     ('2', "CPC or Cost Per Click"),
