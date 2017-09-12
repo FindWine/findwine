@@ -32,6 +32,7 @@ class Producer(models.Model):
     appellation_primary = models.ForeignKey("Appellation", null=True)
     address = models.CharField(max_length=256)
     coordinates_google = GeopositionField(null=True, blank=True)
+    google_place_id = models.CharField(null=True, blank=True, max_length=256)
     opening_hours_mon = models.CharField(null=True, blank=True, max_length=256)
     opening_hours_tue = models.CharField(null=True, blank=True, max_length=256)
     opening_hours_wed = models.CharField(null=True, blank=True, max_length=256)
