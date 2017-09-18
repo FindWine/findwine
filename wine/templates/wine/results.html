@@ -17,7 +17,7 @@
 			<tbody>
 				{% for winevintage in results_list %}
 				<tr>
-				  <td scope="row"><a class="text-primary" href="{% url 'wine:wine_detail_by_slug' winevintage.slug %}">{{ winevintage.wine.producer }} </br>{{ winevintage.wine.short_name }} {{ winevintage.year }}</a></td>
+				  <td scope="row"><a class="text-primary" href="{% url 'wine:wine_detail_by_slug' winevintage.slug %}">{{ winevintage.wine.producer }} </br>{{ winevintage.wine.name }} {{ winevintage.year }}</a></td>
 				  <td>{{ winevintage.avg_rating }}</td>
 				  <td>R {{ winevintage.price }} </br><a class="text-primary" href={{ winevintage.preferred_merchant.url }} target="_blank"> Buy </a></td>
 				</tr>
