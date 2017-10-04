@@ -51,13 +51,16 @@ class WineGrapeInline(admin.TabularInline):
     model = WineGrape
     extra = 0
 
+
 class WineFoodPairingInline(admin.TabularInline):
     model = WineFoodPairing
     extra = 0
 
+
 class WineAwardInline(admin.TabularInline):
     model = WineAward
     extra = 0
+
 
 class MerchantWineInline(admin.StackedInline):
     model = MerchantWine
