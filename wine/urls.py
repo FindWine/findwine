@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^advanced_search/$', views.AdvancedSearch, name='advanced_search'),
     # ex: /producer/3/
     url(r'^producer/(?P<pk>[0-9]+)/$', views.ProducerDetailView.as_view(), name='producer_detail'),
+    url(r'^500/$', views.error, name='simulate_error'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # NOT SUITABLE FOR PRODCUTION

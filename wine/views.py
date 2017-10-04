@@ -113,3 +113,8 @@ def AdvancedSearch(request):
     else:
         form = AdvancedSearchForm()
         return render(request, 'wine/search.html', {'form': form})
+
+
+@require_GET
+def error(request):
+    raise Exception('Simulated Failure!')
