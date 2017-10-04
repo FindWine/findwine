@@ -281,14 +281,16 @@ class Merchant(models.Model):
                                                       help_text="Full percentage e.g. 8 for 8%")
     cost_per_click = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     currency = models.CharField(choices=get_all_currency_choices(), max_length=3, default=SOUTH_AFRICAN_RAND_CODE)
-    merchant_type = models.CharField(choices=(
-    ('1', "CPS or Commission on sale"),
-    ('2', "CPC or Cost Per Click"),
-    ('3', "Combo or CPS and CPC"),
-    ),
-                                     max_length=2
+    merchant_type = models.CharField(
+        choices=(
+            ('1', "CPS or Commission on sale"),
+            ('2', "CPC or Cost Per Click"),
+            ('3', "Combo or CPS and CPC"),
+        ),
+        max_length=2
     )
     delivery_fee = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
+    delivery_fees = models.TextField(null=True, blank=True)
     delivery_threshold = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     logo = models.ImageField(upload_to='images/merchant_logos/', null=True, blank=True)
     url = models.URLField(null=True, blank=True, max_length=256)
