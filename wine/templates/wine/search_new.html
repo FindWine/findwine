@@ -9,27 +9,7 @@
 {#    <script src="{% static 'js/findwine-bundle.js' %}"></script>#}
     <script>
         var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
-        console.log(CATEGORY_CHOICES);
         var CATEGORY_MAP = {{ category_mapping|safe }};
-        function setSubCategories(category) {
-            console.log('set subcategories for ', category);
-            if (category) {
-                var subcategories = CATEGORY_MAP[category];
-
-
-                var $select = $('#id_sub_category');
-                // wipe list
-                $select.html('');
-                // add subcategories
-                for (var i = 0; i < subcategories.length; i++) {
-                    $select.append($('<option>', { value: subcategories[i], html: subcategories[i] }));
-                }
-            }
-        }
-        $("#id_category").change(function () {
-            setSubCategories($(this).val());
-        });
-        setSubCategories($("#id_category").val());
     </script>
     <script src="/static/js/findwine-bundle.js"></script>
 {% endblock %}

@@ -25,10 +25,25 @@ class CategorySelect extends React.Component {
   }
 }
 
+class SubCategorySelect extends React.Component {
+  render() {
+    let choices = getSubcategories(this.props.selectedCategory);
+    return (
+      <select name="sub_category" id="id_sub_category"
+        onChange={(event) => this.props.subcategoryChanged(event.target.value)}>
+        {choices.map((category, index) => {
+            return (
+              <option key={index} value={category}>{category}</option>
+            )
+        })}
+      </select>
+    );
+  }
+}
+
 class SearchControls extends React.Component {
 
   render() {
-    console.log(this.props.formState);
     return (
       <div>
       <h5 style={{paddingTop: '10%', paddingBottom: '5%', textAlign: 'center'}}>What wine would you like to find?</h5>
@@ -46,8 +61,10 @@ class SearchControls extends React.Component {
   				<div className="col-sm-3">
   					<div className="form-group sub_category">
   						<label htmlFor="id_sub_category">Type</label>
-  						<select name="sub_category" id="id_sub_category">
-              </select>
+              <SubCategorySelect
+                selectedCategory={this.props.selectedCategory}
+                subcategoryChanged={this.props.subcategoryChanged}
+              />
   					</div>
   				</div>
   				<div className="col-sm-2">
@@ -79,12 +96,20 @@ class SearchPage extends React.Component {
     }
   }
 
+  updateCategory(category) {
+    this.setState({selectedCategory: category});
+  }
+  updateSubcategory(subcategory) {
+    this.setState({selectedSubcategory: subcategory});
+  }
   render() {
     return (
       <div className="container">
         <SearchControls
-          appState={this.state}
-          categoryChanged={(category) => this.setState({selectedCategory: category})}
+          selectedCategory={this.state.selectedCategory}
+          categoryChanged={(category) => this.updateCategory(category)}
+          selectedSubcategory={this.state.selectedCategory}
+          subcategoryChanged={(subcategory) => this.updateSubcategory(subcategory)}
         />
       </div>
     )
@@ -104,4 +129,12 @@ function getCategoryChoices() {
 function getCategoryMap() {
   // NOTE: we assume this is assigned elsewhere on the page by django
   return CATEGORY_MAP;
+}
+
+function getSubcategories(category) {
+  if (category in getCategoryMap()) {
+    return getCategoryMap()[category];
+  } else {
+    return [];
+  }
 }

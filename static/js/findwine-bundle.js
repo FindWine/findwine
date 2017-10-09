@@ -128,8 +128,43 @@ var CategorySelect = function (_React$Component) {
   return CategorySelect;
 }(_react2.default.Component);
 
-var SearchControls = function (_React$Component2) {
-  _inherits(SearchControls, _React$Component2);
+var SubCategorySelect = function (_React$Component2) {
+  _inherits(SubCategorySelect, _React$Component2);
+
+  function SubCategorySelect() {
+    _classCallCheck(this, SubCategorySelect);
+
+    return _possibleConstructorReturn(this, (SubCategorySelect.__proto__ || Object.getPrototypeOf(SubCategorySelect)).apply(this, arguments));
+  }
+
+  _createClass(SubCategorySelect, [{
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      var choices = getSubcategories(this.props.selectedCategory);
+      return _react2.default.createElement(
+        'select',
+        { name: 'sub_category', id: 'id_sub_category',
+          onChange: function onChange(event) {
+            return _this4.props.subcategoryChanged(event.target.value);
+          } },
+        choices.map(function (category, index) {
+          return _react2.default.createElement(
+            'option',
+            { key: index, value: category },
+            category
+          );
+        })
+      );
+    }
+  }]);
+
+  return SubCategorySelect;
+}(_react2.default.Component);
+
+var SearchControls = function (_React$Component3) {
+  _inherits(SearchControls, _React$Component3);
 
   function SearchControls() {
     _classCallCheck(this, SearchControls);
@@ -140,7 +175,6 @@ var SearchControls = function (_React$Component2) {
   _createClass(SearchControls, [{
     key: 'render',
     value: function render() {
-      console.log(this.props.formState);
       return _react2.default.createElement(
         'div',
         null,
@@ -183,7 +217,10 @@ var SearchControls = function (_React$Component2) {
                   { htmlFor: 'id_sub_category' },
                   'Type'
                 ),
-                _react2.default.createElement('select', { name: 'sub_category', id: 'id_sub_category' })
+                _react2.default.createElement(SubCategorySelect, {
+                  selectedCategory: this.props.selectedCategory,
+                  subcategoryChanged: this.props.subcategoryChanged
+                })
               )
             ),
             _react2.default.createElement(
@@ -232,32 +269,46 @@ var SearchControls = function (_React$Component2) {
   return SearchControls;
 }(_react2.default.Component);
 
-var SearchPage = function (_React$Component3) {
-  _inherits(SearchPage, _React$Component3);
+var SearchPage = function (_React$Component4) {
+  _inherits(SearchPage, _React$Component4);
 
   function SearchPage() {
     _classCallCheck(this, SearchPage);
 
-    var _this4 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
+    var _this6 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
 
-    _this4.state = {
+    _this6.state = {
       selectedCategory: getCategoryChoices()[0] // select first category
     };
-    return _this4;
+    return _this6;
   }
 
   _createClass(SearchPage, [{
+    key: 'updateCategory',
+    value: function updateCategory(category) {
+      this.setState({ selectedCategory: category });
+    }
+  }, {
+    key: 'updateSubcategory',
+    value: function updateSubcategory(subcategory) {
+      this.setState({ selectedSubcategory: subcategory });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this5 = this;
+      var _this7 = this;
 
       return _react2.default.createElement(
         'div',
         { className: 'container' },
         _react2.default.createElement(SearchControls, {
-          appState: this.state,
+          selectedCategory: this.state.selectedCategory,
           categoryChanged: function categoryChanged(category) {
-            return _this5.setState({ selectedCategory: category });
+            return _this7.updateCategory(category);
+          },
+          selectedSubcategory: this.state.selectedCategory,
+          subcategoryChanged: function subcategoryChanged(subcategory) {
+            return _this7.updateSubcategory(subcategory);
           }
         })
       );
@@ -276,6 +327,14 @@ function getCategoryChoices() {
 function getCategoryMap() {
   // NOTE: we assume this is assigned elsewhere on the page by django
   return CATEGORY_MAP;
+}
+
+function getSubcategories(category) {
+  if (category in getCategoryMap()) {
+    return getCategoryMap()[category];
+  } else {
+    return [];
+  }
 }
 
 /***/ }),
