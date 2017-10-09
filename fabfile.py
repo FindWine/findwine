@@ -101,6 +101,7 @@ def django_stuff():
         # todo: staticfiles
         # sudo('{}/bin/python manage.py collectstatic --noinput'.format(env.virtualenv_root), user=env.sudo_user)
         sudo('{}/bin/python manage.py migrate'.format(env.virtualenv_root), user=env.sudo_user)
+        sudo('{}/bin/python manage.py collectstatic --noinput'.format(env.virtualenv_root), user=env.sudo_user)
 
 
 def services_restart():
