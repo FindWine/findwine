@@ -93,7 +93,6 @@ class SearchControls extends React.Component {
   }
 }
 
-
 class WineList extends React.Component {
   render () {
     if (this.props.wines.length > 0) {
@@ -167,7 +166,16 @@ class SearchPage extends React.Component {
   searchClicked(event) {
     event.preventDefault();
     console.log('search clicked!');
-    fetch(WINE_API_URL).then((response) => {
+    let params = {
+      category: this.state['selectedCategory'],
+      sub_category: this.state['selectedSubcategory'],
+      min_price: this.state['minPrice'],
+      max_price: this.state['maxPrice'],
+    }
+    // TODO: assumes jquery on page.
+    params = $.param(params);
+    console.log(params);
+    fetch(WINE_API_URL + '?' + params).then((response) => {
       if(response.ok) {
         response.json().then((responseJson) => {
           this.setState({

@@ -437,7 +437,15 @@ var SearchPage = function (_React$Component5) {
 
       event.preventDefault();
       console.log('search clicked!');
-      fetch(WINE_API_URL).then(function (response) {
+      var params = {
+        category: this.state['selectedCategory'],
+        sub_category: this.state['selectedSubcategory'],
+        min_price: this.state['minPrice'],
+        max_price: this.state['maxPrice']
+        // TODO: assumes jquery on page.
+      };params = $.param(params);
+      console.log(params);
+      fetch(WINE_API_URL + '?' + params).then(function (response) {
         if (response.ok) {
           response.json().then(function (responseJson) {
             _this9.setState({
