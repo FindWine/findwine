@@ -70,6 +70,8 @@
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
@@ -80,11 +82,174 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(
-  'h1',
-  null,
-  'Hello, world!'
-), document.getElementById('react-home'));
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchControls = function (_React$Component) {
+  _inherits(SearchControls, _React$Component);
+
+  function SearchControls() {
+    _classCallCheck(this, SearchControls);
+
+    return _possibleConstructorReturn(this, (SearchControls.__proto__ || Object.getPrototypeOf(SearchControls)).apply(this, arguments));
+  }
+
+  _createClass(SearchControls, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h5',
+          { style: { paddingTop: '10%', paddingBottom: '5%', textAlign: 'center' } },
+          'What wine would you like to find?'
+        ),
+        _react2.default.createElement(
+          'form',
+          { className: 'search-form', role: 'search', action: '/search/', method: 'get' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row d-flex align-items-end' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-3' },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group category' },
+                _react2.default.createElement(
+                  'label',
+                  { htmlFor: 'id_category' },
+                  'Category'
+                ),
+                _react2.default.createElement(
+                  'select',
+                  { name: 'category', id: 'id_category' },
+                  _react2.default.createElement(
+                    'option',
+                    { value: 'Red', selected: true },
+                    'Red'
+                  ),
+                  _react2.default.createElement(
+                    'option',
+                    { value: 'White' },
+                    'White'
+                  ),
+                  _react2.default.createElement(
+                    'option',
+                    { value: 'Ros\xE9' },
+                    'Ros\xE9'
+                  ),
+                  _react2.default.createElement(
+                    'option',
+                    { value: 'Bubbly' },
+                    'Bubbly'
+                  ),
+                  _react2.default.createElement(
+                    'option',
+                    { value: 'Dessert Wine' },
+                    'Dessert Wine'
+                  ),
+                  _react2.default.createElement(
+                    'option',
+                    { value: 'Port' },
+                    'Port'
+                  ),
+                  _react2.default.createElement(
+                    'option',
+                    { value: 'Brandy/Husk Spirit' },
+                    'Brandy/Husk Spirit'
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-3' },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group sub_category' },
+                _react2.default.createElement(
+                  'label',
+                  { htmlFor: 'id_sub_category' },
+                  'Type'
+                ),
+                _react2.default.createElement('select', { name: 'sub_category', id: 'id_sub_category' })
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-2' },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group min_price' },
+                _react2.default.createElement(
+                  'label',
+                  { htmlFor: 'id_min_price' },
+                  'Minimum Price'
+                ),
+                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price', value: '0', min: '0', required: true, id: 'id_min_price' })
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-2' },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group max_price' },
+                _react2.default.createElement(
+                  'label',
+                  { htmlFor: 'id_max_price' },
+                  'Maximum Price'
+                ),
+                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price', value: '500', min: '0', required: true, id: 'id_max_price' })
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-2' },
+              _react2.default.createElement(
+                'button',
+                { type: 'submit', className: 'btn btn-primary btn-block', style: { marginBottom: '16px', marginTop: '16px' } },
+                'Find wine'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return SearchControls;
+}(_react2.default.Component);
+
+var SearchPage = function (_React$Component2) {
+  _inherits(SearchPage, _React$Component2);
+
+  function SearchPage() {
+    _classCallCheck(this, SearchPage);
+
+    return _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).apply(this, arguments));
+  }
+
+  _createClass(SearchPage, [{
+    key: 'render',
+
+    // constructor() {
+    // }
+
+    value: function render() {
+      return _react2.default.createElement(SearchControls, null);
+    }
+  }]);
+
+  return SearchPage;
+}(_react2.default.Component);
+
+_reactDom2.default.render(_react2.default.createElement(SearchPage, null), document.getElementById('react-home'));
 
 /***/ }),
 /* 1 */
