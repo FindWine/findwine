@@ -101,12 +101,7 @@ var CategorySelect = function (_React$Component) {
   function CategorySelect() {
     _classCallCheck(this, CategorySelect);
 
-    var _this = _possibleConstructorReturn(this, (CategorySelect.__proto__ || Object.getPrototypeOf(CategorySelect)).call(this));
-
-    _this.state = {
-      choices: {}
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (CategorySelect.__proto__ || Object.getPrototypeOf(CategorySelect)).apply(this, arguments));
   }
 
   _createClass(CategorySelect, [{

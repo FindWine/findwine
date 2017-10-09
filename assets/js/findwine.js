@@ -7,12 +7,6 @@ import 'whatwg-fetch';
 const WINE_API_URL = '/api/wine-vintages/';
 
 class CategorySelect extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      choices: {}
-    }
-  }
 
   render() {
     return (
