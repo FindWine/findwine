@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'wine.apps.WineConfig',
+    'api.apps.APIConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'geoposition',
+    'rest_framework',
     'storages',
 ]
 
@@ -128,19 +130,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-#STATIC_URL = '/static/'
-
-#MEDIA_URL = '/media/'
-##MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
 
 AWS_ACCESS_KEY_ID = '***'  # override with localsettings
 AWS_SECRET_ACCESS_KEY = '***'  # override with localsettings
 AWS_STORAGE_BUCKET_NAME = 'findwines3a'
-
 AWS_QUERYSTRING_AUTH = False  # This will make sure that the file URL does not have unnecessary parameters like your access key.
-
 AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
 
 # static media settings
@@ -166,6 +160,17 @@ GEOPOSITION_GOOGLE_MAPS_API_KEY = '***'  # override with localsettings
 GOOGLE_ANALYTICS_TRACKING_ID  = 'UA-99343389-1'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+
+# Rest Framework
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 try:
     from .localsettings import *
