@@ -109,7 +109,7 @@ var CategorySelect = function (_React$Component) {
 
       return _react2.default.createElement(
         'select',
-        { name: 'category', id: 'id_category',
+        { className: 'form-control', name: 'category', id: 'id_category',
           value: this.props.selectedCategory,
           onChange: function onChange(event) {
             return _this2.props.categoryChanged(event.target.value);
@@ -145,7 +145,7 @@ var SubCategorySelect = function (_React$Component2) {
       var choices = getSubcategories(this.props.selectedCategory);
       return _react2.default.createElement(
         'select',
-        { name: 'sub_category', id: 'id_sub_category',
+        { className: 'form-control', name: 'sub_category', id: 'id_sub_category', value: this.props.selectedSubcategory,
           onChange: function onChange(event) {
             return _this4.props.subcategoryChanged(event.target.value);
           } },
@@ -175,6 +175,8 @@ var SearchControls = function (_React$Component3) {
   _createClass(SearchControls, [{
     key: 'render',
     value: function render() {
+      var _this6 = this;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -219,6 +221,7 @@ var SearchControls = function (_React$Component3) {
                 ),
                 _react2.default.createElement(SubCategorySelect, {
                   selectedCategory: this.props.selectedCategory,
+                  selectedSubcategory: this.props.selectedSubcategory,
                   subcategoryChanged: this.props.subcategoryChanged
                 })
               )
@@ -234,7 +237,11 @@ var SearchControls = function (_React$Component3) {
                   { htmlFor: 'id_min_price' },
                   'Minimum Price'
                 ),
-                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price', value: '0', min: '0', required: true, id: 'id_min_price' })
+                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price', value: this.props.minPrice, min: '0', required: true, id: 'id_min_price',
+                  onChange: function onChange(event) {
+                    return _this6.props.minPriceChanged(event.target.value);
+                  }
+                })
               )
             ),
             _react2.default.createElement(
@@ -248,7 +255,11 @@ var SearchControls = function (_React$Component3) {
                   { htmlFor: 'id_max_price' },
                   'Maximum Price'
                 ),
-                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price', value: '500', min: '0', required: true, id: 'id_max_price' })
+                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price', value: this.props.maxPrice, min: '0', required: true, id: 'id_max_price',
+                  onChange: function onChange(event) {
+                    return _this6.props.maxPriceChanged(event.target.value);
+                  }
+                })
               )
             ),
             _react2.default.createElement(
@@ -275,18 +286,27 @@ var SearchPage = function (_React$Component4) {
   function SearchPage() {
     _classCallCheck(this, SearchPage);
 
-    var _this6 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
+    // initialize with first category / subcategory selected
+    var _this7 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
 
-    _this6.state = {
-      selectedCategory: getCategoryChoices()[0] // select first category
+    var category = getCategoryChoices()[0];
+    var subcategory = getSubcategories(category)[0];
+    _this7.state = {
+      selectedCategory: category,
+      selectedSubcategory: subcategory,
+      minPrice: 0,
+      maxPrice: 500
     };
-    return _this6;
+    return _this7;
   }
 
   _createClass(SearchPage, [{
     key: 'updateCategory',
     value: function updateCategory(category) {
-      this.setState({ selectedCategory: category });
+      this.setState({
+        selectedCategory: category,
+        selectedSubcategory: getSubcategories(category)[0] // default to first
+      });
     }
   }, {
     key: 'updateSubcategory',
@@ -294,9 +314,19 @@ var SearchPage = function (_React$Component4) {
       this.setState({ selectedSubcategory: subcategory });
     }
   }, {
+    key: 'updateMinPrice',
+    value: function updateMinPrice(price) {
+      this.setState({ minPrice: price });
+    }
+  }, {
+    key: 'updateMaxPrice',
+    value: function updateMaxPrice(price) {
+      this.setState({ maxPrice: price });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this7 = this;
+      var _this8 = this;
 
       return _react2.default.createElement(
         'div',
@@ -304,11 +334,19 @@ var SearchPage = function (_React$Component4) {
         _react2.default.createElement(SearchControls, {
           selectedCategory: this.state.selectedCategory,
           categoryChanged: function categoryChanged(category) {
-            return _this7.updateCategory(category);
+            return _this8.updateCategory(category);
           },
-          selectedSubcategory: this.state.selectedCategory,
+          selectedSubcategory: this.state.selectedSubcategory,
           subcategoryChanged: function subcategoryChanged(subcategory) {
-            return _this7.updateSubcategory(subcategory);
+            return _this8.updateSubcategory(subcategory);
+          },
+          minPrice: this.state.minPrice,
+          minPriceChanged: function minPriceChanged(price) {
+            return _this8.updateMinPrice(price);
+          },
+          maxPrice: this.state.maxPrice,
+          maxPriceChanged: function maxPriceChanged(price) {
+            return _this8.updateMaxPrice(price);
           }
         })
       );
