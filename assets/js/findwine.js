@@ -1,6 +1,10 @@
+import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'whatwg-fetch';
 
+// todo: figure out how to django-ize these
+const WINE_API_URL = '/api/wine-vintages/';
 
 class CategorySelect extends React.Component {
   constructor() {
@@ -47,7 +51,7 @@ class SearchControls extends React.Component {
     return (
       <div>
       <h5 style={{paddingTop: '10%', paddingBottom: '5%', textAlign: 'center'}}>What wine would you like to find?</h5>
-  		<form className="search-form" role="search" action="/search/" method="get">
+  		<form className="search-form" role="search" >
   			<div className="row d-flex align-items-end">
   				<div className="col-sm-3">
   					<div className="form-group category">
@@ -85,7 +89,8 @@ class SearchControls extends React.Component {
   					</div>
   				</div>
   				<div className="col-sm-2">
-  					<button type="submit" className="btn btn-primary btn-block" style={{marginBottom: '16px', marginTop: '16px'}}>Find wine</button>
+  					<button type="submit" className="btn btn-primary btn-block" style={{marginBottom: '16px', marginTop: '16px'}}
+                    onClick={(event) => this.props.searchClicked(event)}>Find wine</button>
   				</div>
   			</div>
   		</form>
@@ -93,6 +98,44 @@ class SearchControls extends React.Component {
     )
   }
 }
+
+
+class WineList extends React.Component {
+  render () {
+    if (this.props.wines.length > 0) {
+      return (
+        <table className="table" style={{marginBottom: '50px'}}>
+    			<thead className="thead">
+    				<tr>
+    					<th>Name</th>
+    					<th>Rating /10</th>
+    					<th>Minimum Price</th>
+              <th>Buy</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+            {this.props.wines.map((winevintage, index) => {
+            return (
+    				  <tr key={index}>
+      				  <td scope="row">
+                  <a className="text-primary" href={winevintage.details_url}>{ winevintage.wine.producer } - { winevintage.wine.name } { winevintage.year }</a></td>
+      				  <td>{winevintage.avg_rating }</td>
+      				  <td>R {winevintage.price}</td>
+                <td><a className="text-primary" href={ winevintage.preferred_merchant_url } target="_blank">Buy</a></td>
+      				</tr>
+            );
+          })}
+    			</tbody>
+  		  </table>
+      );
+    } else {
+      return (
+        <p style={{textAlign: 'center', paddingTop: '10%', marginBottom: '450px'}}>No results are available. Adjust criteria and search again.</p>
+      )
+    }
+  }
+}
+
 class SearchPage extends React.Component {
   constructor() {
     super();
@@ -104,6 +147,7 @@ class SearchPage extends React.Component {
       selectedSubcategory: subcategory,
       minPrice: 0,
       maxPrice: 500,
+      wines: [],
     }
   }
 
@@ -126,6 +170,21 @@ class SearchPage extends React.Component {
     this.setState({maxPrice: price});
   }
 
+  searchClicked(event) {
+    event.preventDefault();
+    console.log('search clicked!');
+    fetch(WINE_API_URL).then((response) => {
+      if(response.ok) {
+        response.json().then((responseJson) => {
+          this.setState({
+            wines: responseJson
+          });
+        });
+      }
+    });
+
+  }
+
   render() {
     return (
       <div className="container">
@@ -138,6 +197,10 @@ class SearchPage extends React.Component {
           minPriceChanged={(price) => this.updateMinPrice(price)}
           maxPrice={this.state.maxPrice}
           maxPriceChanged={(price) => this.updateMaxPrice(price)}
+          searchClicked={(event) => this.searchClicked(event)}
+        />
+        <WineList
+          wines={this.state.wines}
         />
       </div>
     )
