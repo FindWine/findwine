@@ -7,7 +7,8 @@ from wine.views import Round
 
 MAX_PRICE = 9999999
 
-class WineVintageViewSet(viewsets.ModelViewSet):
+
+class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = WineVintage.objects.all()
     serializer_class = WineVintageSerializer
 
