@@ -66,12 +66,15 @@ class SearchPage extends React.Component {
 
   render() {
     return (
-      <SearchControls />
+      <div className="container">
+        <SearchControls />
+      </div>
     )
   }
 }
 
 ReactDOM.render(
+
   <SearchPage />,
   document.getElementById('react-home')
 );

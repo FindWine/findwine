@@ -242,7 +242,11 @@ var SearchPage = function (_React$Component2) {
     // }
 
     value: function render() {
-      return _react2.default.createElement(SearchControls, null);
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(SearchControls, null)
+      );
     }
   }]);
 
