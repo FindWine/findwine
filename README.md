@@ -177,6 +177,30 @@ Then run:
 
 `pip-compile --output-file requirements/requirements.txt requirements/requirements.in`
 
+# Frond end setup
+
+React instructions largely from [the installation docs](https://reactjs.org/docs/installation.html).
+
+Note this is just during bootstrap.
+
+```bash
+yarn init
+yarn add react react-dom
+yarn add webpack --dev
+yarn add babel-core babel-cli babel-loader babel-preset-react babel-preset-env babel-preset-es2015 --dev
+```
+
+## Building Front end
+
+Watch for changes in develop mode:
+
+`./node_modules/webpack/bin/webpack.js --watch`
+
+
+Build for production:
+
+`./node_modules/webpack/bin/webpack.js --watch --optimize-minimize -p`
+
 # Todos
 
 The main roadmap for this project is kept [on Trello](https://trello.com/b/wDRdlcjU/findwine-dev).

@@ -1,0 +1,67 @@
+{% extends 'wine/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<!--Insert all of the page specific content here-->
+	
+	<!--Stacks for Small devices (landscape phones, 576px and down) otherwise horizontal -->	
+	<div class="container" style="padding-bottom: 20%">
+		<h5 style="padding-top: 10%; padding-bottom: 5%; text-align: center">What wine would you like to find?</h5>
+		<form class="search-form" role="search" action="/search/" method="get">
+			<!--{% csrf_token %}-->
+			<div class="row d-flex align-items-end">	
+				<div class="col-sm-3">	
+					<div class="form-group {{ form.category.html_name }}">
+						<label for="id_category">{{ form.category.label }}</label>
+						<select class="form-control" value={{ form.category }}</select>
+					</div>
+				</div>	
+				<div class="col-sm-3">	
+					<div class="form-group {{ form.sub_category.html_name }}">
+						<label for="id_sub_category">{{ form.sub_category.label }}</label>
+						<select class="form-control" value={{ form.sub_category }}</select>
+					</div>
+				</div>	
+				<div class="col-sm-2">	
+					<div class="form-group {{ form.min_price.html_name }}">
+						<label for="id_min_price">{{ form.min_price.label }}</label>
+						<input class="form-control" type="number" name="min_price" value="0" min="0" required id="id_min_price">
+					</div>
+				</div>	
+				<div class="col-sm-2">	
+					<div class="form-group {{ form.max_price.html_name }}">
+						<label for="id_max_price">{{ form.max_price.label }}</label>
+						<input class="form-control" type="number" name="max_price" value="500" min="0" required id="id_max_price">
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-primary btn-block" style="margin-bottom: 16px; margin-top: 16px">Find wine</button>
+				</div>
+			</div>	
+		</form>
+        <div id="react-home">
+        </div>
+	</div>
+{% endblock %}
+{% block page_scripts %}
+{#    <script src="{% static 'js/findwine-bundle.js' %}"></script>#}
+    <script src="/static/js/findwine-bundle.js"></script>
+    <script>
+        var CATEGORY_MAP = {{ category_mapping|safe }};
+        function setSubCategories(category) {
+            var subcategories = CATEGORY_MAP[category];
+            var $select = $('#id_sub_category');
+            // wipe list
+            $select.html('');
+            // add subcategories
+            for (var i = 0; i < subcategories.length; i++) {
+                $select.append($('<option>', { value: subcategories[i], html: subcategories[i] }));
+            }
+        }
+        $("#id_category").change(function () {
+            setSubCategories($(this).val());
+        });
+        setSubCategories($("#id_category").val());
+    </script>
+{% endblock %}

@@ -30,6 +30,16 @@ def search(request):
     })
 
 
+@require_GET
+def search_new(request):
+    form = BasicSearchForm()
+    categories = _build_category_subcategory_mapping()
+    return render(request, 'wine/search_new.html', {
+        'form': form,
+        'category_mapping': json.dumps(categories),
+    })
+
+
 def _build_category_subcategory_mapping():
     """
     Creates a data structure mapping categories to all subcategories they contain.

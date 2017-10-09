@@ -9,6 +9,7 @@ app_name = 'wine'
 urlpatterns = [
     # ex: /
     url(r'^$', views.search, name='search'),
+    url(r'^new-search/$', views.search_new, name='search_new'),
     # ex: /search/
     url(r'^search/$', views.ResultsView.as_view(), name='results'),
     # ex: /index/
