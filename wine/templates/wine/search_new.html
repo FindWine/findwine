@@ -1,0 +1,15 @@
+{% extends 'wine/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <div id="react-home" />
+{% endblock %}
+{% block page_scripts %}
+{#    <script src="{% static 'js/findwine-bundle.js' %}"></script>#}
+    <script>
+        var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
+        var CATEGORY_MAP = {{ category_mapping|safe }};
+    </script>
+    <script src="/static/js/findwine-bundle.js"></script>
+{% endblock %}

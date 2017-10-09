@@ -1,4 +1,5 @@
 django
+djangorestframework
 django-geoposition
 django-storages
 Pillow
