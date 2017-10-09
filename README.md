@@ -207,4 +207,5 @@ The main roadmap for this project is kept [on Trello](https://trello.com/b/wDRdl
 
 Here are a few code todos:
 
-- Static files
+- Better handling of static files
+- Remove inline style declarations
