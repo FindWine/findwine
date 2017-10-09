@@ -24,6 +24,7 @@ class IndexView(generic.ListView):
 def search(request):
     form = BasicSearchForm()
     categories = _build_category_subcategory_mapping()
+
     return render(request, 'wine/search.html', {
         'form': form,
         'category_mapping': json.dumps(categories),
@@ -33,10 +34,12 @@ def search(request):
 @require_GET
 def search_new(request):
     form = BasicSearchForm()
-    categories = _build_category_subcategory_mapping()
+    category_list = list(Category.objects.values_list('name', flat=True))
+    category_map = _build_category_subcategory_mapping()
     return render(request, 'wine/search_new.html', {
         'form': form,
-        'category_mapping': json.dumps(categories),
+        'categories': json.dumps(category_list),
+        'category_mapping': json.dumps(category_map),
     })
 
 

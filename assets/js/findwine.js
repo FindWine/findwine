@@ -2,9 +2,33 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
+class CategorySelect extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      choices: {}
+    }
+  }
+
+  render() {
+    return (
+      <select name="category" id="id_category"
+              value={this.props.selectedCategory}
+              onChange={(event) => this.props.categoryChanged(event.target.value)}>
+        {getCategoryChoices().map((category, index) => {
+            return (
+              <option key={index} value={category}>{category}</option>
+            )
+        })}
+      </select>
+    );
+  }
+}
+
 class SearchControls extends React.Component {
 
   render() {
+    console.log(this.props.formState);
     return (
       <div>
       <h5 style={{paddingTop: '10%', paddingBottom: '5%', textAlign: 'center'}}>What wine would you like to find?</h5>
@@ -13,23 +37,10 @@ class SearchControls extends React.Component {
   				<div className="col-sm-3">
   					<div className="form-group category">
   						<label htmlFor="id_category">Category</label>
-  						<select name="category" id="id_category">
-    <option value="Red" selected>Red</option>
-
-    <option value="White">White</option>
-
-    <option value="Rosé">Rosé</option>
-
-    <option value="Bubbly">Bubbly</option>
-
-    <option value="Dessert Wine">Dessert Wine</option>
-
-    <option value="Port">Port</option>
-
-    <option value="Brandy/Husk Spirit">Brandy/Husk Spirit</option>
-
-  </select>
-
+              <CategorySelect
+                selectedCategory={this.props.selectedCategory}
+                categoryChanged={this.props.categoryChanged}
+              />
   					</div>
   				</div>
   				<div className="col-sm-3">
@@ -61,13 +72,20 @@ class SearchControls extends React.Component {
   }
 }
 class SearchPage extends React.Component {
-  // constructor() {
-  // }
+  constructor() {
+    super();
+    this.state = {
+      selectedCategory: getCategoryChoices()[0]  // select first category
+    }
+  }
 
   render() {
     return (
       <div className="container">
-        <SearchControls />
+        <SearchControls
+          appState={this.state}
+          categoryChanged={(category) => this.setState({selectedCategory: category})}
+        />
       </div>
     )
   }
@@ -78,3 +96,12 @@ ReactDOM.render(
   <SearchPage />,
   document.getElementById('react-home')
 );
+
+function getCategoryChoices() {
+  return CATEGORY_CHOICES;
+}
+
+function getCategoryMap() {
+  // NOTE: we assume this is assigned elsewhere on the page by django
+  return CATEGORY_MAP;
+}

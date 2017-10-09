@@ -88,8 +88,48 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SearchControls = function (_React$Component) {
-  _inherits(SearchControls, _React$Component);
+var CategorySelect = function (_React$Component) {
+  _inherits(CategorySelect, _React$Component);
+
+  function CategorySelect() {
+    _classCallCheck(this, CategorySelect);
+
+    var _this = _possibleConstructorReturn(this, (CategorySelect.__proto__ || Object.getPrototypeOf(CategorySelect)).call(this));
+
+    _this.state = {
+      choices: {}
+    };
+    return _this;
+  }
+
+  _createClass(CategorySelect, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'select',
+        { name: 'category', id: 'id_category',
+          value: this.props.selectedCategory,
+          onChange: function onChange(event) {
+            return _this2.props.categoryChanged(event.target.value);
+          } },
+        getCategoryChoices().map(function (category, index) {
+          return _react2.default.createElement(
+            'option',
+            { key: index, value: category },
+            category
+          );
+        })
+      );
+    }
+  }]);
+
+  return CategorySelect;
+}(_react2.default.Component);
+
+var SearchControls = function (_React$Component2) {
+  _inherits(SearchControls, _React$Component2);
 
   function SearchControls() {
     _classCallCheck(this, SearchControls);
@@ -100,6 +140,7 @@ var SearchControls = function (_React$Component) {
   _createClass(SearchControls, [{
     key: 'render',
     value: function render() {
+      console.log(this.props.formState);
       return _react2.default.createElement(
         'div',
         null,
@@ -125,45 +166,10 @@ var SearchControls = function (_React$Component) {
                   { htmlFor: 'id_category' },
                   'Category'
                 ),
-                _react2.default.createElement(
-                  'select',
-                  { name: 'category', id: 'id_category' },
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'Red', selected: true },
-                    'Red'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'White' },
-                    'White'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'Ros\xE9' },
-                    'Ros\xE9'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'Bubbly' },
-                    'Bubbly'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'Dessert Wine' },
-                    'Dessert Wine'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'Port' },
-                    'Port'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'Brandy/Husk Spirit' },
-                    'Brandy/Husk Spirit'
-                  )
-                )
+                _react2.default.createElement(CategorySelect, {
+                  selectedCategory: this.props.selectedCategory,
+                  categoryChanged: this.props.categoryChanged
+                })
               )
             ),
             _react2.default.createElement(
@@ -226,26 +232,34 @@ var SearchControls = function (_React$Component) {
   return SearchControls;
 }(_react2.default.Component);
 
-var SearchPage = function (_React$Component2) {
-  _inherits(SearchPage, _React$Component2);
+var SearchPage = function (_React$Component3) {
+  _inherits(SearchPage, _React$Component3);
 
   function SearchPage() {
     _classCallCheck(this, SearchPage);
 
-    return _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).apply(this, arguments));
+    var _this4 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
+
+    _this4.state = {
+      selectedCategory: getCategoryChoices()[0] // select first category
+    };
+    return _this4;
   }
 
   _createClass(SearchPage, [{
     key: 'render',
-
-    // constructor() {
-    // }
-
     value: function render() {
+      var _this5 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
-        _react2.default.createElement(SearchControls, null)
+        _react2.default.createElement(SearchControls, {
+          appState: this.state,
+          categoryChanged: function categoryChanged(category) {
+            return _this5.setState({ selectedCategory: category });
+          }
+        })
       );
     }
   }]);
@@ -254,6 +268,15 @@ var SearchPage = function (_React$Component2) {
 }(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(SearchPage, null), document.getElementById('react-home'));
+
+function getCategoryChoices() {
+  return CATEGORY_CHOICES;
+}
+
+function getCategoryMap() {
+  // NOTE: we assume this is assigned elsewhere on the page by django
+  return CATEGORY_MAP;
+}
 
 /***/ }),
 /* 1 */
