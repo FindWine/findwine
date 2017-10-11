@@ -148,30 +148,34 @@ class SearchPage extends React.Component {
     this.setState({
       selectedCategory: category,
       selectedSubcategory: getSubcategories(category)[0],  // default to first
-    });
+    }, this.updateSearchResults);
   }
 
   updateSubcategory(subcategory) {
-    this.setState({selectedSubcategory: subcategory});
+    this.setState({selectedSubcategory: subcategory}, this.updateSearchResults);
   }
 
   updateMinPrice(price) {
-    this.setState({minPrice: price});
+    this.setState({minPrice: price}, this.updateSearchResults);
   }
 
   updateMaxPrice(price) {
-    this.setState({maxPrice: price});
+    this.setState({maxPrice: price}, this.updateSearchResults);
   }
 
   searchClicked(event) {
     event.preventDefault();
-    console.log('search clicked!');
+    this.updateSearchResults();
+  }
+
+  updateSearchResults() {
     let params = {
       category: this.state['selectedCategory'],
       sub_category: this.state['selectedSubcategory'],
       min_price: this.state['minPrice'],
       max_price: this.state['maxPrice'],
     }
+    console.log(params);
     // TODO: assumes jquery on page.
     params = $.param(params);
     console.log(params);
@@ -184,7 +188,6 @@ class SearchPage extends React.Component {
         });
       }
     });
-
   }
 
   render() {
@@ -200,6 +203,7 @@ class SearchPage extends React.Component {
           maxPrice={this.state.maxPrice}
           maxPriceChanged={(price) => this.updateMaxPrice(price)}
           searchClicked={(event) => this.searchClicked(event)}
+          updateSearchResults={() => this.updateSearchResults()}
         />
         <WineList
           wines={this.state.wines}
