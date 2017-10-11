@@ -97,7 +97,7 @@ class WineList extends React.Component {
   render () {
     if (this.props.wines.length > 0) {
       return (
-        <table className="table" style={{marginBottom: '50px'}}>
+        <table className="table">
     			<thead className="thead">
     				<tr>
     					<th>Name</th>
@@ -129,6 +129,20 @@ class WineList extends React.Component {
   }
 }
 
+class Paginator extends React.Component {
+  render() {
+    // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
+    let nextButton = this.props.showNext ? <a className="next-nav" onClick={(event) => this.props.nextPage()}>Next</a> : '';
+    let prevButton = this.props.showPrevious ? <a className="prev-nav" onClick={(event) => this.props.prevPage()}>Previous</a> : '';
+    return (
+      <div>
+        {prevButton}
+        {nextButton}
+      </div>
+    )
+  }
+}
+
 class SearchPage extends React.Component {
   constructor() {
     super();
@@ -141,6 +155,8 @@ class SearchPage extends React.Component {
       minPrice: 0,
       maxPrice: 500,
       wines: [],
+      nextPageUrl: null,
+      prevPageUrl: null,
     }
   }
 
@@ -175,19 +191,33 @@ class SearchPage extends React.Component {
       min_price: this.state['minPrice'],
       max_price: this.state['maxPrice'],
     }
-    console.log(params);
     // TODO: assumes jquery on page.
     params = $.param(params);
-    console.log(params);
-    fetch(WINE_API_URL + '?' + params).then((response) => {
-      if(response.ok) {
-        response.json().then((responseJson) => {
-          this.setState({
-            wines: responseJson
-          });
+    fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
+  }
+
+  nextPage() {
+    if (this.state['nextPageUrl']) {
+      fetch(this.state['nextPageUrl']).then((response) => this._updateResultsFromResponse(response));
+    }
+  }
+
+  prevPage() {
+    if (this.state['prevPageUrl']) {
+      fetch(this.state['prevPageUrl']).then((response) => this._updateResultsFromResponse(response));
+    }
+  }
+
+  _updateResultsFromResponse(response) {
+    if(response.ok) {
+      response.json().then((responseJson) => {
+        this.setState({
+          wines: responseJson.results,
+          nextPageUrl: responseJson.next,
+          prevPageUrl: responseJson.previous,
         });
-      }
-    });
+      });
+    }
   }
 
   render() {
@@ -207,6 +237,10 @@ class SearchPage extends React.Component {
         />
         <WineList
           wines={this.state.wines}
+        />
+        <Paginator
+          nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
+          prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
         />
       </div>
     )

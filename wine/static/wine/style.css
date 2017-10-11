@@ -31,4 +31,17 @@
     background-color: rgba(0, 134, 0, 0.9) !important;
 }
 
+
+.next-nav {
+  float: right;
+  color: #008600 !important;
+  cursor: pointer;
+}
+
+.prev-nav {
+  float: left;
+  color: #008600 !important;
+  cursor: pointer;
+}
+
 /* IN WINE_DETAIL.HTML */
