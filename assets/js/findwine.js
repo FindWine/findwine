@@ -2,6 +2,7 @@ import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
+import Select from 'react-select';
 
 // todo: figure out how to django-ize these
 const WINE_API_URL = '/api/wine-vintages/';
@@ -25,17 +26,17 @@ class CategorySelect extends React.Component {
 
 class SubCategorySelect extends React.Component {
   render() {
-    let choices = getSubcategories(this.props.selectedCategory);
+    let choices = getSubcategories(this.props.selectedCategory).map((choice) => {
+      return {'value': choice, 'label': choice}
+    });
+
     return (
-      <select className="form-control" name="sub_category" id="id_sub_category" value={this.props.selectedSubcategory}
-        onChange={(event) => this.props.subcategoryChanged(event.target.value)}>
-        {choices.map((category, index) => {
-            return (
-              <option key={index} value={category}>{category}</option>
-            )
-        })}
-      </select>
-    );
+      <Select
+        value={this.props.selectedSubcategory}
+        options={choices}
+        onChange={(event) => this.props.subcategoryChanged(event)}
+      />
+    )
   }
 }
 
@@ -212,7 +213,8 @@ class SearchPage extends React.Component {
   }
 
   updateSubcategory(subcategory) {
-    this.setState({selectedSubcategory: subcategory}, this.updateSearchResults);
+    const subcategoryValue = subcategory === null ? 'All' : subcategory.value;
+    this.setState({selectedSubcategory: subcategoryValue}, this.updateSearchResults);
   }
 
   updateMinPrice(price) {
