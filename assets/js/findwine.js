@@ -58,7 +58,32 @@ class SortSelect extends React.Component {
 
 
 class SearchControls extends React.Component {
+  _getSortSelect() {
+    if (this.props.firstSearchMade) {
+      return (
+        <div className="col-sm-2">
+					<div className="form-group">
+						<label htmlFor="id_sort">Sort By</label>
+            <SortSelect
+              selectedSort={this.props.selectedSort}
+              sortChanged={this.props.sortChanged}
+            />
+					</div>
+				</div>
+      );
+    }
+  }
 
+  _getSearchButton() {
+    if (!this.props.firstSearchMade) {
+      return (
+        <div className="col-sm-2">
+    			<button type="submit" className="btn btn-primary btn-block" style={{marginBottom: '16px', marginTop: '16px'}}
+                        onClick={(event) => this.props.searchClicked(event)}>Find wine</button>
+    		</div>
+      );
+    }
+  }
   render() {
     return (
       <div>
@@ -100,20 +125,8 @@ class SearchControls extends React.Component {
               />
   					</div>
   				</div>
-  				<div className="col-sm-3">
-  					<div className="form-group">
-  						<label htmlFor="id_sort">Sort By</label>
-              <SortSelect
-                selectedSort={this.props.selectedSort}
-                sortChanged={this.props.sortChanged}
-              />
-  					</div>
-  				</div>
-
-  				<div className="col-sm-2">
-  					<button type="submit" className="btn btn-primary btn-block" style={{marginBottom: '16px', marginTop: '16px'}}
-                    onClick={(event) => this.props.searchClicked(event)}>Find wine</button>
-  				</div>
+          { this._getSortSelect() }
+          { this._getSearchButton() }
   			</div>
   		</form>
   	</div>
@@ -186,6 +199,7 @@ class SearchPage extends React.Component {
       wines: [],
       nextPageUrl: null,
       prevPageUrl: null,
+      firstSearchMade: false,
     }
   }
 
@@ -214,10 +228,16 @@ class SearchPage extends React.Component {
 
   searchClicked(event) {
     event.preventDefault();
-    this.updateSearchResults();
+    this.setState({firstSearchMade: true}, this.updateSearchResults);
   }
 
   updateSearchResults() {
+    if (this.state['firstSearchMade']) {
+      this._updateSearchResults();
+    }
+  }
+
+  _updateSearchResults() {
     let params = {
       category: this.state['selectedCategory'],
       sub_category: this.state['selectedSubcategory'],
@@ -258,6 +278,7 @@ class SearchPage extends React.Component {
     return (
       <div className="container">
         <SearchControls
+          firstSearchMade={this.state.firstSearchMade}
           selectedCategory={this.state.selectedCategory}
           categoryChanged={(category) => this.updateCategory(category)}
           selectedSubcategory={this.state.selectedSubcategory}

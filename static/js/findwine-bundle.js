@@ -4732,9 +4732,52 @@ var SearchControls = function (_React$Component4) {
   }
 
   _createClass(SearchControls, [{
+    key: '_getSortSelect',
+    value: function _getSortSelect() {
+      if (this.props.firstSearchMade) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'col-sm-2' },
+          _react2.default.createElement(
+            'div',
+            { className: 'form-group' },
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'id_sort' },
+              'Sort By'
+            ),
+            _react2.default.createElement(SortSelect, {
+              selectedSort: this.props.selectedSort,
+              sortChanged: this.props.sortChanged
+            })
+          )
+        );
+      }
+    }
+  }, {
+    key: '_getSearchButton',
+    value: function _getSearchButton() {
+      var _this8 = this;
+
+      if (!this.props.firstSearchMade) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'col-sm-2' },
+          _react2.default.createElement(
+            'button',
+            { type: 'submit', className: 'btn btn-primary btn-block', style: { marginBottom: '16px', marginTop: '16px' },
+              onClick: function onClick(event) {
+                return _this8.props.searchClicked(event);
+              } },
+            'Find wine'
+          )
+        );
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this8 = this;
+      var _this9 = this;
 
       return _react2.default.createElement(
         'div',
@@ -4798,7 +4841,7 @@ var SearchControls = function (_React$Component4) {
                 ),
                 _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price', value: this.props.minPrice, min: '0', required: true, id: 'id_min_price',
                   onChange: function onChange(event) {
-                    return _this8.props.minPriceChanged(event.target.value);
+                    return _this9.props.minPriceChanged(event.target.value);
                   }
                 })
               )
@@ -4816,40 +4859,13 @@ var SearchControls = function (_React$Component4) {
                 ),
                 _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price', value: this.props.maxPrice, min: '0', required: true, id: 'id_max_price',
                   onChange: function onChange(event) {
-                    return _this8.props.maxPriceChanged(event.target.value);
+                    return _this9.props.maxPriceChanged(event.target.value);
                   }
                 })
               )
             ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-3' },
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group' },
-                _react2.default.createElement(
-                  'label',
-                  { htmlFor: 'id_sort' },
-                  'Sort By'
-                ),
-                _react2.default.createElement(SortSelect, {
-                  selectedSort: this.props.selectedSort,
-                  sortChanged: this.props.sortChanged
-                })
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-2' },
-              _react2.default.createElement(
-                'button',
-                { type: 'submit', className: 'btn btn-primary btn-block', style: { marginBottom: '16px', marginTop: '16px' },
-                  onClick: function onClick(event) {
-                    return _this8.props.searchClicked(event);
-                  } },
-                'Find wine'
-              )
-            )
+            this._getSortSelect(),
+            this._getSearchButton()
           )
         )
       );
@@ -4972,20 +4988,20 @@ var Paginator = function (_React$Component6) {
   _createClass(Paginator, [{
     key: 'render',
     value: function render() {
-      var _this11 = this;
+      var _this12 = this;
 
       // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
       var nextButton = this.props.showNext ? _react2.default.createElement(
         'a',
         { className: 'next-nav', onClick: function onClick(event) {
-            return _this11.props.nextPage();
+            return _this12.props.nextPage();
           } },
         'Next'
       ) : '';
       var prevButton = this.props.showPrevious ? _react2.default.createElement(
         'a',
         { className: 'prev-nav', onClick: function onClick(event) {
-            return _this11.props.prevPage();
+            return _this12.props.prevPage();
           } },
         'Previous'
       ) : '';
@@ -5008,11 +5024,11 @@ var SearchPage = function (_React$Component7) {
     _classCallCheck(this, SearchPage);
 
     // initialize with first category / subcategory selected
-    var _this12 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
+    var _this13 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
 
     var category = getCategoryChoices()[0];
     var subcategory = getSubcategories(category)[0];
-    _this12.state = {
+    _this13.state = {
       selectedCategory: category,
       selectedSubcategory: subcategory,
       minPrice: 0,
@@ -5020,9 +5036,10 @@ var SearchPage = function (_React$Component7) {
       selectedSort: getSortChoices()[0][1],
       wines: [],
       nextPageUrl: null,
-      prevPageUrl: null
+      prevPageUrl: null,
+      firstSearchMade: false
     };
-    return _this12;
+    return _this13;
   }
 
   _createClass(SearchPage, [{
@@ -5057,12 +5074,19 @@ var SearchPage = function (_React$Component7) {
     key: 'searchClicked',
     value: function searchClicked(event) {
       event.preventDefault();
-      this.updateSearchResults();
+      this.setState({ firstSearchMade: true }, this.updateSearchResults);
     }
   }, {
     key: 'updateSearchResults',
     value: function updateSearchResults() {
-      var _this13 = this;
+      if (this.state['firstSearchMade']) {
+        this._updateSearchResults();
+      }
+    }
+  }, {
+    key: '_updateSearchResults',
+    value: function _updateSearchResults() {
+      var _this14 = this;
 
       var params = {
         category: this.state['selectedCategory'],
@@ -5073,39 +5097,39 @@ var SearchPage = function (_React$Component7) {
         // TODO: assumes jquery on page.
       };params = $.param(params);
       fetch(WINE_API_URL + '?' + params).then(function (response) {
-        return _this13._updateResultsFromResponse(response);
+        return _this14._updateResultsFromResponse(response);
       });
     }
   }, {
     key: 'nextPage',
     value: function nextPage() {
-      var _this14 = this;
+      var _this15 = this;
 
       if (this.state['nextPageUrl']) {
         fetch(this.state['nextPageUrl']).then(function (response) {
-          return _this14._updateResultsFromResponse(response);
+          return _this15._updateResultsFromResponse(response);
         });
       }
     }
   }, {
     key: 'prevPage',
     value: function prevPage() {
-      var _this15 = this;
+      var _this16 = this;
 
       if (this.state['prevPageUrl']) {
         fetch(this.state['prevPageUrl']).then(function (response) {
-          return _this15._updateResultsFromResponse(response);
+          return _this16._updateResultsFromResponse(response);
         });
       }
     }
   }, {
     key: '_updateResultsFromResponse',
     value: function _updateResultsFromResponse(response) {
-      var _this16 = this;
+      var _this17 = this;
 
       if (response.ok) {
         response.json().then(function (responseJson) {
-          _this16.setState({
+          _this17.setState({
             wines: responseJson.results,
             nextPageUrl: responseJson.next,
             prevPageUrl: responseJson.previous
@@ -5116,37 +5140,38 @@ var SearchPage = function (_React$Component7) {
   }, {
     key: 'render',
     value: function render() {
-      var _this17 = this;
+      var _this18 = this;
 
       return _react2.default.createElement(
         'div',
         { className: 'container' },
         _react2.default.createElement(SearchControls, {
+          firstSearchMade: this.state.firstSearchMade,
           selectedCategory: this.state.selectedCategory,
           categoryChanged: function categoryChanged(category) {
-            return _this17.updateCategory(category);
+            return _this18.updateCategory(category);
           },
           selectedSubcategory: this.state.selectedSubcategory,
           subcategoryChanged: function subcategoryChanged(subcategory) {
-            return _this17.updateSubcategory(subcategory);
+            return _this18.updateSubcategory(subcategory);
           },
           minPrice: this.state.minPrice,
           minPriceChanged: function minPriceChanged(price) {
-            return _this17.updateMinPrice(price);
+            return _this18.updateMinPrice(price);
           },
           maxPrice: this.state.maxPrice,
           maxPriceChanged: function maxPriceChanged(price) {
-            return _this17.updateMaxPrice(price);
+            return _this18.updateMaxPrice(price);
           },
           selectedSort: this.state.selectedSort,
           sortChanged: function sortChanged(sort) {
-            return _this17.updateSort(sort);
+            return _this18.updateSort(sort);
           },
           searchClicked: function searchClicked(event) {
-            return _this17.searchClicked(event);
+            return _this18.searchClicked(event);
           },
           updateSearchResults: function updateSearchResults() {
-            return _this17.updateSearchResults();
+            return _this18.updateSearchResults();
           }
         }),
         _react2.default.createElement(WineList, {
@@ -5154,10 +5179,10 @@ var SearchPage = function (_React$Component7) {
         }),
         _react2.default.createElement(Paginator, {
           nextPage: function nextPage() {
-            return _this17.nextPage();
+            return _this18.nextPage();
           }, showNext: Boolean(this.state.nextPageUrl),
           prevPage: function prevPage() {
-            return _this17.prevPage();
+            return _this18.prevPage();
           }, showPrevious: Boolean(this.state.prevPageUrl)
         })
       );
