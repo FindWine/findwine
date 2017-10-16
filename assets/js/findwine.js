@@ -39,6 +39,24 @@ class SubCategorySelect extends React.Component {
   }
 }
 
+class SortSelect extends React.Component {
+
+  render() {
+    return (
+      <select className="form-control" id="id_sort"
+              value={this.props.selectedSort}
+              onChange={(event) => this.props.sortChanged(event.target.value)}>
+        {getSortChoices().map((sortChoice, index) => {
+            return (
+              <option key={index} value={sortChoice[1]}>{sortChoice[0]}</option>
+            )
+        })}
+      </select>
+    );
+  }
+}
+
+
 class SearchControls extends React.Component {
 
   render() {
@@ -82,6 +100,16 @@ class SearchControls extends React.Component {
               />
   					</div>
   				</div>
+  				<div className="col-sm-3">
+  					<div className="form-group">
+  						<label htmlFor="id_sort">Sort By</label>
+              <SortSelect
+                selectedSort={this.props.selectedSort}
+                sortChanged={this.props.sortChanged}
+              />
+  					</div>
+  				</div>
+
   				<div className="col-sm-2">
   					<button type="submit" className="btn btn-primary btn-block" style={{marginBottom: '16px', marginTop: '16px'}}
                     onClick={(event) => this.props.searchClicked(event)}>Find wine</button>
@@ -154,6 +182,7 @@ class SearchPage extends React.Component {
       selectedSubcategory: subcategory,
       minPrice: 0,
       maxPrice: 500,
+      selectedSort: getSortChoices()[0][1],
       wines: [],
       nextPageUrl: null,
       prevPageUrl: null,
@@ -177,6 +206,10 @@ class SearchPage extends React.Component {
 
   updateMaxPrice(price) {
     this.setState({maxPrice: price}, this.updateSearchResults);
+  }
+
+  updateSort(sort) {
+    this.setState({selectedSort: sort}, this.updateSearchResults);
   }
 
   searchClicked(event) {
@@ -232,6 +265,8 @@ class SearchPage extends React.Component {
           minPriceChanged={(price) => this.updateMinPrice(price)}
           maxPrice={this.state.maxPrice}
           maxPriceChanged={(price) => this.updateMaxPrice(price)}
+          selectedSort={this.state.selectedSort}
+          sortChanged={(sort) => this.updateSort(sort)}
           searchClicked={(event) => this.searchClicked(event)}
           updateSearchResults={() => this.updateSearchResults()}
         />
@@ -268,4 +303,12 @@ function getSubcategories(category) {
   } else {
     return [];
   }
+}
+
+function getSortChoices() {
+  return [
+    ['Rating', 'rating'],
+    ['Price', 'price'],
+    ['Name', 'name'],
+  ];
 }

@@ -4687,8 +4687,43 @@ var SubCategorySelect = function (_React$Component2) {
   return SubCategorySelect;
 }(_react2.default.Component);
 
-var SearchControls = function (_React$Component3) {
-  _inherits(SearchControls, _React$Component3);
+var SortSelect = function (_React$Component3) {
+  _inherits(SortSelect, _React$Component3);
+
+  function SortSelect() {
+    _classCallCheck(this, SortSelect);
+
+    return _possibleConstructorReturn(this, (SortSelect.__proto__ || Object.getPrototypeOf(SortSelect)).apply(this, arguments));
+  }
+
+  _createClass(SortSelect, [{
+    key: 'render',
+    value: function render() {
+      var _this6 = this;
+
+      return _react2.default.createElement(
+        'select',
+        { className: 'form-control', id: 'id_sort',
+          value: this.props.selectedSort,
+          onChange: function onChange(event) {
+            return _this6.props.sortChanged(event.target.value);
+          } },
+        getSortChoices().map(function (sortChoice, index) {
+          return _react2.default.createElement(
+            'option',
+            { key: index, value: sortChoice[1] },
+            sortChoice[0]
+          );
+        })
+      );
+    }
+  }]);
+
+  return SortSelect;
+}(_react2.default.Component);
+
+var SearchControls = function (_React$Component4) {
+  _inherits(SearchControls, _React$Component4);
 
   function SearchControls() {
     _classCallCheck(this, SearchControls);
@@ -4699,7 +4734,7 @@ var SearchControls = function (_React$Component3) {
   _createClass(SearchControls, [{
     key: 'render',
     value: function render() {
-      var _this6 = this;
+      var _this8 = this;
 
       return _react2.default.createElement(
         'div',
@@ -4763,7 +4798,7 @@ var SearchControls = function (_React$Component3) {
                 ),
                 _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price', value: this.props.minPrice, min: '0', required: true, id: 'id_min_price',
                   onChange: function onChange(event) {
-                    return _this6.props.minPriceChanged(event.target.value);
+                    return _this8.props.minPriceChanged(event.target.value);
                   }
                 })
               )
@@ -4781,8 +4816,25 @@ var SearchControls = function (_React$Component3) {
                 ),
                 _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price', value: this.props.maxPrice, min: '0', required: true, id: 'id_max_price',
                   onChange: function onChange(event) {
-                    return _this6.props.maxPriceChanged(event.target.value);
+                    return _this8.props.maxPriceChanged(event.target.value);
                   }
+                })
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-3' },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement(
+                  'label',
+                  { htmlFor: 'id_sort' },
+                  'Sort By'
+                ),
+                _react2.default.createElement(SortSelect, {
+                  selectedSort: this.props.selectedSort,
+                  sortChanged: this.props.sortChanged
                 })
               )
             ),
@@ -4793,7 +4845,7 @@ var SearchControls = function (_React$Component3) {
                 'button',
                 { type: 'submit', className: 'btn btn-primary btn-block', style: { marginBottom: '16px', marginTop: '16px' },
                   onClick: function onClick(event) {
-                    return _this6.props.searchClicked(event);
+                    return _this8.props.searchClicked(event);
                   } },
                 'Find wine'
               )
@@ -4807,8 +4859,8 @@ var SearchControls = function (_React$Component3) {
   return SearchControls;
 }(_react2.default.Component);
 
-var WineList = function (_React$Component4) {
-  _inherits(WineList, _React$Component4);
+var WineList = function (_React$Component5) {
+  _inherits(WineList, _React$Component5);
 
   function WineList() {
     _classCallCheck(this, WineList);
@@ -4908,8 +4960,8 @@ var WineList = function (_React$Component4) {
   return WineList;
 }(_react2.default.Component);
 
-var Paginator = function (_React$Component5) {
-  _inherits(Paginator, _React$Component5);
+var Paginator = function (_React$Component6) {
+  _inherits(Paginator, _React$Component6);
 
   function Paginator() {
     _classCallCheck(this, Paginator);
@@ -4920,20 +4972,20 @@ var Paginator = function (_React$Component5) {
   _createClass(Paginator, [{
     key: 'render',
     value: function render() {
-      var _this9 = this;
+      var _this11 = this;
 
       // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
       var nextButton = this.props.showNext ? _react2.default.createElement(
         'a',
         { className: 'next-nav', onClick: function onClick(event) {
-            return _this9.props.nextPage();
+            return _this11.props.nextPage();
           } },
         'Next'
       ) : '';
       var prevButton = this.props.showPrevious ? _react2.default.createElement(
         'a',
         { className: 'prev-nav', onClick: function onClick(event) {
-            return _this9.props.prevPage();
+            return _this11.props.prevPage();
           } },
         'Previous'
       ) : '';
@@ -4949,27 +5001,28 @@ var Paginator = function (_React$Component5) {
   return Paginator;
 }(_react2.default.Component);
 
-var SearchPage = function (_React$Component6) {
-  _inherits(SearchPage, _React$Component6);
+var SearchPage = function (_React$Component7) {
+  _inherits(SearchPage, _React$Component7);
 
   function SearchPage() {
     _classCallCheck(this, SearchPage);
 
     // initialize with first category / subcategory selected
-    var _this10 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
+    var _this12 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
 
     var category = getCategoryChoices()[0];
     var subcategory = getSubcategories(category)[0];
-    _this10.state = {
+    _this12.state = {
       selectedCategory: category,
       selectedSubcategory: subcategory,
       minPrice: 0,
       maxPrice: 500,
+      selectedSort: getSortChoices()[0][1],
       wines: [],
       nextPageUrl: null,
       prevPageUrl: null
     };
-    return _this10;
+    return _this12;
   }
 
   _createClass(SearchPage, [{
@@ -4996,6 +5049,11 @@ var SearchPage = function (_React$Component6) {
       this.setState({ maxPrice: price }, this.updateSearchResults);
     }
   }, {
+    key: 'updateSort',
+    value: function updateSort(sort) {
+      this.setState({ selectedSort: sort }, this.updateSearchResults);
+    }
+  }, {
     key: 'searchClicked',
     value: function searchClicked(event) {
       event.preventDefault();
@@ -5004,7 +5062,7 @@ var SearchPage = function (_React$Component6) {
   }, {
     key: 'updateSearchResults',
     value: function updateSearchResults() {
-      var _this11 = this;
+      var _this13 = this;
 
       var params = {
         category: this.state['selectedCategory'],
@@ -5014,39 +5072,39 @@ var SearchPage = function (_React$Component6) {
         // TODO: assumes jquery on page.
       };params = $.param(params);
       fetch(WINE_API_URL + '?' + params).then(function (response) {
-        return _this11._updateResultsFromResponse(response);
+        return _this13._updateResultsFromResponse(response);
       });
     }
   }, {
     key: 'nextPage',
     value: function nextPage() {
-      var _this12 = this;
+      var _this14 = this;
 
       if (this.state['nextPageUrl']) {
         fetch(this.state['nextPageUrl']).then(function (response) {
-          return _this12._updateResultsFromResponse(response);
+          return _this14._updateResultsFromResponse(response);
         });
       }
     }
   }, {
     key: 'prevPage',
     value: function prevPage() {
-      var _this13 = this;
+      var _this15 = this;
 
       if (this.state['prevPageUrl']) {
         fetch(this.state['prevPageUrl']).then(function (response) {
-          return _this13._updateResultsFromResponse(response);
+          return _this15._updateResultsFromResponse(response);
         });
       }
     }
   }, {
     key: '_updateResultsFromResponse',
     value: function _updateResultsFromResponse(response) {
-      var _this14 = this;
+      var _this16 = this;
 
       if (response.ok) {
         response.json().then(function (responseJson) {
-          _this14.setState({
+          _this16.setState({
             wines: responseJson.results,
             nextPageUrl: responseJson.next,
             prevPageUrl: responseJson.previous
@@ -5057,7 +5115,7 @@ var SearchPage = function (_React$Component6) {
   }, {
     key: 'render',
     value: function render() {
-      var _this15 = this;
+      var _this17 = this;
 
       return _react2.default.createElement(
         'div',
@@ -5065,25 +5123,29 @@ var SearchPage = function (_React$Component6) {
         _react2.default.createElement(SearchControls, {
           selectedCategory: this.state.selectedCategory,
           categoryChanged: function categoryChanged(category) {
-            return _this15.updateCategory(category);
+            return _this17.updateCategory(category);
           },
           selectedSubcategory: this.state.selectedSubcategory,
           subcategoryChanged: function subcategoryChanged(subcategory) {
-            return _this15.updateSubcategory(subcategory);
+            return _this17.updateSubcategory(subcategory);
           },
           minPrice: this.state.minPrice,
           minPriceChanged: function minPriceChanged(price) {
-            return _this15.updateMinPrice(price);
+            return _this17.updateMinPrice(price);
           },
           maxPrice: this.state.maxPrice,
           maxPriceChanged: function maxPriceChanged(price) {
-            return _this15.updateMaxPrice(price);
+            return _this17.updateMaxPrice(price);
+          },
+          selectedSort: this.state.selectedSort,
+          sortChanged: function sortChanged(sort) {
+            return _this17.updateSort(sort);
           },
           searchClicked: function searchClicked(event) {
-            return _this15.searchClicked(event);
+            return _this17.searchClicked(event);
           },
           updateSearchResults: function updateSearchResults() {
-            return _this15.updateSearchResults();
+            return _this17.updateSearchResults();
           }
         }),
         _react2.default.createElement(WineList, {
@@ -5091,10 +5153,10 @@ var SearchPage = function (_React$Component6) {
         }),
         _react2.default.createElement(Paginator, {
           nextPage: function nextPage() {
-            return _this15.nextPage();
+            return _this17.nextPage();
           }, showNext: Boolean(this.state.nextPageUrl),
           prevPage: function prevPage() {
-            return _this15.prevPage();
+            return _this17.prevPage();
           }, showPrevious: Boolean(this.state.prevPageUrl)
         })
       );
@@ -5121,6 +5183,10 @@ function getSubcategories(category) {
   } else {
     return [];
   }
+}
+
+function getSortChoices() {
+  return [['Rating', 'rating'], ['Price', 'price'], ['Name', 'name']];
 }
 
 /***/ }),
