@@ -4681,7 +4681,8 @@ var SubCategorySelect = function (_React$Component2) {
           return _this4.props.subcategoryChanged(event);
         },
         multi: true,
-        simpleValue: true
+        simpleValue: true,
+        placeholder: 'Show All'
       });
     }
   }]);
@@ -5029,10 +5030,9 @@ var SearchPage = function (_React$Component7) {
     var _this13 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
 
     var category = getCategoryChoices()[0];
-    var subcategory = getSubcategories(category)[0];
     _this13.state = {
       selectedCategory: category,
-      selectedSubcategory: subcategory,
+      selectedSubcategory: null,
       minPrice: 0,
       maxPrice: 500,
       selectedSort: getSortChoices()[0][1],
@@ -5049,7 +5049,7 @@ var SearchPage = function (_React$Component7) {
     value: function updateCategory(category) {
       this.setState({
         selectedCategory: category,
-        selectedSubcategory: getSubcategories(category)[0] // default to first
+        selectedSubcategory: '' // default to empty/all
       }, this.updateSearchResults);
     }
   }, {

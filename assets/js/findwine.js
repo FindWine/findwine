@@ -37,6 +37,7 @@ class SubCategorySelect extends React.Component {
         onChange={(event) => this.props.subcategoryChanged(event)}
         multi={true}
         simpleValue={true}
+        placeholder='Show All'
       />
     )
   }
@@ -193,10 +194,9 @@ class SearchPage extends React.Component {
     super();
     // initialize with first category / subcategory selected
     const category = getCategoryChoices()[0];
-    const subcategory = getSubcategories(category)[0];
     this.state = {
       selectedCategory: category,
-      selectedSubcategory: subcategory,
+      selectedSubcategory: null,
       minPrice: 0,
       maxPrice: 500,
       selectedSort: getSortChoices()[0][1],
@@ -210,7 +210,7 @@ class SearchPage extends React.Component {
   updateCategory(category) {
     this.setState({
       selectedCategory: category,
-      selectedSubcategory: getSubcategories(category)[0],  // default to first
+      selectedSubcategory: '',  // default to empty/all
     }, this.updateSearchResults);
   }
 
