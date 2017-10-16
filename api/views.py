@@ -14,7 +14,7 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         category = self.request.GET.get('category', 'Red')
-        sub_category = self.request.GET.get('sub_category', 'All')
+        sub_category = self.request.GET.get('sub_category')
         min_price = self.request.GET.get('min_price', 0)
         max_price = self.request.GET.get('max_price', MAX_PRICE)
         sort_by = self.request.GET.get('sort_by', None)
@@ -35,9 +35,8 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
         )
 
         # 6 Restrict MerchantWines to the selected sub_category or leave if no sub_category is selected
-        # NB! UPDATE FOR MULTIPLE SELECT
-        if sub_category != 'All':
-            results_list = results_list.filter(wine_vintage__sub_category__name__exact=sub_category)
+        if sub_category:
+            results_list = results_list.filter(wine_vintage__sub_category__name__in=sub_category.split(','))
 
         # 7 Restrict MerchantWines to lowest price version(s) of same wine_vintage
         wines = WineVintage.objects.distinct().filter(merchantwine__in=results_list)

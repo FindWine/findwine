@@ -4679,7 +4679,9 @@ var SubCategorySelect = function (_React$Component2) {
         options: choices,
         onChange: function onChange(event) {
           return _this4.props.subcategoryChanged(event);
-        }
+        },
+        multi: true,
+        simpleValue: true
       });
     }
   }]);
@@ -5053,8 +5055,7 @@ var SearchPage = function (_React$Component7) {
   }, {
     key: 'updateSubcategory',
     value: function updateSubcategory(subcategory) {
-      var subcategoryValue = subcategory === null ? 'All' : subcategory.value;
-      this.setState({ selectedSubcategory: subcategoryValue }, this.updateSearchResults);
+      this.setState({ selectedSubcategory: subcategory }, this.updateSearchResults);
     }
   }, {
     key: 'updateMinPrice',

@@ -35,6 +35,8 @@ class SubCategorySelect extends React.Component {
         value={this.props.selectedSubcategory}
         options={choices}
         onChange={(event) => this.props.subcategoryChanged(event)}
+        multi={true}
+        simpleValue={true}
       />
     )
   }
@@ -213,8 +215,7 @@ class SearchPage extends React.Component {
   }
 
   updateSubcategory(subcategory) {
-    const subcategoryValue = subcategory === null ? 'All' : subcategory.value;
-    this.setState({selectedSubcategory: subcategoryValue}, this.updateSearchResults);
+    this.setState({selectedSubcategory: subcategory}, this.updateSearchResults);
   }
 
   updateMinPrice(price) {
