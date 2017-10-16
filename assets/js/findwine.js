@@ -84,6 +84,7 @@ class SearchControls extends React.Component {
       );
     }
   }
+
   render() {
     return (
       <div>
@@ -275,6 +276,8 @@ class SearchPage extends React.Component {
   }
 
   render() {
+    let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines} /> : ''
+
     return (
       <div className="container">
         <SearchControls
@@ -292,9 +295,7 @@ class SearchPage extends React.Component {
           searchClicked={(event) => this.searchClicked(event)}
           updateSearchResults={() => this.updateSearchResults()}
         />
-        <WineList
-          wines={this.state.wines}
-        />
+        {wineList}
         <Paginator
           nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
           prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}

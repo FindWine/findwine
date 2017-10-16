@@ -5142,6 +5142,8 @@ var SearchPage = function (_React$Component7) {
     value: function render() {
       var _this18 = this;
 
+      var wineList = this.state.firstSearchMade ? _react2.default.createElement(WineList, { wines: this.state.wines }) : '';
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -5174,9 +5176,7 @@ var SearchPage = function (_React$Component7) {
             return _this18.updateSearchResults();
           }
         }),
-        _react2.default.createElement(WineList, {
-          wines: this.state.wines
-        }),
+        wineList,
         _react2.default.createElement(Paginator, {
           nextPage: function nextPage() {
             return _this18.nextPage();
