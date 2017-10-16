@@ -5068,7 +5068,8 @@ var SearchPage = function (_React$Component7) {
         category: this.state['selectedCategory'],
         sub_category: this.state['selectedSubcategory'],
         min_price: this.state['minPrice'],
-        max_price: this.state['maxPrice']
+        max_price: this.state['maxPrice'],
+        sort_by: this.state['selectedSort']
         // TODO: assumes jquery on page.
       };params = $.param(params);
       fetch(WINE_API_URL + '?' + params).then(function (response) {
@@ -5186,7 +5187,8 @@ function getSubcategories(category) {
 }
 
 function getSortChoices() {
-  return [['Rating', 'rating'], ['Price', 'price'], ['Name', 'name']];
+  // NOTE: these values are coupled with the API queryset!
+  return [['Rating', '-avg_rating'], ['Price', 'price'], ['Name', 'wine__producer__name,wine__name']];
 }
 
 /***/ }),

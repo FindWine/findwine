@@ -223,6 +223,7 @@ class SearchPage extends React.Component {
       sub_category: this.state['selectedSubcategory'],
       min_price: this.state['minPrice'],
       max_price: this.state['maxPrice'],
+      sort_by: this.state['selectedSort'],
     }
     // TODO: assumes jquery on page.
     params = $.param(params);
@@ -306,9 +307,10 @@ function getSubcategories(category) {
 }
 
 function getSortChoices() {
+  // NOTE: these values are coupled with the API queryset!
   return [
-    ['Rating', 'rating'],
+    ['Rating', '-avg_rating'],
     ['Price', 'price'],
-    ['Name', 'name'],
+    ['Name', 'wine__producer__name,wine__name'],
   ];
 }

@@ -17,6 +17,11 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
         sub_category = self.request.GET.get('sub_category', 'All')
         min_price = self.request.GET.get('min_price', 0)
         max_price = self.request.GET.get('max_price', MAX_PRICE)
+        sort_by = self.request.GET.get('sort_by', None)
+        if sort_by is None:
+            sort_by = ['-avg_rating', 'price']
+        else:
+            sort_by = sort_by.split(',')
         #1 todo: Add country
         results_list = MerchantWine.objects.filter(
             #2 Restrict MerchantWines to those that are available
@@ -42,9 +47,7 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
             avg_rating=Round(Avg('wineaward__award__tier__normalised_rating')),
 
         )
-        wines = wines.order_by(
-            '-avg_rating', 'price'
-        )
+        wines = wines.order_by(*sort_by)
         # todo: if necessary
         # #9 Restrict MerchantWines to lowest minimum_purchase_unit of same wine_vintage, price and merchant
         # # NOT WORKING min_units = results_list.values('wine_vintage').annotate(smallest_unit=Min('minimum_purchase_unit'))
