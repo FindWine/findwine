@@ -2,13 +2,12 @@
 import json
 
 from django.db.models import Avg, Min, Func
-from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import generic
 from django.views.decorators.http import require_GET
 
-from .models import WineVintage, MerchantWine, Producer, SubCategory, Category
-from .forms import BasicSearchForm, AdvancedSearchForm
+from .models import WineVintage, MerchantWine, Producer, Category
+from .forms import AdvancedSearchForm
 
 
 class IndexView(generic.ListView):
@@ -22,22 +21,9 @@ class IndexView(generic.ListView):
 
 @require_GET
 def search(request):
-    form = BasicSearchForm()
-    categories = _build_category_subcategory_mapping()
-
-    return render(request, 'wine/search.html', {
-        'form': form,
-        'category_mapping': json.dumps(categories),
-    })
-
-
-@require_GET
-def search_new(request):
-    form = BasicSearchForm()
     category_list = list(Category.objects.values_list('name', flat=True))
     category_map = _build_category_subcategory_mapping()
     return render(request, 'wine/search_new.html', {
-        'form': form,
         'categories': json.dumps(category_list),
         'category_mapping': json.dumps(category_map),
     })
