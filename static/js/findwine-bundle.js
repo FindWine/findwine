@@ -7497,10 +7497,8 @@ var SearchPage = function (_React$Component7) {
         maxPrice: this.state['maxPrice'],
         selectedSort: this.state['selectedSort']
       };
-      var stringified = queryString.stringify(queryParams);
-      console.log(stringified);
-      // TODO: assumes jquery on page.
-      params = $.param(params);
+      window.history.replaceState(queryParams, 'Search Results', '/search/?' + queryString.stringify(queryParams));
+      params = queryString.stringify(params);
       fetch(WINE_API_URL + '?' + params).then(function (response) {
         return _this14._updateResultsFromResponse(response);
       });

@@ -265,10 +265,8 @@ class SearchPage extends React.Component {
       maxPrice: this.state['maxPrice'],
       selectedSort: this.state['selectedSort'],
     }
-    const stringified = queryString.stringify(queryParams);
-    console.log(stringified);
-    // TODO: assumes jquery on page.
-    params = $.param(params);
+    window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+    params = queryString.stringify(params);
     fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
   }
 
