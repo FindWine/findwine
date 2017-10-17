@@ -149,7 +149,6 @@ class WineList extends React.Component {
     					<th>Name</th>
     					<th>Rating /10</th>
     					<th>Minimum Price</th>
-              <th>Buy</th>
     				</tr>
     			</thead>
     			<tbody>
@@ -160,7 +159,6 @@ class WineList extends React.Component {
                   <a className="text-primary" href={winevintage.details_url}>{ winevintage.wine.producer } - { winevintage.wine.name } { winevintage.year }</a></td>
       				  <td>{winevintage.avg_rating }</td>
       				  <td>R {winevintage.price}</td>
-                <td><a className="text-primary" href={ winevintage.preferred_merchant_url } target="_blank">Buy</a></td>
       				</tr>
             );
           })}
