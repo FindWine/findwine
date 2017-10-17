@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import Select from 'react-select';
+const queryString = require('query-string');
+
 
 // todo: figure out how to django-ize these
 const WINE_API_URL = '/api/wine-vintages/';
@@ -205,6 +207,14 @@ class SearchPage extends React.Component {
     }
   }
 
+  componentDidMount() {
+    let queryParams = queryString.parse(location.search);
+    if (Object.keys(queryParams).length) {
+      queryParams['firstSearchMade'] = true;
+      this.setState(queryParams, this._updateSearchResults);
+    }
+  }
+
   updateCategory(category) {
     this.setState({
       selectedCategory: category,
@@ -247,6 +257,16 @@ class SearchPage extends React.Component {
       max_price: this.state['maxPrice'],
       sort_by: this.state['selectedSort'],
     }
+    // TODO: this duplication is silly
+    let queryParams = {
+      selectedCategory: this.state['selectedCategory'],
+      selectedSubcategory: this.state['selectedSubcategory'],
+      minPrice: this.state['minPrice'],
+      maxPrice: this.state['maxPrice'],
+      selectedSort: this.state['selectedSort'],
+    }
+    const stringified = queryString.stringify(queryParams);
+    console.log(stringified);
     // TODO: assumes jquery on page.
     params = $.param(params);
     fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));

@@ -185,7 +185,7 @@ Note this is just during bootstrap.
 
 ```bash
 yarn init
-yarn add react react-dom
+yarn add react react-dom query-string
 yarn add webpack --dev
 yarn add babel-core babel-cli babel-loader babel-preset-react babel-preset-env babel-preset-es2015 --dev
 yarn add css-loader --dev
