@@ -1,3 +1,4 @@
+
 import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -324,12 +325,6 @@ class SearchPage extends React.Component {
   }
 }
 
-ReactDOM.render(
-
-  <SearchPage />,
-  document.getElementById('react-home')
-);
-
 function getCategoryChoices() {
   return CATEGORY_CHOICES;
 }
@@ -355,3 +350,8 @@ function getSortChoices() {
     ['Name', 'wine__producer__name,wine__name'],
   ];
 }
+
+ReactDOM.render(
+  <SearchPage />,
+  document.getElementById('react-home')
+);
