@@ -19,7 +19,7 @@
                 {% if winevintage.image_pack_shot %}
                     <img src="{{ winevintage.image_pack_shot.url }}" alt="..." class="img-fluid rounded float-left"
                          style="max-height: 300px">
-                {% endif %}
+                {% endif %}.
             </div>
             <div class="col-8">
                 <p></br>
@@ -156,6 +156,31 @@
                 {% endif %}
             </div>
         </div>
+{% if winevintage.other_vintages %}
+    <h5 class="py-2">Other vintages</h5>
+    {% for other_vintage in winevintage.other_vintages %}
+        <div class="row py-3">
+            <div class="col-md-2">
+            {{ other_vintage.rating.avg_rating|default:"?" }}
+            </div>
+            <div class="col-md-2">
+                {% if other_vintage.image_pack_shot %}
+                    <img src="{{ other_vintage.image_pack_shot.url }}" alt="..." class="img-fluid rounded float-left"
+                         style="max-height: 100px">
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ other_vintage.wine.producer.name }} {{ other_vintage.wine.name }} {{ other_vintage.year }}<br />
+                {{ other_vintage.sub_category }}
+            </div>
+            <div class="col-md-4">
+                {% if other_vintage.preferred_merchant %}
+                    {{ other_vintage.preferred_merchant.price }}<br />
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
     </div>
 
 {% endblock %}

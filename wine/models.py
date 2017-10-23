@@ -196,6 +196,10 @@ class WineVintage(models.Model):
         return WineAward.objects.filter(wine_vintage=self).aggregate(
             avg_rating=Avg('award__tier__normalised_rating'))
 
+    @property
+    def other_vintages(self):
+        return WineVintage.objects.filter(wine=self.wine).exclude(id=self.id).all()
+
     def __str__(self):
         return self.long_name
 
