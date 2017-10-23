@@ -19,6 +19,7 @@ from api.urls import router as api_router
 
 urlpatterns = [
     url(r'^', include('wine.urls')),
+    url(r'^', include('content.urls')),
     url(r'^api/', include(api_router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
