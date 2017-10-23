@@ -7436,6 +7436,16 @@ var SearchPage = function (_React$Component7) {
         queryParams['firstSearchMade'] = true;
         this.setState(queryParams, this._updateSearchResults);
       }
+      // there might be a better way to do this
+      // clear search results on back button press back to home page
+      var self = this;
+      $(window).on('popstate', function (e) {
+        if (location.pathname === '/') {
+          self.setState({
+            'firstSearchMade': false
+          });
+        }
+      });
     }
   }, {
     key: 'updateCategory',
@@ -7469,7 +7479,7 @@ var SearchPage = function (_React$Component7) {
     key: 'searchClicked',
     value: function searchClicked(event) {
       event.preventDefault();
-      this.setState({ firstSearchMade: true }, this.updateSearchResults);
+      this._updateSearchResults();
     }
   }, {
     key: 'updateSearchResults',
@@ -7497,11 +7507,17 @@ var SearchPage = function (_React$Component7) {
         maxPrice: this.state['maxPrice'],
         selectedSort: this.state['selectedSort']
       };
-      window.history.replaceState(queryParams, 'Search Results', '/search/?' + queryString.stringify(queryParams));
+      if (this.state['firstSearchMade']) {
+        window.history.replaceState(queryParams, 'Search Results', '/search/?' + queryString.stringify(queryParams));
+      } else {
+        // back button support for first search
+        window.history.pushState(queryParams, 'Search Results', '/search/?' + queryString.stringify(queryParams));
+      }
       params = queryString.stringify(params);
       fetch(WINE_API_URL + '?' + params).then(function (response) {
         return _this14._updateResultsFromResponse(response);
       });
+      this.setState({ firstSearchMade: true });
     }
   }, {
     key: 'nextPage',
@@ -7546,7 +7562,14 @@ var SearchPage = function (_React$Component7) {
       var _this18 = this;
 
       var wineList = this.state.firstSearchMade ? _react2.default.createElement(WineList, { wines: this.state.wines }) : '';
-
+      var paginator = this.state.firstSearchMade ? _react2.default.createElement(Paginator, {
+        nextPage: function nextPage() {
+          return _this18.nextPage();
+        }, showNext: Boolean(this.state.nextPageUrl),
+        prevPage: function prevPage() {
+          return _this18.prevPage();
+        }, showPrevious: Boolean(this.state.prevPageUrl)
+      }) : '';
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -7580,14 +7603,7 @@ var SearchPage = function (_React$Component7) {
           }
         }),
         wineList,
-        _react2.default.createElement(Paginator, {
-          nextPage: function nextPage() {
-            return _this18.nextPage();
-          }, showNext: Boolean(this.state.nextPageUrl),
-          prevPage: function prevPage() {
-            return _this18.prevPage();
-          }, showPrevious: Boolean(this.state.prevPageUrl)
-        })
+        paginator
       );
     }
   }]);

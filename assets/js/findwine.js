@@ -214,6 +214,16 @@ class SearchPage extends React.Component {
       queryParams['firstSearchMade'] = true;
       this.setState(queryParams, this._updateSearchResults);
     }
+    // there might be a better way to do this
+    // clear search results on back button press back to home page
+    var self = this;
+    $(window).on('popstate', function (e) {
+      if (location.pathname === '/') {
+        self.setState({
+          'firstSearchMade': false,
+        });
+      }
+    });
   }
 
   updateCategory(category) {
@@ -241,7 +251,7 @@ class SearchPage extends React.Component {
 
   searchClicked(event) {
     event.preventDefault();
-    this.setState({firstSearchMade: true}, this.updateSearchResults);
+    this._updateSearchResults();
   }
 
   updateSearchResults() {
@@ -266,9 +276,15 @@ class SearchPage extends React.Component {
       maxPrice: this.state['maxPrice'],
       selectedSort: this.state['selectedSort'],
     }
-    window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+    if (this.state['firstSearchMade']) {
+      window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+    } else {
+      // back button support for first search
+      window.history.pushState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+    }
     params = queryString.stringify(params);
     fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
+    this.setState({firstSearchMade: true});
   }
 
   nextPage() {
@@ -296,8 +312,11 @@ class SearchPage extends React.Component {
   }
 
   render() {
-    let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines} /> : ''
-
+    let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines} /> : '';
+    let paginator = this.state.firstSearchMade ? <Paginator
+          nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
+          prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
+        /> : '';
     return (
       <div className="container">
         <SearchControls
@@ -316,10 +335,7 @@ class SearchPage extends React.Component {
           updateSearchResults={() => this.updateSearchResults()}
         />
         {wineList}
-        <Paginator
-          nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
-          prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
-        />
+        {paginator}        
       </div>
     )
   }
