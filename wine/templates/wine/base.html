@@ -19,18 +19,23 @@
 	<body>
 		<!-- This is the navigation bar at the top of the page-->
 		<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
-			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<a class="navbar-brand" href="{%url 'wine:search' %}">
 				<img src="{% static 'wine/images/logo/logo.png' %}" class="d-inline-block align-top" alt="FindWine">
 			</a>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<!-- use to show an active link: <a class="nav-item nav-link active" href="{%url 'wine:search' %}">Search <span class="sr-only">(current)</span></a> -->
 					<a class="nav-item nav-link" href="{%url 'wine:search' %}">Search</a> 
                 </div>
             </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'content:about' %}">About</a>
+                </li>
+            </ul>
         </nav>
 
 		<!-- OTHER PAGES -->
