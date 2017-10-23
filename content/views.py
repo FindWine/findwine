@@ -7,3 +7,7 @@ class AboutView(TemplateView):
 
 class ContactView(TemplateView):
     template_name = 'contact.html'
+
+
+class TermsView(TemplateView):
+    template_name = 'terms.html'
