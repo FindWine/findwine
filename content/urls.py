@@ -10,4 +10,5 @@ app_name = 'content'
 urlpatterns = [
     # ex: /
     url(r'^about/$', views.AboutView.as_view(), name='about'),
+    url(r'^contact/$', views.ContactView.as_view(), name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # NOT SUITABLE FOR PRODCUTION
