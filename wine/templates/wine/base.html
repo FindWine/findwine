@@ -43,26 +43,7 @@
 		<!--No need to input anything here. This is where the body of code will go from the other .html pages-->
 		{% endblock %}
 		
-		<!-- This is where the footer begins -->
-		<footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8">
-						<a class="d-inline text-primary" href="https://www.facebook.com/FindWineSA/">Facebook</a>
-						<a class="d-inline text-primary" href="https://twitter.com/FindWineSA" style="margin-left: 18px;">Twitter</a>
-						<a class="d-inline text-primary" href="{% url 'content:contact' %}" style="margin-left: 18px;">Contact</a>
-						<a class="d-inline text-primary" href="{% url 'wine:index' %}" style="margin-left: 18px;">Index</a>
-						<a class="d-inline text-primary" href="{% url 'admin:index' %}" style="margin-left: 18px;">Admin</a>
-{# ADD LATER <a class="d-inline text-primary" href="{% url 'wine:advanced_search' %}" style="margin-left: 18px;">Advanced search</a>  #}
-					</div>
-					<div class="col-md-4">
-						<span class="text-muted" style="text-align: center">Copyright FindWine 2017</span>
-					</div>
-				 </div>
-			</div>
-		</footer>
-	
-	
+        {% include 'wine/partials/footer.html' %}
 		<!--This is a javascript block. If javascript files are included in the 'static' folder then there's no need to 
 		put this here -->
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
