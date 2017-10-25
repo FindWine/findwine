@@ -49,6 +49,8 @@ class Producer(models.Model):
     tasting_currency = models.CharField(null=True, blank=True, choices=get_all_currency_choices(), max_length=3,
                                         default=SOUTH_AFRICAN_RAND_CODE)
     logo = models.ImageField(upload_to='images/producer_logos/', null=True, blank=True)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='images/producer_images/', null=True, blank=True)
 
     @property
     def coordinates_display(self):
@@ -209,14 +211,19 @@ class WineVintage(models.Model):
 
 class Awardification(models.Model):
     tier = models.CharField(choices=(
-    ('1', "1/Decanter Best in Show/IWC Trophy/IWSC Trophy"),
-    ('2', "2/Decanter Platinum/IWC Gold/Platters Wine of the year/IWSC Gold Outstanding"),
-    ('3', "3/95-100/IWC Silver/Platters 5*/Veritas Double Gold/IWSC Gold"),
-    ('4', "4/90-94/IWC Bronze/Platters 4.5*/Veritas Gold/IWSC Silver Outstanding"),
-    ('5', "5/86-89/IWC Commended/Platter's 4*/Veritas Silver/IWSC Silver"),
-    ('6', "6/83-85/Veritas Bronze/IWSC Bronze"),
+    ('1', "1/100/Decanter Best in Show/IWC Trophy/Platters Wine of year"),
+    ('2', "2/98-99/Decanter Platinum/IWC Gold/Platters 5*/IWSC Trophy"),
+    ('3', "3/95-97/Decanter Gold/IWC Silver/IWSC Gold Outstanding"),
+    ('4', "4/90-94/Decanter Silver/IWC Bronze/Platters 4.5*/IWSC Gold/Veritas Double Gold"),
+    ('5', "5/86-89/Decanter Bronze/IWC Commended/Platter's 4*/IWSC Silver Outstanding/Veritas Gold"),
+    ('6', "6/83-85/Decanter Seal of approval/Platter's 3.5*/IWSC Silver/Veritas Silver"),
+    ('7', "7/80-82/Platter's 3*"),
+    ('8', "8/76-79/Platter's 2.5*/IWSC Bronze/Veritas Bronze"),
+    ('9', "9/73-75/Platter's 2*"),
+    ('10', "10/70-72"),
+    ('11', "11/50-69"),
     ),
-                            max_length=2
+    max_length=2
     )
     conversion = models.CharField(null=True, blank=True, max_length=256)
     normalised_rating = models.DecimalField(max_digits=5, decimal_places=2, help_text="e.g. 10.00")
