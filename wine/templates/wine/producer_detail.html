@@ -16,21 +16,40 @@
 					<img src="{{ producer.logo.url }}" alt="..." class="img-fluid rounded float-left" style="max-height: 300px">
 				{% endif %}
 			</div>
-			<div class="col-8">
+			<div class="col-6">
 				<h2 style="margin-bottom: 10px;">{{ producer.name }} </h2>
 				<h5><small class="text-muted">{% if producer.appellation_primary %}{{ producer.appellation_primary.name }}, {% endif %}{{ producer.country }}</small></h5>
 				<a href={{ producer.url }} target="_blank"> {{ producer.url }} </a>
-			</div>
-			<div class="col-12" style="margin-top: 8%">
 				{% if producer.description %}
 					<p> {{ producer.description }} </p>
 				<br>
 				{% endif %}
 			</div>
+            <div class="col-4 col-md-auto">
+                    <h5>Location</h5>
+                    <table class="table table-responsive table-sm">
+                        <tbody>
+                            <tr>
+                                <td>Address:</td>
+                                <td>{{ producer.address }}</td>
+                            </tr>
+                            {% if producer.coordinates_text %}
+                            <tr>
+                                <td>GPS: </td>
+                                <td>{{ producer.coordinates_display }}</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td>Google: </td>
+                                <td><a class="text-primary" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank"> Open in maps</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 		</div>
 		<div class="row">		
-			<div class="col-12" style="margin-top: 8%">
-				<h4>Wines</h4>
+			<div class="col-6" style="margin-top: 8%">
+				<h4>Top Wines:</h4>
 				{% if producer.wine_set.all %}
 				<ul class="list-group list-group-flush">
 					{% for wine in producer.wine_set.all %}
@@ -41,8 +60,8 @@
 				{% endif %}
 				</ul>
 			</div>
-			<div class="col-12" style="margin-top: 8%">
-				<h4>Tasting</h4>
+			<div class="col-6" style="margin-top: 8%">
+				<h4>Tastings:</h4>
 				<p>Minimum price: {% if producer.tasting_price %}{{ producer.tasting_currency }} {% endif %}{{ producer.tasting_price }}</p>
 				<br>
 				<h6>Hours</h6>
@@ -94,27 +113,6 @@
 						<tr>
 							<td>Email: </td>
 							<td><a class="text-primary" href="mailto:{{ producer.email_tasting }}" target="_self"> {{ producer.email_tasting }}</a></td>
-						</tr>
-					</tbody>
-				</table>	
-			</div>
-			<div class="col-12 col-md-auto" style="margin-top: 8%">
-				<h5>Location</h5>
-				<table class="table table-responsive table-sm">
-					<tbody>
-						<tr>
-							<td>Address:</td>
-							<td>{{ producer.address }}</td>
-						</tr>
-						{% if producer.coordinates_text %}
-						<tr>
-							<td>GPS: </td>
-							<td>{{ producer.coordinates_display }}</td>
-						</tr>
-						{% endif %}
-						<tr>
-							<td>Google: </td>
-							<td><a class="text-primary" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank"> Open in maps</a></td>
 						</tr>
 					</tbody>
 				</table>	
