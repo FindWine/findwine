@@ -48,9 +48,9 @@ class Producer(models.Model):
     tasting_price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     tasting_currency = models.CharField(null=True, blank=True, choices=get_all_currency_choices(), max_length=3,
                                         default=SOUTH_AFRICAN_RAND_CODE)
-    logo = models.ImageField(upload_to='images/producer_logos/', null=True, blank=True)
+    logo = models.ImageField(upload_to='images/producer_logos/', null=True, blank=True, max_length=500)
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='images/producer_images/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/producer_images/', null=True, blank=True, max_length=500)
 
     @property
     def coordinates_display(self):
@@ -154,11 +154,13 @@ class WineVintage(models.Model):
     ph = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     total_acidity = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     total_sulphur = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
-    image_pack_shot = models.ImageField(upload_to='images/winevintage_packshots/', null=True, blank=True)
-    image_label_vertical = models.ImageField(upload_to='images/winevintage_label_vertical/', null=True, blank=True)
+    image_pack_shot = models.ImageField(upload_to='images/winevintage_packshots/', null=True, blank=True,
+                                        max_length=500)
+    image_label_vertical = models.ImageField(upload_to='images/winevintage_label_vertical/', null=True, blank=True,
+                                             max_length=500)
     image_label_horizontal = models.ImageField(upload_to='images/winevintage_label_horizontal/', null=True,
-                                               blank=True)
-    tasting_notes = models.FileField(upload_to='documents/tasting_notes/', null=True, blank=True)
+                                               blank=True, max_length=500)
+    tasting_notes = models.FileField(upload_to='documents/tasting_notes/', null=True, blank=True, max_length=500)
     status = models.CharField(
         choices=(
             ('Incomplete_Unavailable', "Incomplete and Unavailable"),
@@ -252,7 +254,7 @@ class Award(models.Model):
     tier = models.ForeignKey("Awardification")
     rank = models.CharField(max_length=256)
     year = models.PositiveIntegerField()
-    image = models.ImageField(upload_to='images/award_images/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/award_images/', null=True, blank=True, max_length=500)
     recognition_url = models.URLField(null=True, blank=True, max_length=256)
 
     @property
@@ -303,7 +305,7 @@ class Merchant(models.Model):
     delivery_fee = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     delivery_fees = models.TextField(null=True, blank=True)
     delivery_threshold = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
-    logo = models.ImageField(upload_to='images/merchant_logos/', null=True, blank=True)
+    logo = models.ImageField(upload_to='images/merchant_logos/', null=True, blank=True, max_length=500)
     url = models.URLField(null=True, blank=True, max_length=256)
 
     def __str__(self):
