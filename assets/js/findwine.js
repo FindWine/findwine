@@ -99,15 +99,13 @@ class SearchControls extends React.Component {
 
             <div>
 
-
-
-                <form className="search-form" role="search">
+                <form className="search-form findwine_search-form" role="search">
                     <div className="row d-flex align-items-end">
 
                         {/* Hierdie moet buttons word */}
                         <div className="col-sm-3">
                             <div className="form-group category">
-                                <label htmlFor="id_category">Select A Category</label>
+                                <label htmlFor="id_category" className="findwine_heading-3">Select A Category</label>
                                 <CategorySelect
                                     selectedCategory={this.props.selectedCategory}
                                     categoryChanged={this.props.categoryChanged}
@@ -117,7 +115,7 @@ class SearchControls extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="form-group sub_category">
-                                <label htmlFor="id_sub_category"> Select Type(s)</label>
+                                <label htmlFor="id_sub_category" className="findwine_heading-3"> Select Type(s)</label>
                                 <SubCategorySelect
                                     selectedCategory={this.props.selectedCategory}
                                     selectedSubcategory={this.props.selectedSubcategory}
@@ -127,6 +125,15 @@ class SearchControls extends React.Component {
                         </div>
 
                         {/*Price Range*/}
+
+                        <div className="col-sm-3">
+                            <div className="form-group sub_category">
+                                <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range</label>
+
+                                {/*Slider to be added here*/}
+
+                            </div>
+                        </div>
 
                         <div className="col-sm-2">
                             <div className="form-group min_price">
