@@ -85,9 +85,9 @@ class SearchControls extends React.Component {
         if (!this.props.firstSearchMade) {
             return (
                 <div className="col-sm-2">
-                    <button type="submit" className="btn btn-primary btn-block"
+                    <button type="submit" className="btn btn-primary btn-block findwine_button"
                             style={{marginBottom: '16px', marginTop: '16px'}}
-                            onClick={(event) => this.props.searchClicked(event)}>Find wine
+                            onClick={(event) => this.props.searchClicked(event)}>Search Wines
                     </button>
                 </div>
             );
@@ -107,7 +107,7 @@ class SearchControls extends React.Component {
                         {/* Hierdie moet buttons word */}
                         <div className="col-sm-3">
                             <div className="form-group category">
-                                <label htmlFor="id_category">Category 1</label>
+                                <label htmlFor="id_category">Select A Category</label>
                                 <CategorySelect
                                     selectedCategory={this.props.selectedCategory}
                                     categoryChanged={this.props.categoryChanged}
@@ -117,7 +117,7 @@ class SearchControls extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="form-group sub_category">
-                                <label htmlFor="id_sub_category">Type</label>
+                                <label htmlFor="id_sub_category"> Select Type(s)</label>
                                 <SubCategorySelect
                                     selectedCategory={this.props.selectedCategory}
                                     selectedSubcategory={this.props.selectedSubcategory}
@@ -125,6 +125,8 @@ class SearchControls extends React.Component {
                                 />
                             </div>
                         </div>
+
+                        {/*Price Range*/}
 
                         <div className="col-sm-2">
                             <div className="form-group min_price">

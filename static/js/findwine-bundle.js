@@ -7166,12 +7166,12 @@ var SearchControls = function (_React$Component4) {
                     { className: 'col-sm-2' },
                     _react2.default.createElement(
                         'button',
-                        { type: 'submit', className: 'btn btn-primary btn-block',
+                        { type: 'submit', className: 'btn btn-primary btn-block findwine_button',
                             style: { marginBottom: '16px', marginTop: '16px' },
                             onClick: function onClick(event) {
                                 return _this8.props.searchClicked(event);
                             } },
-                        'Find wine'
+                        'Search Wines'
                     )
                 );
             }
@@ -7199,7 +7199,7 @@ var SearchControls = function (_React$Component4) {
                                 _react2.default.createElement(
                                     'label',
                                     { htmlFor: 'id_category' },
-                                    'Category 1'
+                                    'Select A Category'
                                 ),
                                 _react2.default.createElement(CategorySelect, {
                                     selectedCategory: this.props.selectedCategory,
@@ -7216,7 +7216,7 @@ var SearchControls = function (_React$Component4) {
                                 _react2.default.createElement(
                                     'label',
                                     { htmlFor: 'id_sub_category' },
-                                    'Type'
+                                    ' Select Type(s)'
                                 ),
                                 _react2.default.createElement(SubCategorySelect, {
                                     selectedCategory: this.props.selectedCategory,

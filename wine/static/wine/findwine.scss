@@ -27,6 +27,7 @@ $primary-font: Gotham;
 
     padding-top: 20px;
     color: $primary-text;
+    outline: none;
 
   }
 
@@ -75,6 +76,12 @@ $primary-font: Gotham;
     padding-bottom: 5%;
     text-align: center;
     color: $white;
+
+  }
+
+  &_button {
+
+    background-color: $primary-green;
 
   }
 
