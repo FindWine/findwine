@@ -1,4 +1,4 @@
-{% load staticfiles %}<!doctype html>
+{% load staticfiles %} <!doctype html>
 <!--The static folder consists of .css, .js, fonts, etc -->
 <html>
 	<head>
@@ -14,16 +14,17 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<!-- Custom styles for this template -->
 		<link rel="stylesheet" type="text/css" href="{% static 'wine/style.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'wine/findwine.css' %}" />
         <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css">
 	</head>
 	<body>
 		<!-- This is the navigation bar at the top of the page-->
-		<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+		<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary" >
+            <button class="navbar-toggler navbar-toggler-left findwine_menu-icon" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="border: none">
+				<span class="findwine_menu-button"> <img src="../../../static/wine/images/SVGs/group.svg" style="fill: black; height: 12px; width: 18px; "></span>
 			</button>
-			<a class="navbar-brand" href="{%url 'wine:search' %}">
-				<img src="{% static 'wine/images/logo/logo.png' %}" class="d-inline-block align-top" alt="FindWine">
+			<a class="navbar-brand findwine_logo-standard" href="{%url 'wine:search' %}" style="text-align: center">
+				<img src="{% static 'wine/images/logo/logo-standard.png' %}" class="d-inline-block align-top" alt="FindWine" style="height: 33px">
 			</a>
 			<div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
@@ -31,7 +32,7 @@
 					<a class="nav-item nav-link" href="{%url 'wine:search' %}">Search</a> 
                 </div>
             </div>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto hidden-md-down">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'content:about' %}">About</a>
                 </li>

@@ -1,0 +1,68 @@
+//Variables
+
+// Colours
+
+$primary-green: #00ad68;
+$primary-text: #333e48;
+
+$light-grey: #c8ced2;
+$background-grey: #c8ced2;
+
+$red-wine: #b22626;
+$white-wine: #fae78c;
+$rose-wine: #f8a99f;
+$port-wine: #d68730;
+$bubbly-wine: #f7e1ba;
+
+// Fonts
+
+$primary-font: Gotham;
+
+// Custom styling
+
+.test {
+
+  background-color: $primary-green;
+
+}
+
+.findwine {
+
+  &_menu-icon {
+
+    color: $primary-text;
+
+  }
+
+  &_nav-icon {
+
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+
+  }
+
+  &_logo-standard {
+
+    width: 146px;
+    height: 33px;
+    object-fit: contain;
+    text-align: center;
+
+  }
+
+  &_banner-main {
+
+    height: 130px;
+    width: 100%;
+    background-color: purple;
+
+  }
+
+}
+
