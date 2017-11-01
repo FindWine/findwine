@@ -7020,617 +7020,616 @@ var queryString = __webpack_require__(373);
 var WINE_API_URL = '/api/wine-vintages/';
 
 var CategorySelect = function (_React$Component) {
-  _inherits(CategorySelect, _React$Component);
+    _inherits(CategorySelect, _React$Component);
 
-  function CategorySelect() {
-    _classCallCheck(this, CategorySelect);
+    function CategorySelect() {
+        _classCallCheck(this, CategorySelect);
 
-    return _possibleConstructorReturn(this, (CategorySelect.__proto__ || Object.getPrototypeOf(CategorySelect)).apply(this, arguments));
-  }
-
-  _createClass(CategorySelect, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return _react2.default.createElement(
-        'select',
-        { className: 'form-control', name: 'category', id: 'id_category',
-          value: this.props.selectedCategory,
-          onChange: function onChange(event) {
-            return _this2.props.categoryChanged(event.target.value);
-          } },
-        getCategoryChoices().map(function (category, index) {
-          return _react2.default.createElement(
-            'option',
-            { key: index, value: category },
-            category
-          );
-        })
-      );
+        return _possibleConstructorReturn(this, (CategorySelect.__proto__ || Object.getPrototypeOf(CategorySelect)).apply(this, arguments));
     }
-  }]);
 
-  return CategorySelect;
+    _createClass(CategorySelect, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'select',
+                { className: 'form-control', name: 'category', id: 'id_category',
+                    value: this.props.selectedCategory,
+                    onChange: function onChange(event) {
+                        return _this2.props.categoryChanged(event.target.value);
+                    } },
+                getCategoryChoices().map(function (category, index) {
+                    return _react2.default.createElement(
+                        'option',
+                        { key: index, value: category },
+                        category
+                    );
+                })
+            );
+        }
+    }]);
+
+    return CategorySelect;
 }(_react2.default.Component);
 
 var SubCategorySelect = function (_React$Component2) {
-  _inherits(SubCategorySelect, _React$Component2);
+    _inherits(SubCategorySelect, _React$Component2);
 
-  function SubCategorySelect() {
-    _classCallCheck(this, SubCategorySelect);
+    function SubCategorySelect() {
+        _classCallCheck(this, SubCategorySelect);
 
-    return _possibleConstructorReturn(this, (SubCategorySelect.__proto__ || Object.getPrototypeOf(SubCategorySelect)).apply(this, arguments));
-  }
-
-  _createClass(SubCategorySelect, [{
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      var choices = getSubcategories(this.props.selectedCategory).map(function (choice) {
-        return { 'value': choice, 'label': choice };
-      });
-
-      return _react2.default.createElement(_reactSelect2.default, {
-        value: this.props.selectedSubcategory,
-        options: choices,
-        onChange: function onChange(event) {
-          return _this4.props.subcategoryChanged(event);
-        },
-        multi: true,
-        simpleValue: true,
-        placeholder: 'Show All'
-      });
+        return _possibleConstructorReturn(this, (SubCategorySelect.__proto__ || Object.getPrototypeOf(SubCategorySelect)).apply(this, arguments));
     }
-  }]);
 
-  return SubCategorySelect;
+    _createClass(SubCategorySelect, [{
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
+
+            var choices = getSubcategories(this.props.selectedCategory).map(function (choice) {
+                return { 'value': choice, 'label': choice };
+            });
+
+            return _react2.default.createElement(_reactSelect2.default, {
+                value: this.props.selectedSubcategory,
+                options: choices,
+                onChange: function onChange(event) {
+                    return _this4.props.subcategoryChanged(event);
+                },
+                multi: true,
+                simpleValue: true,
+                placeholder: 'Show All'
+            });
+        }
+    }]);
+
+    return SubCategorySelect;
 }(_react2.default.Component);
 
 var SortSelect = function (_React$Component3) {
-  _inherits(SortSelect, _React$Component3);
+    _inherits(SortSelect, _React$Component3);
 
-  function SortSelect() {
-    _classCallCheck(this, SortSelect);
+    function SortSelect() {
+        _classCallCheck(this, SortSelect);
 
-    return _possibleConstructorReturn(this, (SortSelect.__proto__ || Object.getPrototypeOf(SortSelect)).apply(this, arguments));
-  }
-
-  _createClass(SortSelect, [{
-    key: 'render',
-    value: function render() {
-      var _this6 = this;
-
-      return _react2.default.createElement(
-        'select',
-        { className: 'form-control', id: 'id_sort',
-          value: this.props.selectedSort,
-          onChange: function onChange(event) {
-            return _this6.props.sortChanged(event.target.value);
-          } },
-        getSortChoices().map(function (sortChoice, index) {
-          return _react2.default.createElement(
-            'option',
-            { key: index, value: sortChoice[1] },
-            sortChoice[0]
-          );
-        })
-      );
+        return _possibleConstructorReturn(this, (SortSelect.__proto__ || Object.getPrototypeOf(SortSelect)).apply(this, arguments));
     }
-  }]);
 
-  return SortSelect;
+    _createClass(SortSelect, [{
+        key: 'render',
+        value: function render() {
+            var _this6 = this;
+
+            return _react2.default.createElement(
+                'select',
+                { className: 'form-control', id: 'id_sort',
+                    value: this.props.selectedSort,
+                    onChange: function onChange(event) {
+                        return _this6.props.sortChanged(event.target.value);
+                    } },
+                getSortChoices().map(function (sortChoice, index) {
+                    return _react2.default.createElement(
+                        'option',
+                        { key: index, value: sortChoice[1] },
+                        sortChoice[0]
+                    );
+                })
+            );
+        }
+    }]);
+
+    return SortSelect;
 }(_react2.default.Component);
 
 var SearchControls = function (_React$Component4) {
-  _inherits(SearchControls, _React$Component4);
+    _inherits(SearchControls, _React$Component4);
 
-  function SearchControls() {
-    _classCallCheck(this, SearchControls);
+    function SearchControls() {
+        _classCallCheck(this, SearchControls);
 
-    return _possibleConstructorReturn(this, (SearchControls.__proto__ || Object.getPrototypeOf(SearchControls)).apply(this, arguments));
-  }
-
-  _createClass(SearchControls, [{
-    key: '_getSortSelect',
-    value: function _getSortSelect() {
-      if (this.props.firstSearchMade) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'col-sm-2' },
-          _react2.default.createElement(
-            'div',
-            { className: 'form-group' },
-            _react2.default.createElement(
-              'label',
-              { htmlFor: 'id_sort' },
-              'Sort By'
-            ),
-            _react2.default.createElement(SortSelect, {
-              selectedSort: this.props.selectedSort,
-              sortChanged: this.props.sortChanged
-            })
-          )
-        );
-      }
+        return _possibleConstructorReturn(this, (SearchControls.__proto__ || Object.getPrototypeOf(SearchControls)).apply(this, arguments));
     }
-  }, {
-    key: '_getSearchButton',
-    value: function _getSearchButton() {
-      var _this8 = this;
 
-      if (!this.props.firstSearchMade) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'col-sm-2' },
-          _react2.default.createElement(
-            'button',
-            { type: 'submit', className: 'btn btn-primary btn-block', style: { marginBottom: '16px', marginTop: '16px' },
-              onClick: function onClick(event) {
-                return _this8.props.searchClicked(event);
-              } },
-            'Find wine'
-          )
-        );
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this9 = this;
+    _createClass(SearchControls, [{
+        key: '_getSortSelect',
+        value: function _getSortSelect() {
+            if (this.props.firstSearchMade) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-2' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'form-group' },
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: 'id_sort' },
+                            'Sort By'
+                        ),
+                        _react2.default.createElement(SortSelect, {
+                            selectedSort: this.props.selectedSort,
+                            sortChanged: this.props.sortChanged
+                        })
+                    )
+                );
+            }
+        }
+    }, {
+        key: '_getSearchButton',
+        value: function _getSearchButton() {
+            var _this8 = this;
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h5',
-          { style: { paddingTop: '10%', paddingBottom: '5%', textAlign: 'center' } },
-          'What wine would you like to find?'
-        ),
-        _react2.default.createElement(
-          'form',
-          { className: 'search-form', role: 'search' },
-          _react2.default.createElement(
-            'div',
-            { className: 'row d-flex align-items-end' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-3' },
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group category' },
-                _react2.default.createElement(
-                  'label',
-                  { htmlFor: 'id_category' },
-                  'Category'
-                ),
-                _react2.default.createElement(CategorySelect, {
-                  selectedCategory: this.props.selectedCategory,
-                  categoryChanged: this.props.categoryChanged
-                })
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-3' },
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group sub_category' },
-                _react2.default.createElement(
-                  'label',
-                  { htmlFor: 'id_sub_category' },
-                  'Type'
-                ),
-                _react2.default.createElement(SubCategorySelect, {
-                  selectedCategory: this.props.selectedCategory,
-                  selectedSubcategory: this.props.selectedSubcategory,
-                  subcategoryChanged: this.props.subcategoryChanged
-                })
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-2' },
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group min_price' },
-                _react2.default.createElement(
-                  'label',
-                  { htmlFor: 'id_min_price' },
-                  'Minimum Price'
-                ),
-                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price', value: this.props.minPrice, min: '0', required: true, id: 'id_min_price',
-                  onChange: function onChange(event) {
-                    return _this9.props.minPriceChanged(event.target.value);
-                  }
-                })
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-2' },
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group max_price' },
-                _react2.default.createElement(
-                  'label',
-                  { htmlFor: 'id_max_price' },
-                  'Maximum Price'
-                ),
-                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price', value: this.props.maxPrice, min: '0', required: true, id: 'id_max_price',
-                  onChange: function onChange(event) {
-                    return _this9.props.maxPriceChanged(event.target.value);
-                  }
-                })
-              )
-            ),
-            this._getSortSelect(),
-            this._getSearchButton()
-          )
-        )
-      );
-    }
-  }]);
+            if (!this.props.firstSearchMade) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-2' },
+                    _react2.default.createElement(
+                        'button',
+                        { type: 'submit', className: 'btn btn-primary btn-block findwine_button',
+                            style: { marginBottom: '16px', marginTop: '16px' },
+                            onClick: function onClick(event) {
+                                return _this8.props.searchClicked(event);
+                            } },
+                        'Search Wines'
+                    )
+                );
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this9 = this;
 
-  return SearchControls;
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'form',
+                    { className: 'search-form', role: 'search' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'row d-flex align-items-end' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-sm-3' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'form-group category' },
+                                _react2.default.createElement(
+                                    'label',
+                                    { htmlFor: 'id_category' },
+                                    'Select A Category'
+                                ),
+                                _react2.default.createElement(CategorySelect, {
+                                    selectedCategory: this.props.selectedCategory,
+                                    categoryChanged: this.props.categoryChanged
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-sm-3' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'form-group sub_category' },
+                                _react2.default.createElement(
+                                    'label',
+                                    { htmlFor: 'id_sub_category' },
+                                    ' Select Type(s)'
+                                ),
+                                _react2.default.createElement(SubCategorySelect, {
+                                    selectedCategory: this.props.selectedCategory,
+                                    selectedSubcategory: this.props.selectedSubcategory,
+                                    subcategoryChanged: this.props.subcategoryChanged
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-sm-2' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'form-group min_price' },
+                                _react2.default.createElement(
+                                    'label',
+                                    { htmlFor: 'id_min_price' },
+                                    'Minimum Price'
+                                ),
+                                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price',
+                                    value: this.props.minPrice, min: '0', required: true, id: 'id_min_price',
+                                    onChange: function onChange(event) {
+                                        return _this9.props.minPriceChanged(event.target.value);
+                                    }
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-sm-2' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'form-group max_price' },
+                                _react2.default.createElement(
+                                    'label',
+                                    { htmlFor: 'id_max_price' },
+                                    'Maximum Price'
+                                ),
+                                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price',
+                                    value: this.props.maxPrice, min: '0', required: true, id: 'id_max_price',
+                                    onChange: function onChange(event) {
+                                        return _this9.props.maxPriceChanged(event.target.value);
+                                    }
+                                })
+                            )
+                        ),
+                        this._getSortSelect(),
+                        this._getSearchButton()
+                    )
+                )
+            );
+        }
+    }]);
+
+    return SearchControls;
 }(_react2.default.Component);
 
 var WineList = function (_React$Component5) {
-  _inherits(WineList, _React$Component5);
+    _inherits(WineList, _React$Component5);
 
-  function WineList() {
-    _classCallCheck(this, WineList);
+    function WineList() {
+        _classCallCheck(this, WineList);
 
-    return _possibleConstructorReturn(this, (WineList.__proto__ || Object.getPrototypeOf(WineList)).apply(this, arguments));
-  }
-
-  _createClass(WineList, [{
-    key: 'render',
-    value: function render() {
-      if (this.props.wines.length > 0) {
-        return _react2.default.createElement(
-          'table',
-          { className: 'table' },
-          _react2.default.createElement(
-            'thead',
-            { className: 'thead' },
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'th',
-                null,
-                'Name'
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                'Rating /10'
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                'Minimum Price'
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'tbody',
-            null,
-            this.props.wines.map(function (winevintage, index) {
-              return _react2.default.createElement(
-                'tr',
-                { key: index },
-                _react2.default.createElement(
-                  'td',
-                  { scope: 'row' },
-                  _react2.default.createElement(
-                    'a',
-                    { className: 'text-primary', href: winevintage.details_url },
-                    winevintage.wine.producer,
-                    ' - ',
-                    winevintage.wine.name,
-                    ' ',
-                    winevintage.year
-                  )
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  winevintage.avg_rating
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  'R ',
-                  winevintage.price
-                )
-              );
-            })
-          )
-        );
-      } else {
-        return _react2.default.createElement(
-          'p',
-          { style: { textAlign: 'center', paddingTop: '10%', marginBottom: '450px' } },
-          'No results are available. Adjust criteria and search again.'
-        );
-      }
+        return _possibleConstructorReturn(this, (WineList.__proto__ || Object.getPrototypeOf(WineList)).apply(this, arguments));
     }
-  }]);
 
-  return WineList;
+    _createClass(WineList, [{
+        key: 'render',
+        value: function render() {
+            if (this.props.wines.length > 0) {
+                return _react2.default.createElement(
+                    'table',
+                    { className: 'table' },
+                    _react2.default.createElement(
+                        'thead',
+                        { className: 'thead' },
+                        _react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Name'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Rating /10'
+                            ),
+                            _react2.default.createElement(
+                                'th',
+                                null,
+                                'Minimum Price'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'tbody',
+                        null,
+                        this.props.wines.map(function (winevintage, index) {
+                            return _react2.default.createElement(
+                                'tr',
+                                { key: index },
+                                _react2.default.createElement(
+                                    'td',
+                                    { scope: 'row' },
+                                    _react2.default.createElement(
+                                        'a',
+                                        { className: 'text-primary',
+                                            href: winevintage.details_url },
+                                        winevintage.wine.producer,
+                                        '- ',
+                                        winevintage.wine.name,
+                                        ' ',
+                                        winevintage.year
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    winevintage.avg_rating
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    'R ',
+                                    winevintage.price
+                                )
+                            );
+                        })
+                    )
+                );
+            } else {
+                return _react2.default.createElement(
+                    'p',
+                    { style: { textAlign: 'center', paddingTop: '10%', marginBottom: '450px' } },
+                    'No results are available. Adjust criteria and search again.'
+                );
+            }
+        }
+    }]);
+
+    return WineList;
 }(_react2.default.Component);
 
 var Paginator = function (_React$Component6) {
-  _inherits(Paginator, _React$Component6);
+    _inherits(Paginator, _React$Component6);
 
-  function Paginator() {
-    _classCallCheck(this, Paginator);
+    function Paginator() {
+        _classCallCheck(this, Paginator);
 
-    return _possibleConstructorReturn(this, (Paginator.__proto__ || Object.getPrototypeOf(Paginator)).apply(this, arguments));
-  }
-
-  _createClass(Paginator, [{
-    key: 'render',
-    value: function render() {
-      var _this12 = this;
-
-      // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
-      var nextButton = this.props.showNext ? _react2.default.createElement(
-        'a',
-        { className: 'next-nav', onClick: function onClick(event) {
-            return _this12.props.nextPage();
-          } },
-        'Next'
-      ) : '';
-      var prevButton = this.props.showPrevious ? _react2.default.createElement(
-        'a',
-        { className: 'prev-nav', onClick: function onClick(event) {
-            return _this12.props.prevPage();
-          } },
-        'Previous'
-      ) : '';
-      return _react2.default.createElement(
-        'div',
-        null,
-        prevButton,
-        nextButton
-      );
+        return _possibleConstructorReturn(this, (Paginator.__proto__ || Object.getPrototypeOf(Paginator)).apply(this, arguments));
     }
-  }]);
 
-  return Paginator;
+    _createClass(Paginator, [{
+        key: 'render',
+        value: function render() {
+            var _this12 = this;
+
+            // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
+            var nextButton = this.props.showNext ? _react2.default.createElement(
+                'a',
+                { className: 'next-nav', onClick: function onClick(event) {
+                        return _this12.props.nextPage();
+                    } },
+                'Next'
+            ) : '';
+            var prevButton = this.props.showPrevious ? _react2.default.createElement(
+                'a',
+                { className: 'prev-nav', onClick: function onClick(event) {
+                        return _this12.props.prevPage();
+                    } },
+                'Previous'
+            ) : '';
+            return _react2.default.createElement(
+                'div',
+                null,
+                prevButton,
+                nextButton
+            );
+        }
+    }]);
+
+    return Paginator;
 }(_react2.default.Component);
 
 var SearchPage = function (_React$Component7) {
-  _inherits(SearchPage, _React$Component7);
+    _inherits(SearchPage, _React$Component7);
 
-  function SearchPage() {
-    _classCallCheck(this, SearchPage);
+    function SearchPage() {
+        _classCallCheck(this, SearchPage);
 
-    // initialize with first category / subcategory selected
-    var _this13 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
+        // initialize with first category / subcategory selected
+        var _this13 = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this));
 
-    var category = getCategoryChoices()[0];
-    _this13.state = {
-      selectedCategory: category,
-      selectedSubcategory: null,
-      minPrice: 0,
-      maxPrice: 500,
-      selectedSort: getSortChoices()[0][1],
-      wines: [],
-      nextPageUrl: null,
-      prevPageUrl: null,
-      firstSearchMade: false
-    };
-    return _this13;
-  }
+        var category = getCategoryChoices()[0];
+        _this13.state = {
+            selectedCategory: category,
+            selectedSubcategory: null,
+            minPrice: 0,
+            maxPrice: 500,
+            selectedSort: getSortChoices()[0][1],
+            wines: [],
+            nextPageUrl: null,
+            prevPageUrl: null,
+            firstSearchMade: false
+        };
+        return _this13;
+    }
 
-  _createClass(SearchPage, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var queryParams = queryString.parse(location.search);
-      if (Object.keys(queryParams).length) {
-        queryParams['firstSearchMade'] = true;
-        this.setState(queryParams, this._updateSearchResults);
-      }
-      // there might be a better way to do this
-      // clear search results on back button press back to home page
-      var self = this;
-      $(window).on('popstate', function (e) {
-        if (location.pathname === '/') {
-          self.setState({
-            'firstSearchMade': false
-          });
+    _createClass(SearchPage, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var queryParams = queryString.parse(location.search);
+            if (Object.keys(queryParams).length) {
+                queryParams['firstSearchMade'] = true;
+                this.setState(queryParams, this._updateSearchResults);
+            }
+            // there might be a better way to do this
+            // clear search results on back button press back to home page
+            var self = this;
+            $(window).on('popstate', function (e) {
+                if (location.pathname === '/') {
+                    self.setState({
+                        'firstSearchMade': false
+                    });
+                }
+            });
         }
-      });
-    }
-  }, {
-    key: 'updateCategory',
-    value: function updateCategory(category) {
-      this.setState({
-        selectedCategory: category,
-        selectedSubcategory: '' // default to empty/all
-      }, this.updateSearchResults);
-    }
-  }, {
-    key: 'updateSubcategory',
-    value: function updateSubcategory(subcategory) {
-      this.setState({ selectedSubcategory: subcategory }, this.updateSearchResults);
-    }
-  }, {
-    key: 'updateMinPrice',
-    value: function updateMinPrice(price) {
-      this.setState({ minPrice: price }, this.updateSearchResults);
-    }
-  }, {
-    key: 'updateMaxPrice',
-    value: function updateMaxPrice(price) {
-      this.setState({ maxPrice: price }, this.updateSearchResults);
-    }
-  }, {
-    key: 'updateSort',
-    value: function updateSort(sort) {
-      this.setState({ selectedSort: sort }, this.updateSearchResults);
-    }
-  }, {
-    key: 'searchClicked',
-    value: function searchClicked(event) {
-      event.preventDefault();
-      this._updateSearchResults();
-    }
-  }, {
-    key: 'updateSearchResults',
-    value: function updateSearchResults() {
-      if (this.state['firstSearchMade']) {
-        this._updateSearchResults();
-      }
-    }
-  }, {
-    key: '_updateSearchResults',
-    value: function _updateSearchResults() {
-      var _this14 = this;
+    }, {
+        key: 'updateCategory',
+        value: function updateCategory(category) {
+            this.setState({
+                selectedCategory: category,
+                selectedSubcategory: '' // default to empty/all
+            }, this.updateSearchResults);
+        }
+    }, {
+        key: 'updateSubcategory',
+        value: function updateSubcategory(subcategory) {
+            this.setState({ selectedSubcategory: subcategory }, this.updateSearchResults);
+        }
+    }, {
+        key: 'updateMinPrice',
+        value: function updateMinPrice(price) {
+            this.setState({ minPrice: price }, this.updateSearchResults);
+        }
+    }, {
+        key: 'updateMaxPrice',
+        value: function updateMaxPrice(price) {
+            this.setState({ maxPrice: price }, this.updateSearchResults);
+        }
+    }, {
+        key: 'updateSort',
+        value: function updateSort(sort) {
+            this.setState({ selectedSort: sort }, this.updateSearchResults);
+        }
+    }, {
+        key: 'searchClicked',
+        value: function searchClicked(event) {
+            event.preventDefault();
+            this._updateSearchResults();
+        }
+    }, {
+        key: 'updateSearchResults',
+        value: function updateSearchResults() {
+            if (this.state['firstSearchMade']) {
+                this._updateSearchResults();
+            }
+        }
+    }, {
+        key: '_updateSearchResults',
+        value: function _updateSearchResults() {
+            var _this14 = this;
 
-      var params = {
-        category: this.state['selectedCategory'],
-        sub_category: this.state['selectedSubcategory'],
-        min_price: this.state['minPrice'],
-        max_price: this.state['maxPrice'],
-        sort_by: this.state['selectedSort']
-        // TODO: this duplication is silly
-      };var queryParams = {
-        selectedCategory: this.state['selectedCategory'],
-        selectedSubcategory: this.state['selectedSubcategory'],
-        minPrice: this.state['minPrice'],
-        maxPrice: this.state['maxPrice'],
-        selectedSort: this.state['selectedSort']
-      };
-      if (this.state['firstSearchMade']) {
-        window.history.replaceState(queryParams, 'Search Results', '/search/?' + queryString.stringify(queryParams));
-      } else {
-        // back button support for first search
-        window.history.pushState(queryParams, 'Search Results', '/search/?' + queryString.stringify(queryParams));
-      }
-      params = queryString.stringify(params);
-      fetch(WINE_API_URL + '?' + params).then(function (response) {
-        return _this14._updateResultsFromResponse(response);
-      });
-      this.setState({ firstSearchMade: true });
-    }
-  }, {
-    key: 'nextPage',
-    value: function nextPage() {
-      var _this15 = this;
+            var params = {
+                category: this.state['selectedCategory'],
+                sub_category: this.state['selectedSubcategory'],
+                min_price: this.state['minPrice'],
+                max_price: this.state['maxPrice'],
+                sort_by: this.state['selectedSort']
+                // TODO: this duplication is silly
+            };var queryParams = {
+                selectedCategory: this.state['selectedCategory'],
+                selectedSubcategory: this.state['selectedSubcategory'],
+                minPrice: this.state['minPrice'],
+                maxPrice: this.state['maxPrice'],
+                selectedSort: this.state['selectedSort']
+            };
+            if (this.state['firstSearchMade']) {
+                window.history.replaceState(queryParams, 'Search Results', '/search/?' + queryString.stringify(queryParams));
+            } else {
+                // back button support for first search
+                window.history.pushState(queryParams, 'Search Results', '/search/?' + queryString.stringify(queryParams));
+            }
+            params = queryString.stringify(params);
+            fetch(WINE_API_URL + '?' + params).then(function (response) {
+                return _this14._updateResultsFromResponse(response);
+            });
+            this.setState({ firstSearchMade: true });
+        }
+    }, {
+        key: 'nextPage',
+        value: function nextPage() {
+            var _this15 = this;
 
-      if (this.state['nextPageUrl']) {
-        fetch(this.state['nextPageUrl']).then(function (response) {
-          return _this15._updateResultsFromResponse(response);
-        });
-      }
-    }
-  }, {
-    key: 'prevPage',
-    value: function prevPage() {
-      var _this16 = this;
+            if (this.state['nextPageUrl']) {
+                fetch(this.state['nextPageUrl']).then(function (response) {
+                    return _this15._updateResultsFromResponse(response);
+                });
+            }
+        }
+    }, {
+        key: 'prevPage',
+        value: function prevPage() {
+            var _this16 = this;
 
-      if (this.state['prevPageUrl']) {
-        fetch(this.state['prevPageUrl']).then(function (response) {
-          return _this16._updateResultsFromResponse(response);
-        });
-      }
-    }
-  }, {
-    key: '_updateResultsFromResponse',
-    value: function _updateResultsFromResponse(response) {
-      var _this17 = this;
+            if (this.state['prevPageUrl']) {
+                fetch(this.state['prevPageUrl']).then(function (response) {
+                    return _this16._updateResultsFromResponse(response);
+                });
+            }
+        }
+    }, {
+        key: '_updateResultsFromResponse',
+        value: function _updateResultsFromResponse(response) {
+            var _this17 = this;
 
-      if (response.ok) {
-        response.json().then(function (responseJson) {
-          _this17.setState({
-            wines: responseJson.results,
-            nextPageUrl: responseJson.next,
-            prevPageUrl: responseJson.previous
-          });
-        });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this18 = this;
+            if (response.ok) {
+                response.json().then(function (responseJson) {
+                    _this17.setState({
+                        wines: responseJson.results,
+                        nextPageUrl: responseJson.next,
+                        prevPageUrl: responseJson.previous
+                    });
+                });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this18 = this;
 
-      var wineList = this.state.firstSearchMade ? _react2.default.createElement(WineList, { wines: this.state.wines }) : '';
-      var paginator = this.state.firstSearchMade ? _react2.default.createElement(Paginator, {
-        nextPage: function nextPage() {
-          return _this18.nextPage();
-        }, showNext: Boolean(this.state.nextPageUrl),
-        prevPage: function prevPage() {
-          return _this18.prevPage();
-        }, showPrevious: Boolean(this.state.prevPageUrl)
-      }) : '';
-      return _react2.default.createElement(
-        'div',
-        { className: 'container' },
-        _react2.default.createElement(SearchControls, {
-          firstSearchMade: this.state.firstSearchMade,
-          selectedCategory: this.state.selectedCategory,
-          categoryChanged: function categoryChanged(category) {
-            return _this18.updateCategory(category);
-          },
-          selectedSubcategory: this.state.selectedSubcategory,
-          subcategoryChanged: function subcategoryChanged(subcategory) {
-            return _this18.updateSubcategory(subcategory);
-          },
-          minPrice: this.state.minPrice,
-          minPriceChanged: function minPriceChanged(price) {
-            return _this18.updateMinPrice(price);
-          },
-          maxPrice: this.state.maxPrice,
-          maxPriceChanged: function maxPriceChanged(price) {
-            return _this18.updateMaxPrice(price);
-          },
-          selectedSort: this.state.selectedSort,
-          sortChanged: function sortChanged(sort) {
-            return _this18.updateSort(sort);
-          },
-          searchClicked: function searchClicked(event) {
-            return _this18.searchClicked(event);
-          },
-          updateSearchResults: function updateSearchResults() {
-            return _this18.updateSearchResults();
-          }
-        }),
-        wineList,
-        paginator
-      );
-    }
-  }]);
+            var wineList = this.state.firstSearchMade ? _react2.default.createElement(WineList, { wines: this.state.wines }) : '';
+            var paginator = this.state.firstSearchMade ? _react2.default.createElement(Paginator, {
+                nextPage: function nextPage() {
+                    return _this18.nextPage();
+                }, showNext: Boolean(this.state.nextPageUrl),
+                prevPage: function prevPage() {
+                    return _this18.prevPage();
+                }, showPrevious: Boolean(this.state.prevPageUrl)
+            }) : '';
+            return _react2.default.createElement(
+                'div',
+                { className: 'container' },
+                _react2.default.createElement(SearchControls, {
+                    firstSearchMade: this.state.firstSearchMade,
+                    selectedCategory: this.state.selectedCategory,
+                    categoryChanged: function categoryChanged(category) {
+                        return _this18.updateCategory(category);
+                    },
+                    selectedSubcategory: this.state.selectedSubcategory,
+                    subcategoryChanged: function subcategoryChanged(subcategory) {
+                        return _this18.updateSubcategory(subcategory);
+                    },
+                    minPrice: this.state.minPrice,
+                    minPriceChanged: function minPriceChanged(price) {
+                        return _this18.updateMinPrice(price);
+                    },
+                    maxPrice: this.state.maxPrice,
+                    maxPriceChanged: function maxPriceChanged(price) {
+                        return _this18.updateMaxPrice(price);
+                    },
+                    selectedSort: this.state.selectedSort,
+                    sortChanged: function sortChanged(sort) {
+                        return _this18.updateSort(sort);
+                    },
+                    searchClicked: function searchClicked(event) {
+                        return _this18.searchClicked(event);
+                    },
+                    updateSearchResults: function updateSearchResults() {
+                        return _this18.updateSearchResults();
+                    }
+                }),
+                wineList,
+                paginator
+            );
+        }
+    }]);
 
-  return SearchPage;
+    return SearchPage;
 }(_react2.default.Component);
 
 function getCategoryChoices() {
-  return CATEGORY_CHOICES;
+    return CATEGORY_CHOICES;
 }
 
 function getCategoryMap() {
-  // NOTE: we assume this is assigned elsewhere on the page by django
-  return CATEGORY_MAP;
+    // NOTE: we assume this is assigned elsewhere on the page by django
+    return CATEGORY_MAP;
 }
 
 function getSubcategories(category) {
-  if (category in getCategoryMap()) {
-    return getCategoryMap()[category];
-  } else {
-    return [];
-  }
+    if (category in getCategoryMap()) {
+        return getCategoryMap()[category];
+    } else {
+        return [];
+    }
 }
 
 function getSortChoices() {
-  // NOTE: these values are coupled with the API queryset!
-  return [['Rating', '-avg_rating'], ['Price', 'price'], ['Name', 'wine__producer__name,wine__name']];
+    // NOTE: these values are coupled with the API queryset!
+    return [['Rating', '-avg_rating'], ['Price', 'price'], ['Name', 'wine__producer__name,wine__name']];
 }
 
 _reactDom2.default.render(_react2.default.createElement(SearchPage, null), document.getElementById('react-home'));

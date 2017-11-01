@@ -1,0 +1,89 @@
+//Variables
+
+// Colours
+
+$primary-green: #00ad68;
+$primary-text: #333e48;
+$white: #ffffff;
+
+$light-grey: #c8ced2;
+$background-grey: #c8ced2;
+
+$red-wine: #b22626;
+$white-wine: #fae78c;
+$rose-wine: #f8a99f;
+$port-wine: #d68730;
+$bubbly-wine: #f7e1ba;
+
+// Fonts
+
+$primary-font: Gotham;
+
+// Custom styling
+
+.findwine {
+
+  &_menu-icon {
+
+    padding-top: 20px;
+    color: $primary-text;
+    outline: none;
+
+  }
+
+  &_nav-icon {
+
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+
+  }
+
+  &_logo-standard {
+
+    width: 146px;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+    padding: 12px 0px 11px 0px;
+
+  }
+
+  &_banner-main {
+
+    height: 130px;
+    width: 100%;
+    background: url("images/background/rohit-tandon-67718.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+  }
+
+  &_banner-text {
+
+    //font-family: $primary-font;
+    font-size: 24px;
+    //font-weight: bold;
+    text-align: left;
+    padding-top: 15%;
+    padding-bottom: 5%;
+    text-align: center;
+    color: $white;
+
+  }
+
+  &_button {
+
+    background-color: $primary-green;
+
+  }
+
+}
+
