@@ -4,6 +4,7 @@
 
 $primary-green: #00ad68;
 $primary-text: #333e48;
+$white: #ffffff;
 
 $light-grey: #c8ced2;
 $background-grey: #c8ced2;
@@ -20,16 +21,11 @@ $primary-font: Gotham;
 
 // Custom styling
 
-.test {
-
-  background-color: $primary-green;
-
-}
-
 .findwine {
 
   &_menu-icon {
 
+    padding-top: 20px;
     color: $primary-text;
 
   }
@@ -50,9 +46,10 @@ $primary-font: Gotham;
   &_logo-standard {
 
     width: 146px;
-    height: 33px;
+    height: 100%;
     object-fit: contain;
-    text-align: center;
+    margin: auto;
+    padding: 12px 0px 11px 0px;
 
   }
 
@@ -60,7 +57,24 @@ $primary-font: Gotham;
 
     height: 130px;
     width: 100%;
-    background-color: purple;
+    background: url("images/background/rohit-tandon-67718.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+  }
+
+  &_banner-text {
+
+    //font-family: $primary-font;
+    font-size: 24px;
+    //font-weight: bold;
+    text-align: left;
+    padding-top: 15%;
+    padding-bottom: 5%;
+    text-align: center;
+    color: $white;
 
   }
 

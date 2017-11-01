@@ -99,10 +99,7 @@ class SearchControls extends React.Component {
 
             <div>
 
-                <div className="findwine_banner-main">
-                    <h5 className="findwine_banner-text"
-                        style={{paddingTop: '10%', paddingBottom: '5%', textAlign: 'center'}}>Find your wine!!!!.</h5>
-                </div>
+
 
                 <form className="search-form" role="search">
                     <div className="row d-flex align-items-end">
