@@ -22,25 +22,29 @@
 	</head>
 	<body>
 		<!-- This is the navigation bar at the top of the page-->
-		<nav class="navbar navbar-toggleable-md navbar-inverse" >
-            <button class="navbar-toggler navbar-toggler-left findwine_menu-icon" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="border: none">
-				<span class="findwine_menu-button"> <img src="{% static 'wine/images/SVGs/group.svg' %}" style="fill: black; height: 12px; width: 18px; "></span>
+		<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+			<button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span><img src="{% static 'wine/images/SVGs/menu.svg' %}" class="findwine_menu-button"></span>
 			</button>
-			<a class="navbar-brand findwine_logo-standard" href="{%url 'wine:search' %}" style="text-align: center">
-				<img src="{% static 'wine/images/logo/logo-standard.png' %}" class="d-inline-block align-top" alt="FindWine" style="height: 33px">
-			</a>
-			<div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<!-- use to show an active link: <a class="nav-item nav-link active" href="{%url 'wine:search' %}">Search <span class="sr-only">(current)</span></a> -->
-					<a class="nav-item nav-link" href="{%url 'wine:search' %}">Search</a> 
-                </div>
-            </div>
-            <ul class="navbar-nav ml-auto hidden-md-down">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'content:about' %}">About</a>
-                </li>
-            </ul>
-        </nav>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'content:about' %}">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link hidden-sm-up" href="#">Search</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0 hidden-sm-down">
+					<input class="form-control mr-sm-2 findwine_search-field" type="text" placeholder="Wine or Wineries">
+					<button class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"> <img src="{% static 'wine/images/SVGs/search.svg' %}" class="findwine_search-icon"> </button>
+				</form>
+			</div>
+		</nav>
 
 		<!-- OTHER PAGES -->
 		{% block content %}

@@ -7163,7 +7163,7 @@ var SearchControls = function (_React$Component4) {
             if (!this.props.firstSearchMade) {
                 return _react2.default.createElement(
                     'div',
-                    { className: 'col-sm-2' },
+                    { className: 'col-md-12 findwine_button-outer' },
                     _react2.default.createElement(
                         'button',
                         { type: 'submit', className: 'btn btn-primary btn-block findwine_button',
@@ -7171,7 +7171,8 @@ var SearchControls = function (_React$Component4) {
                             onClick: function onClick(event) {
                                 return _this8.props.searchClicked(event);
                             } },
-                        'Search Wines'
+                        ' Search Wines ',
+                        _react2.default.createElement('img', { src: 'static/wine/images/SVGs/arrow.svg', alt: 'search', className: 'hidden-md-up' })
                     )
                 );
             }
@@ -7189,33 +7190,116 @@ var SearchControls = function (_React$Component4) {
                     { className: 'search-form', role: 'search' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'row d-flex align-items-end' },
+                        { className: 'row d-flex align-items-end findwine_search-form' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-sm-3' },
+                            { className: 'col-md-3' },
                             _react2.default.createElement(
                                 'div',
                                 { className: 'form-group category' },
                                 _react2.default.createElement(
                                     'label',
-                                    { htmlFor: 'id_category' },
+                                    { htmlFor: 'id_category', className: 'findwine_heading-3' },
                                     'Select A Category'
                                 ),
-                                _react2.default.createElement(CategorySelect, {
-                                    selectedCategory: this.props.selectedCategory,
-                                    categoryChanged: this.props.categoryChanged
-                                })
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'hidden-md-up' },
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'button', href: '#', className: 'btn btn-secondary findwine_button-category', id: 'red' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_svg' },
+                                            _react2.default.createElement('img', { src: 'static/wine/images/SVGs/red.svg' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_button-type' },
+                                            'Red'
+                                        ),
+                                        _react2.default.createElement('div', { className: 'findwine_button-bar' })
+                                    ),
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'button', href: '#', className: 'btn btn-secondary findwine_button-category', id: 'white' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_svg' },
+                                            _react2.default.createElement('img', { src: 'static/wine/images/SVGs/white.svg' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_button-type' },
+                                            'White'
+                                        ),
+                                        _react2.default.createElement('div', { className: 'findwine_button-bar' })
+                                    ),
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'button', href: '#', className: 'btn btn-secondary findwine_button-category', id: 'rose' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_svg' },
+                                            _react2.default.createElement('img', { src: 'static/wine/images/SVGs/rose.svg' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_button-type' },
+                                            'Ros\xE9'
+                                        ),
+                                        _react2.default.createElement('div', { className: 'findwine_button-bar' })
+                                    ),
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'button', href: '#', className: 'btn btn-secondary findwine_button-category', id: 'port' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_svg' },
+                                            _react2.default.createElement('img', { src: '/static/wine/images/SVGs/port.svg' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_button-type' },
+                                            'Port'
+                                        ),
+                                        _react2.default.createElement('div', { className: 'findwine_button-bar' })
+                                    ),
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'button', href: '#', className: 'btn btn-secondary findwine_button-category', id: 'bubbly' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_svg' },
+                                            _react2.default.createElement('img', { src: '/static/wine/images/SVGs/bubbly.svg' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'findwine_button-type' },
+                                            'Bubbly'
+                                        ),
+                                        _react2.default.createElement('div', { className: 'findwine_button-bar' })
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'hidden-md-down' },
+                                    _react2.default.createElement(CategorySelect, {
+                                        selectedCategory: this.props.selectedCategory,
+                                        categoryChanged: this.props.categoryChanged
+                                    })
+                                )
                             )
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-sm-3' },
+                            { className: 'col-md-3' },
                             _react2.default.createElement(
                                 'div',
                                 { className: 'form-group sub_category' },
                                 _react2.default.createElement(
                                     'label',
-                                    { htmlFor: 'id_sub_category' },
+                                    { htmlFor: 'id_sub_category', className: 'findwine_heading-3' },
                                     ' Select Type(s)'
                                 ),
                                 _react2.default.createElement(SubCategorySelect, {
@@ -7227,45 +7311,62 @@ var SearchControls = function (_React$Component4) {
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-sm-2' },
+                            { className: 'col-md-6' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'form-group min_price' },
+                                { className: 'form-group sub_category' },
                                 _react2.default.createElement(
                                     'label',
-                                    { htmlFor: 'id_min_price' },
-                                    'Minimum Price'
-                                ),
-                                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price',
-                                    value: this.props.minPrice, min: '0', required: true, id: 'id_min_price',
-                                    onChange: function onChange(event) {
-                                        return _this9.props.minPriceChanged(event.target.value);
-                                    }
-                                })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-sm-2' },
+                                    { htmlFor: 'id_sub_category', className: 'findwine_heading-3' },
+                                    ' Price Range'
+                                )
+                            ),
                             _react2.default.createElement(
                                 'div',
-                                { className: 'form-group max_price' },
+                                { 'class': 'row' },
                                 _react2.default.createElement(
-                                    'label',
-                                    { htmlFor: 'id_max_price' },
-                                    'Maximum Price'
+                                    'div',
+                                    { className: 'col-md-6' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'form-group min_price' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            { htmlFor: 'id_min_price' },
+                                            'Minimum Price'
+                                        ),
+                                        _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'min_price',
+                                            value: this.props.minPrice, min: '0', required: true, id: 'id_min_price',
+                                            onChange: function onChange(event) {
+                                                return _this9.props.minPriceChanged(event.target.value);
+                                            }
+                                        })
+                                    )
                                 ),
-                                _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price',
-                                    value: this.props.maxPrice, min: '0', required: true, id: 'id_max_price',
-                                    onChange: function onChange(event) {
-                                        return _this9.props.maxPriceChanged(event.target.value);
-                                    }
-                                })
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-md-6' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'form-group max_price' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            { htmlFor: 'id_max_price' },
+                                            'Maximum Price'
+                                        ),
+                                        _react2.default.createElement('input', { className: 'form-control', type: 'number', name: 'max_price',
+                                            value: this.props.maxPrice, min: '0', required: true, id: 'id_max_price',
+                                            onChange: function onChange(event) {
+                                                return _this9.props.maxPriceChanged(event.target.value);
+                                            }
+                                        })
+                                    )
+                                )
                             )
                         ),
-                        this._getSortSelect(),
-                        this._getSearchButton()
-                    )
+                        this._getSortSelect()
+                    ),
+                    this._getSearchButton()
                 )
             );
         }
@@ -34257,7 +34358,11 @@ function keysSorter(input) {
 }
 
 exports.extract = function (str) {
-	return str.split('?')[1] || '';
+	var queryStart = str.indexOf('?');
+	if (queryStart === -1) {
+		return '';
+	}
+	return str.slice(queryStart + 1);
 };
 
 exports.parse = function (str, opts) {
@@ -34273,7 +34378,7 @@ exports.parse = function (str, opts) {
 		return ret;
 	}
 
-	str = str.trim().replace(/^(\?|#|&)/, '');
+	str = str.trim().replace(/^[?#&]/, '');
 
 	if (!str) {
 		return ret;

@@ -84,10 +84,10 @@ class SearchControls extends React.Component {
     _getSearchButton() {
         if (!this.props.firstSearchMade) {
             return (
-                <div className="col-sm-2">
+                <div className="col-md-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button"
                             style={{marginBottom: '16px', marginTop: '16px'}}
-                            onClick={(event) => this.props.searchClicked(event)}>Search Wines
+                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src="static/wine/images/SVGs/arrow.svg" alt="search" className="hidden-md-up"></img>
                     </button>
                 </div>
             );
@@ -99,21 +99,80 @@ class SearchControls extends React.Component {
 
             <div>
 
-                <form className="search-form findwine_search-form" role="search">
-                    <div className="row d-flex align-items-end">
+                <form className="search-form" role="search">
+                    <div className="row d-flex align-items-end findwine_search-form">
 
-                        {/* Hierdie moet buttons word */}
-                        <div className="col-sm-3">
+                        <div className="col-md-3">
                             <div className="form-group category">
                                 <label htmlFor="id_category" className="findwine_heading-3">Select A Category</label>
-                                <CategorySelect
-                                    selectedCategory={this.props.selectedCategory}
-                                    categoryChanged={this.props.categoryChanged}
-                                />
+
+                                {/*Buttons for mobile, need to add function to change colour when clicked*/}
+
+                                <div className="hidden-md-up">
+
+                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="red">
+                                        <div className="findwine_svg">
+                                            <img src="static/wine/images/SVGs/red.svg"></img>
+                                        </div>
+                                        <div className="findwine_button-type">
+                                            Red
+                                        </div>
+                                        <div className="findwine_button-bar">
+                                        </div>
+                                    </button>
+                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="white">
+                                        <div className="findwine_svg">
+                                            <img src="static/wine/images/SVGs/white.svg"></img>
+                                        </div>
+                                        <div className="findwine_button-type">
+                                            White
+                                        </div>
+                                        <div className="findwine_button-bar">
+                                        </div>
+                                    </button>
+                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="rose">
+                                        <div className="findwine_svg">
+                                            <img src="static/wine/images/SVGs/rose.svg"></img>
+                                        </div>
+                                        <div className="findwine_button-type">
+                                            Rosé
+                                        </div>
+                                        <div className="findwine_button-bar">
+                                        </div>
+                                    </button>
+                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="port">
+                                        <div className="findwine_svg">
+                                            <img src="/static/wine/images/SVGs/port.svg"></img>
+                                        </div>
+                                        <div className="findwine_button-type">
+                                            Port
+                                        </div>
+                                        <div className="findwine_button-bar">
+                                        </div>
+                                    </button>
+                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="bubbly">
+                                        <div className="findwine_svg">
+                                            <img src="/static/wine/images/SVGs/bubbly.svg"></img>
+                                        </div>
+                                        <div className="findwine_button-type">
+                                            Bubbly
+                                        </div>
+                                        <div className="findwine_button-bar">
+                                        </div>
+                                    </button>
+
+                                </div>
+
+                                <div className="hidden-md-down">
+                                    <CategorySelect
+                                        selectedCategory={this.props.selectedCategory}
+                                        categoryChanged={this.props.categoryChanged}
+                                    />
+                                </div>
                             </div>
                         </div>
 
-                        <div className="col-sm-3">
+                        <div className="col-md-3">
                             <div className="form-group sub_category">
                                 <label htmlFor="id_sub_category" className="findwine_heading-3"> Select Type(s)</label>
                                 <SubCategorySelect
@@ -126,36 +185,37 @@ class SearchControls extends React.Component {
 
                         {/*Price Range*/}
 
-                        <div className="col-sm-3">
+                        <div className="col-md-6">
                             <div className="form-group sub_category">
                                 <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range</label>
 
                                 {/*Slider to be added here*/}
 
                             </div>
-                        </div>
-
-                        <div className="col-sm-2">
-                            <div className="form-group min_price">
-                                <label htmlFor="id_min_price">Minimum Price</label>
-                                <input className="form-control" type="number" name="min_price"
-                                       value={this.props.minPrice} min="0" required id="id_min_price"
-                                       onChange={(event) => this.props.minPriceChanged(event.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <div className="col-sm-2">
-                            <div className="form-group max_price">
-                                <label htmlFor="id_max_price">Maximum Price</label>
-                                <input className="form-control" type="number" name="max_price"
-                                       value={this.props.maxPrice} min="0" required id="id_max_price"
-                                       onChange={(event) => this.props.maxPriceChanged(event.target.value)}
-                                />
+                            <div class="row">
+                                <div className="col-md-6">
+                                    <div className="form-group min_price">
+                                        <label htmlFor="id_min_price">Minimum Price</label>
+                                        <input className="form-control" type="number" name="min_price"
+                                               value={this.props.minPrice} min="0" required id="id_min_price"
+                                               onChange={(event) => this.props.minPriceChanged(event.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group max_price">
+                                        <label htmlFor="id_max_price">Maximum Price</label>
+                                        <input className="form-control" type="number" name="max_price"
+                                               value={this.props.maxPrice} min="0" required id="id_max_price"
+                                               onChange={(event) => this.props.maxPriceChanged(event.target.value)}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         {this._getSortSelect()}
-                        {this._getSearchButton()}
                     </div>
+                    {this._getSearchButton()}
                 </form>
             </div>
         )

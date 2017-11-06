@@ -4,9 +4,52 @@
 
 {% block content %}
     <div class="findwine_banner-main">
-        <h5 class="findwine_banner-text">Find Your Wine.</h5>
+        <img src="{% static 'wine/images/logo/logo-standard@3x.png' %}" class="d-inline-block align-top findwine_logo-standard" alt="FindWine">
     </div>
     <div id="react-home">
+    </div>
+    <div class="findwine_content">
+        <div class="container">
+            <div class="col-lg-10 offset-md-1 findwine_content-container">
+                <div class="row">
+                    <div class="hidden-md-down col-lg-4">
+                        <img src="{% static 'wine/images/other/buy-image.png' %}" class="findwine_content-image">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="findwine_heading-2">
+                            Title above the fold
+                        </div>
+                        <div class="findwine_content-paragraph">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
+                        </div>
+                        <div>
+                            <a href="#" class="findwine_content-link">
+                                Read more
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="findwine_subscribe">
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-12 col-lg-6">
+                    <img src="{% static 'wine/images/SVGs/cheers.svg' %}" class="findwine_newsletter-svg">
+                    <div class="findwine_newsletter-content">
+                        <p class="findwine_newsletter-heading">Subscribe to our newsletter!</p>
+                        <p class="findwine_newsletter-paragraph">Lorem ipsum dolor sit amet</p>
+                    </div>
+            </div>
+            <div class="col-xs-12 col-lg-6">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2 findwine_newsletter-subscribe" type="text" placeholder="Email">
+                    <button class="btn btn-outline-success my-2 my-sm-0 findwine_newsletter-button" type="submit"> Subscribe </button>
+                </form>
+            </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block page_scripts %}

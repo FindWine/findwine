@@ -9,7 +9,7 @@
   "private": true,
   "dependencies": {
     "fetch": "^1.1.0",
-    "query-string": "^5.0.0",
+    "query-string": "^5.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-select": "^1.0.0-rc.10"

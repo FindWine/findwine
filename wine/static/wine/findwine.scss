@@ -21,8 +21,92 @@ $primary-font: 'Montserrat', sans-serif;
 
 // Mixins
 
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (max-width: 575px) {
+      @content;
+    }
+  } @else if $class == sm {
+    @media (min-width: 576px) {
+      @content;
+    }
+  } @else if $class == md {
+    @media (min-width: 678px) {
+      @content;
+    }
+  } @else if $class == lg {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  } @else if $class == xl {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  }
+
+}
 
 // Custom styling
+
+.navbar {
+
+  position: absolute;
+  background-color: transparent;
+  width: 100%;
+
+  @include breakpoint(lg) {
+
+    padding: 40px 130px;
+
+  }
+
+  &-toggler {
+    border: none;
+    outline: none !important;
+  }
+
+  .form-control::-webkit-input-placeholder {
+
+    color: $white;
+    opacity: 1;
+
+  }
+
+  .form-control:-moz-placeholder { /* Firefox 18- */
+
+    color: $white;
+    opacity: 1;
+
+  }
+
+  .form-control::-moz-placeholder { /* Firefox 19+ */
+
+    color: $white;
+    opacity: 1;
+
+  }
+
+  .form-control:-ms-input-placeholder {
+
+    color: $white;
+    opacity: 1;
+
+  }
+
+}
+
+.nav-link {
+
+  font-family: $primary-font;
+  color: $white !important;
+  font-size: 14px;
+  padding-right: 40px !important;
+
+  &:hover {
+    color: $primary-green !important;
+  }
+
+}
 
 .findwine {
 
@@ -31,6 +115,15 @@ $primary-font: 'Montserrat', sans-serif;
     padding-top: 20px;
     color: $primary-text;
     outline: none;
+
+  }
+
+  &_menu-button {
+
+    fill: $white;
+    height: 12px;
+    width: 18px;
+    border: none;
 
   }
 
@@ -47,25 +140,69 @@ $primary-font: 'Montserrat', sans-serif;
 
   }
 
+  &_search-field {
+
+    background-color: rgba(255, 255, 255, 0.3);
+    color: $primary-text;
+    margin-right: 0px !important;
+    border: transparent;
+    border-radius: 4px 0px 0px 4px;
+
+  }
+
+  &_search-button {
+
+    background-color: $primary-green;
+    border: none;
+    border-radius: 0px 4px 4px 1px;
+
+  }
+
+  &_search-icon {
+
+    height: 18px;
+    width: 18px;
+
+  }
+
   &_logo-standard {
 
-    width: 146px;
-    height: 100%;
+    width: 180px;
     object-fit: contain;
-    margin: auto;
     padding: 12px 0px 11px 0px;
+
+    @include breakpoint(lg) {
+
+      width: 270px;
+      margin-top: -15%;
+
+    }
 
   }
 
   &_banner-main {
 
-    height: 130px;
+    height: 190px;
     width: 100%;
-    background: url("images/background/rohit-tandon-67718.png");
+    background: url("images/background/rohit-tandon-67718@3x.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+
+    @include breakpoint(md) {
+
+      height: 300px;
+
+    }
+
+    @include breakpoint(lg) {
+
+      height: 580px;
+
+    }
 
   }
 
@@ -84,7 +221,26 @@ $primary-font: 'Montserrat', sans-serif;
 
   &_search-form {
 
-    margin-top: 26px;
+    margin-top: 22px;
+
+    @include breakpoint(lg) {
+
+      margin-top: -320px;
+      padding: 20px 40px;
+      background-color: white;
+
+    }
+
+  }
+
+  &_heading-2 {
+
+    font-family: $primary-font;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+    color: $primary-text;
+    padding-bottom: 14px;
 
   }
 
@@ -95,6 +251,53 @@ $primary-font: 'Montserrat', sans-serif;
     font-weight: 500;
     text-align: left;
     color: $primary-text;
+    margin-top: 30px;
+
+    @include breakpoint(lg) {
+
+      margin-top: 0px;
+
+    }
+
+  }
+
+  &_content-paragraph {
+
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    color: $primary-text;
+    padding-bottom: 14px;
+
+  }
+
+  &_content-link {
+
+    color: $primary-green;
+    font-family: $primary-font;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+
+  }
+
+  &_content {
+
+    background-color: #f4f5f5;
+    border: solid 1px #dbe0e4
+
+  }
+
+  &_content-container {
+
+    padding: 40px 20px;
+
+  }
+
+  &_content-image {
+
+    width: 220px;
 
   }
 
@@ -102,13 +305,135 @@ $primary-font: 'Montserrat', sans-serif;
 
     background-color: $primary-green;
 
+    @include breakpoint(lg) {
+
+      width: auto;
+
+    }
+
+    &-outer {
+
+      display: flex;
+      justify-content: center;
+
+    }
+
+    &-category {
+
+      padding: 0px;
+      color: $primary-text;
+      font-size: 14px;
+      font-family: $primary-font;
+      width: 60px;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+
+    }
+
   }
 
-}
+  &_svg {
 
-.search-form {
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 
-  margin-top: 26px;
+  }
+
+  &_button-type {
+
+    margin: 11px 0px 11px 0px;
+
+  }
+
+  &_button-bar {
+
+    height: 4px;
+
+  }
+
+  &_newsletter-svg {
+
+    width: 58px;
+    height: 58px;
+    float: left;
+    margin: 10px 15px 0px 0px;
+
+    @include breakpoint(lg) {
+
+      margin: 5px 20px 0px 0px;
+
+    }
+
+  }
+
+  &_subscribe {
+
+    padding-top: 30px;
+
+    @include breakpoint(lg) {
+
+      padding-top: 41px;
+
+    }
+
+    .form-inline {
+
+      @include breakpoint(lg) {
+
+        padding-top: 19px;
+
+      }
+
+    }
+
+  }
+
+  &_newsletter-heading {
+
+    font-family: $primary-font;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    color: $primary-text;
+    margin-bottom: 0px;
+    padding-top: 15px;
+
+  }
+
+  &_newsletter-paragraph {
+
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    color: #86929a;
+
+  }
+
+  &_newsletter-subscribe {
+
+    color: $primary-text;
+    margin-right: 0px !important;
+    border: 1px solid #86929a;
+    border-radius: 4px 0px 0px 4px;
+    width: auto;
+    opacity: 0.5;
+
+  }
+
+  &_newsletter-button {
+
+    background-color: $primary-green;
+    border: 1px solid $primary-green;
+    border-radius: 0px 4px 4px 1px;
+    color: $white;
+
+  }
 
 }
 
