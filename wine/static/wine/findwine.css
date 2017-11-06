@@ -1,7 +1,45 @@
+.navbar {
+  position: absolute;
+  background-color: transparent;
+  width: 100%; }
+  @media (min-width: 1024px) {
+    .navbar {
+      padding: 40px 130px; } }
+  .navbar-toggler {
+    border: none;
+    outline: none !important; }
+  .navbar .form-control::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1; }
+  .navbar .form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: #ffffff;
+    opacity: 1; }
+  .navbar .form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ffffff;
+    opacity: 1; }
+  .navbar .form-control:-ms-input-placeholder {
+    color: #ffffff;
+    opacity: 1; }
+
+.nav-link {
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff !important;
+  font-size: 14px;
+  padding-right: 40px !important; }
+  .nav-link:hover {
+    color: #00ad68 !important; }
+
 .findwine_menu-icon {
   padding-top: 20px;
   color: #333e48;
   outline: none; }
+.findwine_menu-button {
+  fill: #ffffff;
+  height: 12px;
+  width: 18px;
+  border: none; }
 .findwine_nav-icon {
   display: inline-block;
   width: 1.5em;
@@ -11,20 +49,43 @@
   background: no-repeat center center;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%; }
+.findwine_search-field {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #333e48;
+  margin-right: 0px !important;
+  border: transparent;
+  border-radius: 4px 0px 0px 4px; }
+.findwine_search-button {
+  background-color: #00ad68;
+  border: none;
+  border-radius: 0px 4px 4px 1px; }
+.findwine_search-icon {
+  height: 18px;
+  width: 18px; }
 .findwine_logo-standard {
-  width: 146px;
-  height: 100%;
+  width: 180px;
   object-fit: contain;
-  margin: auto;
   padding: 12px 0px 11px 0px; }
+  @media (min-width: 1024px) {
+    .findwine_logo-standard {
+      width: 270px;
+      margin-top: -15%; } }
 .findwine_banner-main {
-  height: 130px;
+  height: 190px;
   width: 100%;
-  background: url("images/background/rohit-tandon-67718.png");
+  background: url("images/background/rohit-tandon-67718@3x.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  display: flex;
+  justify-content: center; }
+  @media (min-width: 678px) {
+    .findwine_banner-main {
+      height: 300px; } }
+  @media (min-width: 1024px) {
+    .findwine_banner-main {
+      height: 580px; } }
 .findwine_banner-text {
   font-family: "Montserrat", sans-serif;
   font-size: 24px;
@@ -35,17 +96,116 @@
   text-align: center;
   color: #ffffff; }
 .findwine_search-form {
-  margin-top: 26px; }
+  margin-top: 22px; }
+  @media (min-width: 1024px) {
+    .findwine_search-form {
+      margin-top: -320px;
+      padding: 20px 40px;
+      background-color: white; } }
+.findwine_heading-2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  color: #333e48;
+  padding-bottom: 14px; }
 .findwine_heading-3 {
   font-family: "Montserrat", sans-serif;
   font-size: 13px;
   font-weight: 500;
   text-align: left;
-  color: #333e48; }
+  color: #333e48;
+  margin-top: 30px; }
+  @media (min-width: 1024px) {
+    .findwine_heading-3 {
+      margin-top: 0px; } }
+.findwine_content-paragraph {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: #333e48;
+  padding-bottom: 14px; }
+.findwine_content-link {
+  color: #00ad68;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left; }
+.findwine_content {
+  background-color: #f4f5f5;
+  border: solid 1px #dbe0e4; }
+.findwine_content-container {
+  padding: 40px 20px; }
+.findwine_content-image {
+  width: 220px; }
 .findwine_button {
   background-color: #00ad68; }
-
-.search-form {
-  margin-top: 26px; }
+  @media (min-width: 1024px) {
+    .findwine_button {
+      width: auto; } }
+  .findwine_button-outer {
+    display: flex;
+    justify-content: center; }
+  .findwine_button-category {
+    padding: 0px;
+    color: #333e48;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    width: 60px;
+    margin-right: 10px; }
+    .findwine_button-category:last-child {
+      margin-right: 0px; }
+.findwine_svg {
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center; }
+.findwine_button-type {
+  margin: 11px 0px 11px 0px; }
+.findwine_button-bar {
+  height: 4px; }
+.findwine_newsletter-svg {
+  width: 58px;
+  height: 58px;
+  float: left;
+  margin: 10px 15px 0px 0px; }
+  @media (min-width: 1024px) {
+    .findwine_newsletter-svg {
+      margin: 5px 20px 0px 0px; } }
+.findwine_subscribe {
+  padding-top: 30px; }
+  @media (min-width: 1024px) {
+    .findwine_subscribe {
+      padding-top: 41px; } }
+  @media (min-width: 1024px) {
+    .findwine_subscribe .form-inline {
+      padding-top: 19px; } }
+.findwine_newsletter-heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  color: #333e48;
+  margin-bottom: 0px;
+  padding-top: 15px; }
+.findwine_newsletter-paragraph {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: #86929a; }
+.findwine_newsletter-subscribe {
+  color: #333e48;
+  margin-right: 0px !important;
+  border: 1px solid #86929a;
+  border-radius: 4px 0px 0px 4px;
+  width: auto;
+  opacity: 0.5; }
+.findwine_newsletter-button {
+  background-color: #00ad68;
+  border: 1px solid #00ad68;
+  border-radius: 0px 4px 4px 1px;
+  color: #ffffff; }
 
 /*# sourceMappingURL=findwine.css.map */
