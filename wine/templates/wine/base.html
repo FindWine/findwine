@@ -1,77 +1,95 @@
-{% load staticfiles %} <!doctype html>
+{% load staticfiles %}
+{% load site_tags %}
+<!doctype html>
 <!--The static folder consists of .css, .js, fonts, etc -->
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" href="{% static 'wine/favicon.png' %}">
-  <title>FindWine</title>
-  <meta name="keywords" content="Find award winning wine in a price range and where to buy it">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" type="text/css" href="{% static 'wine/style.css' %}"/>
-  <link rel="stylesheet" type="text/css" href="{% static 'wine/findwine.css' %}"/>
-  <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css">
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,600,700" rel="stylesheet">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" href="{% static 'wine/favicon.png' %}">
+		<title>FindWine</title>
+		<meta name="keywords" content="">
+    {% with site|get_title:page_title as title %}
+    {% with site|get_description:page_description as description %}
+    {% with site|get_image_url:page_image as image %}
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ description }}">
+        <meta name="keywords" content="{{ site.KEYWORDS }}">
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary">
+    {% if site.TWITTER_USERNAME %}
+        <meta name="twitter:site" content="@{{ site.TWITTER_USERNAME }}">
+    {% endif %}
+        <meta name="twitter:title" content="{{ title }}">
+        <meta name="twitter:description" content="{{ description }}">
+        <meta name="twitter:image" content="{{ image }}">
+        <!-- Open Graph data -->
+        <meta property="og:title" content="{{ title }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ page_url }}" />
+        <meta property="og:image" content="{{ image }}" />
+        <meta property="og:description" content="{{ description }}" />
+        <meta property="og:site_name" content="{{ site.NAME }}" />
+    {% if site.FB_USERNAME %}
+        <meta property="fb:admins" content="{{ site.FB_USERNAME }}" />
+        <meta property="fb:app_id" content="{{ site.FB_APP_ID }}" />
+    {% endif %}
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"/>
+        <link rel="canonical" href="{{ page_url }}">
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<!-- Custom styles for this template -->
+		<link rel="stylesheet" type="text/css" href="{% static 'wine/style.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'wine/findwine.css' %}" />
+        <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css">
+		<!-- Font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,600,700" rel="stylesheet">
 
-</head>
-<body>
-<!-- This is the navigation bar at the top of the page-->
+	</head>
+	<body>
+		<!-- This is the navigation bar at the top of the page-->
+		<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+			<button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span><img src="{% static 'wine/images/SVGs/menu.svg' %}" class="findwine_menu-button"></span>
+			</button>
 
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
-  <div class="container findwine_nav--menu">
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span><img src="{% static 'wine/images/SVGs/menu.svg' %}" class="findwine_menu-button"></span>
-    </button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'content:about' %}">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link hidden-sm-up" href="#">Search</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0 hidden-sm-down">
+					<input class="form-control mr-sm-2 findwine_search-field" type="text" placeholder="Wine or Wineries">
+					<button class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"> <img src="{% static 'wine/images/SVGs/search.svg' %}" class="findwine_search-icon"> </button>
+				</form>
+			</div>
+		</nav>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'content:about' %}">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link hidden-sm-up" href="#">Search</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0 hidden-sm-down">
-        <input class="form-control mr-sm-2 findwine_search-field" type="text" placeholder="Wine or Wineries">
-        <button class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"><img
-          src="{% static 'wine/images/SVGs/search.svg' %}" class="findwine_search-icon"></button>
-      </form>
-    </div>
-  </div>
-</nav>
-
-<!-- OTHER PAGES -->
-{% block content %}
-<!--No need to input anything here. This is where the body of code will go from the other .html pages-->
-{% endblock %}
-
-{% include 'wine/partials/footer.html' %}
-<!--This is a javascript block. If javascript files are included in the 'static' folder then there's no need to
-put this here -->
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{% block page_scripts %}{% endblock %}
-</body>
+		<!-- OTHER PAGES -->
+		{% block content %}
+		<!--No need to input anything here. This is where the body of code will go from the other .html pages-->
+		{% endblock %}
+		
+        {% include 'wine/partials/footer.html' %}
+		<!--This is a javascript block. If javascript files are included in the 'static' folder then there's no need to 
+		put this here -->
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% block page_scripts %}{% endblock %}
+	</body>
 </html>
