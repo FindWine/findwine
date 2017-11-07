@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from django.conf import settings
 
 from django.db.models import Func
 from django.shortcuts import render
@@ -47,6 +48,14 @@ class WineDetailView(generic.DetailView):
 class ProducerDetailView(generic.DetailView):
     model = Producer
     template_name = 'wine/producer_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProducerDetailView, self).get_context_data(**kwargs)
+        context['page_title'] = self.object.name
+        context['page_description'] = 'Find the best wines from {}'.format(self.object.name)
+        if self.object.logo:
+            context['page_image'] = self.object.logo.url
+        return context
 
 
 class Round(Func):
