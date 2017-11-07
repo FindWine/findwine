@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'wine.context_processors.site_meta',
             ],
         },
     },
@@ -175,8 +176,18 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+SITE_URL = 'http://beta.findwine.com'
 try:
     from .localsettings import *
 except ImportError:
     # no localsettings defined
     pass
+
+SITE = {
+    'NAME': 'FindWine',
+    'SUBTITLE': 'Discover your new favorite wines',
+    'DESCRIPTION': 'Find award winning wine in a price range and where to buy it.',
+    'KEYWORDS': 'findwine, find wine, wine, purchase wine, south african wine, wine reviews',
+    'URL': SITE_URL,
+    'IMAGE': 'wine/images/logo/logo-standard@3x.png'
+}
