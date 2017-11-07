@@ -191,12 +191,12 @@ class WineVintage(models.Model):
 
     @property
     def long_name(self):
-        "Returns the wine's full name including producer and year."
+        """Returns the wine's full name including producer and year."""
         return '%s %s' % (self.wine, self.year)
 
     @property
     def rating(self):
-        "Aggregate normalised rating from the wine awards."
+        """Aggregate normalised rating from the wine awards."""
         return WineAward.objects.filter(wine_vintage=self).aggregate(
             avg_rating=Avg('award__tier__normalised_rating'))
 
