@@ -49,3 +49,23 @@ class WineVintageSlugTest(TestCase):
         vintage3 = WineVintage(wine=self.wine, year=2015, category=self.category, sub_category=self.subcategory)
         vintage3.save()
         self.assertEqual('warwick-grey-lady-2015-3', vintage3.slug)
+
+
+class ProducerSlugTest(TestCase):
+
+    def test_slug_generated_on_save(self):
+        producer = Producer(name='Warwick')
+        producer.save()
+        self.assertEqual('warwick', producer.slug)
+        self.assertEqual(producer.pk, Producer.objects.get(slug='warwick').pk)
+
+    def test_slug_uniqueness(self):
+        producer = Producer(name='Warwick')
+        producer.save()
+        self.assertEqual('warwick', producer.slug)
+        producer2 = Producer(name='Warwick')
+        producer2.save()
+        self.assertEqual('warwick-2', producer2.slug)
+        producer3 = Producer(name='Warwick')
+        producer3.save()
+        self.assertEqual('warwick-3', producer3.slug)
