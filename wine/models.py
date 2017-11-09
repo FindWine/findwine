@@ -210,6 +210,7 @@ class WineVintage(models.Model):
 
     class Meta:
         ordering = ['wine', 'year']
+        unique_together = (("wine", "year"),)
 
 
 class Awardification(models.Model):
