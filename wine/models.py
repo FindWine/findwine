@@ -76,6 +76,7 @@ class Wine(models.Model):
 
     class Meta:
         ordering = ['producer', 'name']
+        unique_together = (("producer", "name"),)
 
 
 class Category(models.Model):
