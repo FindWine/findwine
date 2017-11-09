@@ -9,10 +9,8 @@ class WineVintageSlugTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super(WineVintageSlugTest, cls).setUpClass()
-        cls.producer = Producer(name='Warwick')
-        cls.producer.save()
-        cls.wine = Wine(producer=cls.producer, name='Grey Lady')
-        cls.wine.save()
+        cls.wine = _get_a_new_wine()
+        cls.producer = cls.wine.producer
         cls.category, cls.subcategory = bootstrap_categories()
 
     def test_formatting(self):
@@ -43,12 +41,23 @@ class WineVintageSlugTest(TestCase):
         vintage = WineVintage(wine=self.wine, year=2015, category=self.category, sub_category=self.subcategory)
         vintage.save()
         self.assertEqual('warwick-grey-lady-2015', vintage.slug)
-        vintage2 = WineVintage(wine=self.wine, year=2015, category=self.category, sub_category=self.subcategory)
+        # have to test with different wines/vintages because of uniqueness constraints
+        wine2 = _get_a_new_wine()
+        vintage2 = WineVintage(wine=wine2, year=2015, category=self.category, sub_category=self.subcategory)
         vintage2.save()
         self.assertEqual('warwick-grey-lady-2015-2', vintage2.slug)
-        vintage3 = WineVintage(wine=self.wine, year=2015, category=self.category, sub_category=self.subcategory)
+        wine3 = _get_a_new_wine()
+        vintage3 = WineVintage(wine=wine3, year=2015, category=self.category, sub_category=self.subcategory)
         vintage3.save()
         self.assertEqual('warwick-grey-lady-2015-3', vintage3.slug)
+
+
+def _get_a_new_wine():
+    producer = Producer(name='Warwick')
+    producer.save()
+    wine = Wine(producer=producer, name='Grey Lady')
+    wine.save()
+    return wine
 
 
 class ProducerSlugTest(TestCase):
