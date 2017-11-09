@@ -159,7 +159,7 @@ GEOPOSITION_GOOGLE_MAPS_API_KEY = '***'  # override with localsettings
 
 
 # Google Analytics
-GOOGLE_ANALYTICS_TRACKING_ID  = 'UA-99343389-1'
+GOOGLE_ANALYTICS_TRACKING_ID = 'UA-99343389-1'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
@@ -189,5 +189,6 @@ SITE = {
     'DESCRIPTION': 'Find award winning wine in a price range and where to buy it.',
     'KEYWORDS': 'findwine, find wine, wine, purchase wine, south african wine, wine reviews',
     'URL': SITE_URL,
-    'IMAGE': 'wine/images/logo/logo-standard@3x.png'
+    'IMAGE': 'wine/images/logo/logo-standard@3x.png',
+    'GOOGLE_ANALYTICS_ID': GOOGLE_ANALYTICS_TRACKING_ID,
 }
