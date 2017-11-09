@@ -1,22 +1,28 @@
 <!-- This is where the footer begins -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a class="d-inline text-primary" href="https://www.facebook.com/FindWineSA/">Facebook</a>
-                <a class="d-inline text-primary" href="https://twitter.com/FindWineSA" style="margin-left: 18px;">Twitter</a>
-                <a class="d-inline text-primary" href="{% url 'content:contact' %}" style="margin-left: 18px;">Contact</a>
-                <a class="d-inline text-primary" href="{% url 'wine:index' %}" style="margin-left: 18px;">Index</a>
-                <a class="d-inline text-primary" href="{% url 'admin:index' %}" style="margin-left: 18px;">Admin</a>
-{# ADD LATER <a class="d-inline text-primary" href="{% url 'wine:advanced_search' %}" style="margin-left: 18px;">Advanced search</a>  #}
-            </div>
-         </div>
-        <div class="row">
-            <div class="col-md-12">
-            <span class="text-muted" style="text-align: center">
-                Copyright FindWine 2017 | <a href="{% url 'content:terms' %}">Privacy & Terms</a>
-            </span>
-            </div>
-        </div>
+{% load staticfiles %}
+
+<footer class="footer findwine_footer hidden-sm-down">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 findwine_footer--flex">
+        <img src="{% static 'wine/images/logo/logo-standard@3x.png' %}" class="findwine_footer--logo">
+        <span class="findwine_footer--text">
+          <div class="findwine_footer--text-spacing"> &copy; FindWine (Pty) Ltd </div>
+          <div class="findwine_footer--text-spacing"> | </div>
+          <div class="findwine_footer--text-spacing">
+            <a href="{% url 'content:terms' %}" class="findwine_footer--text"> Privacy & terms </a>
+          </div>
+          <div class="findwine_footer--text-spacing">
+            <a href="{% url 'content:terms' %}" class="findwine_footer--text"> Contact us </a>
+          </div>
+        </span>
+      </div>
+      <div class="col-md-2">
+        <a href="#" target="_blank" class="findwine_footer--flex-right"> <img
+          src="{% static 'wine/images/SVGs/twitter.svg' %}" class="findwine_footer--icon"> </a>
+        <a href="#" target="_blank" class="findwine_footer--flex-right"> <img
+          src="{% static 'wine/images/SVGs/facebook.svg' %}" class="findwine_footer--icon"> </a>
+      </div>
     </div>
+  </div>
 </footer>

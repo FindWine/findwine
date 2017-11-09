@@ -377,7 +377,7 @@ $primary-font: 'Montserrat', sans-serif;
 
     @include breakpoint(lg) {
 
-      padding-top: 41px;
+      padding-top: 3em;
 
     }
 
@@ -433,6 +433,54 @@ $primary-font: 'Montserrat', sans-serif;
     border-radius: 0px 4px 4px 1px;
     color: $white;
 
+  }
+
+  // Footer styling
+
+  &_footer {
+    background-color: $primary-text;
+    height: auto;
+
+    &--logo {
+
+      height: 30px;
+      margin-right: 20px;
+
+    }
+
+    &--text {
+      color: $white;
+      font-family: $primary-font;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 30px;
+
+      &-spacing {
+        margin-right: 20px;
+        display: inline-block;
+
+        @include breakpoint(lg) {
+          margin-right: 30px;
+        }
+      }
+    }
+
+    &--flex {
+      display: flex;
+      align-items: center;
+
+      &-right {
+        float: right;
+        color: $white;
+      }
+    }
+
+    &--icon {
+      height: 30px;
+      width: 30px;
+      margin-right: 10px;
+
+    }
   }
 
 }
