@@ -12,14 +12,29 @@ def generate_unique_slug(wine_vintage):
     if WineVintage.objects.filter(slug=slug).count():
         # conflict - find the next available number
         existing_slugs = set(WineVintage.objects.filter(slug__startswith=slug).values_list('slug', flat=True))
-        suffix = 2
-        candidate_slug = slug
-        while candidate_slug in existing_slugs:
-            candidate_slug = '{}-{}'.format(slug, suffix)
-            suffix += 1
-        return candidate_slug
+        return _get_next_available_slug(slug, existing_slugs)
     else:
         return slug
+
+
+def generate_unique_producer_slug(producer):
+    from wine.models import Producer
+    slug = slugify(producer.name)
+    if Producer.objects.filter(slug=slug).count():
+        # conflict - find the next available number
+        existing_slugs = set(Producer.objects.filter(slug__startswith=slug).values_list('slug', flat=True))
+        return _get_next_available_slug(slug, existing_slugs)
+    else:
+        return slug
+
+
+def _get_next_available_slug(slug, existing_slugs):
+    suffix = 2
+    candidate_slug = slug
+    while candidate_slug in existing_slugs:
+        candidate_slug = '{}-{}'.format(slug, suffix)
+        suffix += 1
+    return candidate_slug
 
 
 def generate_slug(wine_vintage):

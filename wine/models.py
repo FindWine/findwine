@@ -7,7 +7,7 @@ from geoposition.fields import GeopositionField
 from wine.const import get_all_country_wine_choices, get_all_merchant_country_choices, \
     get_all_currency_choices, SOUTH_AFRICA_CODE, SOUTH_AFRICAN_RAND_CODE
 from wine.geoposition import geoposition_to_dms_string
-from wine.util import generate_unique_slug, MAX_UNIQUE_CHARFIELD
+from wine.util import generate_unique_slug, MAX_UNIQUE_CHARFIELD, generate_unique_producer_slug
 
 
 class Appellation(models.Model):
@@ -65,6 +65,11 @@ class Producer(models.Model):
 
     class Meta:
         ordering = ['name']
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = generate_unique_producer_slug(self)
+        super(Producer, self).save(*args, **kwargs)
 
 
 class Wine(models.Model):
