@@ -27,6 +27,7 @@ class Appellation(models.Model):
 
 
 class Producer(models.Model):
+    slug = models.CharField(max_length=MAX_UNIQUE_CHARFIELD, unique=True, null=True, editable=False)
     name = models.CharField(max_length=256)
     country = models.CharField(choices=get_all_country_wine_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
     appellation_primary = models.ForeignKey("Appellation", null=True)
