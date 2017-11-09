@@ -17,5 +17,7 @@ urlpatterns = [
     url(r'^wine/(?P<slug>[A-Za-z0-9_-]+)/$', views.WineDetailView.as_view(), name='wine_detail_by_slug'),
     # ex: /producer/3/
     url(r'^producer/(?P<pk>[0-9]+)/$', views.ProducerDetailView.as_view(), name='producer_detail'),
+    url(r'^producer/(?P<slug>[A-Za-z0-9_-]+)/$', views.ProducerDetailView.as_view(),
+        name='producer_detail_by_slug'),
     url(r'^500/$', views.error, name='simulate_error'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # NOT SUITABLE FOR PRODCUTION
