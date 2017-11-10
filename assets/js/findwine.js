@@ -97,8 +97,6 @@ class SearchControls extends React.Component {
     render() {
         return (
 
-            <div>
-
                 <form className="search-form" role="search">
                     <div className="row d-flex align-items-end findwine_search-form">
 
@@ -217,7 +215,6 @@ class SearchControls extends React.Component {
                     </div>
                     {this._getSearchButton()}
                 </form>
-            </div>
         )
     }
 }

@@ -4,10 +4,11 @@
   width: 100%; }
   @media (min-width: 1024px) {
     .navbar {
-      padding: 40px 130px; } }
+      padding: 40px 0px; } }
   .navbar-toggler {
     border: none;
-    outline: none !important; }
+    outline: none !important;
+    padding-left: 0px; }
   .navbar .form-control::-webkit-input-placeholder {
     color: #ffffff;
     opacity: 1; }
@@ -27,10 +28,16 @@
   font-family: "Montserrat", sans-serif;
   color: #ffffff !important;
   font-size: 14px;
-  padding-right: 40px !important; }
+  padding-right: 40px !important;
+  padding-left: 0px !important; }
   .nav-link:hover {
     color: #00ad68 !important; }
 
+.findwine_nav--menu {
+  margin-left: 0px; }
+  @media (min-width: 1024px) {
+    .findwine_nav--menu {
+      margin-left: auto; } }
 .findwine_menu-icon {
   padding-top: 20px;
   color: #333e48;
@@ -95,13 +102,11 @@
   padding-bottom: 5%;
   text-align: center;
   color: #ffffff; }
-.findwine_search-form {
-  margin-top: 22px; }
-  @media (min-width: 1024px) {
-    .findwine_search-form {
-      margin-top: -320px;
-      padding: 20px 40px;
-      background-color: white; } }
+@media (min-width: 1024px) {
+  .findwine_search-form {
+    margin-top: -320px;
+    padding: 20px 40px;
+    background-color: white; } }
 .findwine_heading-2 {
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
@@ -131,7 +136,8 @@
   font-family: "Montserrat", sans-serif;
   font-size: 13px;
   font-weight: 500;
-  text-align: left; }
+  text-align: left;
+  cursor: pointer; }
 .findwine_content {
   background-color: #f4f5f5;
   border: solid 1px #dbe0e4; }
@@ -180,7 +186,10 @@
       padding-top: 3em; } }
   @media (min-width: 1024px) {
     .findwine_subscribe .form-inline {
-      padding-top: 19px; } }
+      float: right; } }
+  .findwine_subscribe--flex {
+    display: flex;
+    justify-content: center; }
 .findwine_newsletter-heading {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
@@ -206,7 +215,9 @@
   background-color: #00ad68;
   border: 1px solid #00ad68;
   border-radius: 0px 4px 4px 1px;
-  color: #ffffff; }
+  color: #ffffff;
+  padding-left: 12px;
+  padding-right: 12px; }
 .findwine_footer {
   background-color: #333e48;
   height: auto; }
@@ -234,6 +245,6 @@
   .findwine_footer--icon {
     height: 30px;
     width: 30px;
-    margin-right: 10px; }
+    margin-left: 10px; }
 
 /*# sourceMappingURL=findwine.css.map */

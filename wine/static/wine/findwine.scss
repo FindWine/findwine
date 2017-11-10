@@ -56,13 +56,14 @@ $primary-font: 'Montserrat', sans-serif;
 
   @include breakpoint(lg) {
 
-    padding: 40px 130px;
+    padding: 40px 0px;
 
   }
 
   &-toggler {
     border: none;
     outline: none !important;
+    padding-left: 0px;
   }
 
   .form-control::-webkit-input-placeholder {
@@ -101,6 +102,7 @@ $primary-font: 'Montserrat', sans-serif;
   color: $white !important;
   font-size: 14px;
   padding-right: 40px !important;
+  padding-left: 0px !important;
 
   &:hover {
     color: $primary-green !important;
@@ -109,6 +111,15 @@ $primary-font: 'Montserrat', sans-serif;
 }
 
 .findwine {
+
+  &_nav--menu {
+
+    margin-left: 0px;
+
+    @include breakpoint(lg) {
+      margin-left: auto;
+    }
+  }
 
   &_menu-icon {
 
@@ -221,8 +232,6 @@ $primary-font: 'Montserrat', sans-serif;
 
   &_search-form {
 
-    margin-top: 22px;
-
     @include breakpoint(lg) {
 
       margin-top: -320px;
@@ -279,6 +288,7 @@ $primary-font: 'Montserrat', sans-serif;
     font-size: 13px;
     font-weight: 500;
     text-align: left;
+    cursor: pointer;
 
   }
 
@@ -385,10 +395,15 @@ $primary-font: 'Montserrat', sans-serif;
 
       @include breakpoint(lg) {
 
-        padding-top: 19px;
+        float: right;
 
       }
 
+    }
+
+    &--flex {
+      display: flex;
+      justify-content: center;
     }
 
   }
@@ -432,6 +447,8 @@ $primary-font: 'Montserrat', sans-serif;
     border: 1px solid $primary-green;
     border-radius: 0px 4px 4px 1px;
     color: $white;
+    padding-left: 12px;
+    padding-right: 12px;
 
   }
 
@@ -478,7 +495,7 @@ $primary-font: 'Montserrat', sans-serif;
     &--icon {
       height: 30px;
       width: 30px;
-      margin-right: 10px;
+      margin-left: 10px;
 
     }
   }
