@@ -27,6 +27,31 @@ class CategorySelect extends React.Component {
     }
 }
 
+class CategorySelectMobile extends React.Component {
+
+  render() {
+    return (
+      <div className="hidden-md-up findwine_button-outer" value={this.props.selectedCategory}
+           onClick={(event) => this.props.categoryChanged(event.target.value)}>
+        {getCategoryChoices().map((category, index) => {
+          return (
+          <button type="button" href="#" className="btn btn-secondary findwine_button-category" name="category" id="id_category">
+            <div className="findwine_svg">
+              <img className="findwine_button-default" src="/static/wine/images/SVGs/red.svg"></img>
+            </div>
+            <div className="findwine_button-type">
+                <p key={index} value={category}>{category}</p>
+            </div>
+            <div className="findwine_button-bar">
+            </div>
+          </button>
+        )
+        })}
+      </div>
+    );
+  }
+}
+
 class SubCategorySelect extends React.Component {
     render() {
         let choices = getSubcategories(this.props.selectedCategory).map((choice) => {
@@ -87,7 +112,7 @@ class SearchControls extends React.Component {
                 <div className="col-lg-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button"
                             style={{marginBottom: '16px', marginTop: '16px'}}
-                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src="static/wine/images/SVGs/arrow.svg" alt="search" className="hidden-md-up"></img>
+                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src="/static/wine/images/SVGs/arrow.svg" alt="search" className="hidden-md-up"></img>
                     </button>
                 </div>
             );
@@ -106,60 +131,11 @@ class SearchControls extends React.Component {
 
                                 {/*Buttons for mobile, need to add function to change colour when clicked*/}
 
-                                <div className="hidden-md-up findwine_button-outer">
+                                  <CategorySelectMobile
+                                    selectedCategory={this.props.selectedCategory}
+                                    categoryChanged={this.props.categoryChanged}
+                                  />
 
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="red">
-                                        <div className="findwine_svg">
-                                            <img className="findwine_button-default" src="static/wine/images/SVGs/red.svg"></img>
-                                            <img className="findwine_button-active" src="static/wine/images/SVGs/red-c.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            Red
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="white">
-                                        <div className="findwine_svg">
-                                            <img src="static/wine/images/SVGs/white-c.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            White
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="rose">
-                                        <div className="findwine_svg">
-                                            <img src="static/wine/images/SVGs/rose-c.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            Rosé
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="port">
-                                        <div className="findwine_svg">
-                                            <img src="/static/wine/images/SVGs/port-c.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            Port
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="bubbly">
-                                        <div className="findwine_svg">
-                                            <img src="/static/wine/images/SVGs/bubbly-c.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            Bubbly
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                </div>
 
                                 <div className="hidden-sm-down">
                                     <CategorySelect
