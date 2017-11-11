@@ -315,7 +315,7 @@ $primary-font: 'Montserrat', sans-serif;
 
     background-color: $primary-green;
 
-    @include breakpoint(lg) {
+    @include breakpoint(md) {
 
       width: auto;
 
@@ -337,10 +337,39 @@ $primary-font: 'Montserrat', sans-serif;
       width: 60px;
       margin-right: 10px;
 
+      @include breakpoint(sm) {
+        width: 80px;
+        margin-right: 15px;
+      }
+
       &:last-child {
         margin-right: 0px;
       }
 
+    }
+
+    &-active {
+      display: none;
+    }
+
+    &-active {
+
+      &:active {
+        display: block;
+      }
+
+    }
+
+    &-default {
+      color: red;
+    }
+
+    &-default {
+
+      &:active {
+        display: none;
+        color: blue;
+      }
     }
 
   }

@@ -84,7 +84,7 @@ class SearchControls extends React.Component {
     _getSearchButton() {
         if (!this.props.firstSearchMade) {
             return (
-                <div className="col-md-12 findwine_button-outer">
+                <div className="col-lg-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button"
                             style={{marginBottom: '16px', marginTop: '16px'}}
                             onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src="static/wine/images/SVGs/arrow.svg" alt="search" className="hidden-md-up"></img>
@@ -106,11 +106,12 @@ class SearchControls extends React.Component {
 
                                 {/*Buttons for mobile, need to add function to change colour when clicked*/}
 
-                                <div className="hidden-md-up">
+                                <div className="hidden-md-up findwine_button-outer">
 
                                     <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="red">
                                         <div className="findwine_svg">
-                                            <img src="static/wine/images/SVGs/red.svg"></img>
+                                            <img className="findwine_button-default" src="static/wine/images/SVGs/red.svg"></img>
+                                            <img className="findwine_button-active" src="static/wine/images/SVGs/red-c.svg"></img>
                                         </div>
                                         <div className="findwine_button-type">
                                             Red
@@ -120,7 +121,7 @@ class SearchControls extends React.Component {
                                     </button>
                                     <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="white">
                                         <div className="findwine_svg">
-                                            <img src="static/wine/images/SVGs/white.svg"></img>
+                                            <img src="static/wine/images/SVGs/white-c.svg"></img>
                                         </div>
                                         <div className="findwine_button-type">
                                             White
@@ -130,7 +131,7 @@ class SearchControls extends React.Component {
                                     </button>
                                     <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="rose">
                                         <div className="findwine_svg">
-                                            <img src="static/wine/images/SVGs/rose.svg"></img>
+                                            <img src="static/wine/images/SVGs/rose-c.svg"></img>
                                         </div>
                                         <div className="findwine_button-type">
                                             Rosé
@@ -140,7 +141,7 @@ class SearchControls extends React.Component {
                                     </button>
                                     <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="port">
                                         <div className="findwine_svg">
-                                            <img src="/static/wine/images/SVGs/port.svg"></img>
+                                            <img src="/static/wine/images/SVGs/port-c.svg"></img>
                                         </div>
                                         <div className="findwine_button-type">
                                             Port
@@ -150,7 +151,7 @@ class SearchControls extends React.Component {
                                     </button>
                                     <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="bubbly">
                                         <div className="findwine_svg">
-                                            <img src="/static/wine/images/SVGs/bubbly.svg"></img>
+                                            <img src="/static/wine/images/SVGs/bubbly-c.svg"></img>
                                         </div>
                                         <div className="findwine_button-type">
                                             Bubbly
@@ -158,10 +159,9 @@ class SearchControls extends React.Component {
                                         <div className="findwine_button-bar">
                                         </div>
                                     </button>
-
                                 </div>
 
-                                <div className="hidden-md-down">
+                                <div className="hidden-sm-down">
                                     <CategorySelect
                                         selectedCategory={this.props.selectedCategory}
                                         categoryChanged={this.props.categoryChanged}

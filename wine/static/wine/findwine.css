@@ -147,7 +147,7 @@
   width: 220px; }
 .findwine_button {
   background-color: #00ad68; }
-  @media (min-width: 1024px) {
+  @media (min-width: 678px) {
     .findwine_button {
       width: auto; } }
   .findwine_button-outer {
@@ -160,8 +160,21 @@
     font-family: "Montserrat", sans-serif;
     width: 60px;
     margin-right: 10px; }
+    @media (min-width: 576px) {
+      .findwine_button-category {
+        width: 80px;
+        margin-right: 15px; } }
     .findwine_button-category:last-child {
       margin-right: 0px; }
+  .findwine_button-active {
+    display: none; }
+  .findwine_button-active:active {
+    display: block; }
+  .findwine_button-default {
+    color: red; }
+  .findwine_button-default:active {
+    display: none;
+    color: blue; }
 .findwine_svg {
   height: 50px;
   display: flex;
