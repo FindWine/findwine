@@ -22,14 +22,14 @@ class IndexView(generic.ListView):
 @require_GET
 def search(request):
     category_list = list(Category.objects.values_list('name', flat=True))
-    category_map = _build_category_subcategory_mapping()
+    category_map = _build_category_metadata()
     return render(request, 'wine/search.html', {
         'categories': json.dumps(category_list),
         'category_mapping': json.dumps(category_map),
     })
 
 
-def _build_category_subcategory_mapping():
+def _build_category_metadata():
     """
     Creates a data structure mapping categories to all subcategories they contain.
 
