@@ -27,6 +27,37 @@ class CategorySelect extends React.Component {
     }
 }
 
+// When the button is clicked on mobile (category selected) the SVG should change to the colour one (ie bubbly-c.svg)
+// and the findwine-button_bar should get a background-color. The colours are set in the SCSS file (under Wine colours).
+
+class CategorySelectMobile extends React.Component {
+
+  render() {
+    return (
+      <div className="hidden-md-up findwine_button-outer" value={this.props.selectedCategory}>
+        {getCategoryChoices().map((category, index) => {
+          const isSelected = category === this.props.selectedCategory;
+          const classes = `btn btn-secondary findwine_button-category ${isSelected ? 'selected': ''}`;
+          const image = isSelected ? getSelectedImagePath(category) : getImagePath(category);
+          return (
+          <button key={index} type="button" className={classes} name={category}
+                  onClick={() => this.props.categoryChanged(category)}>
+            <div className="findwine_svg">
+              <img className="findwine_button-default" src={image}></img>
+            </div>
+            <div className="findwine_button-type">
+                <p value={category}>{category}</p>
+            </div>
+            <div className="findwine_button-bar">
+            </div>
+          </button>
+        )
+        })}
+      </div>
+    );
+  }
+}
+
 class SubCategorySelect extends React.Component {
     render() {
         let choices = getSubcategories(this.props.selectedCategory).map((choice) => {
@@ -84,10 +115,10 @@ class SearchControls extends React.Component {
     _getSearchButton() {
         if (!this.props.firstSearchMade) {
             return (
-                <div className="col-md-12 findwine_button-outer">
+                <div className="col-lg-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button"
                             style={{marginBottom: '16px', marginTop: '16px'}}
-                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src="static/wine/images/SVGs/arrow.svg" alt="search" className="hidden-md-up"></img>
+                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src="/static/wine/images/SVGs/arrow.svg" alt="search" className="hidden-md-up"></img>
                     </button>
                 </div>
             );
@@ -96,8 +127,6 @@ class SearchControls extends React.Component {
 
     render() {
         return (
-
-            <div>
 
                 <form className="search-form" role="search">
                     <div className="row d-flex align-items-end findwine_search-form">
@@ -108,62 +137,13 @@ class SearchControls extends React.Component {
 
                                 {/*Buttons for mobile, need to add function to change colour when clicked*/}
 
-                                <div className="hidden-md-up">
+                                  <CategorySelectMobile
+                                    selectedCategory={this.props.selectedCategory}
+                                    categoryChanged={this.props.categoryChanged}
+                                  />
 
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="red">
-                                        <div className="findwine_svg">
-                                            <img src="static/wine/images/SVGs/red.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            Red
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="white">
-                                        <div className="findwine_svg">
-                                            <img src="static/wine/images/SVGs/white.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            White
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="rose">
-                                        <div className="findwine_svg">
-                                            <img src="static/wine/images/SVGs/rose.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            Rosé
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="port">
-                                        <div className="findwine_svg">
-                                            <img src="/static/wine/images/SVGs/port.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            Port
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
-                                    <button type="button" href="#" className="btn btn-secondary findwine_button-category" id="bubbly">
-                                        <div className="findwine_svg">
-                                            <img src="/static/wine/images/SVGs/bubbly.svg"></img>
-                                        </div>
-                                        <div className="findwine_button-type">
-                                            Bubbly
-                                        </div>
-                                        <div className="findwine_button-bar">
-                                        </div>
-                                    </button>
 
-                                </div>
-
-                                <div className="hidden-md-down">
+                                <div className="hidden-sm-down">
                                     <CategorySelect
                                         selectedCategory={this.props.selectedCategory}
                                         categoryChanged={this.props.categoryChanged}
@@ -192,7 +172,7 @@ class SearchControls extends React.Component {
                                 {/*Slider to be added here*/}
 
                             </div>
-                            <div class="row">
+                            <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group min_price">
                                         <label htmlFor="id_min_price">Minimum Price</label>
@@ -217,7 +197,6 @@ class SearchControls extends React.Component {
                     </div>
                     {this._getSearchButton()}
                 </form>
-            </div>
         )
     }
 }
@@ -437,10 +416,18 @@ function getCategoryMap() {
 
 function getSubcategories(category) {
     if (category in getCategoryMap()) {
-        return getCategoryMap()[category];
+        return getCategoryMap()[category]['subcategories'];
     } else {
         return [];
     }
+}
+
+function getImagePath(category) {
+    return getCategoryMap()[category]['image'];
+}
+
+function getSelectedImagePath(category) {
+    return getCategoryMap()[category]['selected_image'];
 }
 
 function getSortChoices() {

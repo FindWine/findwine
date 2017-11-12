@@ -9,6 +9,8 @@ $white: #ffffff;
 $light-grey: #c8ced2;
 $background-grey: #c8ced2;
 
+// Wine colours
+
 $red-wine: #b22626;
 $white-wine: #fae78c;
 $rose-wine: #f8a99f;
@@ -56,13 +58,14 @@ $primary-font: 'Montserrat', sans-serif;
 
   @include breakpoint(lg) {
 
-    padding: 40px 130px;
+    padding: 40px 0px;
 
   }
 
   &-toggler {
     border: none;
     outline: none !important;
+    padding-left: 0px;
   }
 
   .form-control::-webkit-input-placeholder {
@@ -101,6 +104,7 @@ $primary-font: 'Montserrat', sans-serif;
   color: $white !important;
   font-size: 14px;
   padding-right: 40px !important;
+  padding-left: 0px !important;
 
   &:hover {
     color: $primary-green !important;
@@ -109,6 +113,15 @@ $primary-font: 'Montserrat', sans-serif;
 }
 
 .findwine {
+
+  &_nav--menu {
+
+    margin-left: 0px;
+
+    @include breakpoint(lg) {
+      margin-left: auto;
+    }
+  }
 
   &_menu-icon {
 
@@ -191,6 +204,7 @@ $primary-font: 'Montserrat', sans-serif;
     background-size: cover;
     display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
 
     @include breakpoint(md) {
 
@@ -221,8 +235,6 @@ $primary-font: 'Montserrat', sans-serif;
 
   &_search-form {
 
-    margin-top: 22px;
-
     @include breakpoint(lg) {
 
       margin-top: -320px;
@@ -251,13 +263,7 @@ $primary-font: 'Montserrat', sans-serif;
     font-weight: 500;
     text-align: left;
     color: $primary-text;
-    margin-top: 30px;
-
-    @include breakpoint(lg) {
-
-      margin-top: 0px;
-
-    }
+    display: block;
 
   }
 
@@ -279,6 +285,7 @@ $primary-font: 'Montserrat', sans-serif;
     font-size: 13px;
     font-weight: 500;
     text-align: left;
+    cursor: pointer;
 
   }
 
@@ -305,7 +312,7 @@ $primary-font: 'Montserrat', sans-serif;
 
     background-color: $primary-green;
 
-    @include breakpoint(lg) {
+    @include breakpoint(md) {
 
       width: auto;
 
@@ -313,9 +320,12 @@ $primary-font: 'Montserrat', sans-serif;
 
     &-outer {
 
-      display: flex;
-      justify-content: center;
+      display: block;
 
+      @include breakpoint(md) {
+        display: flex;
+        justify-content: center;
+      }
     }
 
     &-category {
@@ -325,7 +335,17 @@ $primary-font: 'Montserrat', sans-serif;
       font-size: 14px;
       font-family: $primary-font;
       width: 60px;
+      height: 134px;
       margin-right: 10px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+      margin-bottom: 15px;
+
+      @include breakpoint(sm) {
+        width: 80px;
+        margin-right: 15px;
+      }
 
       &:last-child {
         margin-right: 0px;
@@ -347,6 +367,8 @@ $primary-font: 'Montserrat', sans-serif;
   &_button-type {
 
     margin: 11px 0px 11px 0px;
+    word-break: break-word;
+    height: 55px;
 
   }
 
@@ -385,10 +407,15 @@ $primary-font: 'Montserrat', sans-serif;
 
       @include breakpoint(lg) {
 
-        padding-top: 19px;
+        float: right;
 
       }
 
+    }
+
+    &--flex {
+      display: flex;
+      justify-content: center;
     }
 
   }
@@ -432,6 +459,8 @@ $primary-font: 'Montserrat', sans-serif;
     border: 1px solid $primary-green;
     border-radius: 0px 4px 4px 1px;
     color: $white;
+    padding-left: 12px;
+    padding-right: 12px;
 
   }
 
@@ -478,7 +507,7 @@ $primary-font: 'Montserrat', sans-serif;
     &--icon {
       height: 30px;
       width: 30px;
-      margin-right: 10px;
+      margin-left: 10px;
 
     }
   }

@@ -176,6 +176,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+INTERNAL_IPS = (
+    '127.0.0.1',
+)
+
 SITE_URL = 'http://beta.findwine.com'
 try:
     from .localsettings import *
