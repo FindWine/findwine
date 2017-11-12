@@ -86,7 +86,8 @@
   -o-background-size: cover;
   background-size: cover;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  margin-bottom: 1rem; }
   @media (min-width: 678px) {
     .findwine_banner-main {
       height: 300px; } }
@@ -120,10 +121,7 @@
   font-weight: 500;
   text-align: left;
   color: #333e48;
-  margin-top: 30px; }
-  @media (min-width: 1024px) {
-    .findwine_heading-3 {
-      margin-top: 0px; } }
+  display: block; }
 .findwine_content-paragraph {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
@@ -151,37 +149,38 @@
     .findwine_button {
       width: auto; } }
   .findwine_button-outer {
-    display: flex;
-    justify-content: center; }
+    display: block; }
+    @media (min-width: 678px) {
+      .findwine_button-outer {
+        display: flex;
+        justify-content: center; } }
   .findwine_button-category {
     padding: 0px;
     color: #333e48;
     font-size: 14px;
     font-family: "Montserrat", sans-serif;
     width: 60px;
-    margin-right: 10px; }
+    height: 134px;
+    margin-right: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    margin-bottom: 15px; }
     @media (min-width: 576px) {
       .findwine_button-category {
         width: 80px;
         margin-right: 15px; } }
     .findwine_button-category:last-child {
       margin-right: 0px; }
-  .findwine_button-active {
-    display: none; }
-  .findwine_button-active:active {
-    display: block; }
-  .findwine_button-default {
-    color: red; }
-  .findwine_button-default:active {
-    display: none;
-    color: blue; }
 .findwine_svg {
   height: 50px;
   display: flex;
   align-items: flex-end;
   justify-content: center; }
 .findwine_button-type {
-  margin: 11px 0px 11px 0px; }
+  margin: 11px 0px 11px 0px;
+  word-break: break-word;
+  height: 55px; }
 .findwine_button-bar {
   height: 4px; }
 .findwine_newsletter-svg {

@@ -9,6 +9,8 @@ $white: #ffffff;
 $light-grey: #c8ced2;
 $background-grey: #c8ced2;
 
+// Wine colours
+
 $red-wine: #b22626;
 $white-wine: #fae78c;
 $rose-wine: #f8a99f;
@@ -202,6 +204,7 @@ $primary-font: 'Montserrat', sans-serif;
     background-size: cover;
     display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
 
     @include breakpoint(md) {
 
@@ -260,13 +263,7 @@ $primary-font: 'Montserrat', sans-serif;
     font-weight: 500;
     text-align: left;
     color: $primary-text;
-    margin-top: 30px;
-
-    @include breakpoint(lg) {
-
-      margin-top: 0px;
-
-    }
+    display: block;
 
   }
 
@@ -323,9 +320,12 @@ $primary-font: 'Montserrat', sans-serif;
 
     &-outer {
 
-      display: flex;
-      justify-content: center;
+      display: block;
 
+      @include breakpoint(md) {
+        display: flex;
+        justify-content: center;
+      }
     }
 
     &-category {
@@ -335,7 +335,12 @@ $primary-font: 'Montserrat', sans-serif;
       font-size: 14px;
       font-family: $primary-font;
       width: 60px;
+      height: 134px;
       margin-right: 10px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+      margin-bottom: 15px;
 
       @include breakpoint(sm) {
         width: 80px;
@@ -346,30 +351,6 @@ $primary-font: 'Montserrat', sans-serif;
         margin-right: 0px;
       }
 
-    }
-
-    &-active {
-      display: none;
-    }
-
-    &-active {
-
-      &:active {
-        display: block;
-      }
-
-    }
-
-    &-default {
-      color: red;
-    }
-
-    &-default {
-
-      &:active {
-        display: none;
-        color: blue;
-      }
     }
 
   }
@@ -386,7 +367,8 @@ $primary-font: 'Montserrat', sans-serif;
   &_button-type {
 
     margin: 11px 0px 11px 0px;
-    word-break: break-all;
+    word-break: break-word;
+    height: 55px;
 
   }
 

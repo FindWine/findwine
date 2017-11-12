@@ -27,6 +27,8 @@ class CategorySelect extends React.Component {
     }
 }
 
+// When the button is clicked on mobile (category selected) the SVG should change to the colour one (ie bubbly-c.svg) and the findwine-button_bar should get a background-color. The colours are set in the SCSS file (under Wine colours).
+
 class CategorySelectMobile extends React.Component {
 
   render() {
@@ -35,9 +37,9 @@ class CategorySelectMobile extends React.Component {
            onClick={(event) => this.props.categoryChanged(event.target.value)}>
         {getCategoryChoices().map((category, index) => {
           return (
-          <button type="button" href="#" className="btn btn-secondary findwine_button-category" name="category" id="id_category">
+          <button type="button" className="btn btn-secondary findwine_button-category" name="category" id="id_category">
             <div className="findwine_svg">
-              <img className="findwine_button-default" src="/static/wine/images/SVGs/red.svg"></img>
+              <img className="findwine_button-default" src="/static/wine/images/SVGs/bubbly.svg"></img>
             </div>
             <div className="findwine_button-type">
                 <p key={index} value={category}>{category}</p>
