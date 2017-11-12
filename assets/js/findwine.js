@@ -34,14 +34,14 @@ class CategorySelectMobile extends React.Component {
 
   render() {
     return (
-      <div className="hidden-md-up findwine_button-outer" value={this.props.selectedCategory}
-           onClick={(event) => this.props.categoryChanged(event.target.value)}>
+      <div className="hidden-md-up findwine_button-outer" value={this.props.selectedCategory}>
         {getCategoryChoices().map((category, index) => {
           const isSelected = category === this.props.selectedCategory;
           const classes = `btn btn-secondary findwine_button-category ${isSelected ? 'selected': ''}`;
           const image = isSelected ? getSelectedImagePath(category) : getImagePath(category);
           return (
-          <button key={index} type="button" className={classes} name="category" id="id_category">
+          <button key={index} type="button" className={classes} name={category}
+                  onClick={() => this.props.categoryChanged(category)}>
             <div className="findwine_svg">
               <img className="findwine_button-default" src={image}></img>
             </div>
