@@ -39,7 +39,7 @@ class CategorySelectMobile extends React.Component {
           return (
           <button type="button" className="btn btn-secondary findwine_button-category" name="category" id="id_category">
             <div className="findwine_svg">
-              <img className="findwine_button-default" src="/static/wine/images/SVGs/bubbly.svg"></img>
+              <img className="findwine_button-default" src={getImagePath(category)}></img>
             </div>
             <div className="findwine_button-type">
                 <p key={index} value={category}>{category}</p>
@@ -416,6 +416,14 @@ function getSubcategories(category) {
     } else {
         return [];
     }
+}
+
+function getImagePath(category) {
+    return getCategoryMap()[category]['image'];
+}
+
+function getSelectedImagePath(category) {
+    return getCategoryMap()[category]['selected_image'];
 }
 
 function getSortChoices() {

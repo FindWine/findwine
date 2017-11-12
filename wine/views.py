@@ -4,6 +4,8 @@ from django.conf import settings
 
 from django.db.models import Func
 from django.shortcuts import render
+from django.templatetags.static import static
+from django.utils.text import slugify
 from django.views import generic
 from django.views.decorators.http import require_GET
 
@@ -35,8 +37,26 @@ def _build_category_metadata():
 
     Used in the search dropdowns.
     """
+
+    def _get_image_id(category):
+        # todo: update this when we have images or remove it
+        CATEGORY_IMAGE_MAP = {
+            'brandyhusk-spirit': 'port',
+            'dessert-wine': 'port',
+        }
+        default_id = slugify(category.name)
+        return CATEGORY_IMAGE_MAP.get(default_id, default_id)
+
+    def _get_image_path(category):
+        return static('/wine/images/SVGs/{}.svg'.format(_get_image_id(category)))
+
+    def _get_selected_image_path(category):
+        return static('/wine/images/SVGs/{}-c.svg'.format(_get_image_id(category)))
+
     return {
         c.name: {
+            'image': _get_image_path(c),
+            'selected_image': _get_selected_image_path(c),
             'subcategories': [sc.name for sc in c.subcategory_set.all()]
         } for c in Category.objects.select_related()
     }
