@@ -412,7 +412,7 @@ function getCategoryMap() {
 
 function getSubcategories(category) {
     if (category in getCategoryMap()) {
-        return getCategoryMap()[category];
+        return getCategoryMap()[category]['subcategories'];
     } else {
         return [];
     }

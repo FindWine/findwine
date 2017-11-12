@@ -36,7 +36,9 @@ def _build_category_metadata():
     Used in the search dropdowns.
     """
     return {
-        c.name: [sc.name for sc in c.subcategory_set.all()] for c in Category.objects.select_related()
+        c.name: {
+            'subcategories': [sc.name for sc in c.subcategory_set.all()]
+        } for c in Category.objects.select_related()
     }
 
 
