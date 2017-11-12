@@ -144,6 +144,7 @@
 .findwine_content-image {
   width: 220px; }
 .findwine_button {
+  -webkit-tap-highlight-color: transparent;
   background-color: #00ad68; }
   @media (min-width: 678px) {
     .findwine_button {
@@ -155,6 +156,7 @@
         display: flex;
         justify-content: center; } }
   .findwine_button-category {
+    -webkit-tap-highlight-color: transparent;
     padding: 0px;
     color: #333e48;
     font-size: 14px;
@@ -172,6 +174,8 @@
         margin-right: 15px; } }
     .findwine_button-category:last-child {
       margin-right: 0px; }
+    .findwine_button-category--selected {
+      background-color: #ffffff; }
 .findwine_svg {
   height: 50px;
   display: flex;
@@ -183,6 +187,8 @@
   height: 55px; }
 .findwine_button-bar {
   height: 4px; }
+  .findwine_button-bar--selected {
+    background-color: #c8ced2; }
 .findwine_newsletter-svg {
   width: 58px;
   height: 58px;
@@ -258,5 +264,43 @@
     height: 30px;
     width: 30px;
     margin-left: 10px; }
+.findwine_slider {
+  width: 100%;
+  max-width: 500px;
+  height: 50px; }
+  .findwine_slider .handle {
+    font-size: 0.9em;
+    text-align: center;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    top: 1px;
+    width: 34px;
+    height: 34px;
+    line-height: 48px;
+    background: url("images/SVGs/slider.svg") no-repeat center center;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #c8ced2; }
+  .findwine_slider .bar {
+    position: relative;
+    background: #ddd;
+    top: 13px;
+    height: 10px;
+    border-radius: 5px; }
+  .findwine_slider .bar.bar-1 {
+    background: #00ad68; }
+  .findwine_slider .bar.bar-2 {
+    background: #c8ced2; }
+.findwine .min_price .input {
+  width: 75px; }
+.findwine .max_price .input {
+  width: 75px; }
+.findwine_price-input {
+  display: inline-block;
+  width: 50%; }
+  @media (min-width: 1024px) {
+    .findwine_price-input {
+      width: 100%; } }
 
 /*# sourceMappingURL=findwine.css.map */

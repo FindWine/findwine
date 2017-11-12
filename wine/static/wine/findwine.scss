@@ -310,6 +310,7 @@ $primary-font: 'Montserrat', sans-serif;
 
   &_button {
 
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
     background-color: $primary-green;
 
     @include breakpoint(md) {
@@ -330,6 +331,7 @@ $primary-font: 'Montserrat', sans-serif;
 
     &-category {
 
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
       padding: 0px;
       color: $primary-text;
       font-size: 14px;
@@ -349,6 +351,10 @@ $primary-font: 'Montserrat', sans-serif;
 
       &:last-child {
         margin-right: 0px;
+      }
+
+      &--selected {
+        background-color: $white;
       }
 
     }
@@ -375,6 +381,32 @@ $primary-font: 'Montserrat', sans-serif;
   &_button-bar {
 
     height: 4px;
+
+    &--selected {
+
+      background-color: $background-grey;
+
+      //&red {
+      //  background-color: $red-wine;
+      //}
+      //
+      //&white {
+      //  background-color: $white-wine;
+      //}
+      //
+      //&bubbly {
+      //  background-color: $bubbly-wine;
+      //}
+      //
+      //&rose {
+      //  background-color: $rose-wine;
+      //}
+      //
+      //&port {
+      //  background-color: $port-wine;
+      //}
+
+    }
 
   }
 
@@ -512,5 +544,70 @@ $primary-font: 'Montserrat', sans-serif;
     }
   }
 
+  // Slider styles
+
+  &_slider {
+
+      width: 100%;
+      max-width: 500px;
+      height: 50px;
+
+    .handle {
+      font-size: 0.9em;
+      text-align: center;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      top: 1px;
+      width: 34px;
+      height: 34px;
+      line-height: 48px;
+      background: url("images/SVGs/slider.svg") no-repeat center center;
+      background-color: white;
+      border-radius: 50%;
+      border: 1px solid $light-grey;
+    }
+
+    .bar {
+      position: relative;
+      background: #ddd;
+      top: 13px;
+      height: 10px;
+      border-radius: 5px;
+    }
+    .bar.bar-1 {
+      background: $primary-green;
+    }
+    .bar.bar-2 {
+      background: $light-grey;
+    }
+
+  }
+
+  .min_price {
+    .input {
+      width: 75px;
+    }
+  }
+
+  .max_price {
+    .input {
+      width: 75px;
+    }
+  }
+
+  &_price-input {
+    display: inline-block;
+    width: 50%;
+
+    @include breakpoint(lg) {
+      width: 100%;
+    }
+
+  }
+
 }
+
+
+
 
