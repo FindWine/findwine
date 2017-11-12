@@ -37,7 +37,7 @@ class CategorySelectMobile extends React.Component {
            onClick={(event) => this.props.categoryChanged(event.target.value)}>
         {getCategoryChoices().map((category, index) => {
           return (
-          <button type="button" className="btn btn-secondary findwine_button-category" name="category" id="id_category">
+          <button key={index} type="button" className="btn btn-secondary findwine_button-category" name="category" id="id_category">
             <div className="findwine_svg">
               <img className="findwine_button-default" src={getImagePath(category)}></img>
             </div>
@@ -168,7 +168,7 @@ class SearchControls extends React.Component {
                                 {/*Slider to be added here*/}
 
                             </div>
-                            <div class="row">
+                            <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group min_price">
                                         <label htmlFor="id_min_price">Minimum Price</label>
