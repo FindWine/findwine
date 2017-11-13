@@ -181,7 +181,22 @@ Then run:
 
 React instructions largely from [the installation docs](https://reactjs.org/docs/installation.html).
 
-Note this is just during bootstrap.
+First you must install and setup yarn.
+
+## Installing dependencies
+
+Installation should be very simple:
+
+```bash
+yarn install
+```
+
+## Adding / changing dependencies
+
+To add a new dependency, use `yarn add` or `yarn add --dev`.
+
+The following commands were used to originally setup the front-end environment.
+You should generally not need to run these unless you are messing with the installed packages.
 
 ```bash
 yarn init
