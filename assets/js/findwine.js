@@ -130,7 +130,6 @@ class SearchControls extends React.Component {
         const minPriceInt = parseInt(this.props.minPrice) || 0;
         const maxPriceInt = parseInt(this.props.maxPrice) || 500;
         return (
-
                 <form className="search-form" role="search">
                     <div className="row d-flex align-items-end findwine_search-form">
 
@@ -181,7 +180,7 @@ class SearchControls extends React.Component {
                                         <label htmlFor="id_min_price">Minimum Price</label>
                                         <input className="form-control" type="number" name="min_price"
                                                value={this.props.minPrice} min="0" required id="id_min_price"
-                                               onChange={(event) => this.props.minPriceChanged(event.target.value)}
+                                               onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                                         />
                                     </div>
                                 </div>
@@ -190,7 +189,7 @@ class SearchControls extends React.Component {
                                         <label htmlFor="id_max_price">Maximum Price</label>
                                         <input className="form-control" type="number" name="max_price"
                                                value={this.props.maxPrice} min="0" required id="id_max_price"
-                                               onChange={(event) => this.props.maxPriceChanged(event.target.value)}
+                                               onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
                                         />
                                     </div>
                                 </div>
@@ -199,6 +198,15 @@ class SearchControls extends React.Component {
                                     max={500}
                                     value={[minPriceInt, maxPriceInt]}
                                     allowCross={false}
+                                    onChange={(value) => {
+                                      this.props.minPriceChanged(value[0], false);
+                                      this.props.maxPriceChanged(value[1], false);
+                                    }}
+                                    onAfterChange={(value) => {
+                                      this.props.minPriceChanged(value[0], true);
+                                      this.props.maxPriceChanged(value[1], true);
+                                    }}
+
                                 />
                             </div>
                         </div>
@@ -310,12 +318,20 @@ class SearchPage extends React.Component {
         this.setState({selectedSubcategory: subcategory}, this.updateSearchResults);
     }
 
-    updateMinPrice(price) {
-        this.setState({minPrice: price}, this.updateSearchResults);
+    updateMinPrice(price, updateResults) {
+        if (updateResults) {
+          this.setState({minPrice: price}, this.updateSearchResults);
+        } else {
+          this.setState({minPrice: price});
+        }
     }
 
-    updateMaxPrice(price) {
-        this.setState({maxPrice: price}, this.updateSearchResults);
+    updateMaxPrice(price, updateResults) {
+        if (updateResults) {
+          this.setState({maxPrice: price}, this.updateSearchResults);
+        } else {
+          this.setState({maxPrice: price});
+        }
     }
 
     updateSort(sort) {
@@ -399,9 +415,9 @@ class SearchPage extends React.Component {
                     selectedSubcategory={this.state.selectedSubcategory}
                     subcategoryChanged={(subcategory) => this.updateSubcategory(subcategory)}
                     minPrice={this.state.minPrice}
-                    minPriceChanged={(price) => this.updateMinPrice(price)}
+                    minPriceChanged={(price, updateResults) => this.updateMinPrice(price, updateResults)}
                     maxPrice={this.state.maxPrice}
-                    maxPriceChanged={(price) => this.updateMaxPrice(price)}
+                    maxPriceChanged={(price, updateResults) => this.updateMaxPrice(price, updateResults)}
                     selectedSort={this.state.selectedSort}
                     sortChanged={(sort) => this.updateSort(sort)}
                     searchClicked={(event) => this.searchClicked(event)}
