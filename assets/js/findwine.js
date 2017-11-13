@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import Select from 'react-select';
-import Slider from 'react-slider';
-
+require('rc-slider/assets/index.css')
+import Slider, {Range} from 'rc-slider';
 const queryString = require('query-string');
 
 
@@ -20,7 +20,7 @@ class CategorySelect extends React.Component {
                     onChange={(event) => this.props.categoryChanged(event.target.value)}>
                 {getCategoryChoices().map((category, index) => {
                     return (
-                      <option className="image" key={index} value={category}> {category} </option>
+                        <option key={index} value={category}>{category}</option>
                     )
                 })}
             </select>
@@ -38,8 +38,7 @@ class CategorySelectMobile extends React.Component {
       <div className="hidden-md-up findwine_button-outer" value={this.props.selectedCategory}>
         {getCategoryChoices().map((category, index) => {
           const isSelected = category === this.props.selectedCategory;
-          const classes = `btn btn-secondary findwine_button-category ${isSelected ? 'findwine_button-category--selected': ''}`;
-          const barClass = `findwine_button-bar ${isSelected ? 'findwine_button-bar--selected': ''}`;
+          const classes = `btn btn-secondary findwine_button-category ${isSelected ? 'selected': ''}`;
           const image = isSelected ? getSelectedImagePath(category) : getImagePath(category);
           return (
           <button key={index} type="button" className={classes} name={category}
@@ -50,7 +49,7 @@ class CategorySelectMobile extends React.Component {
             <div className="findwine_button-type">
                 <p value={category}>{category}</p>
             </div>
-            <div className={barClass}>
+            <div className="findwine_button-bar">
             </div>
           </button>
         )
@@ -67,8 +66,7 @@ class SubCategorySelect extends React.Component {
         });
 
         return (
-
-          <Select
+            <Select
                 value={this.props.selectedSubcategory}
                 options={choices}
                 onChange={(event) => this.props.subcategoryChanged(event)}
@@ -129,16 +127,17 @@ class SearchControls extends React.Component {
     }
 
     render() {
+        const minPriceInt = parseInt(this.props.minPrice) || 0;
+        const maxPriceInt = parseInt(this.props.maxPrice) || 500;
         return (
-
                 <form className="search-form" role="search">
-                    <div className="row d-flex align-items-start findwine_search-form">
+                    <div className="row d-flex align-items-end findwine_search-form">
 
                         <div className="col-md-3">
                             <div className="form-group category">
                                 <label htmlFor="id_category" className="findwine_heading-3">Select A Category</label>
 
-                                {/*Buttons for mobile*/}
+                                {/*Buttons for mobile, need to add function to change colour when clicked*/}
 
                                   <CategorySelectMobile
                                     selectedCategory={this.props.selectedCategory}
@@ -168,46 +167,48 @@ class SearchControls extends React.Component {
 
                         {/*Price Range*/}
 
-                        <div className="col-xs-12 col-md-6">
+                        <div className="col-md-6">
+                            <div className="form-group sub_category">
+                                <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range</label>
 
-                                <div className="col-xs-12 col-md-3" style={{padding: '0px', display:'inline-block'}}>
-                                    <div className="form-group sub_category">
-                                        <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range</label>
-                                    </div>
-                                </div>
-                                {/*Slider - mobile layout slider appears above max and min price*/}
-                                <div className="col-xs-12 hidden-md-up">
-                                  <Slider  className="findwine_slider slider"
-                                           defaultValue={[0, 500]}
-                                           withBars={true}
-                                  />
-                                </div>
+                                {/*Slider to be added here*/}
 
-                                <div className="col-xs-6 col-md-4 findwine_price-input">
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
                                     <div className="form-group min_price">
-                                        R<input className="form-control" style={{width:'75px', display:'inline-block', marginLeft:'10px'}} type="number" name="min_price"
+                                        <label htmlFor="id_min_price">Minimum Price</label>
+                                        <input className="form-control" type="number" name="min_price"
                                                value={this.props.minPrice} min="0" required id="id_min_price"
-                                               onChange={(event) => this.props.minPriceChanged(event.target.value)}
+                                               onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                                         />
                                     </div>
                                 </div>
-
-                          <div className="col-xs-6 col-md-4 findwine_price-input">
+                                <div className="col-md-6">
                                     <div className="form-group max_price">
-                                        R<input className="form-control" style={{width:'75px', display:'inline-block', marginLeft:'10px'}} type="number" name="max_price"
+                                        <label htmlFor="id_max_price">Maximum Price</label>
+                                        <input className="form-control" type="number" name="max_price"
                                                value={this.props.maxPrice} min="0" required id="id_max_price"
-                                               onChange={(event) => this.props.maxPriceChanged(event.target.value)}
+                                               onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
                                         />
                                     </div>
                                 </div>
+                                <Range
+                                    defaultValue={[0,500]}
+                                    max={500}
+                                    value={[minPriceInt, maxPriceInt]}
+                                    allowCross={false}
+                                    onChange={(value) => {
+                                      this.props.minPriceChanged(value[0], false);
+                                      this.props.maxPriceChanged(value[1], false);
+                                    }}
+                                    onAfterChange={(value) => {
+                                      this.props.minPriceChanged(value[0], true);
+                                      this.props.maxPriceChanged(value[1], true);
+                                    }}
 
-                                {/*Slider - desktop layout slider appears below max and min price*/}
-                                <div className="col-md-12 hidden-sm-down">
-                                  <Slider  className="findwine_slider slider"
-                                           defaultValue={[0, 500]}
-                                           withBars={true}
-                                  />
-                                </div>
+                                />
+                            </div>
                         </div>
                         {this._getSortSelect()}
                     </div>
@@ -317,12 +318,20 @@ class SearchPage extends React.Component {
         this.setState({selectedSubcategory: subcategory}, this.updateSearchResults);
     }
 
-    updateMinPrice(price) {
-        this.setState({minPrice: price}, this.updateSearchResults);
+    updateMinPrice(price, updateResults) {
+        if (updateResults) {
+          this.setState({minPrice: price}, this.updateSearchResults);
+        } else {
+          this.setState({minPrice: price});
+        }
     }
 
-    updateMaxPrice(price) {
-        this.setState({maxPrice: price}, this.updateSearchResults);
+    updateMaxPrice(price, updateResults) {
+        if (updateResults) {
+          this.setState({maxPrice: price}, this.updateSearchResults);
+        } else {
+          this.setState({maxPrice: price});
+        }
     }
 
     updateSort(sort) {
@@ -406,9 +415,9 @@ class SearchPage extends React.Component {
                     selectedSubcategory={this.state.selectedSubcategory}
                     subcategoryChanged={(subcategory) => this.updateSubcategory(subcategory)}
                     minPrice={this.state.minPrice}
-                    minPriceChanged={(price) => this.updateMinPrice(price)}
+                    minPriceChanged={(price, updateResults) => this.updateMinPrice(price, updateResults)}
                     maxPrice={this.state.maxPrice}
-                    maxPriceChanged={(price) => this.updateMaxPrice(price)}
+                    maxPriceChanged={(price, updateResults) => this.updateMaxPrice(price, updateResults)}
                     selectedSort={this.state.selectedSort}
                     sortChanged={(sort) => this.updateSort(sort)}
                     searchClicked={(event) => this.searchClicked(event)}
