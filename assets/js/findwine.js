@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import Select from 'react-select';
-
+require('rc-slider/assets/index.css')
+import Slider, {Range} from 'rc-slider';
 const queryString = require('query-string');
 
 
@@ -126,6 +127,8 @@ class SearchControls extends React.Component {
     }
 
     render() {
+        const minPriceInt = parseInt(this.props.minPrice) || 0;
+        const maxPriceInt = parseInt(this.props.maxPrice) || 500;
         return (
 
                 <form className="search-form" role="search">
@@ -191,6 +194,12 @@ class SearchControls extends React.Component {
                                         />
                                     </div>
                                 </div>
+                                <Range
+                                    defaultValue={[0,500]}
+                                    max={500}
+                                    value={[minPriceInt, maxPriceInt]}
+                                    allowCross={false}
+                                />
                             </div>
                         </div>
                         {this._getSortSelect()}
