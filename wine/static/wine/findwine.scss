@@ -415,27 +415,25 @@ $primary-font: 'Gotham', sans-serif;
 
     &--selected {
 
-      background-color: $background-grey;
+      &red {
+        background-color: $red-wine;
+      }
 
-      //&red {
-      //  background-color: $red-wine;
-      //}
-      //
-      //&white {
-      //  background-color: $white-wine;
-      //}
-      //
-      //&bubbly {
-      //  background-color: $bubbly-wine;
-      //}
-      //
-      //&rose {
-      //  background-color: $rose-wine;
-      //}
-      //
-      //&port {
-      //  background-color: $port-wine;
-      //}
+      &white {
+        background-color: $white-wine;
+      }
+
+      &bubbly {
+        background-color: $bubbly-wine;
+      }
+
+      &rose {
+        background-color: $rose-wine;
+      }
+
+      &port {
+        background-color: $port-wine;
+      }
 
     }
 

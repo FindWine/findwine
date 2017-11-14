@@ -207,8 +207,16 @@
   height: 55px; }
 .findwine_button-bar {
   height: 4px; }
-  .findwine_button-bar--selected {
-    background-color: #c8ced2; }
+  .findwine_button-bar--selectedred {
+    background-color: #b22626; }
+  .findwine_button-bar--selectedwhite {
+    background-color: #fae78c; }
+  .findwine_button-bar--selectedbubbly {
+    background-color: #f7e1ba; }
+  .findwine_button-bar--selectedrose {
+    background-color: #f8a99f; }
+  .findwine_button-bar--selectedport {
+    background-color: #d68730; }
 .findwine_newsletter-svg {
   width: 58px;
   height: 58px;

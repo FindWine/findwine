@@ -39,6 +39,8 @@ class CategorySelectMobile extends React.Component {
         {getCategoryChoices().map((category, index) => {
           const isSelected = category === this.props.selectedCategory;
           const classes = `btn btn-secondary findwine_button-category ${isSelected ? 'selected': ''}`;
+          const barClasses = `findwine_button-bar ${isSelected ? 'findwine_button-bar--selectedred': ''}`;
+          // selected{red/white/etc}
           const image = isSelected ? getSelectedImagePath(category) : getImagePath(category);
           return (
           <button key={index} type="button" className={classes} name={category}
@@ -49,7 +51,7 @@ class CategorySelectMobile extends React.Component {
             <div className="findwine_button-type">
                 <p value={category}>{category}</p>
             </div>
-            <div className="findwine_button-bar">
+            <div className={barClasses}>
             </div>
           </button>
         )
