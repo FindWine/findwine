@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import Select from 'react-select';
-require('rc-slider/assets/index.css')
+require('rc-slider/assets/index.css');
 import Slider, {Range} from 'rc-slider';
 const queryString = require('query-string');
 
@@ -167,47 +167,65 @@ class SearchControls extends React.Component {
 
                         {/*Price Range*/}
 
-                        <div className="col-md-6">
-                            <div className="form-group sub_category">
-                                <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range</label>
-
-                                {/*Slider to be added here*/}
-
+                        <div className="col-xs-12 col-md-6">
+                            <div className="col-xs-12 col-md-3" style={{padding: '0px', display:'inline-block'}}>
+                                <div className="form-group sub_category">
+                                    <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range </label>
+                                </div>
                             </div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="form-group min_price">
-                                        <label htmlFor="id_min_price">Minimum Price</label>
-                                        <input className="form-control" type="number" name="min_price"
-                                               value={this.props.minPrice} min="0" required id="id_min_price"
-                                               onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group max_price">
-                                        <label htmlFor="id_max_price">Maximum Price</label>
-                                        <input className="form-control" type="number" name="max_price"
-                                               value={this.props.maxPrice} min="0" required id="id_max_price"
-                                               onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
-                                        />
-                                    </div>
-                                </div>
+                            {/*Slider - mobile layout slider appears above max and min price*/}
+                            <div className="col-xs-12 hidden-md-up">
+                              {/*Slider*/}
                                 <Range
-                                    defaultValue={[0,500]}
-                                    max={500}
-                                    value={[minPriceInt, maxPriceInt]}
-                                    allowCross={false}
-                                    onChange={(value) => {
-                                      this.props.minPriceChanged(value[0], false);
-                                      this.props.maxPriceChanged(value[1], false);
-                                    }}
-                                    onAfterChange={(value) => {
-                                      this.props.minPriceChanged(value[0], true);
-                                      this.props.maxPriceChanged(value[1], true);
-                                    }}
-
+                                  defaultValue={[0,500]}
+                                  max={500}
+                                  value={[minPriceInt, maxPriceInt]}
+                                  allowCross={false}
+                                  onChange={(value) => {
+                                    this.props.minPriceChanged(value[0], false);
+                                    this.props.maxPriceChanged(value[1], false);
+                                  }}
+                                  onAfterChange={(value) => {
+                                    this.props.minPriceChanged(value[0], true);
+                                    this.props.maxPriceChanged(value[1], true);
+                                  }}
                                 />
+                            </div>
+
+                            <div className="col-xs-6 col-md-4 findwine_price-input">
+                               <div className="form-group min_price">
+                                  <label htmlFor="id_min_price" className="findwine_heading-3">Minimum Price</label>
+                                   <input className="form-control" type="number" name="min_price"
+                                          value={this.props.minPrice} min="0" required id="id_min_price"
+                                          onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
+                                   />
+                               </div>
+                            </div>
+                            <div className="col-xs-6 col-md-4 findwine_price-input">
+                               <div className="form-group max_price">
+                                  <label htmlFor="id_max_price" className="findwine_heading-3"  >Maximum Price</label>
+                                  <input className="form-control" type="number" name="max_price"
+                                         value={this.props.maxPrice} min="0" required id="id_max_price"
+                                         onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
+                                  />
+                               </div>
+                            </div>
+                            <div className="col-md-12 hidden-sm-down">
+                               {/*Slider*/}
+                               <Range
+                                 defaultValue={[0,500]}
+                                 max={500}
+                                 value={[minPriceInt, maxPriceInt]}
+                                 allowCross={false}
+                                 onChange={(value) => {
+                                    this.props.minPriceChanged(value[0], false);
+                                    this.props.maxPriceChanged(value[1], false);
+                                 }}
+                                 onAfterChange={(value) => {
+                                    this.props.minPriceChanged(value[0], true);
+                                    this.props.maxPriceChanged(value[1], true);
+                                 }}
+                               />
                             </div>
                         </div>
                         {this._getSortSelect()}
