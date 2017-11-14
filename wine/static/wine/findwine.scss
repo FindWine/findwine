@@ -118,6 +118,10 @@ $primary-font: 'Montserrat', sans-serif;
 }
 
 // Slider styles
+.rc-slider {
+  width: 90% !important;
+}
+
 .rc-slider-rail {
   background: $light-grey;
 }
@@ -595,6 +599,74 @@ $primary-font: 'Montserrat', sans-serif;
   }
 
   // Wine detail page styling
+
+  &_producer-main {
+    text-decoration: none;
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &_producer-vintage {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  &_category {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  &_place {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 12px;
+  }
+
+  &_rating {
+    font-family: $primary-font;
+    font-size: 14px;
+    line-height: 28px;
+    //font-weight: bold;
+    text-align: center;
+    color: $white;
+  }
+
+  &_rating-box {
+    background-color: $gold;
+    height: auto;
+    width: 40px;
+    border-radius: 5px;
+    display: block;
+  }
+
+  &_award-list {
+    list-style-type: none;
+    font-family: $primary-font;
+    font-size: 12px;
+    color: $light-grey;
+    display: inline-block;
+  }
+
+  &_award-list-bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $gold;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  &_list-group {
+    display: block;
+  }
 
 }
 

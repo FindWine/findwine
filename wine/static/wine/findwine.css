@@ -33,6 +33,9 @@
   .nav-link:hover {
     color: #00ad68 !important; }
 
+.rc-slider {
+  width: 90% !important; }
+
 .rc-slider-rail {
   background: #c8ced2; }
 
@@ -292,5 +295,54 @@
     .findwine_price-input {
       width: 100%;
       margin-top: 0px; } }
+.findwine_producer-main {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  color: #333e48;
+  font-size: 18px;
+  font-weight: bold; }
+.findwine_producer-vintage {
+  font-family: "Montserrat", sans-serif;
+  color: #333e48;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 12px; }
+.findwine_category {
+  font-family: "Montserrat", sans-serif;
+  color: #333e48;
+  font-size: 12px;
+  font-style: italic;
+  margin-bottom: 6px; }
+.findwine_place {
+  font-family: "Montserrat", sans-serif;
+  color: #333e48;
+  font-size: 12px; }
+.findwine_rating {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 28px;
+  text-align: center;
+  color: #ffffff; }
+.findwine_rating-box {
+  background-color: #c9a564;
+  height: auto;
+  width: 40px;
+  border-radius: 5px;
+  display: block; }
+.findwine_award-list {
+  list-style-type: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  color: #c8ced2;
+  display: inline-block; }
+.findwine_award-list-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #c9a564;
+  margin-right: 5px;
+  display: inline-block; }
+.findwine_list-group {
+  display: block; }
 
 /*# sourceMappingURL=findwine.css.map */
