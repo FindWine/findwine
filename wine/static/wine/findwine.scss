@@ -17,6 +17,11 @@ $rose-wine: #f8a99f;
 $port-wine: #d68730;
 $bubbly-wine: #f7e1ba;
 
+// Award/rating colours
+$gold: #c9a564;
+$silver: #a5b2b3;
+$bronze: #b5664a;
+
 // Fonts
 
 $primary-font: 'Montserrat', sans-serif;
@@ -110,6 +115,27 @@ $primary-font: 'Montserrat', sans-serif;
     color: $primary-green !important;
   }
 
+}
+
+// Slider styles
+.rc-slider-rail {
+  background: $light-grey;
+}
+
+.rc-slider-track {
+  background: $primary-green !important;
+}
+
+.rc-slider-rail, .rc-slider-track{
+  height: 14px !important;
+}
+
+.rc-slider-handle {
+  background: url("images/SVGs/slider.svg") no-repeat center center;
+  width: 34px !important;
+  height: 34px !important;
+  border: 1px solid $light-grey !important;
+  margin-top: -10px !important;
 }
 
 .findwine {
@@ -544,46 +570,6 @@ $primary-font: 'Montserrat', sans-serif;
     }
   }
 
-  // Slider styles
-
-  &_slider {
-
-      width: 100%;
-      max-width: 500px;
-      height: 50px;
-
-    .handle {
-      font-size: 0.9em;
-      text-align: center;
-      background-color: black;
-      color: white;
-      cursor: pointer;
-      top: 1px;
-      width: 34px;
-      height: 34px;
-      line-height: 48px;
-      background: url("images/SVGs/slider.svg") no-repeat center center;
-      background-color: white;
-      border-radius: 50%;
-      border: 1px solid $light-grey;
-    }
-
-    .bar {
-      position: relative;
-      background: #ddd;
-      top: 13px;
-      height: 10px;
-      border-radius: 5px;
-    }
-    .bar.bar-1 {
-      background: $primary-green;
-    }
-    .bar.bar-2 {
-      background: $light-grey;
-    }
-
-  }
-
   .min_price {
     .input {
       width: 75px;
@@ -599,12 +585,16 @@ $primary-font: 'Montserrat', sans-serif;
   &_price-input {
     display: inline-block;
     width: 50%;
+    margin-top: 30px;
 
     @include breakpoint(lg) {
       width: 100%;
+      margin-top: 0px;
     }
 
   }
+
+  // Wine detail page styling
 
 }
 
