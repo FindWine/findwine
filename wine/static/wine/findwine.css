@@ -25,7 +25,7 @@
     opacity: 1; }
 
 .nav-link {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   color: #ffffff !important;
   font-size: 14px;
   padding-right: 40px !important;
@@ -114,7 +114,7 @@
     .findwine_banner-main {
       height: 580px; } }
 .findwine_banner-text {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 24px;
   font-weight: 500;
   text-align: left;
@@ -128,21 +128,21 @@
     padding: 20px 40px;
     background-color: white; } }
 .findwine_heading-2 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 20px;
   font-weight: 500;
   text-align: left;
   color: #333e48;
   padding-bottom: 14px; }
 .findwine_heading-3 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 13px;
   font-weight: 500;
   text-align: left;
   color: #333e48;
   display: block; }
 .findwine_content-paragraph {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 14px;
   font-weight: 500;
   text-align: left;
@@ -150,11 +150,12 @@
   padding-bottom: 14px; }
 .findwine_content-link {
   color: #00ad68;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 13px;
   font-weight: 500;
   text-align: left;
-  cursor: pointer; }
+  cursor: pointer;
+  text-decoration: none; }
 .findwine_content {
   background-color: #f4f5f5;
   border: solid 1px #dbe0e4; }
@@ -179,7 +180,7 @@
     padding: 0px;
     color: #333e48;
     font-size: 14px;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Gotham", sans-serif;
     width: 60px;
     height: 134px;
     margin-right: 10px;
@@ -228,7 +229,7 @@
     display: flex;
     justify-content: center; }
 .findwine_newsletter-heading {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 16px;
   font-weight: 500;
   text-align: left;
@@ -236,7 +237,7 @@
   margin-bottom: 0px;
   padding-top: 15px; }
 .findwine_newsletter-paragraph {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 14px;
   font-weight: 500;
   text-align: left;
@@ -263,7 +264,7 @@
     margin-right: 20px; }
   .findwine_footer--text {
     color: #ffffff;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Gotham", sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 30px; }
@@ -297,28 +298,28 @@
       margin-top: 0px; } }
 .findwine_producer-main {
   text-decoration: none;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   color: #333e48;
   font-size: 18px;
   font-weight: bold; }
 .findwine_producer-vintage {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   color: #333e48;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 12px; }
 .findwine_category {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   color: #333e48;
   font-size: 12px;
   font-style: italic;
   margin-bottom: 6px; }
 .findwine_place {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   color: #333e48;
   font-size: 12px; }
 .findwine_rating {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 14px;
   line-height: 28px;
   text-align: center;
@@ -328,10 +329,11 @@
   height: auto;
   width: 40px;
   border-radius: 5px;
-  display: block; }
+  display: block;
+  margin-top: 25px; }
 .findwine_award-list {
   list-style-type: none;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 12px;
   color: #c8ced2;
   display: inline-block; }
