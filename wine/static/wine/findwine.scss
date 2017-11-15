@@ -17,9 +17,14 @@ $rose-wine: #f8a99f;
 $port-wine: #d68730;
 $bubbly-wine: #f7e1ba;
 
+// Award/rating colours
+$gold: #c9a564;
+$silver: #a5b2b3;
+$bronze: #b5664a;
+
 // Fonts
 
-$primary-font: 'Montserrat', sans-serif;
+$primary-font: 'Gotham', sans-serif;
 
 // Mixins
 
@@ -110,6 +115,39 @@ $primary-font: 'Montserrat', sans-serif;
     color: $primary-green !important;
   }
 
+}
+
+// Slider styles
+.rc-slider {
+  width: 90% !important;
+}
+
+.rc-slider-rail {
+  background: $light-grey;
+}
+
+.rc-slider-track {
+  background: $primary-green !important;
+}
+
+.rc-slider-rail, .rc-slider-track{
+  height: 14px !important;
+}
+
+.rc-slider-handle {
+  background: url("images/SVGs/slider.svg") no-repeat center center;
+  width: 34px !important;
+  height: 34px !important;
+  border: 1px solid $light-grey !important;
+  margin-top: -10px !important;
+}
+
+// Remove background from buttons
+
+.btn-secondary:hover{
+  background-color: transparent;
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 
 .findwine {
@@ -286,6 +324,7 @@ $primary-font: 'Montserrat', sans-serif;
     font-weight: 500;
     text-align: left;
     cursor: pointer;
+    text-decoration: none;
 
   }
 
@@ -310,6 +349,7 @@ $primary-font: 'Montserrat', sans-serif;
 
   &_button {
 
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
     background-color: $primary-green;
 
     @include breakpoint(md) {
@@ -330,6 +370,7 @@ $primary-font: 'Montserrat', sans-serif;
 
     &-category {
 
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
       padding: 0px;
       color: $primary-text;
       font-size: 14px;
@@ -349,6 +390,10 @@ $primary-font: 'Montserrat', sans-serif;
 
       &:last-child {
         margin-right: 0px;
+      }
+
+      &--selected {
+        background-color: $white;
       }
 
     }
@@ -375,6 +420,30 @@ $primary-font: 'Montserrat', sans-serif;
   &_button-bar {
 
     height: 4px;
+
+    &--selected {
+
+      &red {
+        background-color: $red-wine;
+      }
+
+      &white {
+        background-color: $white-wine;
+      }
+
+      &bubbly {
+        background-color: $bubbly-wine;
+      }
+
+      &rose {
+        background-color: $rose-wine;
+      }
+
+      &port {
+        background-color: $port-wine;
+      }
+
+    }
 
   }
 
@@ -512,5 +581,103 @@ $primary-font: 'Montserrat', sans-serif;
     }
   }
 
+  .min_price {
+    .input {
+      width: 75px;
+    }
+  }
+
+  .max_price {
+    .input {
+      width: 75px;
+    }
+  }
+
+  &_price-input {
+    display: inline-block;
+    width: 50%;
+    margin-top: 30px;
+
+    @include breakpoint(lg) {
+      width: 100%;
+      margin-top: 0px;
+    }
+
+  }
+
+  // Wine detail page styling
+
+  &_producer-main {
+    text-decoration: none;
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &_producer-vintage {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  &_category {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  &_place {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 12px;
+  }
+
+  &_rating {
+    font-family: $primary-font;
+    font-size: 14px;
+    line-height: 28px;
+    //font-weight: bold;
+    text-align: center;
+    color: $white;
+  }
+
+  &_rating-box {
+    background-color: $gold;
+    height: auto;
+    width: 40px;
+    border-radius: 5px;
+    display: block;
+    margin-top: 25px;
+  }
+
+  &_award-list {
+    list-style-type: none;
+    font-family: $primary-font;
+    font-size: 12px;
+    color: $light-grey;
+    display: inline-block;
+  }
+
+  &_award-list-bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $gold;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  &_list-group {
+    display: block;
+  }
+
 }
+
+
+
 
