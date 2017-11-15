@@ -39,8 +39,8 @@ class CategorySelectMobile extends React.Component {
         {getCategoryChoices().map((category, index) => {
           const isSelected = category === this.props.selectedCategory;
           const classes = `btn btn-secondary findwine_button-category ${isSelected ? 'selected': ''}`;
-          const barClasses = `findwine_button-bar ${isSelected ? 'findwine_button-bar--selectedred': ''}`;
-          // selected{red/white/etc}
+          const selectedBarClass = `findwine_button-bar--selected${getCategoryId(category)}`;
+          const barClasses = `findwine_button-bar ${isSelected ? selectedBarClass : ''}`;
           const image = isSelected ? getSelectedImagePath(category) : getImagePath(category);
           return (
           <button key={index} type="button" className={classes} name={category}
@@ -157,15 +157,10 @@ class SearchControls extends React.Component {
                         <div className="col-md-3">
                             <div className="form-group category">
                                 <label htmlFor="id_category" className="findwine_heading-3">Select A Category</label>
-
-                                {/*Buttons for mobile, need to add function to change colour when clicked*/}
-
                                   <CategorySelectMobile
                                     selectedCategory={this.props.selectedCategory}
                                     categoryChanged={this.props.categoryChanged}
                                   />
-
-
                                 <div className="hidden-sm-down">
                                     <CategorySelect
                                         selectedCategory={this.props.selectedCategory}
@@ -457,6 +452,10 @@ function getSubcategories(category) {
 
 function getImagePath(category) {
     return getCategoryMap()[category]['image'];
+}
+
+function getCategoryId(category) {
+    return getCategoryMap()[category]['id'];
 }
 
 function getSelectedImagePath(category) {

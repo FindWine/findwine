@@ -55,6 +55,7 @@ def _build_category_metadata():
 
     return {
         c.name: {
+            'id': slugify(c.name),
             'image': _get_image_path(c),
             'selected_image': _get_selected_image_path(c),
             'subcategories': [sc.name for sc in c.subcategory_set.all()]
