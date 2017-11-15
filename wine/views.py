@@ -41,8 +41,7 @@ def _build_category_metadata():
     def _get_image_id(category):
         # todo: update this when we have images or remove it
         CATEGORY_IMAGE_MAP = {
-            'brandyhusk-spirit': 'port',
-            'dessert-wine': 'port',
+            'dessert': 'port',
         }
         default_id = slugify(category.name)
         return CATEGORY_IMAGE_MAP.get(default_id, default_id)
