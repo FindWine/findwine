@@ -121,7 +121,7 @@ class SearchControls extends React.Component {
                 <div className="col-lg-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button"
                             style={{marginBottom: '16px', marginTop: '16px'}}
-                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src={constructImagePath('/wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
+                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
                     </button>
                 </div>
             );
@@ -464,7 +464,7 @@ function getSelectedImagePath(category) {
 
 function constructImagePath(path) {
   // assumes defined on the page.
-  return `${STATIC_BASE_PATH}/${path}`;
+  return `${STATIC_BASE_PATH}${path}`;
 }
 
 function getSortChoices() {
