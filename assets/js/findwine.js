@@ -128,9 +128,28 @@ class SearchControls extends React.Component {
         }
     }
 
-    render() {
+    getSlider() {
         const minPriceInt = parseInt(this.props.minPrice) || 0;
         const maxPriceInt = parseInt(this.props.maxPrice) || 500;
+        return (
+            <Range
+                defaultValue={[0,500]}
+                max={500}
+                value={[minPriceInt, maxPriceInt]}
+                allowCross={false}
+                onChange={(value) => {
+                  this.props.minPriceChanged(value[0], false);
+                  this.props.maxPriceChanged(value[1], false);
+                }}
+                onAfterChange={(value) => {
+                  this.props.minPriceChanged(value[0], true);
+                  this.props.maxPriceChanged(value[1], true);
+                }}
+            />
+        );
+    }
+
+    render() {
         return (
                 <form className="search-form" role="search">
                     <div className="row d-flex align-items-end findwine_search-form">
@@ -177,23 +196,8 @@ class SearchControls extends React.Component {
                             </div>
                             {/*Slider - mobile layout slider appears above max and min price*/}
                             <div className="col-xs-12 hidden-md-up">
-                              {/*Slider*/}
-                                <Range
-                                  defaultValue={[0,500]}
-                                  max={500}
-                                  value={[minPriceInt, maxPriceInt]}
-                                  allowCross={false}
-                                  onChange={(value) => {
-                                    this.props.minPriceChanged(value[0], false);
-                                    this.props.maxPriceChanged(value[1], false);
-                                  }}
-                                  onAfterChange={(value) => {
-                                    this.props.minPriceChanged(value[0], true);
-                                    this.props.maxPriceChanged(value[1], true);
-                                  }}
-                                />
+                                {this.getSlider()}
                             </div>
-
                             <div className="col-xs-6 col-md-4 findwine_price-input">
                                <div className="form-group min_price">
                                    <input className="form-control" type="number" name="min_price"
@@ -211,21 +215,7 @@ class SearchControls extends React.Component {
                                </div>
                             </div>
                             <div className="col-md-12 hidden-sm-down">
-                               {/*Slider*/}
-                               <Range
-                                 defaultValue={[0,500]}
-                                 max={500}
-                                 value={[minPriceInt, maxPriceInt]}
-                                 allowCross={false}
-                                 onChange={(value) => {
-                                    this.props.minPriceChanged(value[0], false);
-                                    this.props.maxPriceChanged(value[1], false);
-                                 }}
-                                 onAfterChange={(value) => {
-                                    this.props.minPriceChanged(value[0], true);
-                                    this.props.maxPriceChanged(value[1], true);
-                                 }}
-                               />
+                               {this.getSlider()}
                             </div>
                         </div>
                         {this._getSortSelect()}
