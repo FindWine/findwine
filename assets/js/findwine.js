@@ -39,8 +39,8 @@ class CategorySelectMobile extends React.Component {
         {getCategoryChoices().map((category, index) => {
           const isSelected = category === this.props.selectedCategory;
           const classes = `btn btn-secondary findwine_button-category ${isSelected ? 'selected': ''}`;
-          const barClasses = `findwine_button-bar ${isSelected ? 'findwine_button-bar--selectedred': ''}`;
-          // selected{red/white/etc}
+          const selectedBarClass = `findwine_button-bar--selected${getCategoryId(category)}`;
+          const barClasses = `findwine_button-bar ${isSelected ? selectedBarClass : ''}`;
           const image = isSelected ? getSelectedImagePath(category) : getImagePath(category);
           return (
           <button key={index} type="button" className={classes} name={category}
@@ -121,16 +121,35 @@ class SearchControls extends React.Component {
                 <div className="col-lg-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button"
                             style={{marginBottom: '16px', marginTop: '16px'}}
-                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src="/static/wine/images/SVGs/arrow.svg" alt="search" className="hidden-md-up"></img>
+                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src={constructImagePath('/wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
                     </button>
                 </div>
             );
         }
     }
 
-    render() {
+    getSlider() {
         const minPriceInt = parseInt(this.props.minPrice) || 0;
         const maxPriceInt = parseInt(this.props.maxPrice) || 500;
+        return (
+            <Range
+                defaultValue={[0,500]}
+                max={500}
+                value={[minPriceInt, maxPriceInt]}
+                allowCross={false}
+                onChange={(value) => {
+                  this.props.minPriceChanged(value[0], false);
+                  this.props.maxPriceChanged(value[1], false);
+                }}
+                onAfterChange={(value) => {
+                  this.props.minPriceChanged(value[0], true);
+                  this.props.maxPriceChanged(value[1], true);
+                }}
+            />
+        );
+    }
+
+    render() {
         return (
                 <form className="search-form" role="search">
                     <div className="row d-flex align-items-end findwine_search-form">
@@ -138,15 +157,10 @@ class SearchControls extends React.Component {
                         <div className="col-md-3">
                             <div className="form-group category">
                                 <label htmlFor="id_category" className="findwine_heading-3">Select A Category</label>
-
-                                {/*Buttons for mobile, need to add function to change colour when clicked*/}
-
                                   <CategorySelectMobile
                                     selectedCategory={this.props.selectedCategory}
                                     categoryChanged={this.props.categoryChanged}
                                   />
-
-
                                 <div className="hidden-sm-down">
                                     <CategorySelect
                                         selectedCategory={this.props.selectedCategory}
@@ -177,23 +191,8 @@ class SearchControls extends React.Component {
                             </div>
                             {/*Slider - mobile layout slider appears above max and min price*/}
                             <div className="col-xs-12 hidden-md-up">
-                              {/*Slider*/}
-                                <Range
-                                  defaultValue={[0,500]}
-                                  max={500}
-                                  value={[minPriceInt, maxPriceInt]}
-                                  allowCross={false}
-                                  onChange={(value) => {
-                                    this.props.minPriceChanged(value[0], false);
-                                    this.props.maxPriceChanged(value[1], false);
-                                  }}
-                                  onAfterChange={(value) => {
-                                    this.props.minPriceChanged(value[0], true);
-                                    this.props.maxPriceChanged(value[1], true);
-                                  }}
-                                />
+                                {this.getSlider()}
                             </div>
-
                             <div className="col-xs-6 col-md-4 findwine_price-input">
                                <div className="form-group min_price">
                                    <input className="form-control" type="number" name="min_price"
@@ -211,21 +210,7 @@ class SearchControls extends React.Component {
                                </div>
                             </div>
                             <div className="col-md-12 hidden-sm-down">
-                               {/*Slider*/}
-                               <Range
-                                 defaultValue={[0,500]}
-                                 max={500}
-                                 value={[minPriceInt, maxPriceInt]}
-                                 allowCross={false}
-                                 onChange={(value) => {
-                                    this.props.minPriceChanged(value[0], false);
-                                    this.props.maxPriceChanged(value[1], false);
-                                 }}
-                                 onAfterChange={(value) => {
-                                    this.props.minPriceChanged(value[0], true);
-                                    this.props.maxPriceChanged(value[1], true);
-                                 }}
-                               />
+                               {this.getSlider()}
                             </div>
                         </div>
                         {this._getSortSelect()}
@@ -469,8 +454,17 @@ function getImagePath(category) {
     return getCategoryMap()[category]['image'];
 }
 
+function getCategoryId(category) {
+    return getCategoryMap()[category]['id'];
+}
+
 function getSelectedImagePath(category) {
     return getCategoryMap()[category]['selected_image'];
+}
+
+function constructImagePath(path) {
+  // assumes defined on the page.
+  return `${STATIC_BASE_PATH}/${path}`;
 }
 
 function getSortChoices() {

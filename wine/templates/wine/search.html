@@ -57,6 +57,7 @@
     <script>
         var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
         var CATEGORY_MAP = {{ category_mapping|safe }};
+        var STATIC_BASE_PATH = "{% static '' %}";
     </script>
     <script src="{% static 'js/findwine-bundle.js' %}"></script>
 {% endblock %}
