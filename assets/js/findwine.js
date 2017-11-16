@@ -121,7 +121,7 @@ class SearchControls extends React.Component {
                 <div className="col-lg-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button"
                             style={{marginBottom: '16px', marginTop: '16px'}}
-                            onClick={(event) => this.props.searchClicked(event)}> Search Wines <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
+                            onClick={(event) => this.props.searchClicked(event)}> SEARCH WINES <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
                     </button>
                 </div>
             );
@@ -195,7 +195,7 @@ class SearchControls extends React.Component {
                             </div>
                             <div className="col-xs-6 col-md-4 findwine_price-input">
                                <div className="form-group min_price">
-                                   <input className="form-control" type="number" name="min_price"
+                                   R <input className="form-control" type="number" name="min_price"
                                           value={this.props.minPrice} min="0" required id="id_min_price"
                                           onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                                    />
@@ -203,7 +203,7 @@ class SearchControls extends React.Component {
                             </div>
                             <div className="col-xs-6 col-md-4 findwine_price-input">
                                <div className="form-group max_price">
-                                  <input className="form-control" type="number" name="max_price"
+                                 R  <input className="form-control" type="number" name="max_price"
                                          value={this.props.maxPrice} min="0" required id="id_max_price"
                                          onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
                                   />

@@ -33,6 +33,11 @@
   .nav-link:hover {
     color: #00ad68 !important; }
 
+.form-control:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.15); }
+
+gi
 .rc-slider {
   width: 90% !important; }
 
@@ -175,7 +180,8 @@
     .findwine_button {
       width: auto; } }
   .findwine_button-outer {
-    display: block; }
+    display: flex;
+    justify-content: center; }
     @media (min-width: 678px) {
       .findwine_button-outer {
         display: flex;
@@ -184,10 +190,10 @@
     -webkit-tap-highlight-color: transparent;
     padding: 0px;
     color: #333e48;
-    font-size: 14px;
+    font-size: 13px;
     font-family: "Gotham", sans-serif;
     width: 60px;
-    height: 134px;
+    height: 85px;
     margin-right: 10px;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -202,16 +208,19 @@
     .findwine_button-category--selected {
       background-color: #ffffff; }
 .findwine_svg {
-  height: 50px;
+  margin-top: 12px;
   display: flex;
   align-items: flex-end;
-  justify-content: center; }
+  justify-content: center;
+  height: 35px; }
 .findwine_button-type {
-  margin: 11px 0px 11px 0px;
-  word-break: break-word;
-  height: 55px; }
+  margin: 9px 0px 6px 0px;
+  word-break: break-word; }
+  .findwine_button-type p {
+    margin-bottom: 0px !important; }
 .findwine_button-bar {
-  height: 4px; }
+  height: 4px;
+  border-radius: 2px; }
   .findwine_button-bar--selectedred {
     background-color: #b22626; }
   .findwine_button-bar--selectedwhite {
@@ -297,10 +306,6 @@
     height: 30px;
     width: 30px;
     margin-left: 10px; }
-.findwine .min_price .input {
-  width: 75px; }
-.findwine .max_price .input {
-  width: 75px; }
 .findwine_price-input {
   display: inline-block;
   width: 50%;
@@ -359,5 +364,20 @@
   display: inline-block; }
 .findwine_list-group {
   display: block; }
+
+.min_price {
+  display: inline-flex;
+  align-items: center; }
+  .min_price input {
+    width: 75px;
+    margin-left: 15px; }
+
+.max_price {
+  display: inline-flex;
+  align-items: center; }
+  .max_price input {
+    width: 75px;
+    margin-left: 15px;
+    outline: none !important; }
 
 /*# sourceMappingURL=findwine.css.map */

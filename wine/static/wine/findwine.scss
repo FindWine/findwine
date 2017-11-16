@@ -117,6 +117,11 @@ $primary-font: 'Gotham', sans-serif;
 
 }
 
+.form-control:focus {
+  outline: none;
+  border-color: rgba(0,0,0,.15);
+}
+
 // Slider styles
 .rc-slider {
   width: 90% !important;
@@ -316,7 +321,7 @@ $primary-font: 'Gotham', sans-serif;
 
   }
 
-  &_content-link {
+  &_content-link{
 
     color: $primary-green;
     font-family: $primary-font;
@@ -360,7 +365,8 @@ $primary-font: 'Gotham', sans-serif;
 
     &-outer {
 
-      display: block;
+      display: flex;
+      justify-content: center;
 
       @include breakpoint(md) {
         display: flex;
@@ -373,10 +379,10 @@ $primary-font: 'Gotham', sans-serif;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
       padding: 0px;
       color: $primary-text;
-      font-size: 14px;
+      font-size: 13px;
       font-family: $primary-font;
       width: 60px;
-      height: 134px;
+      height: 85px;
       margin-right: 10px;
       word-wrap: break-word;
       overflow-wrap: break-word;
@@ -402,24 +408,29 @@ $primary-font: 'Gotham', sans-serif;
 
   &_svg {
 
-    height: 50px;
+    margin-top: 12px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    height: 35px;
 
   }
 
   &_button-type {
 
-    margin: 11px 0px 11px 0px;
+    margin: 9px 0px 6px 0px;
     word-break: break-word;
-    height: 55px;
+
+    p {
+      margin-bottom: 0px !important;
+    }
 
   }
 
   &_button-bar {
 
     height: 4px;
+    border-radius: 2px;
 
     &--selected {
 
@@ -439,7 +450,7 @@ $primary-font: 'Gotham', sans-serif;
         background-color: $rose-wine;
       }
 
-      &port {
+      &dessert {
         background-color: $port-wine;
       }
 
@@ -581,18 +592,6 @@ $primary-font: 'Gotham', sans-serif;
     }
   }
 
-  .min_price {
-    .input {
-      width: 75px;
-    }
-  }
-
-  .max_price {
-    .input {
-      width: 75px;
-    }
-  }
-
   &_price-input {
     display: inline-block;
     width: 50%;
@@ -674,6 +673,31 @@ $primary-font: 'Gotham', sans-serif;
 
   &_list-group {
     display: block;
+  }
+
+}
+
+.min_price {
+
+  display: inline-flex;
+  align-items: center;
+
+  input {
+    width: 75px;
+    margin-left: 15px;
+  }
+
+}
+
+.max_price {
+
+  display: inline-flex;
+  align-items: center;
+
+  input {
+    width: 75px;
+    margin-left: 15px;
+    outline: none !important;
   }
 
 }
