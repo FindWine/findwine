@@ -147,12 +147,35 @@ $primary-font: 'Gotham', sans-serif;
   margin-top: -10px !important;
 }
 
-// Remove background from buttons
-
 .btn-secondary:hover{
   background-color: transparent;
   box-shadow: none;
   -webkit-box-shadow: none;
+}
+
+.min_price {
+
+  display: inline-flex;
+  align-items: center;
+
+  input {
+    width: 75px;
+    margin-left: 15px;
+  }
+
+}
+
+.max_price {
+
+  display: inline-flex;
+  align-items: center;
+
+  input {
+    width: 75px;
+    margin-left: 15px;
+    outline: none !important;
+  }
+
 }
 
 .findwine {
@@ -677,30 +700,6 @@ $primary-font: 'Gotham', sans-serif;
 
 }
 
-.min_price {
-
-  display: inline-flex;
-  align-items: center;
-
-  input {
-    width: 75px;
-    margin-left: 15px;
-  }
-
-}
-
-.max_price {
-
-  display: inline-flex;
-  align-items: center;
-
-  input {
-    width: 75px;
-    margin-left: 15px;
-    outline: none !important;
-  }
-
-}
 
 
 

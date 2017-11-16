@@ -37,7 +37,6 @@
   outline: none;
   border-color: rgba(0, 0, 0, 0.15); }
 
-gi
 .rc-slider {
   width: 90% !important; }
 
@@ -61,6 +60,21 @@ gi
   background-color: transparent;
   box-shadow: none;
   -webkit-box-shadow: none; }
+
+.min_price {
+  display: inline-flex;
+  align-items: center; }
+  .min_price input {
+    width: 75px;
+    margin-left: 15px; }
+
+.max_price {
+  display: inline-flex;
+  align-items: center; }
+  .max_price input {
+    width: 75px;
+    margin-left: 15px;
+    outline: none !important; }
 
 .findwine_nav--menu {
   margin-left: 0px; }
@@ -364,20 +378,5 @@ gi
   display: inline-block; }
 .findwine_list-group {
   display: block; }
-
-.min_price {
-  display: inline-flex;
-  align-items: center; }
-  .min_price input {
-    width: 75px;
-    margin-left: 15px; }
-
-.max_price {
-  display: inline-flex;
-  align-items: center; }
-  .max_price input {
-    width: 75px;
-    margin-left: 15px;
-    outline: none !important; }
 
 /*# sourceMappingURL=findwine.css.map */

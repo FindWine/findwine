@@ -156,7 +156,7 @@ class SearchControls extends React.Component {
 
                         <div className="col-md-3">
                             <div className="form-group category">
-                                <label htmlFor="id_category" className="findwine_heading-3">Select A Category</label>
+                                <label htmlFor="id_category" className="findwine_heading-3">Select wine</label>
                                   <CategorySelectMobile
                                     selectedCategory={this.props.selectedCategory}
                                     categoryChanged={this.props.categoryChanged}
