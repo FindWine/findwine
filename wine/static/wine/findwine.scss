@@ -30,7 +30,6 @@ $bronze: #b5664a;
 
 $primary-font: 'Gotham', sans-serif;
 
-
 // Mixins
 
 @mixin breakpoint($class) {
@@ -124,7 +123,7 @@ $primary-font: 'Gotham', sans-serif;
 
 .form-control:focus {
   outline: none;
-  border-color: rgba(0,0,0,.15);
+  border-color: rgba(0, 0, 0, .15);
 }
 
 a:focus, a:hover {
@@ -153,7 +152,7 @@ a:focus, a:hover {
   background: $primary-green !important;
 }
 
-.rc-slider-rail, .rc-slider-track{
+.rc-slider-rail, .rc-slider-track {
   height: 14px !important;
 }
 
@@ -165,7 +164,7 @@ a:focus, a:hover {
   margin-top: -10px !important;
 }
 
-.btn-secondary:hover{
+.btn-secondary:hover {
   background-color: transparent;
   box-shadow: none;
   -webkit-box-shadow: none;
@@ -362,7 +361,7 @@ a:focus, a:hover {
 
   }
 
-  &_content-link{
+  &_content-link {
 
     color: $primary-green;
     font-family: $primary-font;
@@ -395,7 +394,7 @@ a:focus, a:hover {
 
   &_button {
 
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     background-color: $primary-green;
 
     @include breakpoint(md) {
@@ -417,7 +416,7 @@ a:focus, a:hover {
 
     &-category {
 
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       padding: 0px;
       color: $primary-text;
       font-size: 13px;
@@ -865,6 +864,86 @@ a:focus, a:hover {
     margin-top: 5px;
 
   }
+
+  // Other vintages
+
+  &_vintage-rating--box {
+    background-color: $gold;
+    height: 22px;
+    width: 25px;
+    border-radius: 0px 3px 3px 0px;
+    display: block;
+    margin-top: 5px;
+    color: $white;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  &_vintage-rating {
+
+  }
+
+  &_vintage--image {
+    width: 50px;
+    height: 98px;
+    display: inline-block;
+  }
+
+  &_vintage-producer {
+    font-family: $primary-font;
+    font-size: 18px;
+    color: $primary-text;
+  }
+
+  &_vintage-details {
+    display: inline-table;
+  }
+
+  &_vintage-vintage {
+    font-family: $primary-font;
+    font-size: 14px;
+    color: $primary-text;
+  }
+
+  &_vintage-category {
+    font-family: $primary-font;
+    font-size: 12px;
+    color: $primary-text;
+    font-style: italic;
+    margin-top: 20px;
+  }
+
+  &_vintage-currency {
+    font-family: $primary-font;
+    font-size: 18px;
+    font-weight: 500;
+    color: $primary-text;
+    display: inline-block;
+    margin-right: 2px;
+  }
+
+  &_vintage-price {
+    font-family: $primary-font;
+    font-size: 30px;
+    font-weight: 500;
+    color: $primary-text;
+    display: inline-block;
+    margin-top: 60px;
+  }
+
+  &_vintage-table--display {
+    display: inline-table;
+    width: 75px;
+  }
+
+  // Search results
+
+  &_search-result--table {
+    padding: 17px 0px 0px 0px !important;
+  }
+
 }
 
 

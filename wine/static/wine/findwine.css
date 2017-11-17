@@ -497,5 +497,56 @@ a:focus, a:hover {
   text-align: center;
   outline: none;
   margin-top: 5px; }
+.findwine_vintage-rating--box {
+  background-color: #c9a564;
+  height: 22px;
+  width: 25px;
+  border-radius: 0px 3px 3px 0px;
+  display: block;
+  margin-top: 5px;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+  display: inline-block; }
+.findwine_vintage--image {
+  width: 50px;
+  height: 98px;
+  display: inline-block; }
+.findwine_vintage-producer {
+  font-family: "Gotham", sans-serif;
+  font-size: 18px;
+  color: #333e48; }
+.findwine_vintage-details {
+  display: inline-table; }
+.findwine_vintage-vintage {
+  font-family: "Gotham", sans-serif;
+  font-size: 14px;
+  color: #333e48; }
+.findwine_vintage-category {
+  font-family: "Gotham", sans-serif;
+  font-size: 12px;
+  color: #333e48;
+  font-style: italic;
+  margin-top: 20px; }
+.findwine_vintage-currency {
+  font-family: "Gotham", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333e48;
+  display: inline-block;
+  margin-right: 2px; }
+.findwine_vintage-price {
+  font-family: "Gotham", sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  color: #333e48;
+  display: inline-block;
+  margin-top: 60px; }
+.findwine_vintage-table--display {
+  display: inline-table;
+  width: 75px; }
+.findwine_search-result--table {
+  padding: 17px 0px 0px 0px !important; }
 
 /*# sourceMappingURL=findwine.css.map */

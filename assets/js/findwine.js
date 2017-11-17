@@ -225,24 +225,31 @@ class WineList extends React.Component {
     render() {
         if (this.props.wines.length > 0) {
             return (
-                <table className="table">
-                    <thead className="thead">
-                    <tr>
-                        <th>Name</th>
-                        <th>Rating /10</th>
-                        <th>Minimum Price</th>
-                    </tr>
-                    </thead>
+                <table className="table table-responsive table-sm">
                     <tbody>
                     {this.props.wines.map((winevintage, index) => {
                         return (
                             <tr key={index}>
-                                <td scope="row">
-                                    <a className="text-primary"
-                                       href={winevintage.details_url}>{winevintage.wine.producer}
-                                        - {winevintage.wine.name} {winevintage.year}</a></td>
-                                <td>{winevintage.avg_rating}</td>
-                                <td>R {winevintage.price}</td>
+                                <td className="findwine_search-result--table">
+                                  <div class="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
+                                  <div className="findwine_vintage--image">
+                                    {/*Image needs to be added, when I try I get an error re the URL, if I copy from the wine detail page*/}
+                                    image
+                                  </div>
+                                  <div className="findwine_vintage-details">
+                                    <a className="findwine_vintage-producer" href={winevintage.details_url}>
+                                      {winevintage.wine.producer}
+                                    </a>
+                                    <h4 className="findwine_vintage-vintage"> {winevintage.wine.name } { winevintage.year } </h4>
+                                    <p class="findwine_vintage-category">
+                                      { winevintage.category }
+                                    </p>
+                                  </div>
+                                </td>
+                                <td className="findwine_vintage-table--display">
+                                  <div class="findwine_vintage-currency"> R </div>
+                                  <div class="findwine_vintage-price"> {winevintage.price} </div>
+                                </td>
                             </tr>
                         );
                     })}
@@ -257,6 +264,10 @@ class WineList extends React.Component {
         }
     }
 }
+
+/**
+ *  <div class="findwine_merchant-currency"> R </div> <div class="findwine_merchant-price"> {{ merchantwine.price }} </div>
+ */
 
 class Paginator extends React.Component {
     render() {
