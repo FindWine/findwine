@@ -37,6 +37,16 @@
   outline: none;
   border-color: rgba(0, 0, 0, 0.15); }
 
+a:focus, a:hover {
+  color: #ffffff;
+  text-decoration: none; }
+
+.btn.focus, .btn:focus {
+  box-shadow: none; }
+
+.table-sm td, .table-sm th {
+  padding: 0.3rem 15px; }
+
 .rc-slider {
   width: 90% !important; }
 
@@ -328,34 +338,49 @@
     .findwine_price-input {
       width: 100%;
       margin-top: 0px; } }
+.findwine_detail-image {
+  height: 200px;
+  width: 68px;
+  margin: 0px 34px 28px 25px; }
 .findwine_producer-main {
   text-decoration: none;
   font-family: "Gotham", sans-serif;
   color: #333e48;
   font-size: 18px;
-  font-weight: bold; }
+  line-height: 18px;
+  font-weight: 500; }
 .findwine_producer-vintage {
   font-family: "Gotham", sans-serif;
   color: #333e48;
   font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 12px; }
+  line-height: 14px;
+  font-weight: 500;
+  margin-top: 12px;
+  margin-bottom: 17px; }
 .findwine_category {
   font-family: "Gotham", sans-serif;
   color: #333e48;
   font-size: 12px;
+  line-height: 1.42;
+  height: 17px;
   font-style: italic;
-  margin-bottom: 6px; }
+  margin-bottom: 8px; }
 .findwine_place {
   font-family: "Gotham", sans-serif;
   color: #333e48;
-  font-size: 12px; }
+  font-size: 12px;
+  line-height: 1.42;
+  height: 17px;
+  margin-bottom: 20px; }
+  .findwine_place img {
+    margin-right: 7px; }
 .findwine_rating {
   font-family: "Gotham", sans-serif;
   font-size: 14px;
   line-height: 28px;
   text-align: center;
-  color: #ffffff; }
+  color: #ffffff;
+  margin-bottom: 5px; }
 .findwine_rating-box {
   background-color: #c9a564;
   height: auto;
@@ -367,16 +392,110 @@
   list-style-type: none;
   font-family: "Gotham", sans-serif;
   font-size: 12px;
-  color: #c8ced2;
+  color: #86929a;
   display: inline-block; }
 .findwine_award-list-bullet {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background-color: #c9a564;
+  background-color: #333e48;
   margin-right: 5px;
   display: inline-block; }
 .findwine_list-group {
   display: block; }
+.findwine_detail-heading {
+  background-color: #f4f5f4;
+  border-top: 1px solid #dbe0e4;
+  border-bottom: 1px solid #dbe0e4;
+  padding: 0px 15px;
+  min-height: 20px; }
+.findwine_detail-header {
+  font-family: "Gotham", sans-serif;
+  color: #86929a;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  margin-top: 31px;
+  margin-bottom: 11px; }
+.findwine_detail-header--2 {
+  font-family: "Gotham", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.9px;
+  margin: 26px 0px 13px 15px;
+  color: #333e48; }
+.findwine_detail-content {
+  font-family: "Gotham", sans-serif;
+  font-size: 14px;
+  line-height: 1.57;
+  text-align: left;
+  color: #86929a;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 20px; }
+.findwine_detail-content-left {
+  font-family: "Gotham", sans-serif;
+  font-size: 14px;
+  line-height: 1.57;
+  text-align: left;
+  color: #86929a;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  width: 125px; }
+.findwine_detail-content-right {
+  font-family: "Gotham", sans-serif;
+  font-size: 14px;
+  line-height: 1.57;
+  text-align: left;
+  color: #86929a;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  width: 250px; }
+.findwine_detail-content-list {
+  padding: 0.3rem 0px; }
+.findwine_detail-list {
+  align-items: flex-start; }
+.findwine_merchant-holder {
+  width: 260px; }
+.findwine_merchant-name {
+  font-family: "Gotham", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333e48;
+  margin-bottom: 5px; }
+.findwine_merchant-unit {
+  font-family: "Gotham", sans-serif;
+  font-size: 12px;
+  color: #86929a;
+  margin-bottom: 22px; }
+.findwine_merchant-delivery {
+  font-family: #333e48;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.42;
+  color: #86929a; }
+.findwine_merchant-pricing {
+  width: 71px; }
+.findwine_merchant-currency {
+  display: inline-block;
+  font-family: "Gotham", sans-serif;
+  font-size: 16px;
+  font-weight: 500; }
+.findwine_merchant-price {
+  display: inline-block;
+  font-family: "Gotham", sans-serif;
+  font-size: 26px;
+  font-weight: 500; }
+.findwine_buy-button {
+  font-family: "Gotham", sans-serif;
+  color: #ffffff;
+  background-color: #00ad68;
+  width: 71px;
+  height: 38px;
+  text-align: center;
+  outline: none;
+  margin-top: 5px; }
 
 /*# sourceMappingURL=findwine.css.map */

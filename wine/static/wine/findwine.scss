@@ -8,6 +8,10 @@ $white: #ffffff;
 
 $light-grey: #c8ced2;
 $background-grey: #c8ced2;
+$lightest-grey: #f4f5f4;
+$lightest-grey-border: #dbe0e4;
+$light-grey-text: #86929a;
+$line-grey: #e9e9e9;
 
 // Wine colours
 
@@ -25,6 +29,7 @@ $bronze: #b5664a;
 // Fonts
 
 $primary-font: 'Gotham', sans-serif;
+
 
 // Mixins
 
@@ -120,6 +125,19 @@ $primary-font: 'Gotham', sans-serif;
 .form-control:focus {
   outline: none;
   border-color: rgba(0,0,0,.15);
+}
+
+a:focus, a:hover {
+  color: $white;
+  text-decoration: none;
+}
+
+.btn.focus, .btn:focus {
+  box-shadow: none;
+}
+
+.table-sm td, .table-sm th {
+  padding: 0.3rem 15px;
 }
 
 // Slider styles
@@ -629,34 +647,52 @@ $primary-font: 'Gotham', sans-serif;
 
   // Wine detail page styling
 
+  &_detail-image {
+    height: 200px;
+    width: 68px;
+    margin: 0px 34px 28px 25px;
+  }
+
   &_producer-main {
     text-decoration: none;
     font-family: $primary-font;
     color: $primary-text;
     font-size: 18px;
-    font-weight: bold;
+    line-height: 18px;
+    font-weight: 500;
   }
 
   &_producer-vintage {
     font-family: $primary-font;
     color: $primary-text;
     font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 12px;
+    line-height: 14px;
+    font-weight: 500;
+    margin-top: 12px;
+    margin-bottom: 17px;
   }
 
   &_category {
     font-family: $primary-font;
     color: $primary-text;
     font-size: 12px;
+    line-height: 1.42;
+    height: 17px;
     font-style: italic;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   &_place {
     font-family: $primary-font;
     color: $primary-text;
     font-size: 12px;
+    line-height: 1.42;
+    height: 17px;
+    margin-bottom: 20px;
+
+    img {
+      margin-right: 7px;
+    }
   }
 
   &_rating {
@@ -666,6 +702,7 @@ $primary-font: 'Gotham', sans-serif;
     //font-weight: bold;
     text-align: center;
     color: $white;
+    margin-bottom: 5px;
   }
 
   &_rating-box {
@@ -681,15 +718,15 @@ $primary-font: 'Gotham', sans-serif;
     list-style-type: none;
     font-family: $primary-font;
     font-size: 12px;
-    color: $light-grey;
+    color: $light-grey-text;
     display: inline-block;
   }
 
   &_award-list-bullet {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background-color: $gold;
+    background-color: $primary-text;
     margin-right: 5px;
     display: inline-block;
   }
@@ -698,6 +735,136 @@ $primary-font: 'Gotham', sans-serif;
     display: block;
   }
 
+  &_detail-heading {
+
+    background-color: $lightest-grey;
+    border-top: 1px solid $lightest-grey-border;
+    border-bottom: 1px solid $lightest-grey-border;
+    padding: 0px 15px;
+    min-height: 20px;
+
+  }
+
+  &_detail-header {
+
+    font-family: $primary-font;
+    color: $light-grey-text;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+    margin-top: 31px;
+    margin-bottom: 11px;
+
+  }
+
+  &_detail-header--2 {
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.9px;
+    margin: 26px 0px 13px 15px;
+    color: $primary-text;
+  }
+
+  &_detail-content {
+    font-family: $primary-font;
+    font-size: 14px;
+    line-height: 1.57;
+    text-align: left;
+    color: $light-grey-text;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+  }
+
+  &_detail-content-left {
+    font-family: $primary-font;
+    font-size: 14px;
+    line-height: 1.57;
+    text-align: left;
+    color: $light-grey-text;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    width: 125px;
+  }
+
+  &_detail-content-right {
+    font-family: $primary-font;
+    font-size: 14px;
+    line-height: 1.57;
+    text-align: left;
+    color: $light-grey-text;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    width: 250px;
+  }
+
+  &_detail-content-list {
+    padding: 0.3rem 0px;
+  }
+
+  &_detail-list {
+    align-items: flex-start;
+  }
+
+  &_merchant-holder {
+    width: 260px;
+  }
+
+  &_merchant-name {
+    font-family: $primary-font;
+    font-size: 16px;
+    font-weight: 500;
+    color: $primary-text;
+    margin-bottom: 5px;
+  }
+
+  &_merchant-unit {
+    font-family: $primary-font;
+    font-size: 12px;
+    color: $light-grey-text;
+    margin-bottom: 22px;
+  }
+
+  &_merchant-delivery {
+    font-family: $primary-text;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.42;
+    color: $light-grey-text;
+  }
+
+  &_merchant-pricing {
+    width: 71px;
+  }
+
+  &_merchant-currency {
+    display: inline-block;
+    font-family: $primary-font;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &_merchant-price {
+    display: inline-block;
+    font-family: $primary-font;
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  &_buy-button {
+    font-family: $primary-font;
+    color: $white;
+    background-color: $primary-green;
+    width: 71px;
+    height: 38px;
+    text-align: center;
+    outline: none;
+    margin-top: 5px;
+
+  }
 }
 
 
