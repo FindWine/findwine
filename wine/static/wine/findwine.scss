@@ -905,6 +905,11 @@ a:focus, a:hover {
     width: 50px;
     height: 98px;
     display: inline-block;
+    text-align: center;
+  }
+
+  &_vintage--image-img {
+    max-height: 98px;
   }
 
   &_vintage-producer {
@@ -915,6 +920,7 @@ a:focus, a:hover {
 
   &_vintage-details {
     display: inline-table;
+    width: 195px;
   }
 
   &_vintage-vintage {
@@ -929,6 +935,7 @@ a:focus, a:hover {
     color: $primary-text;
     font-style: italic;
     margin-top: 20px;
+    margin-bottom: 0px;
   }
 
   &_vintage-currency {
@@ -956,8 +963,15 @@ a:focus, a:hover {
 
   // Search results
 
+  &_search-results {
+    display: flex;
+    align-items: flex-start;
+  }
+
   &_search-result--table {
     padding: 17px 0px 0px 0px !important;
+    display: flex;
+    align-items: flex-start;
   }
 
 }

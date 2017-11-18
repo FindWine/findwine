@@ -281,7 +281,7 @@ a:focus, a:hover {
   text-align: left;
   color: #333e48;
   margin-bottom: 0px;
-  padding-top: px; }
+  padding-top: 0px; }
 .findwine_newsletter-paragraph {
   font-family: "Gotham", sans-serif;
   font-size: 14px;
@@ -524,13 +524,17 @@ a:focus, a:hover {
 .findwine_vintage--image {
   width: 50px;
   height: 98px;
-  display: inline-block; }
+  display: inline-block;
+  text-align: center; }
+.findwine_vintage--image-img {
+  max-height: 98px; }
 .findwine_vintage-producer {
   font-family: "Gotham", sans-serif;
   font-size: 18px;
   color: #333e48; }
 .findwine_vintage-details {
-  display: inline-table; }
+  display: inline-table;
+  width: 195px; }
 .findwine_vintage-vintage {
   font-family: "Gotham", sans-serif;
   font-size: 14px;
@@ -540,7 +544,8 @@ a:focus, a:hover {
   font-size: 12px;
   color: #333e48;
   font-style: italic;
-  margin-top: 20px; }
+  margin-top: 20px;
+  margin-bottom: 0px; }
 .findwine_vintage-currency {
   font-family: "Gotham", sans-serif;
   font-size: 18px;
@@ -558,7 +563,12 @@ a:focus, a:hover {
 .findwine_vintage-table--display {
   display: inline-table;
   width: 75px; }
+.findwine_search-results {
+  display: flex;
+  align-items: flex-start; }
 .findwine_search-result--table {
-  padding: 17px 0px 0px 0px !important; }
+  padding: 17px 0px 0px 0px !important;
+  display: flex;
+  align-items: flex-start; }
 
 /*# sourceMappingURL=findwine.css.map */

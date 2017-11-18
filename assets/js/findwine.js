@@ -229,11 +229,11 @@ class WineList extends React.Component {
                     <tbody>
                     {this.props.wines.map((winevintage, index) => {
                         return (
-                            <tr key={index}>
+                            <tr key={index} className="findwine_search-results">
                                 <td className="findwine_search-result--table">
                                   <div class="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
                                   <div className="findwine_vintage--image">
-                                    <img src={ winevintage.image_url } alt="..." className="img-fluid rounded float-left findwine_detail-image"/>
+                                    <img src={ winevintage.image_url } alt="..." className="img-fluid rounded findwine_vintage--image-img"/>
                                   </div>
                                   <div className="findwine_vintage-details">
                                     <a className="findwine_vintage-producer" href={winevintage.details_url}>
