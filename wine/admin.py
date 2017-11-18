@@ -26,7 +26,6 @@ from .models import FoodPairing
 from .models import WineFoodPairing
 
 admin.site.register(Appellation)
-admin.site.register(Producer)
 admin.site.register(Category)
 admin.site.register(SubCategory)
 admin.site.register(Blend)
@@ -45,6 +44,12 @@ admin.site.register(Grape)
 admin.site.register(FoodPairing)
 admin.site.register(WineFoodPairing)
 admin.site.register(WineGrape)
+
+
+class ProducerAdmin(admin.ModelAdmin):
+
+    def view_on_site(self, obj):
+        return reverse('wine:producer_detail_by_slug', kwargs={'slug': obj.slug})
 
 
 class WineGrapeInline(admin.TabularInline):
@@ -92,4 +97,5 @@ admin.site.register(WineVintage, WineVintageAdmin)
 class WineAdmin(admin.ModelAdmin):
     list_display = ('producer', 'name')
 
+admin.site.register(Producer, ProducerAdmin)
 admin.site.register(Wine, WineAdmin)
