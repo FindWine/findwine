@@ -31,7 +31,7 @@
     <!-- ** Note to Cory ** -->
     <!-- Design caters to have the country included -->
 
-    <p class="findwine_place"><img src="{% static 'wine/images/SVGs/pinpoint.svg' %}"> {{winevintage.appellation.name}}, South Africa</p>
+    <p class="findwine_place"><img src="{% static 'wine/images/SVGs/pinpoint.svg' %}"> {{winevintage.appellation.name}}, {{ winevintage.appellation.get_country_display }}</p>
     {% endif %}
     <!-- Rating -->
 
