@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-from django.conf import settings
 
 from django.db.models import Func
 from django.shortcuts import render
@@ -10,15 +9,6 @@ from django.views import generic
 from django.views.decorators.http import require_GET
 
 from .models import WineVintage, Producer, Category
-
-
-class IndexView(generic.ListView):
-    template_name = 'wine/index.html'
-    context_object_name = 'winevintage_list'
-
-    def get_queryset(self):
-        """Return the first 500 wine vintages ordered by name."""
-        return WineVintage.objects.all()[:500]
 
 
 @require_GET
@@ -84,7 +74,7 @@ class ProducerDetailView(generic.DetailView):
         context = super(ProducerDetailView, self).get_context_data(**kwargs)
         # social/meta stuff
         context['page_title'] = self.object.name
-        context['page_description'] = 'Find the best wines from {}'.format(self.object.name)
+        context['page_description'] = 'Find great wine from {}'.format(self.object.name)
         if self.object.logo:
             context['page_image'] = self.object.logo.url
         return context
