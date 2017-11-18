@@ -259,10 +259,10 @@ a:focus, a:hover {
   width: 58px;
   height: 58px;
   float: left;
-  margin: 10px 15px 0px 0px; }
+  margin-right: 15px; }
   @media (min-width: 1024px) {
     .findwine_newsletter-svg {
-      margin: 5px 20px 0px 0px; } }
+      margin-right: 20px; } }
 .findwine_subscribe {
   padding-top: 30px; }
   @media (min-width: 1024px) {
@@ -281,7 +281,7 @@ a:focus, a:hover {
   text-align: left;
   color: #333e48;
   margin-bottom: 0px;
-  padding-top: 15px; }
+  padding-top: px; }
 .findwine_newsletter-paragraph {
   font-family: "Gotham", sans-serif;
   font-size: 14px;
@@ -293,15 +293,27 @@ a:focus, a:hover {
   margin-right: 0px !important;
   border: 1px solid #86929a;
   border-radius: 4px 0px 0px 4px;
-  width: auto;
-  opacity: 0.5; }
+  opacity: 0.5;
+  display: inline-block;
+  width: auto; }
+  @media (max-width: 575px) {
+    .findwine_newsletter-subscribe {
+      width: 166px; } }
 .findwine_newsletter-button {
   background-color: #00ad68;
   border: 1px solid #00ad68;
   border-radius: 0px 4px 4px 1px;
   color: #ffffff;
   padding-left: 12px;
-  padding-right: 12px; }
+  padding-right: 12px;
+  margin-left: -6px !important; }
+  @media (max-width: 575px) {
+    .findwine_newsletter-button {
+      margin-top: 7px !important; } }
+.findwine_mailchimp-holder {
+  width: 100%;
+  display: flex;
+  justify-content: center; }
 .findwine_footer {
   background-color: #333e48;
   height: auto; }
