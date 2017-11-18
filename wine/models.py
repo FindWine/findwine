@@ -208,6 +208,18 @@ class WineVintage(models.Model):
             avg_rating=Avg('award__tier__normalised_rating'))
 
     @property
+    def rating_category(self):
+        """Aggregate normalised rating from the wine awards."""
+        rating = self.rating
+        if rating and rating['avg_rating']:
+            if rating['avg_rating'] >= 9:
+                return 'gold'
+            elif rating['avg_rating'] >= 8:
+                return 'sliver'
+            else:
+                return 'bronze'
+
+    @property
     def other_vintages(self):
         return WineVintage.objects.filter(wine=self.wine).exclude(id=self.id).all()
 
