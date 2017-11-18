@@ -208,6 +208,18 @@ class WineVintage(models.Model):
             avg_rating=Avg('award__tier__normalised_rating'))
 
     @property
+    def rating_category(self):
+        """Aggregate normalised rating from the wine awards."""
+        rating = self.rating
+        if rating and rating['avg_rating']:
+            if rating['avg_rating'] >= 9:
+                return 'gold'
+            elif rating['avg_rating'] >= 8:
+                return 'sliver'
+            else:
+                return 'bronze'
+
+    @property
     def other_vintages(self):
         return WineVintage.objects.filter(wine=self.wine).exclude(id=self.id).all()
 
@@ -370,6 +382,10 @@ class MerchantWine(models.Model):
                                      max_length=5
     )
     minimum_purchase_unit = models.PositiveIntegerField()
+
+    @property
+    def rounded_price(self):
+        return int(self.price) if self.price is not None else ''
 
     def __str__(self):
         return str(self.wine_vintage) + ' - ' + str(self.merchant)

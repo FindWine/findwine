@@ -233,8 +233,7 @@ class WineList extends React.Component {
                                 <td className="findwine_search-result--table">
                                   <div class="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
                                   <div className="findwine_vintage--image">
-                                    {/*Image needs to be added, when I try I get an error re the URL, if I copy from the wine detail page*/}
-                                    image
+                                    <img src={ winevintage.image_url } alt="..." className="img-fluid rounded float-left findwine_detail-image"/>
                                   </div>
                                   <div className="findwine_vintage-details">
                                     <a className="findwine_vintage-producer" href={winevintage.details_url}>

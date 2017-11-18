@@ -28,18 +28,14 @@
       {{ winevintage.sub_category.name }} </p>
     {% if winevintage.appellation %}
 
-    <!-- ** Note to Cory ** -->
-    <!-- Design caters to have the country included -->
-
-    <p class="findwine_place"><img src="{% static 'wine/images/SVGs/pinpoint.svg' %}"> {{winevintage.appellation.name}}, South Africa</p>
+    <p class="findwine_place"><img src="{% static 'wine/images/SVGs/pinpoint.svg' %}"> {{winevintage.appellation.name}}, {{ winevintage.appellation.get_country_display }}</p>
     {% endif %}
     <!-- Rating -->
-
     <!-- ** Note to Cory ** -->
     <!-- Need to set background colour dynamically according to rating -->
     <!-- 9-10 Gold  8-9 Silver  < 8 Bronze-->
 
-    <div class="findwine_rating-box">
+    <div class="findwine_rating-box {{ winevintage.rating_category }}">
       <p class="findwine_rating">{{ winevintage.rating.avg_rating|floatformat:1 }}</p>
     </div>
     <!-- Awards -->
@@ -58,9 +54,6 @@
 
 <!-- Purchase options -->
 
-<!-- ** Note to Cory ** -->
-<!-- Design does not cater for cents, can we remove this from the db? -->
-
 <div class="row">
   <div class="col-12 col-md-auto">
     <div class="findwine_detail-heading">
@@ -76,7 +69,7 @@
           <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
         </div>
         <div class="findwine_merchant-pricing">
-          <div class="findwine_merchant-currency"> R </div> <div class="findwine_merchant-price"> {{ merchantwine.price }} </div>
+          <div class="findwine_merchant-currency"> R </div> <div class="findwine_merchant-price"> {{ merchantwine.rounded_price }} </div>
           <a class="btn findwine_buy-button" href={{ merchantwine.url }} target="_blank" role="button"> Buy</a>
         </div>
       </li>
