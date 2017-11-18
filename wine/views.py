@@ -84,7 +84,7 @@ class ProducerDetailView(generic.DetailView):
         context = super(ProducerDetailView, self).get_context_data(**kwargs)
         # social/meta stuff
         context['page_title'] = self.object.name
-        context['page_description'] = 'Find the best wines from {}'.format(self.object.name)
+        context['page_description'] = 'Find great wine from {}'.format(self.object.name)
         if self.object.logo:
             context['page_image'] = self.object.logo.url
         return context

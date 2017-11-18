@@ -78,7 +78,7 @@ class Wine(models.Model):
     wine_range = models.CharField(null=True, blank=True, max_length=256)
 
     def __str__(self):
-        return self.producer.name + ' - ' + self.name
+        return self.producer.name + ' ' + self.name
 
     class Meta:
         ordering = ['producer', 'name']
