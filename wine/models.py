@@ -371,6 +371,10 @@ class MerchantWine(models.Model):
     )
     minimum_purchase_unit = models.PositiveIntegerField()
 
+    @property
+    def rounded_price(self):
+        return int(self.price) if self.price is not None else ''
+
     def __str__(self):
         return str(self.wine_vintage) + ' - ' + str(self.merchant)
 
