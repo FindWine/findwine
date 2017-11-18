@@ -358,6 +358,7 @@ class MerchantWine(models.Model):
     ('750', "Bottle 750ml"),
     ('187', "Split 187ml"),
     ('375', "Half-Bottle 375ml"),
+    ('500', "Bottle 500ml"),
     ('1500', "Magnum 1.5 litres"),
     ('3000', "Jeroboam or Double Magnum 3 litres"),
     ('4500', "Rehoboam 4.5 litres"),
