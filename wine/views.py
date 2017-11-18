@@ -12,15 +12,6 @@ from django.views.decorators.http import require_GET
 from .models import WineVintage, Producer, Category
 
 
-class IndexView(generic.ListView):
-    template_name = 'wine/index.html'
-    context_object_name = 'winevintage_list'
-
-    def get_queryset(self):
-        """Return the first 500 wine vintages ordered by name."""
-        return WineVintage.objects.all()[:500]
-
-
 @require_GET
 def search(request):
     category_list = list(Category.objects.values_list('name', flat=True))
