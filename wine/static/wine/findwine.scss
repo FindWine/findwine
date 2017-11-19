@@ -927,6 +927,7 @@ a:focus, a:hover {
     font-style: italic;
     line-height: 1.42;
     color: $light-grey-text;
+    padding-right: 5px;
   }
 
   &_merchant-pricing {
@@ -1044,6 +1045,10 @@ a:focus, a:hover {
   &_search-results {
     display: flex;
     align-items: flex-start;
+
+    &:last-child {
+      border-bottom: 1px solid $lightest-grey-border;
+    }
   }
 
   &_search-result--table {
@@ -1051,6 +1056,56 @@ a:focus, a:hover {
     display: flex;
     align-items: flex-start;
   }
+
+  &_search-page--container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+    margin-bottom: 17px;
+  }
+
+  &_search-page--inner {
+    display: inherit;
+  }
+
+  &_search-button--container {
+
+  }
+
+  &_search-page {
+    font-family: $primary-font;
+    font-size: 12px;
+    font-weight: bold;
+    color: $light-grey-text;
+    margin-right: 14px;
+  }
+
+  &_search-winesTotal {
+    font-family: $primary-font;
+    font-size: 12px;
+    color: $light-grey-text;
+  }
+
+  &_search-next--button {
+    width: 62.8px;
+    height: 42px;
+    border-radius: 0px 2px 2px 0px;
+    background-color: $primary-green;
+
+    &-left {
+      border-radius: 2px 0px 0px 2px;
+    }
+
+    &-inactive {
+      width: 62.8px;
+      height: 42px;
+      border-radius: 2px;
+      background-color: $lightest-grey;
+      border: 1px solid $lightest-grey-border;
+    }
+  }
+
 
 }
 

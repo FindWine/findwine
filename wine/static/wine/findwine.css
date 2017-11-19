@@ -540,7 +540,8 @@ a:focus, a:hover {
   font-size: 12px;
   font-style: italic;
   line-height: 1.42;
-  color: #86929a; }
+  color: #86929a;
+  padding-right: 5px; }
 .findwine_merchant-pricing {
   width: 71px; }
 .findwine_merchant-currency {
@@ -619,9 +620,42 @@ a:focus, a:hover {
 .findwine_search-results {
   display: flex;
   align-items: flex-start; }
+  .findwine_search-results:last-child {
+    border-bottom: 1px solid #dbe0e4; }
 .findwine_search-result--table {
   padding: 17px 0px 0px 0px !important;
   display: flex;
   align-items: flex-start; }
+.findwine_search-page--container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
+  margin-bottom: 17px; }
+.findwine_search-page--inner {
+  display: inherit; }
+.findwine_search-page {
+  font-family: "Gotham", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #86929a;
+  margin-right: 14px; }
+.findwine_search-winesTotal {
+  font-family: "Gotham", sans-serif;
+  font-size: 12px;
+  color: #86929a; }
+.findwine_search-next--button {
+  width: 62.8px;
+  height: 42px;
+  border-radius: 0px 2px 2px 0px;
+  background-color: #00ad68; }
+  .findwine_search-next--button-left {
+    border-radius: 2px 0px 0px 2px; }
+  .findwine_search-next--button-inactive {
+    width: 62.8px;
+    height: 42px;
+    border-radius: 2px;
+    background-color: #f4f5f4;
+    border: 1px solid #dbe0e4; }
 
 /*# sourceMappingURL=findwine.css.map */

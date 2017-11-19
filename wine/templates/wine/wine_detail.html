@@ -19,7 +19,7 @@
   <!--image-->
   <div class="col-4 col-md-auto">
     {% if winevintage.image_pack_shot %}
-    <img src="{{ winevintage.image_pack_shot.url }}" alt="..."
+    <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
          class="img-fluid rounded float-left findwine_detail-image">
     {% endif %}
   </div>
@@ -27,6 +27,7 @@
   <!-- Wine detail -->
   <div class="col-8 col-md-auto">
     <!-- Wine name & vintage year-->
+    <!-- This needs to link to the producer's page -->
     <a href="#" class="findwine_producer-main"> {{ winevintage.wine.producer }} <img src="{% static 'wine/images/SVGs/arrow-right-grey.svg' %}" class="findwine_detail-right-arrow"> </a>
     <h4 class="findwine_producer-vintage"> {{ winevintage.wine.name }} {{ winevintage.year }} </h4>
 
@@ -257,7 +258,7 @@
         </div>
         {% if other_vintage.image_pack_shot %}
         <div class="findwine_vintage--image">
-          <img src="{{ other_vintage.image_pack_shot.url }}" alt="..."
+          <img src="{{ other_vintage.image_pack_shot.url }}" alt="{{ other_vintage.wine.name }}"
                class="img-fluid rounded findwine_vintage--image-img"/>
         </div>
         {% endif %}
