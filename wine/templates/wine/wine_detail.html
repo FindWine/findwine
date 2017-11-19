@@ -4,7 +4,7 @@
 {% block content %}
 <!-- This is the navigation bar at the top of the page-->
 <nav class="findwine_detail-nav">
-  <!-- Needs to navigate back to home? -->
+  <!-- Needs to navigate back to search results -->
     <a href="#" class="findwine_detail-back">
       <img src="{% static 'wine/images/SVGs/back-arrow.svg' %}" class="findwine_detail--menu-button">
     </a>
@@ -102,20 +102,25 @@
   <h5 class="findwine_detail-header">WINE INFO</h5>
 </div>
 
-<div class="row">
+<div class="row findwine_detail-rowHeight" id="info">
   <div class="col-12 col-md-auto">
     <h5 class="findwine_detail-header--2">Description</h5>
-    <p class="findwine_detail-content">{{ winevintage.description }}</p>
+    <p class="findwine_detail-content" id="infoContent">{{ winevintage.description }}</p>
     <!-- Include Read more button -->
   </div>
+</div>
+<div class="findwine_detail-expand">
+  <button class="btn findwine_detail-expand-button" type="button" id="infoButton" onclick="expandInfo()">
+    More
+  </button>
 </div>
 <div class="findwine_detail-heading"></div>
 
 <!-- Wine details -->
-<div class="row" style="padding-bottom:15px">
+<div class="row findwine_detail-rowHeight" id="detail">
   <div class="col-12 col-md-auto">
     <h5 class="findwine_detail-header--2">Details</h5>
-    <p class="findwine_detail-content"> Read more about the making of this wine and its technical specifications.</p>
+    <p class="findwine_detail-content" id="detailContent"> Read more about the making of this wine and its technical specifications.</p>
     <table class="table table-responsive table-sm">
       <tbody>
       <tr>
@@ -188,12 +193,18 @@
     {% endif %}
   </div>
 </div>
+<div class="findwine_detail-expand">
+  <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
+    More
+  </button>
+</div>
 <div class="findwine_detail-heading"></div>
+
 <!-- Serving suggestions -->
-<div class="row">
+<div class="row findwine_detail-rowHeight" id="serve">
   <div class="col-12 col-md-auto">
     <h5 class="findwine_detail-header--2">Serving suggestion</h5>
-    <p class="findwine_detail-content"> What food to pair the wine with, the temperature to serve it at and the best
+    <p class="findwine_detail-content" id="serveContent"> What food to pair the wine with, the temperature to serve it at and the best
       year to
       drink it. </p>
     <table class="table table-responsive table-sm">
@@ -223,8 +234,12 @@
       </tr>
       </tbody>
     </table>
-    <br>
   </div>
+</div>
+<div class="findwine_detail-expand">
+  <button class="btn findwine_detail-expand-button" type="button" id="serveButton" onclick="expandServe()">
+    More
+  </button>
 </div>
 
 <!-- Other vintages -->
@@ -267,5 +282,77 @@
 </table>
 {% endfor %}
 {% endif %}
+
+<script>
+
+  function expandInfo() {
+    let info = document.getElementById('info');
+    let infoButton = document.getElementById('infoButton');
+
+      if (info.style.height !== "auto") {
+        info.style.height="auto";
+        infoButton.innerHTML = "Less"
+      } else {
+        info.style.height="113px";
+        infoButton.innerHTML = "More"
+      }
+
+    let infoContent = document.getElementById('infoContent');
+
+    if (infoContent.style.height !== "auto") {
+      infoContent.style.height="auto";
+    } else {
+      infoContent.style.height="43px";
+    }
+
+  }
+
+  function expandDetail() {
+
+    let detail = document.getElementById('detail');
+    let detailButton = document.getElementById('detailButton');
+
+    if (detail.style.height !== "auto") {
+      detail.style.height="auto";
+      detailButton.innerHTML = "Less"
+    } else {
+      detail.style.height="113px";
+      detailButton.innerHTML = "More"
+    }
+
+    let detailContent = document.getElementById('detailContent');
+
+    if (detailContent.style.height !== "auto") {
+      detailContent.style.height="auto";
+    } else {
+      detailContent.style.height="43px";
+    }
+
+  }
+
+  function expandServe() {
+
+    let serve = document.getElementById('serve');
+    let serveButton = document.getElementById('serveButton');
+
+    if (serve.style.height !== "auto") {
+      serve.style.height="auto";
+      serveButton.innerHTML = "Less"
+    } else {
+      serve.style.height="113px";
+      serveButton.innerHTML = "More"
+    }
+
+    let serveContent = document.getElementById('serveContent');
+
+    if (serveContent.style.height !== "auto") {
+      serveContent.style.height="auto";
+    } else {
+      serveContent.style.height="43px";
+    }
+
+  }
+
+</script>
 
 {% endblock %}
