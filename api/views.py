@@ -32,7 +32,7 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
             price__lte=max_price,
             #5 Restrict MerchantWines to the selected category
             wine_vintage__category__name__exact=category,
-        )
+        ).select_related('wine_vintage', 'wine_vintage__sub_category')
 
         # 6 Restrict MerchantWines to the selected sub_category or leave if no sub_category is selected
         if sub_category:
