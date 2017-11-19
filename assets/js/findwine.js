@@ -231,7 +231,7 @@ class WineList extends React.Component {
                         return (
                             <tr key={index} className="findwine_search-results">
                                 <td className="findwine_search-result--table">
-                                  <div class="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
+                                  <div className="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
                                   <div className="findwine_vintage--image">
                                     <img src={ winevintage.image_url } alt="..." className="img-fluid rounded findwine_vintage--image-img"/>
                                   </div>
@@ -240,14 +240,14 @@ class WineList extends React.Component {
                                       {winevintage.wine.producer}
                                     </a>
                                     <h4 className="findwine_vintage-vintage"> {winevintage.wine.name } { winevintage.year } </h4>
-                                    <p class="findwine_vintage-category">
-                                      { winevintage.category }
+                                    <p className="findwine_vintage-category">
+                                      { winevintage.sub_category }
                                     </p>
                                   </div>
                                 </td>
                                 <td className="findwine_vintage-table--display">
-                                  <div class="findwine_vintage-currency"> R </div>
-                                  <div class="findwine_vintage-price"> {winevintage.price} </div>
+                                  <div className="findwine_vintage-currency"> R </div>
+                                  <div className="findwine_vintage-price"> {winevintage.price} </div>
                                 </td>
                             </tr>
                         );
