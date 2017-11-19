@@ -415,6 +415,28 @@ a:focus, a:hover {
   display: inline-block; }
 .findwine_list-group {
   display: block; }
+.findwine_detail-nav {
+  position: relative !important;
+  height: 56px;
+  border-bottom: 1px solid #dbe0e4;
+  display: flex;
+  align-items: center;
+  padding: 6px 16px; }
+.findwine_detail--menu-button {
+  width: 25px;
+  height: 13px; }
+.findwine_detail-back {
+  display: flex; }
+.findwine_detail-nav--heading {
+  font-family: "Gotham", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  text-align: center;
+  display: inline-block;
+  width: 100%; }
+.findwine_detail-padding {
+  padding-top: 30px; }
 .findwine_detail-heading {
   background-color: #f4f5f4;
   border-top: 1px solid #dbe0e4;

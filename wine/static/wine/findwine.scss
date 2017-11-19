@@ -750,6 +750,40 @@ a:focus, a:hover {
     display: block;
   }
 
+  &_detail-nav {
+    position: relative !important;
+    height: 56px;
+    border-bottom: 1px solid $lightest-grey-border;
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+
+  }
+
+  &_detail--menu-button {
+    width: 25px;
+    height: 13px;
+
+  }
+
+  &_detail-back {
+    display: flex;
+  }
+
+  &_detail-nav--heading {
+    font-family: $primary-font;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+  }
+
+  &_detail-padding {
+    padding-top: 30px;
+  }
+
   &_detail-heading {
 
     background-color: $lightest-grey;
