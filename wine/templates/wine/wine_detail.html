@@ -27,7 +27,7 @@
   <!-- Wine detail -->
   <div class="col-8 col-md-auto">
     <!-- Wine name & vintage year-->
-    <a href="#" class="findwine_producer-main"> {{ winevintage.wine.producer }} </a>
+    <a href="#" class="findwine_producer-main"> {{ winevintage.wine.producer }} <img src="{% static 'wine/images/SVGs/arrow-right-grey.svg' %}" class="findwine_detail-right-arrow"> </a>
     <h4 class="findwine_producer-vintage"> {{ winevintage.wine.name }} {{ winevintage.year }} </h4>
 
     <!-- Wine category & origin -->
@@ -111,7 +111,7 @@
 </div>
 <div class="findwine_detail-expand">
   <button class="btn findwine_detail-expand-button" type="button" id="infoButton" onclick="expandInfo()">
-    More
+    More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
   </button>
 </div>
 <div class="findwine_detail-heading"></div>
@@ -195,7 +195,7 @@
 </div>
 <div class="findwine_detail-expand">
   <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
-    More
+    More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
   </button>
 </div>
 <div class="findwine_detail-heading"></div>
@@ -238,7 +238,7 @@
 </div>
 <div class="findwine_detail-expand">
   <button class="btn findwine_detail-expand-button" type="button" id="serveButton" onclick="expandServe()">
-    More
+    More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
   </button>
 </div>
 
@@ -280,6 +280,7 @@
     </tr>
   </tbody>
 </table>
+<div class="findwine_detail-heading"></div>
 {% endfor %}
 {% endif %}
 
@@ -291,10 +292,10 @@
 
       if (info.style.height !== "auto") {
         info.style.height="auto";
-        infoButton.innerHTML = "Less"
+        infoButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
       } else {
         info.style.height="113px";
-        infoButton.innerHTML = "More"
+        infoButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
       }
 
     let infoContent = document.getElementById('infoContent');
@@ -314,10 +315,10 @@
 
     if (detail.style.height !== "auto") {
       detail.style.height="auto";
-      detailButton.innerHTML = "Less"
+      detailButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
     } else {
       detail.style.height="113px";
-      detailButton.innerHTML = "More"
+      detailButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
 
     let detailContent = document.getElementById('detailContent');
@@ -337,10 +338,10 @@
 
     if (serve.style.height !== "auto") {
       serve.style.height="auto";
-      serveButton.innerHTML = "Less"
+      serveButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
     } else {
       serve.style.height="113px";
-      serveButton.innerHTML = "More"
+      serveButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
 
     let serveContent = document.getElementById('serveContent');

@@ -784,6 +784,11 @@ a:focus, a:hover {
     padding-top: 30px;
   }
 
+  &_detail-right-arrow {
+    height: 8px;
+    width: 10px;
+  }
+
   &_detail-rowHeight {
     height: 113px;
     overflow: hidden;
@@ -806,6 +811,20 @@ a:focus, a:hover {
     letter-spacing: 0.7px;
     background: none;
   }
+
+  &_detail-more-arrow {
+    height: 7px;
+    width: 12px;
+    margin-top: -2px;
+  }
+
+  &_detail-less-arrow {
+    height: 7px;
+    width: 12px;
+    margin-top: -2px;
+    transform: rotate(180deg);
+  }
+
 
   &_detail-heading {
 
@@ -834,7 +853,7 @@ a:focus, a:hover {
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.9px;
-    margin: 26px 0px 13px 15px;
+    margin: 26px 15px 13px 15px;
     color: $primary-text;
   }
 

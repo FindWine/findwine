@@ -437,6 +437,9 @@ a:focus, a:hover {
   width: 100%; }
 .findwine_detail-padding {
   padding-top: 30px; }
+.findwine_detail-right-arrow {
+  height: 8px;
+  width: 10px; }
 .findwine_detail-rowHeight {
   height: 113px;
   overflow: hidden; }
@@ -454,6 +457,15 @@ a:focus, a:hover {
   font-weight: 500;
   letter-spacing: 0.7px;
   background: none; }
+.findwine_detail-more-arrow {
+  height: 7px;
+  width: 12px;
+  margin-top: -2px; }
+.findwine_detail-less-arrow {
+  height: 7px;
+  width: 12px;
+  margin-top: -2px;
+  transform: rotate(180deg); }
 .findwine_detail-heading {
   background-color: #f4f5f4;
   border-top: 1px solid #dbe0e4;
@@ -473,7 +485,7 @@ a:focus, a:hover {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.9px;
-  margin: 26px 0px 13px 15px;
+  margin: 26px 15px 13px 15px;
   color: #333e48; }
 .findwine_detail-content {
   font-family: "Gotham", sans-serif;

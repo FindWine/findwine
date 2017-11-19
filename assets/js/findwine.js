@@ -221,6 +221,8 @@ class SearchControls extends React.Component {
     }
 }
 
+// This should be the Search results page that opens a new window when you click on search
+
 class WineList extends React.Component {
     render() {
         if (this.props.wines.length > 0) {
@@ -233,7 +235,7 @@ class WineList extends React.Component {
                                 <td className="findwine_search-result--table">
                                   <div className="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
                                   <div className="findwine_vintage--image">
-                                    <img src={ winevintage.image_url } alt="..." className="img-fluid rounded findwine_vintage--image-img"/>
+                                    <img src={ winevintage.image_url } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
                                   </div>
                                   <div className="findwine_vintage-details">
                                     <a className="findwine_vintage-producer" href={winevintage.details_url}>
