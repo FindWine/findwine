@@ -18,6 +18,7 @@ class WineVintageSerializer(serializers.ModelSerializer):
     wine = WineSerializer(read_only=True)
     preferred_merchant_url = serializers.CharField(source='preferred_merchant.url', read_only=True)
     image_url = serializers.SerializerMethodField()
+    sub_category = serializers.CharField(source='sub_category.name')
 
     class Meta:
         model = WineVintage
