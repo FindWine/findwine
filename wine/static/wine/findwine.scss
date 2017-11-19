@@ -734,7 +734,6 @@ a:focus, a:hover {
     font-family: $primary-font;
     font-size: 12px;
     color: $light-grey-text;
-    display: inline-block;
   }
 
   &_award-list-bullet {
@@ -744,11 +743,88 @@ a:focus, a:hover {
     background-color: $primary-text;
     margin-right: 5px;
     display: inline-block;
+    margin-bottom: 2px;
   }
 
   &_list-group {
     display: block;
   }
+
+  &_detail-nav {
+    position: relative !important;
+    height: 56px;
+    border-bottom: 1px solid $lightest-grey-border;
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+
+  }
+
+  &_detail--menu-button {
+    width: 25px;
+    height: 13px;
+
+  }
+
+  &_detail-back {
+    display: flex;
+  }
+
+  &_detail-nav--heading {
+    font-family: $primary-font;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+  }
+
+  &_detail-padding {
+    padding-top: 30px;
+  }
+
+  &_detail-right-arrow {
+    height: 8px;
+    width: 10px;
+  }
+
+  &_detail-rowHeight {
+    height: 113px;
+    overflow: hidden;
+  }
+
+  &_detail-expand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 47px;
+    border-top: 1px solid $lightest-grey-border;
+    padding: 6px 16px;
+  }
+
+  &_detail-expand-button {
+    color: $primary-green;
+    font-family: $primary-font;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+    background: none;
+  }
+
+  &_detail-more-arrow {
+    height: 7px;
+    width: 12px;
+    margin-top: -2px;
+  }
+
+  &_detail-less-arrow {
+    height: 7px;
+    width: 12px;
+    margin-top: -2px;
+    transform: rotate(180deg);
+  }
+
 
   &_detail-heading {
 
@@ -777,7 +853,7 @@ a:focus, a:hover {
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.9px;
-    margin: 26px 0px 13px 15px;
+    margin: 26px 15px 13px 15px;
     color: $primary-text;
   }
 
@@ -790,6 +866,8 @@ a:focus, a:hover {
     margin-left: 15px;
     margin-right: 15px;
     margin-bottom: 20px;
+    height: 43px;
+    overflow: hidden;
   }
 
   &_detail-content-left {
@@ -840,7 +918,7 @@ a:focus, a:hover {
     font-family: $primary-font;
     font-size: 12px;
     color: $light-grey-text;
-    margin-bottom: 22px;
+    margin-bottom: 15px;
   }
 
   &_merchant-delivery {
@@ -849,6 +927,7 @@ a:focus, a:hover {
     font-style: italic;
     line-height: 1.42;
     color: $light-grey-text;
+    padding-right: 5px;
   }
 
   &_merchant-pricing {
@@ -905,6 +984,11 @@ a:focus, a:hover {
     width: 50px;
     height: 98px;
     display: inline-block;
+    text-align: center;
+  }
+
+  &_vintage--image-img {
+    max-height: 98px;
   }
 
   &_vintage-producer {
@@ -915,6 +999,7 @@ a:focus, a:hover {
 
   &_vintage-details {
     display: inline-table;
+    width: 195px;
   }
 
   &_vintage-vintage {
@@ -929,6 +1014,7 @@ a:focus, a:hover {
     color: $primary-text;
     font-style: italic;
     margin-top: 20px;
+    margin-bottom: 0px;
   }
 
   &_vintage-currency {
@@ -956,9 +1042,70 @@ a:focus, a:hover {
 
   // Search results
 
+  &_search-results {
+    display: flex;
+    align-items: flex-start;
+
+    &:last-child {
+      border-bottom: 1px solid $lightest-grey-border;
+    }
+  }
+
   &_search-result--table {
     padding: 17px 0px 0px 0px !important;
+    display: flex;
+    align-items: flex-start;
   }
+
+  &_search-page--container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+    margin-bottom: 17px;
+  }
+
+  &_search-page--inner {
+    display: inherit;
+  }
+
+  &_search-button--container {
+
+  }
+
+  &_search-page {
+    font-family: $primary-font;
+    font-size: 12px;
+    font-weight: bold;
+    color: $light-grey-text;
+    margin-right: 14px;
+  }
+
+  &_search-winesTotal {
+    font-family: $primary-font;
+    font-size: 12px;
+    color: $light-grey-text;
+  }
+
+  &_search-next--button {
+    width: 62.8px;
+    height: 42px;
+    border-radius: 0px 2px 2px 0px;
+    background-color: $primary-green;
+
+    &-left {
+      border-radius: 2px 0px 0px 2px;
+    }
+
+    &-inactive {
+      width: 62.8px;
+      height: 42px;
+      border-radius: 2px;
+      background-color: $lightest-grey;
+      border: 1px solid $lightest-grey-border;
+    }
+  }
+
 
 }
 

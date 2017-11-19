@@ -2,13 +2,24 @@
 {% load static %}
 
 {% block content %}
+<!-- This is the navigation bar at the top of the page-->
+<nav class="findwine_detail-nav">
+  <!-- Needs to navigate back to search results -->
+    <a href="#" class="findwine_detail-back">
+      <img src="{% static 'wine/images/SVGs/back-arrow.svg' %}" class="findwine_detail--menu-button">
+    </a>
+    <div class="findwine_detail-nav--heading">
+      Wine Details
+    </div>
+</nav>
+
 <!--Insert all of the page specific content here-->
-<div class="row">
+<div class="row findwine_detail-padding">
 
   <!--image-->
   <div class="col-4 col-md-auto">
     {% if winevintage.image_pack_shot %}
-    <img src="{{ winevintage.image_pack_shot.url }}" alt="..."
+    <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
          class="img-fluid rounded float-left findwine_detail-image">
     {% endif %}
   </div>
@@ -16,7 +27,8 @@
   <!-- Wine detail -->
   <div class="col-8 col-md-auto">
     <!-- Wine name & vintage year-->
-    <a href="#" class="findwine_producer-main"> {{ winevintage.wine.producer }} </a>
+    <!-- This needs to link to the producer's page -->
+    <a href="#" class="findwine_producer-main"> {{ winevintage.wine.producer }} <img src="{% static 'wine/images/SVGs/arrow-right-grey.svg' %}" class="findwine_detail-right-arrow"> </a>
     <h4 class="findwine_producer-vintage"> {{ winevintage.wine.name }} {{ winevintage.year }} </h4>
 
     <!-- Wine category & origin -->
@@ -28,7 +40,8 @@
       {{ winevintage.sub_category.name }} </p>
     {% if winevintage.appellation %}
 
-    <p class="findwine_place"><img src="{% static 'wine/images/SVGs/pinpoint.svg' %}"> {{winevintage.appellation.name}}, {{ winevintage.appellation.get_country_display }}</p>
+    <p class="findwine_place"><img src="{% static 'wine/images/SVGs/pinpoint.svg' %}"> {{winevintage.appellation.name}},
+      {{ winevintage.appellation.get_country_display }}</p>
     {% endif %}
     <!-- Rating -->
     <!-- ** Note to Cory ** -->
@@ -42,8 +55,10 @@
     {% if winevintage.wineaward_set.all %}
     <ul class="list-group list-group-flush findwine_list-group">
       {% for wineaward in winevintage.wineaward_set.all %}
-      <div class="findwine_award-list-bullet"></div>
-      <li class="findwine_award-list">{{ wineaward.award }}</li>
+      <li class="findwine_award-list">
+        <div class="findwine_award-list-bullet"></div>
+        {{ wineaward.award }}
+      </li>
       {% endfor %}
       {% else %}
       <p>No awards captured.</p>
@@ -69,16 +84,17 @@
           <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
         </div>
         <div class="findwine_merchant-pricing">
-          <div class="findwine_merchant-currency"> R </div> <div class="findwine_merchant-price"> {{ merchantwine.rounded_price }} </div>
+          <div class="findwine_merchant-currency"> R</div>
+          <div class="findwine_merchant-price"> {{ merchantwine.rounded_price }}</div>
           <a class="btn findwine_buy-button" href={{ merchantwine.url }} target="_blank" role="button"> Buy</a>
         </div>
       </li>
-  {% endfor %}
-  {% else %}
-  <p>No merchant availability.</p>
-  {% endif %}
-  </ul>
-</div>
+      {% endfor %}
+      {% else %}
+      <p>No merchant availability.</p>
+      {% endif %}
+    </ul>
+  </div>
 </div>
 
 <!-- Wine info -->
@@ -87,20 +103,25 @@
   <h5 class="findwine_detail-header">WINE INFO</h5>
 </div>
 
-<div class="row">
+<div class="row findwine_detail-rowHeight" id="info">
   <div class="col-12 col-md-auto">
     <h5 class="findwine_detail-header--2">Description</h5>
-    <p class="findwine_detail-content">{{ winevintage.description }}</p>
+    <p class="findwine_detail-content" id="infoContent">{{ winevintage.description }}</p>
     <!-- Include Read more button -->
   </div>
+</div>
+<div class="findwine_detail-expand">
+  <button class="btn findwine_detail-expand-button" type="button" id="infoButton" onclick="expandInfo()">
+    More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+  </button>
 </div>
 <div class="findwine_detail-heading"></div>
 
 <!-- Wine details -->
-<div class="row" style="padding-bottom:15px">
+<div class="row findwine_detail-rowHeight" id="detail">
   <div class="col-12 col-md-auto">
     <h5 class="findwine_detail-header--2">Details</h5>
-    <p class="findwine_detail-content"> Read more about the making of this wine and its technical specifications.</p>
+    <p class="findwine_detail-content" id="detailContent"> Read more about the making of this wine and its technical specifications.</p>
     <table class="table table-responsive table-sm">
       <tbody>
       <tr>
@@ -173,12 +194,19 @@
     {% endif %}
   </div>
 </div>
+<div class="findwine_detail-expand">
+  <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
+    More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+  </button>
+</div>
 <div class="findwine_detail-heading"></div>
+
 <!-- Serving suggestions -->
-<div class="row">
+<div class="row findwine_detail-rowHeight" id="serve">
   <div class="col-12 col-md-auto">
     <h5 class="findwine_detail-header--2">Serving suggestion</h5>
-    <p class="findwine_detail-content"> What food to pair the wine with, the temperature to serve it at and the best year to
+    <p class="findwine_detail-content" id="serveContent"> What food to pair the wine with, the temperature to serve it at and the best
+      year to
       drink it. </p>
     <table class="table table-responsive table-sm">
       <tbody>
@@ -192,13 +220,14 @@
             {% endfor %}
           </ul>
           {% else %}
-          <p style="margin-left:20px">No food pairings available.</p>
+          <p>No food pairings available.</p>
           {% endif %}
         </td>
       </tr>
       <tr>
         <td class="findwine_detail-content-left">Optimal drinking:</td>
-        <td class="findwine_detail-content-right">{{ winevintage.optimal_year_start }} - {{ winevintage.optimal_year_end }}</td>
+        <td class="findwine_detail-content-right">{{ winevintage.optimal_year_start }} - {{ winevintage.optimal_year_end }}
+        </td>
       </tr>
       <tr>
         <td class="findwine_detail-content-left">Serve between:</td>
@@ -206,8 +235,12 @@
       </tr>
       </tbody>
     </table>
-    <br>
   </div>
+</div>
+<div class="findwine_detail-expand">
+  <button class="btn findwine_detail-expand-button" type="button" id="serveButton" onclick="expandServe()">
+    More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+  </button>
 </div>
 
 <!-- Other vintages -->
@@ -215,28 +248,113 @@
 <div class="findwine_detail-heading">
   <h5 class="findwine_detail-header">OTHER VINTAGES</h5>
 </div>
+
 {% for other_vintage in winevintage.other_vintages %}
-<div class="row py-3">
-  <div class="col-md-2">
-    {{ other_vintage.rating.avg_rating|default:"?" }}
-  </div>
-  <div class="col-md-2">
-    {% if other_vintage.image_pack_shot %}
-    <img src="{{ other_vintage.image_pack_shot.url }}" alt="..." class="img-fluid rounded float-left"
-         style="max-height: 100px">
-    {% endif %}
-  </div>
-  <div class="col-md-4">
-    {{ other_vintage.wine.producer.name }} {{ other_vintage.wine.name }} {{ other_vintage.year }}<br/>
-    {{ other_vintage.sub_category }}
-  </div>
-  <div class="col-md-4">
-    {% if other_vintage.preferred_merchant %}
-    {{ other_vintage.preferred_merchant.price }}<br/>
-    {% endif %}
-  </div>
-</div>
+<table className="table table-responsive table-sm">
+  <tbody>
+    <tr class="findwine_search-results">
+      <td class="findwine_search-result--table">
+        <div class="findwine_vintage-rating--box findwine_vintage-rating"> {{ other_vintage.rating.avg_rating|default:"?"}}
+        </div>
+        {% if other_vintage.image_pack_shot %}
+        <div class="findwine_vintage--image">
+          <img src="{{ other_vintage.image_pack_shot.url }}" alt="{{ other_vintage.wine.name }}"
+               class="img-fluid rounded findwine_vintage--image-img"/>
+        </div>
+        {% endif %}
+        <div class="findwine_vintage-details">
+          <a class="findwine_vintage-producer" href={winevintage.details_url}>
+            {{ other_vintage.wine.producer.name }}
+          </a>
+          <h4 class="findwine_vintage-vintage"> {{ other_vintage.wine.name }} {{ other_vintage.year }} </h4>
+          <p class="findwine_vintage-category">
+            {{ other_vintage.sub_category }}
+          </p>
+        </div>
+      </td>
+      {% if other_vintage.preferred_merchant %}
+      <td class="findwine_vintage-table--display">
+        <div class="findwine_vintage-currency"> R</div>
+        <div class="findwine_vintage-price"> {{ other_vintage.preferred_merchant.price }}</div>
+      </td>
+      {% endif %}
+    </tr>
+  </tbody>
+</table>
+<div class="findwine_detail-heading"></div>
 {% endfor %}
 {% endif %}
+
+<script>
+
+  function expandInfo() {
+    let info = document.getElementById('info');
+    let infoButton = document.getElementById('infoButton');
+
+      if (info.style.height !== "auto") {
+        info.style.height="auto";
+        infoButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+      } else {
+        info.style.height="113px";
+        infoButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+      }
+
+    let infoContent = document.getElementById('infoContent');
+
+    if (infoContent.style.height !== "auto") {
+      infoContent.style.height="auto";
+    } else {
+      infoContent.style.height="43px";
+    }
+
+  }
+
+  function expandDetail() {
+
+    let detail = document.getElementById('detail');
+    let detailButton = document.getElementById('detailButton');
+
+    if (detail.style.height !== "auto") {
+      detail.style.height="auto";
+      detailButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+    } else {
+      detail.style.height="113px";
+      detailButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+    }
+
+    let detailContent = document.getElementById('detailContent');
+
+    if (detailContent.style.height !== "auto") {
+      detailContent.style.height="auto";
+    } else {
+      detailContent.style.height="43px";
+    }
+
+  }
+
+  function expandServe() {
+
+    let serve = document.getElementById('serve');
+    let serveButton = document.getElementById('serveButton');
+
+    if (serve.style.height !== "auto") {
+      serve.style.height="auto";
+      serveButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+    } else {
+      serve.style.height="113px";
+      serveButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+    }
+
+    let serveContent = document.getElementById('serveContent');
+
+    if (serveContent.style.height !== "auto") {
+      serveContent.style.height="auto";
+    } else {
+      serveContent.style.height="43px";
+    }
+
+  }
+
+</script>
 
 {% endblock %}

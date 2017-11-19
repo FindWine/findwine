@@ -28,9 +28,6 @@ class CategorySelect extends React.Component {
     }
 }
 
-// When the button is clicked on mobile (category selected) the SVG should change to the colour one (ie bubbly-c.svg)
-// and the findwine-button_bar should get a background-color. The colours are set in the SCSS file (under Wine colours).
-
 class CategorySelectMobile extends React.Component {
 
   render() {
@@ -181,8 +178,6 @@ class SearchControls extends React.Component {
                             </div>
                         </div>
 
-                        {/*Price Range*/}
-
                         <div className="col-xs-12 col-md-6">
                             <div className="col-xs-12 col-md-3" style={{padding: '0px', display:'inline-block'}}>
                                 <div className="form-group sub_category">
@@ -221,33 +216,36 @@ class SearchControls extends React.Component {
     }
 }
 
+// This should be the Search results page that opens a new window when you click on search. Once this is created I will drop in the custom nav, filter bar and info bar. If I try to include it after return ( the page breaks.
+
 class WineList extends React.Component {
     render() {
         if (this.props.wines.length > 0) {
             return (
+
                 <table className="table table-responsive table-sm">
                     <tbody>
                     {this.props.wines.map((winevintage, index) => {
                         return (
-                            <tr key={index}>
+                            <tr key={index} className="findwine_search-results">
                                 <td className="findwine_search-result--table">
-                                  <div class="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
+                                  <div className="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
                                   <div className="findwine_vintage--image">
-                                    <img src={ winevintage.image_url } alt="..." className="img-fluid rounded float-left findwine_detail-image"/>
+                                    <img src={ winevintage.image_url } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
                                   </div>
                                   <div className="findwine_vintage-details">
                                     <a className="findwine_vintage-producer" href={winevintage.details_url}>
                                       {winevintage.wine.producer}
                                     </a>
                                     <h4 className="findwine_vintage-vintage"> {winevintage.wine.name } { winevintage.year } </h4>
-                                    <p class="findwine_vintage-category">
-                                      { winevintage.category }
+                                    <p className="findwine_vintage-category">
+                                      { winevintage.sub_category }
                                     </p>
                                   </div>
                                 </td>
                                 <td className="findwine_vintage-table--display">
-                                  <div class="findwine_vintage-currency"> R </div>
-                                  <div class="findwine_vintage-price"> {winevintage.price} </div>
+                                  <div className="findwine_vintage-currency"> R </div>
+                                  <div className="findwine_vintage-price"> {winevintage.price} </div>
                                 </td>
                             </tr>
                         );
@@ -272,13 +270,23 @@ class Paginator extends React.Component {
     render() {
         // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
         let nextButton = this.props.showNext ?
-            <a className="next-nav" onClick={(event) => this.props.nextPage()}>Next</a> : '';
+            <a className="btn findwine_search-next--button" onClick={(event) => this.props.nextPage()}><img src={constructImagePath('wine/images/SVGs/arrow-right.svg')} alt="Next"></img></a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}><img src={constructImagePath('wine/images/SVGs/arrow-right-greyLight.svg')} alt="Next"></img></a>;
         let prevButton = this.props.showPrevious ?
-            <a className="prev-nav" onClick={(event) => this.props.prevPage()}>Previous</a> : '';
-        return (
-            <div>
+            <a className="btn findwine_search-next--button findwine_search-next--button-left" onClick={(event) => this.props.prevPage()}><img src={constructImagePath('wine/images/SVGs/arrow-left.svg')} alt="Previous"></img></a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}><img src={constructImagePath('wine/images/SVGs/arrow-left-grey.svg')} alt="Next"></img></a>;
+
+            return (
+
+            // ** Cory, I don't know how to get the page number to display dynamically. Same with the 1-10 of TOTAL wines.
+
+            <div className="findwine_search-page--container">
+              <div className="findwine_search-page--inner">
+                <div className="findwine_search-page"> Page 1 </div>
+                <div className="findwine_search-winesTotal"> 1-6 of 300 wines </div>
+              </div>
+              <div className="findwine_search-button--container">
                 {prevButton}
                 {nextButton}
+              </div>
             </div>
         )
     }
