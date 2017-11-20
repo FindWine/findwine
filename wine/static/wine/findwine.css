@@ -25,7 +25,7 @@
     opacity: 1; }
 
 .nav-link {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   color: #ffffff !important;
   font-size: 14px;
   padding-right: 40px !important;
@@ -148,7 +148,7 @@ a:focus, a:hover {
     .findwine_banner-main {
       height: 580px; } }
 .findwine_banner-text {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 24px;
   font-weight: 500;
   text-align: left;
@@ -162,21 +162,21 @@ a:focus, a:hover {
     padding: 20px 40px;
     background-color: white; } }
 .findwine_heading-2 {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 20px;
   font-weight: 500;
   text-align: left;
   color: #333e48;
   padding-bottom: 14px; }
 .findwine_heading-3 {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 13px;
   font-weight: 500;
   text-align: left;
   color: #333e48;
   display: block; }
 .findwine_content-paragraph {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 14px;
   font-weight: 500;
   text-align: left;
@@ -184,7 +184,7 @@ a:focus, a:hover {
   padding-bottom: 14px; }
 .findwine_content-link {
   color: #00ad68;
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 13px;
   font-weight: 500;
   text-align: left;
@@ -215,7 +215,7 @@ a:focus, a:hover {
     padding: 0px;
     color: #333e48;
     font-size: 13px;
-    font-family: "Gotham", sans-serif;
+    font-family: "Gotham A", "Gotham B";
     width: 60px;
     height: 85px;
     margin-right: 10px;
@@ -275,7 +275,7 @@ a:focus, a:hover {
     display: flex;
     justify-content: center; }
 .findwine_newsletter-heading {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 16px;
   font-weight: 500;
   text-align: left;
@@ -283,7 +283,7 @@ a:focus, a:hover {
   margin-bottom: 0px;
   padding-top: 0px; }
 .findwine_newsletter-paragraph {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 14px;
   font-weight: 500;
   text-align: left;
@@ -322,7 +322,7 @@ a:focus, a:hover {
     margin-right: 20px; }
   .findwine_footer--text {
     color: #ffffff;
-    font-family: "Gotham", sans-serif;
+    font-family: "Gotham A", "Gotham B";
     font-size: 12px;
     font-weight: 500;
     line-height: 30px; }
@@ -356,13 +356,13 @@ a:focus, a:hover {
   margin: 0px 34px 28px 25px; }
 .findwine_producer-main {
   text-decoration: none;
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   color: #333e48;
   font-size: 18px;
   line-height: 18px;
   font-weight: 500; }
 .findwine_producer-vintage {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   color: #333e48;
   font-size: 14px;
   line-height: 14px;
@@ -370,7 +370,7 @@ a:focus, a:hover {
   margin-top: 12px;
   margin-bottom: 17px; }
 .findwine_category {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   color: #333e48;
   font-size: 12px;
   line-height: 1.42;
@@ -378,7 +378,7 @@ a:focus, a:hover {
   font-style: italic;
   margin-bottom: 8px; }
 .findwine_place {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   color: #333e48;
   font-size: 12px;
   line-height: 1.42;
@@ -387,7 +387,7 @@ a:focus, a:hover {
   .findwine_place img {
     margin-right: 7px; }
 .findwine_rating {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 14px;
   line-height: 28px;
   text-align: center;
@@ -402,7 +402,7 @@ a:focus, a:hover {
   margin-top: 25px; }
 .findwine_award-list {
   list-style-type: none;
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 12px;
   color: #86929a; }
 .findwine_award-list-bullet {
@@ -428,7 +428,7 @@ a:focus, a:hover {
 .findwine_detail-back {
   display: flex; }
 .findwine_detail-nav--heading {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.4px;
@@ -452,7 +452,7 @@ a:focus, a:hover {
   padding: 6px 16px; }
 .findwine_detail-expand-button {
   color: #00ad68;
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.7px;
@@ -473,7 +473,7 @@ a:focus, a:hover {
   padding: 0px 15px;
   min-height: 20px; }
 .findwine_detail-header {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   color: #86929a;
   font-size: 12px;
   font-weight: 500;
@@ -481,14 +481,14 @@ a:focus, a:hover {
   margin-top: 31px;
   margin-bottom: 11px; }
 .findwine_detail-header--2 {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.9px;
   margin: 26px 15px 13px 15px;
   color: #333e48; }
 .findwine_detail-content {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 14px;
   line-height: 1.57;
   text-align: left;
@@ -499,7 +499,7 @@ a:focus, a:hover {
   height: 43px;
   overflow: hidden; }
 .findwine_detail-content-left {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 14px;
   line-height: 1.57;
   text-align: left;
@@ -509,7 +509,7 @@ a:focus, a:hover {
   margin-bottom: 20px;
   width: 125px; }
 .findwine_detail-content-right {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 14px;
   line-height: 1.57;
   text-align: left;
@@ -525,13 +525,13 @@ a:focus, a:hover {
 .findwine_merchant-holder {
   width: 260px; }
 .findwine_merchant-name {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 16px;
   font-weight: 500;
   color: #333e48;
   margin-bottom: 5px; }
 .findwine_merchant-unit {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 12px;
   color: #86929a;
   margin-bottom: 15px; }
@@ -546,16 +546,16 @@ a:focus, a:hover {
   width: 71px; }
 .findwine_merchant-currency {
   display: inline-block;
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 16px;
   font-weight: 500; }
 .findwine_merchant-price {
   display: inline-block;
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 26px;
   font-weight: 500; }
 .findwine_buy-button {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   color: #ffffff;
   background-color: #00ad68;
   width: 71px;
@@ -583,32 +583,32 @@ a:focus, a:hover {
 .findwine_vintage--image-img {
   max-height: 98px; }
 .findwine_vintage-producer {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 18px;
   color: #333e48; }
 .findwine_vintage-details {
   display: inline-table;
   width: 195px; }
 .findwine_vintage-vintage {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 14px;
   color: #333e48; }
 .findwine_vintage-category {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 12px;
   color: #333e48;
   font-style: italic;
   margin-top: 20px;
   margin-bottom: 0px; }
 .findwine_vintage-currency {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 18px;
   font-weight: 500;
   color: #333e48;
   display: inline-block;
   margin-right: 2px; }
 .findwine_vintage-price {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 30px;
   font-weight: 500;
   color: #333e48;
@@ -635,13 +635,13 @@ a:focus, a:hover {
 .findwine_search-page--inner {
   display: inherit; }
 .findwine_search-page {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 12px;
   font-weight: bold;
   color: #86929a;
   margin-right: 14px; }
 .findwine_search-winesTotal {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham A", "Gotham B";
   font-size: 12px;
   color: #86929a; }
 .findwine_search-next--button {
