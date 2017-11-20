@@ -281,7 +281,7 @@ class Paginator extends React.Component {
             <div className="findwine_search-page--container">
               <div className="findwine_search-page--inner">
                 <div className="findwine_search-page"> Page 1 </div>
-                <div className="findwine_search-winesTotal"> 1-6 of 300 wines </div>
+                <div className="findwine_search-winesTotal"> 1-6 of {this.props.resultCount} wines </div>
               </div>
               <div className="findwine_search-button--container">
                 {prevButton}
@@ -303,7 +303,9 @@ class SearchPage extends React.Component {
             minPrice: 0,
             maxPrice: 500,
             selectedSort: getSortChoices()[0][1],
+            // results / pagination
             wines: [],
+            resultCount: 0,
             nextPageUrl: null,
             prevPageUrl: null,
             firstSearchMade: false,
@@ -416,6 +418,7 @@ class SearchPage extends React.Component {
                     wines: responseJson.results,
                     nextPageUrl: responseJson.next,
                     prevPageUrl: responseJson.previous,
+                    resultCount: responseJson.count,
                 });
             });
         }
@@ -426,6 +429,7 @@ class SearchPage extends React.Component {
         let paginator = this.state.firstSearchMade ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
             prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
+            resultCount={this.state.resultCount}
         /> : '';
         return (
             <div className="container">
