@@ -275,9 +275,6 @@ class Paginator extends React.Component {
             <a className="btn findwine_search-next--button findwine_search-next--button-left" onClick={(event) => this.props.prevPage()}><img src={constructImagePath('wine/images/SVGs/arrow-left.svg')} alt="Previous"></img></a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}><img src={constructImagePath('wine/images/SVGs/arrow-left-grey.svg')} alt="Next"></img></a>;
 
             return (
-
-            // ** Cory, I don't know how to get the page number to display dynamically. Same with the 1-10 of TOTAL wines.
-
             <div className="findwine_search-page--container">
               <div className="findwine_search-page--inner">
                 <div className="findwine_search-page"> Page {this.props.page} </div>
