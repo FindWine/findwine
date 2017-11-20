@@ -146,6 +146,8 @@ class SearchControls extends React.Component {
         );
     }
 
+    // This should collapse to single bar when user clicks on 'Search Wines'
+
     render() {
         return (
                 <form className="search-form" role="search">
@@ -215,7 +217,7 @@ class SearchControls extends React.Component {
     }
 }
 
-// This should be the Search results page that opens a new window when you click on search. Once this is created I will drop in the custom nav, filter bar and info bar. If I try to include it after return ( the page breaks.
+// This along with collapsed filters and 'Ratings Explained' should be visible after user clicks on 'Search Wines'
 
 class WineList extends React.Component {
     render() {
