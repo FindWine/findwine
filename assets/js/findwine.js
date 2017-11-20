@@ -146,6 +146,8 @@ class SearchControls extends React.Component {
         );
     }
 
+    // This should collapse to single bar when user clicks on 'Search Wines'
+
     render() {
         return (
                 <form className="search-form" role="search">
@@ -195,13 +197,12 @@ class SearchControls extends React.Component {
                                           onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                                    />
                                </div>
-                            </div>
-                            <div className="col-xs-6 col-md-4 findwine_price-input">
+                               <div className="price-range"> TO </div>
                                <div className="form-group max_price">
                                  R  <input className="form-control" type="number" name="max_price"
-                                         value={this.props.maxPrice} min="0" required id="id_max_price"
-                                         onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
-                                  />
+                                           value={this.props.maxPrice} min="0" required id="id_max_price"
+                                           onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
+                               />
                                </div>
                             </div>
                             <div className="col-md-12 hidden-sm-down">
@@ -216,7 +217,7 @@ class SearchControls extends React.Component {
     }
 }
 
-// This should be the Search results page that opens a new window when you click on search. Once this is created I will drop in the custom nav, filter bar and info bar. If I try to include it after return ( the page breaks.
+// This along with collapsed filters and 'Ratings Explained' should be visible after user clicks on 'Search Wines'
 
 class WineList extends React.Component {
     render() {
