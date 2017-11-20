@@ -280,8 +280,8 @@ class Paginator extends React.Component {
 
             <div className="findwine_search-page--container">
               <div className="findwine_search-page--inner">
-                <div className="findwine_search-page"> Page 1 </div>
-                <div className="findwine_search-winesTotal"> 1-6 of {this.props.resultCount} wines </div>
+                <div className="findwine_search-page"> Page {this.props.page} </div>
+                <div className="findwine_search-winesTotal"> {this.props.start}-{this.props.end} of {this.props.count} wines </div>
               </div>
               <div className="findwine_search-button--container">
                 {prevButton}
@@ -306,6 +306,9 @@ class SearchPage extends React.Component {
             // results / pagination
             wines: [],
             resultCount: 0,
+            resultPage: 1,
+            resultStart: 1,
+            resultEnd: 10,
             nextPageUrl: null,
             prevPageUrl: null,
             firstSearchMade: false,
@@ -419,6 +422,9 @@ class SearchPage extends React.Component {
                     nextPageUrl: responseJson.next,
                     prevPageUrl: responseJson.previous,
                     resultCount: responseJson.count,
+                    resultPage: responseJson.page,
+                    resultStart: responseJson.start,
+                    resultEnd: responseJson.end,
                 });
             });
         }
@@ -429,7 +435,8 @@ class SearchPage extends React.Component {
         let paginator = this.state.firstSearchMade ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
             prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
-            resultCount={this.state.resultCount}
+            count={this.state.resultCount} page={this.state.resultPage}
+            start={this.state.resultStart} end={this.state.resultEnd}
         /> : '';
         return (
             <div className="container">
