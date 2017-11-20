@@ -1,41 +1,9 @@
 {% extends 'wine/base.html' %}
 {% load staticfiles %}
 
-<!-- This is the home page -->
-
 {% block content %}
-<!-- This is the navigation bar at the top of the page-->
-    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
-        <div class="container findwine_nav--menu">
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span><img src="{% static 'wine/images/SVGs/menu.svg' %}" class="findwine_menu-button"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <!-- Needs to navigate to home page -->
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'content:about' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                      <!-- Needs to navigate to home page? Home page is where search happens at the moment -->
-                        <a class="nav-link hidden-sm-up" href="#">Search</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0 hidden-sm-down">
-                    <input class="form-control mr-sm-2 findwine_search-field" type="text" placeholder="Search wine or winery">
-                    <button class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"><img
-                      src="{% static 'wine/images/SVGs/search.svg' %}" class="findwine_search-icon"></button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
+<!-- This should disappear when 'search' button is clicked on home page -->
     <div class="findwine_banner-main">
         <img src="{% static 'wine/images/logo/logo-standard@3x.png' %}" class="d-inline-block align-top findwine_logo-standard" alt="FindWine">
     </div>
@@ -43,6 +11,7 @@
     <div id="react-home">
     </div>
 
+<!-- This should disappear when 'search' button is clicked on home page -->
     <div class="findwine_content">
         <div class="container">
             <div class="col-lg-10 offset-md-1 findwine_content-container">
