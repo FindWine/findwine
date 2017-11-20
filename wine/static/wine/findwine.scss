@@ -28,7 +28,8 @@ $bronze: #b5664a;
 
 // Fonts
 
-$primary-font: 'Gotham A', 'Gotham B';
+//$primary-font: 'Gotham A', 'Gotham B';
+$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -174,6 +175,7 @@ a:focus, a:hover {
 
   display: inline-flex;
   align-items: center;
+  margin-bottom: 0px;
 
   input {
     width: 75px;
@@ -186,6 +188,7 @@ a:focus, a:hover {
 
   display: inline-flex;
   align-items: center;
+  margin-bottom: 0px;
 
   input {
     width: 75px;
@@ -193,6 +196,12 @@ a:focus, a:hover {
     outline: none !important;
   }
 
+}
+
+.price-range {
+  font-family: $primary-font;
+  font-size: 14px;
+  color: $light-grey-text;
 }
 
 .findwine {
@@ -354,7 +363,6 @@ a:focus, a:hover {
 
     font-family: $primary-font;
     font-size: 14px;
-    font-weight: 500;
     text-align: left;
     color: $primary-text;
     padding-bottom: 14px;
@@ -382,7 +390,7 @@ a:focus, a:hover {
 
   &_content-container {
 
-    padding: 40px 20px;
+    padding: 35px 0px;
 
   }
 
@@ -396,6 +404,11 @@ a:focus, a:hover {
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     background-color: $primary-green;
+    height: 52px;
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+
 
     @include breakpoint(md) {
 
@@ -556,7 +569,6 @@ a:focus, a:hover {
 
     font-family: $primary-font;
     font-size: 14px;
-    font-weight: 500;
     text-align: left;
     color: #86929a;
 
@@ -571,6 +583,7 @@ a:focus, a:hover {
     opacity: 0.5;
     display: inline-block;
     width: auto;
+    height: 40px;
 
     @include breakpoint(xs) {
       width: 166px;
@@ -587,6 +600,10 @@ a:focus, a:hover {
     padding-left: 12px;
     padding-right: 12px;
     margin-left: -6px !important;
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
 
     @include breakpoint(xs) {
       margin-top: 7px !important;
@@ -649,9 +666,11 @@ a:focus, a:hover {
   }
 
   &_price-input {
-    display: inline-block;
-    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 30px;
+    margin-bottom: 20px;
 
     @include breakpoint(lg) {
       width: 100%;
@@ -824,7 +843,6 @@ a:focus, a:hover {
     margin-top: -2px;
     transform: rotate(180deg);
   }
-
 
   &_detail-heading {
 

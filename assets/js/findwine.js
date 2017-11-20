@@ -195,13 +195,12 @@ class SearchControls extends React.Component {
                                           onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                                    />
                                </div>
-                            </div>
-                            <div className="col-xs-6 col-md-4 findwine_price-input">
+                               <div className="price-range"> TO </div>
                                <div className="form-group max_price">
                                  R  <input className="form-control" type="number" name="max_price"
-                                         value={this.props.maxPrice} min="0" required id="id_max_price"
-                                         onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
-                                  />
+                                           value={this.props.maxPrice} min="0" required id="id_max_price"
+                                           onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
+                               />
                                </div>
                             </div>
                             <div className="col-md-12 hidden-sm-down">
