@@ -275,13 +275,10 @@ class Paginator extends React.Component {
             <a className="btn findwine_search-next--button findwine_search-next--button-left" onClick={(event) => this.props.prevPage()}><img src={constructImagePath('wine/images/SVGs/arrow-left.svg')} alt="Previous"></img></a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}><img src={constructImagePath('wine/images/SVGs/arrow-left-grey.svg')} alt="Next"></img></a>;
 
             return (
-
-            // ** Cory, I don't know how to get the page number to display dynamically. Same with the 1-10 of TOTAL wines.
-
             <div className="findwine_search-page--container">
               <div className="findwine_search-page--inner">
-                <div className="findwine_search-page"> Page 1 </div>
-                <div className="findwine_search-winesTotal"> 1-6 of 300 wines </div>
+                <div className="findwine_search-page"> Page {this.props.page} </div>
+                <div className="findwine_search-winesTotal"> {this.props.start}-{this.props.end} of {this.props.count} wines </div>
               </div>
               <div className="findwine_search-button--container">
                 {prevButton}
@@ -303,7 +300,12 @@ class SearchPage extends React.Component {
             minPrice: 0,
             maxPrice: 500,
             selectedSort: getSortChoices()[0][1],
+            // results / pagination
             wines: [],
+            resultCount: 0,
+            resultPage: 1,
+            resultStart: 1,
+            resultEnd: 10,
             nextPageUrl: null,
             prevPageUrl: null,
             firstSearchMade: false,
@@ -416,6 +418,10 @@ class SearchPage extends React.Component {
                     wines: responseJson.results,
                     nextPageUrl: responseJson.next,
                     prevPageUrl: responseJson.previous,
+                    resultCount: responseJson.count,
+                    resultPage: responseJson.page,
+                    resultStart: responseJson.start,
+                    resultEnd: responseJson.end,
                 });
             });
         }
@@ -426,6 +432,8 @@ class SearchPage extends React.Component {
         let paginator = this.state.firstSearchMade ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
             prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
+            count={this.state.resultCount} page={this.state.resultPage}
+            start={this.state.resultStart} end={this.state.resultEnd}
         /> : '';
         return (
             <div className="container">
