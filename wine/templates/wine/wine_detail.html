@@ -9,7 +9,7 @@
       <img src="{% static 'wine/images/SVGs/back-arrow.svg' %}" class="findwine_detail--menu-button">
     </a>
     <div class="findwine_detail-nav--heading">
-      Wine Details
+      Wine details
     </div>
 </nav>
 
@@ -80,13 +80,13 @@
       <li class="list-group-item findwine_detail-list">
         <div class="findwine_merchant-holder">
           <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
-          <div class="findwine_merchant-unit"> x{{ merchantwine.minimum_purchase_unit }}</div>
+          <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml (minimum {{ merchantwine.minimum_purchase_unit }})</div>
           <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
         </div>
         <div class="findwine_merchant-pricing">
           <div class="findwine_merchant-currency"> R</div>
           <div class="findwine_merchant-price"> {{ merchantwine.rounded_price }}</div>
-          <a class="btn findwine_buy-button" href={{ merchantwine.url }} target="_blank" role="button"> Buy</a>
+          <a class="btn findwine_buy-button" href={{ merchantwine.url }} target="_blank" role="button"> BUY</a>
         </div>
       </li>
       {% endfor %}
@@ -121,7 +121,7 @@
 <div class="row findwine_detail-rowHeight" id="detail">
   <div class="col-12 col-md-auto">
     <h5 class="findwine_detail-header--2">Details</h5>
-    <p class="findwine_detail-content" id="detailContent"> Read more about the making of this wine and its technical specifications.</p>
+    <p class="findwine_detail-content" id="detailContent"> Read more about this wine.</p>
     <table class="table table-responsive table-sm">
       <tbody>
       <tr>
@@ -172,7 +172,7 @@
       </tr>
       <tr>
         <td class="findwine_detail-content-left">Residual sugar:</td>
-        <td class="findwine_detail-content-right">{{ winevintage.residual_sugar }} g/L</td>
+        <td class="findwine_detail-content-right">{{ winevintage.residual_sugar }} g/l</td>
       </tr>
       <tr>
         <td class="findwine_detail-content-left">pH:</td>
@@ -180,11 +180,11 @@
       </tr>
       <tr>
         <td class="findwine_detail-content-left">Total acidity:</td>
-        <td class="findwine_detail-content-right">{{ winevintage.total_acidity }} g/L</td>
+        <td class="findwine_detail-content-right">{{ winevintage.total_acidity }} g/l</td>
       </tr>
       <tr>
         <td class="findwine_detail-content-left">Total sulphur:</td>
-        <td class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:1 }} ppm</td>
+        <td class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:1 }} mg/l</td>
       </tr>
       </tbody>
     </table>
@@ -205,9 +205,7 @@
 <div class="row findwine_detail-rowHeight" id="serve">
   <div class="col-12 col-md-auto">
     <h5 class="findwine_detail-header--2">Serving suggestion</h5>
-    <p class="findwine_detail-content" id="serveContent"> What food to pair the wine with, the temperature to serve it at and the best
-      year to
-      drink it. </p>
+    <p class="findwine_detail-content" id="serveContent"> Food pairings, serving temperatures and best years to drink. </p>
     <table class="table table-responsive table-sm">
       <tbody>
       <tr>
@@ -225,12 +223,12 @@
         </td>
       </tr>
       <tr>
-        <td class="findwine_detail-content-left">Optimal drinking:</td>
+        <td class="findwine_detail-content-left">Peak years:</td>
         <td class="findwine_detail-content-right">{{ winevintage.optimal_year_start }} - {{ winevintage.optimal_year_end }}
         </td>
       </tr>
       <tr>
-        <td class="findwine_detail-content-left">Serve between:</td>
+        <td class="findwine_detail-content-left">Serve at:</td>
         <td class="findwine_detail-content-right">{{ winevintage.temp_min }} - {{ winevintage.temp_max }} degrees C</td>
       </tr>
       </tbody>

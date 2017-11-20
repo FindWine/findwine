@@ -41,7 +41,7 @@
                             {% endif %}
                             <tr>
                                 <td>Google: </td>
-                                <td><a class="text-primary" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank"> Open in maps</a></td>
+                                <td><a class="text-primary" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank"> View on Google Maps</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -49,7 +49,7 @@
 		</div>
 		<div class="row">		
 			<div class="col-6" style="margin-top: 8%">
-				<h4>Top Wines:</h4>
+				<h4>Top wines</h4>
 				{% if producer.wine_set.all %}
 				<ul class="list-group list-group-flush">
 					{% for wine in producer.wine_set.all %}
@@ -61,53 +61,53 @@
 				</ul>
 			</div>
 			<div class="col-6" style="margin-top: 8%">
-				<h4>Tastings:</h4>
-				<p>Minimum price: {% if producer.tasting_price %}{{ producer.tasting_currency }} {% endif %}{{ producer.tasting_price }}</p>
+				<h4>Wine tasting</h4>
+				<p>Minimum price {% if producer.tasting_price %}{{ producer.tasting_currency }} {% endif %}{{ producer.tasting_price }}</p>
 				<br>
 				<h6>Hours</h6>
 				<table class="table table-responsive table-sm">
 					<tbody>
 						<tr>
-							<td>Mon:</td>
+							<td>Mon</td>
 							<td>{{ producer.opening_hours_mon }}</td>
 						</tr>
 						<tr>
-							<td>Tue:</td>
+							<td>Tue</td>
 							<td>{{ producer.opening_hours_tue }}</td>
 						</tr>
 						<tr>
-							<td>Wed:</td>
+							<td>Wed</td>
 							<td>{{ producer.opening_hours_wed }}</td>
 						</tr>
 						<tr>
-							<td>Thu:</td>
+							<td>Thu</td>
 							<td>{{ producer.opening_hours_thu }}</td>
 						</tr>
 						<tr>
-							<td>Fri:</td>
+							<td>Fri</td>
 							<td>{{ producer.opening_hours_fri }}</td>
 						</tr>
 						<tr>
-							<td>Sat:</td>
+							<td>Sat</td>
 							<td>{{ producer.opening_hours_sat }}</td>
 						</tr>
 						<tr>
-							<td>Sun:</td>
+							<td>Sun</td>
 							<td>{{ producer.opening_hours_sun }}</td>
 						</tr>
 						<tr>
-							<td>Public holidays:</td>
+							<td>Holidays</td>
 							<td>{{ producer.opening_hours_holidays }}</td>
 						</tr>
 					</tbody>
 				</table>
-				<p>Closed on these days: {{ producer.closed_days }}</p>
+				<p>*Closed on {{ producer.closed_days }}</p>
 				<br>
 				<h6>Contact</h6>
 				<table class="table table-responsive table-sm">
 					<tbody>
 						<tr>
-							<td>Tel:</td>
+							<td>Phone:</td>
 							<td><a class="text-primary" href="tel:{{ producer.telephone_tasting }}" target="_self"> {{ producer.telephone_tasting }} </a></td>
 						</tr>
 						<tr>

@@ -1,12 +1,21 @@
 {% extends "wine/base.html" %}
 {% block content %}
 <div class="container py-4">
-    <h1>About</h1>
-    <h3>Our Story</h3>
-    <p>{% lorem %}</p>
-    <h3>How do we calculate ratings?</h3>
-    <p>{% lorem %}</p>
-    <h3>Who we are</h3>
-    <p>{% lorem %}</p>
+    <h1>ABOUT FINDWINE</h1>
+	<p>Search for award-winning wine at the price you want to pay.</p>
+    <h3>What is FindWine?</h3>
+    <p>FindWine is your guide to finding the best wine. No more standing at wine shops, staring at labels or debating prices.</p>
+	<p>We list only award-winning wines that are available to order online and be delivered to your door.</p>
+	<p>Simply select wine type and desired price, and our smart ratings will sort results based on a unique aggregate of respected award body rankings.</p>
+	<p>With us, finding great wine is as easy as search, compare, buy… enjoy!</p>
+    <h3>What is our smart ratings system?</h3>
+    <p>There are a lot of South African and international awards bodies out there, and we don’t expect you to keep track of them all. That’s what we do.</p>
+	<p>Our smart ratings system calculates a unique score for each wine based on the awards they’ve won and the prestige of the award body.</p>
+	<p>These unique scores fall between 0 and 10, with 10 being the highest rating a wine can receive.</p>
+    <h3>Who are we?</h3>
+    <p>We are wine lovers that don’t actually know a great deal about wine. But we do know we like to drink great wine. And that we want that wine to fit into our budget – whether that’s R50 or R500.</p>
+	<p>We want buying wine to be as enjoyable as drinking it But we know we’re not there yet.</p>
+	<p>FindWine is a new service that will only get better with your help. We’d love to hear your comments on what we’re getting right, and what we’re getting wrong. Get in touch and email us <a href="{% url 'content:contact' %}">here</a>.</p>
+	<!-- Alicia please check the link to Contact Us page -->
 </div>
 {% endblock %}
