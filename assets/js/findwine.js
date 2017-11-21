@@ -96,6 +96,13 @@ class SortSelect extends React.Component {
 
 
 class SearchControls extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            isExpanded: false
+        }
+    }
+
     _getSortSelect() {
         if (this.props.firstSearchMade) {
             return (
@@ -146,11 +153,20 @@ class SearchControls extends React.Component {
         );
     }
 
-    // This should collapse to single bar when user clicks on 'Search Wines'
+    renderCollapseButton() {
+        if (this.props.firstSearchMade && this.state.isExpanded) {
+          return (
+            <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': false})}>
+              &#10006;
+            </button>
+          )
+        }
+    }
 
-    render() {
+    renderControls() {
         return (
                 <form className="search-form" role="search">
+                    {this.renderCollapseButton()}
                     <div className="row d-flex align-items-end findwine_search-form">
 
                         <div className="col-md-3">
@@ -213,7 +229,50 @@ class SearchControls extends React.Component {
                     </div>
                     {this._getSearchButton()}
                 </form>
-        )
+            );
+    }
+
+    renderCollapsedControls() {
+        return (
+          <div className="findwine_filters-collapsed">
+            <div className="findwine_filters-icon">
+              <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
+            </div>
+            <div className="findwine_filters-filters">
+              <div className="findwine_filters-list">
+                <div className="findwine_filters-1">
+                    { this.props.selectedCategory }
+                </div>
+                <div className="findwine_filters-bullet"></div>
+                <div className="findwine_filters-2">
+                    { this.props.selectedSubcategory }
+                </div>
+                <div className="findwine_filters-bullet"></div>
+                <div className="findwine_filters-more">
+                  + 2 more
+                </div>
+              </div>
+            </div>
+            <div className="findwine_filters-expand">
+              <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': true})}>
+                <img src={ constructImagePath('wine/images/SVGs/arrow-down.svg') } className="findwine_filters-expand-arrow" />
+              </button>
+            </div>
+          </div>
+        );
+    }
+
+    showSearchControls() {
+        return !this.props.firstSearchMade || this.state.isExpanded;
+    }
+
+    render() {
+        if (this.showSearchControls()) {
+          return this.renderControls();
+        } else {
+          return this.renderCollapsedControls();
+        }
+
     }
 }
 
@@ -264,7 +323,7 @@ class WineList extends React.Component {
 }
 
 /**
- *  <div class="findwine_merchant-currency"> R </div> <div class="findwine_merchant-price"> {{ merchantwine.price }} </div>
+ *  <div className="findwine_merchant-currency"> R </div> <div className="findwine_merchant-price"> {{ merchantwine.price }} </div>
  */
 
 class Paginator extends React.Component {
