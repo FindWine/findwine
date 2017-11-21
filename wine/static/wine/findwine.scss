@@ -79,6 +79,15 @@ $primary-font: 'Gotham A', 'Gotham B';
     padding-left: 0px;
   }
 
+  &-new {
+    position: relative;
+    height: 56px;
+    border: 1px solid $line-grey;
+    display: flex;
+    align-items: center;
+
+  }
+
   .form-control::-webkit-input-placeholder {
 
     color: $white;
@@ -121,6 +130,15 @@ $primary-font: 'Gotham A', 'Gotham B';
     color: $primary-green !important;
   }
 
+  &-new {
+    color: $primary-text !important;
+  }
+
+}
+
+.nav-item-new {
+  z-index: 1000;
+  background-color: $white;
 }
 
 .form-control:focus {
@@ -210,10 +228,27 @@ a:focus, a:hover {
   &_nav--menu {
 
     margin-left: 0px;
+    z-index: 1000;
 
     @include breakpoint(lg) {
       margin-left: auto;
     }
+  }
+
+  &_nav-logo {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+
+    &-none {
+      display: none;
+    }
+
+  }
+
+  &_nav-logo-icon {
+    width: 146px;
+    height: 33px;
   }
 
   &_menu-icon {
@@ -230,6 +265,10 @@ a:focus, a:hover {
     height: 12px;
     width: 18px;
     border: none;
+
+    &-none {
+      display: none;
+    }
 
   }
 
