@@ -512,7 +512,7 @@ class SearchPage extends React.Component {
             start={this.state.resultStart} end={this.state.resultEnd}
         /> : '';
         return (
-            <div className="container">
+            <div>
                 <SearchControls
                     firstSearchMade={this.state.firstSearchMade}
                     selectedCategory={this.state.selectedCategory}
