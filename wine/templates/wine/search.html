@@ -11,18 +11,42 @@
     <div id="react-home">
     </div>
 
-<!-- Modal -->
+<!-- Ratings explained-->
 <!-- ** Cory, this should be below the collapsed filters, above the search results-->
 <div class="findwine_ratings-explained--container">
   <div class="findwine_ratings-heading">
       Ratings explained
   </div>
-  <div class="findwine_ratings-info">
+  <button type="button" class="findwine_ratings-info" data-toggle="modal" data-target="#ratingsExplained">
     <img src="{% static 'wine/images/SVGs/info.svg' %}" class="findwine_ratings-info-icon">
-  </div>
+  </button>
 </div>
 
-<!-- This should disappear when 'search wines' button is clicked on home page -->
+<!-- Modal -->
+<div class="modal fade" id="ratingsExplained" tabindex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body findwine_modal">
+        <div class="findwine_modal-ratings">
+          <img src="{% static 'wine/images/SVGs/ratings.svg' %}" class="findwine_modal-ratings-icon">
+        </div>
+        <div class="findwine_modal-heading">
+          Ratings Explained
+        </div>
+        <div class="findwine_modal-content">
+          Maecenas vitae ligula quis nunc pharetra rhoncus. Nunc in lacus vitae tortor gravida consequat quis id tortor.
+          In ullamcorper ligula justo, at varius purus vulputate vel. Suspendisse vel pharetra risus, eu vulputate nulla.
+          Sed at congue nisl, et pellentesque nisi. Maecenas vitae ligula quis nunc pharetra.
+        </div>
+      </div>
+      <div class="modal-footer findwine_modal-footer">
+        <button type="button" class="btn btn-secondary findwine_modal-button" data-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End modal-->
+
     <div class="findwine_content landing-page-content">
         <div class="container">
             <div class="col-lg-10 offset-md-1 findwine_content-container">
@@ -47,8 +71,7 @@
             </div>
         </div>
     </div>
-<!-- ** This subscribe section should also disappear when 'search wines' button is clicked on home page -->
-    <div class="findwine_subscribe">
+    <div class="findwine_subscribe landing-page-content">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-6 findwine_subscribe--flex">

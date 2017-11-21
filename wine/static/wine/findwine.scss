@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham A', 'Gotham B';
-//$primary-font: 'Gotham A', sans-serif;
+//$primary-font: 'Gotham A', 'Gotham B';
+$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -153,6 +153,10 @@ a:focus, a:hover {
 
 .btn.focus, .btn:focus {
   box-shadow: none;
+}
+
+button:focus, button:hover {
+  outline: none;
 }
 
 .table-sm td, .table-sm th {
@@ -1087,6 +1091,7 @@ a:focus, a:hover {
 
   &_buy-button {
     font-family: $primary-font;
+    font-weight: 500;
     color: $white;
     background-color: $primary-green;
     width: 71px;
@@ -1321,6 +1326,49 @@ a:focus, a:hover {
   &_ratings-info-icon {
     height: 18px;
     width: 18px;
+  }
+
+  &_modal {
+    padding: 30px;
+  }
+
+  &_modal-ratings {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &_modal-ratings-icon {
+    height: 71px;
+    width: 56px;
+  }
+
+  &_modal-heading {
+    font-family: $primary-font;
+    font-size: 24px;
+    color: $primary-text;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &_modal-content {
+    font-family: $primary-font;
+    font-size: 14px;
+    color: $light-grey-text;
+    text-align: center;
+  }
+
+  &_modal-footer{
+    padding: 30px;
+  }
+
+  &_modal-button{
+    background-color: $primary-green;
+    font-family: $primary-font;
+    color: $white;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-color: $primary-green;
   }
 
 }

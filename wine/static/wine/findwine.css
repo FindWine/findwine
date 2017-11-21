@@ -56,6 +56,9 @@ a:focus, a:hover {
 .btn.focus, .btn:focus {
   box-shadow: none; }
 
+button:focus, button:hover {
+  outline: none; }
+
 .table-sm td, .table-sm th {
   padding: 0.3rem 15px; }
 
@@ -644,6 +647,7 @@ a:focus, a:hover {
   font-weight: 500; }
 .findwine_buy-button {
   font-family: "Gotham A", sans-serif;
+  font-weight: 500;
   color: #ffffff;
   background-color: #00ad68;
   width: 71px;
@@ -799,5 +803,34 @@ a:focus, a:hover {
 .findwine_ratings-info-icon {
   height: 18px;
   width: 18px; }
+.findwine_modal {
+  padding: 30px; }
+.findwine_modal-ratings {
+  text-align: center;
+  margin-bottom: 30px; }
+.findwine_modal-ratings-icon {
+  height: 71px;
+  width: 56px; }
+.findwine_modal-heading {
+  font-family: "Gotham A", sans-serif;
+  font-size: 24px;
+  color: #333e48;
+  text-align: center;
+  margin-bottom: 30px; }
+.findwine_modal-content {
+  font-family: "Gotham A", sans-serif;
+  font-size: 14px;
+  color: #86929a;
+  text-align: center; }
+.findwine_modal-footer {
+  padding: 30px; }
+.findwine_modal-button {
+  background-color: #00ad68;
+  font-family: "Gotham A", sans-serif;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border-color: #00ad68; }
 
 /*# sourceMappingURL=findwine.css.map */
