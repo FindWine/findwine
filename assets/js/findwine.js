@@ -376,18 +376,32 @@ class SearchPage extends React.Component {
         let queryParams = queryString.parse(location.search);
         if (Object.keys(queryParams).length) {
             queryParams['firstSearchMade'] = true;
+            this._updateLandingPage(true);
             this.setState(queryParams, this._updateSearchResults);
         }
         // there might be a better way to do this
         // clear search results on back button press back to home page
         var self = this;
+        let showLandingPageContent = () => this._updateLandingPage(false);
         $(window).on('popstate', function (e) {
             if (location.pathname === '/') {
-                self.setState({
-                    'firstSearchMade': false,
-                });
+                self.setState(
+                  {
+                    'firstSearchMade': false
+                  },
+                  showLandingPageContent,
+                );
             }
         });
+    }
+
+    _updateLandingPage(searchMade) {
+        // todo: should this be managed by react?
+        if (searchMade) {
+            $('.landing-page-content').hide();
+        } else {
+            $('.landing-page-content').show();
+        }
     }
 
     updateCategory(category) {
@@ -457,6 +471,7 @@ class SearchPage extends React.Component {
         params = queryString.stringify(params);
         fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
         this.setState({firstSearchMade: true});
+        this._updateLandingPage(true);
     }
 
     nextPage() {
