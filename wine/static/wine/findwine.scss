@@ -884,6 +884,7 @@ a:focus, a:hover {
     font-weight: 500;
     letter-spacing: 0.7px;
     background: none;
+    cursor: pointer;
   }
 
   &_detail-more-arrow {
@@ -1179,6 +1180,86 @@ a:focus, a:hover {
     }
   }
 
+  // Collapsed filters
+
+  &_filters-collapsed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    border: 1px solid $lightest-grey-border;
+    padding: 20px 15px;
+  }
+
+  &_filters-filter-icon {
+    width: 11px;
+    height: 13px;
+    margin-right: 13px;
+  }
+
+  &_filters-filters {
+    width: 100%;
+  }
+
+  &_filters-list {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &_filters-bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $primary-text;
+    display: inline-block;
+    margin-top: 1px;
+  }
+
+  &_filters-expand {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &_filters-expand-button {
+    padding: 0px;
+  }
+
+  &_filters-expand-arrow {
+    width: 12px;
+    height: 8px;
+  }
+
+  // Ratings explained
+
+  &_ratings-explained--container {
+    background-color: $lightest-grey;
+    border-top: 1px solid $line-grey;
+    border-bottom: 1px solid $line-grey;
+    padding: 0px 15px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  &_ratings-heading {
+    font-family: $primary-font;
+    font-size: 14px;
+    color: $light-grey-text;
+    display: inline-block;
+  }
+
+  &_ratings-info-icon {
+    height: 18px;
+    width: 18px;
+  }
 
 }
 
