@@ -53,7 +53,7 @@
 	<body>
 
   <!-- This is the navigation bar at the top of the page-->
-  <!-- The nav changes on search results and wine details pages -->
+  <!-- The nav changes on search results and wine details pages - thinking it should work with if -->
   <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
     <div class="container findwine_nav--menu">
       <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -65,14 +65,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <!-- Needs to navigate to home page -->
+  <!-- Needs to navigate to home page -->
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'content:about' %}">About</a>
           </li>
           <li class="nav-item">
-            <!-- Needs to navigate to home page? Home page is where search happens at the moment -->
+  <!-- Needs to navigate to home page -->
             <a class="nav-link hidden-sm-up" href="#">Search</a>
           </li>
         </ul>
