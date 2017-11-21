@@ -6,16 +6,40 @@
 <!--Insert all of the page specific content here-->
 <div class="row findwine_detail-padding">
 
-  <!--image-->
-  <div class="col-4 col-md-auto">
+  <!-- BLOCK 1-->
+  <!--image - MOBILE-->
+  <div class="col-4 hidden-md-up">
     {% if winevintage.image_pack_shot %}
     <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
          class="img-fluid rounded float-left findwine_detail-image">
     {% endif %}
   </div>
 
+  <!-- Cory please add logic for desktop images here-->
+  <!--image - DESKTOP-->
+  <div class="col-6 hidden-sm-down findwine_detail-images-desktop">
+    {% if winevintage.image_pack_shot %}
+    <div class="findwine_detail-images-small">
+      <div class="findwine_detail-image-1">
+        <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+           class="img-fluid rounded float-left">
+      </div>
+      <div class="findwine_detail-image-2">
+        <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+             class="img-fluid rounded float-left">
+      </div>
+    </div>
+    <div class="findwine_detail-image-main--holder">
+      <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+         class="img-fluid rounded float-left findwine_detail-image-main">
+    </div>
+    {% endif %}
+  </div>
+  <!--BLOCK 1 END-->
+
+  <!--BLOCK 2-->
   <!-- Wine detail -->
-  <div class="col-8 col-md-auto">
+  <div class="col-8 col-md-6">
     <!-- Wine name & vintage year-->
     <!-- This needs to link to the producer's page -->
     <a href="#" class="findwine_producer-main"> {{ winevintage.wine.producer }} <img src="{% static 'wine/images/SVGs/arrow-right-grey.svg' %}" class="findwine_detail-right-arrow"> </a>
@@ -55,12 +79,14 @@
       {% endif %}
     </ul>
   </div>
+  <!--BLOCK 2 END-->
 </div>
 
+<!--BLOCK 3-->
 <!-- Purchase options -->
 
 <div class="row">
-  <div class="col-12 col-md-auto">
+  <div class="col-12">
     <div class="findwine_detail-heading">
       <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
     </div>
@@ -86,7 +112,9 @@
     </ul>
   </div>
 </div>
+<!--BLOCK 3 END-->
 
+<!--BLOCK 4-->
 <!-- Wine info -->
 
 <div class="findwine_detail-heading">

@@ -688,6 +688,60 @@ a:focus, a:hover {
     margin: 0px 34px 28px 25px;
   }
 
+  &_detail-images-desktop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  &_detail-images-small {
+    display: inline-block;
+    margin-right: 20px;
+
+  }
+
+  &_detail-image-1 {
+
+    width: 90px;
+    height: 90px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    border: solid 1px #dadada;
+    margin-bottom: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 15px;
+
+  }
+
+  &_detail-image-2 {
+
+    width: 90px;
+    height: 90px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    border: solid 1px #dadada;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 15px;
+
+  }
+
+  &_detail-image-main--holder {
+    width: 380px;
+    height: 450px;
+    border-radius: 2px;
+    border: solid 1px #dadada;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_detail-image-main {
+    height: 100%;
+    padding: 30px;
+  }
+
   &_producer-main {
     text-decoration: none;
     font-family: $primary-font;
