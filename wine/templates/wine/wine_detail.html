@@ -43,7 +43,7 @@
 
   <!--BLOCK 2-->
   <!-- Wine detail -->
-  <div class="col-8 col-md-6">
+  <div class="col-8 col-md-6 findwine_producer">
     <!-- Wine name & vintage year-->
     <a href="{% url 'wine:producer_detail_by_slug' winevintage.wine.producer.slug %}" class="findwine_producer-main">
       {{ winevintage.wine.producer }} <img src="{% static 'wine/images/SVGs/arrow-right-grey.svg' %}" class="findwine_detail-right-arrow"> </a>

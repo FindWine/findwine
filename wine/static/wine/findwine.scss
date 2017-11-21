@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham A', 'Gotham B';
-//$primary-font: 'Gotham A', sans-serif;
+//$primary-font: 'Gotham A', 'Gotham B';
+$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -157,6 +157,10 @@ a:focus, a:hover {
 
 .table-sm td, .table-sm th {
   padding: 0.3rem 15px;
+}
+
+.search-form {
+  padding: 0px 15px;
 }
 
 // Slider styles
@@ -512,7 +516,7 @@ a:focus, a:hover {
   &_button-type {
 
     margin: 9px 0px 6px 0px;
-    word-break: break-word;
+    word-break: break-all;
 
     p {
       margin-bottom: 0px !important;
@@ -781,6 +785,14 @@ a:focus, a:hover {
     padding: 30px;
   }
 
+  &_producer {
+
+    a:active, a:focus, a:hover {
+      color: $primary-green;
+    }
+
+  }
+
   &_producer-main {
     text-decoration: none;
     font-family: $primary-font;
@@ -788,6 +800,7 @@ a:focus, a:hover {
     font-size: 18px;
     line-height: 18px;
     font-weight: 500;
+
   }
 
   &_producer-vintage {
