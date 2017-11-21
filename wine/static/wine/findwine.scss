@@ -834,12 +834,23 @@ a:focus, a:hover {
   }
 
   &_rating-box {
-    background-color: $gold;
     height: auto;
     width: 40px;
     border-radius: 5px;
     display: block;
     margin-top: 25px;
+  }
+
+  &_rating-box-gold {
+    background-color: $gold;
+  }
+
+  &_rating-box-silver {
+    background-color: $silver;
+  }
+
+  &_rating-box-bronze {
+    background-color: $bronze;
   }
 
   &_award-list {
@@ -1076,7 +1087,6 @@ a:focus, a:hover {
   // Other vintages
 
   &_vintage-rating--box {
-    background-color: $gold;
     height: 22px;
     width: 25px;
     border-radius: 0px 3px 3px 0px;

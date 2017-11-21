@@ -471,12 +471,17 @@ a:focus, a:hover {
   color: #ffffff;
   margin-bottom: 5px; }
 .findwine_rating-box {
-  background-color: #c9a564;
   height: auto;
   width: 40px;
   border-radius: 5px;
   display: block;
   margin-top: 25px; }
+.findwine_rating-box-gold {
+  background-color: #c9a564; }
+.findwine_rating-box-silver {
+  background-color: #a5b2b3; }
+.findwine_rating-box-bronze {
+  background-color: #b5664a; }
 .findwine_award-list {
   list-style-type: none;
   font-family: "Gotham A", "Gotham B";
@@ -642,7 +647,6 @@ a:focus, a:hover {
   outline: none;
   margin-top: 5px; }
 .findwine_vintage-rating--box {
-  background-color: #c9a564;
   height: 22px;
   width: 25px;
   border-radius: 0px 3px 3px 0px;

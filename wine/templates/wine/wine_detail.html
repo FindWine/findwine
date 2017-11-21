@@ -62,7 +62,7 @@
     <!-- Need to set background colour dynamically according to rating -->
     <!-- 9-10 Gold  8-9 Silver  < 8 Bronze-->
 
-    <div class="findwine_rating-box {{ winevintage.rating_category }}">
+    <div class="findwine_rating-box findwine_rating-box-{{ winevintage.rating_category }}">
       <p class="findwine_rating">{{ winevintage.rating.avg_rating|floatformat:1 }}</p>
     </div>
     <!-- Awards -->
@@ -270,7 +270,7 @@
   <tbody>
     <tr class="findwine_search-results">
       <td class="findwine_search-result--table">
-        <div class="findwine_vintage-rating--box findwine_vintage-rating"> {{ other_vintage.rating.avg_rating|default:"?"}}
+        <div class="findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-{{ winevintage.rating_category }}"> {{ other_vintage.rating.avg_rating|default:"?"}}
         </div>
         {% if other_vintage.image_pack_shot %}
         <div class="findwine_vintage--image">

@@ -231,6 +231,7 @@ class WineList extends React.Component {
                             <tr key={index} className="findwine_search-results">
                                 <td className="findwine_search-result--table">
                                   <div className="findwine_vintage-rating--box findwine_vintage-rating"> {winevintage.avg_rating} </div>
+                                    {/*I've added this class everywhere else findwine_rating-box-{{ winevintage.rating_category }}*/}
                                   <div className="findwine_vintage--image">
                                     <img src={ winevintage.image_url } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
                                   </div>
