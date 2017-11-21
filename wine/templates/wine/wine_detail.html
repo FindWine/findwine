@@ -45,7 +45,8 @@
   <!-- Wine detail -->
   <div class="col-8 col-md-6">
     <!-- Wine name & vintage year-->
-    <a href="{% url 'wine:producer_detail_by_slug' winevintage.wine.producer.slug %}" class="findwine_producer-main"> {{ winevintage.wine.producer }} <img src="{% static 'wine/images/SVGs/arrow-right-grey.svg' %}" class="findwine_detail-right-arrow"> </a>
+    <a href="{% url 'wine:producer_detail_by_slug' winevintage.wine.producer.slug %}" class="findwine_producer-main">
+      {{ winevintage.wine.producer }} <img src="{% static 'wine/images/SVGs/arrow-right-grey.svg' %}" class="findwine_detail-right-arrow"> </a>
     <h4 class="findwine_producer-vintage"> {{ winevintage.wine.name }} {{ winevintage.year }} </h4>
 
     <!-- Wine category & origin -->
@@ -61,11 +62,6 @@
       {{ winevintage.appellation.get_country_display }}</p>
     {% endif %}
     <!-- Rating -->
-    <div class="findwine_rating-box {{ winevintage.rating_category }}">
-    <!-- ** Note to Cory ** -->
-    <!-- Need to set background colour dynamically according to rating -->
-    <!-- 9-10 Gold  8-9 Silver  < 8 Bronze-->
-
     <div class="findwine_rating-box findwine_rating-box-{{ winevintage.rating_category }}">
       <p class="findwine_rating">{{ winevintage.rating.avg_rating|floatformat:1 }}</p>
     </div>
