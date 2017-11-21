@@ -18,17 +18,23 @@
   <!-- Cory please add logic for desktop images here-->
   <!--image - DESKTOP-->
   <div class="col-6 hidden-sm-down findwine_detail-images-desktop">
-    {% if winevintage.image_pack_shot %}
     <div class="findwine_detail-images-small">
+    {% if winevintage.image_pack_shot %}
       <div class="findwine_detail-image-1">
         <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
            class="img-fluid rounded float-left">
       </div>
+    {% endif %}
+    {% if winevintage.image_label_vertical %}
       <div class="findwine_detail-image-2">
-        <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+        <img src="{{ winevintage.image_label_vertical.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
+    {% endif %}
     </div>
+
+    {# TODO: this will need to be updated based on the image that's clicked on the left   #}
+    {% if winevintage.image_pack_shot %}
     <div class="findwine_detail-image-main--holder">
       <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
          class="img-fluid rounded float-left findwine_detail-image-main">
