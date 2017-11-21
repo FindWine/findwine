@@ -9,6 +9,12 @@
     border: none;
     outline: none !important;
     padding-left: 0px; }
+  .navbar-new {
+    position: relative;
+    height: 56px;
+    border: 1px solid #e9e9e9;
+    display: flex;
+    align-items: center; }
   .navbar .form-control::-webkit-input-placeholder {
     color: #ffffff;
     opacity: 1; }
@@ -32,6 +38,12 @@
   padding-left: 0px !important; }
   .nav-link:hover {
     color: #00ad68 !important; }
+  .nav-link-new {
+    color: #333e48 !important; }
+
+.nav-item-new {
+  z-index: 1000;
+  background-color: #ffffff; }
 
 .form-control:focus {
   outline: none;
@@ -94,10 +106,20 @@ a:focus, a:hover {
   color: #86929a; }
 
 .findwine_nav--menu {
-  margin-left: 0px; }
+  margin-left: 0px;
+  z-index: 1000; }
   @media (min-width: 1024px) {
     .findwine_nav--menu {
       margin-left: auto; } }
+.findwine_nav-logo {
+  width: 100%;
+  text-align: center;
+  position: absolute; }
+  .findwine_nav-logo-none {
+    display: none; }
+.findwine_nav-logo-icon {
+  width: 146px;
+  height: 33px; }
 .findwine_menu-icon {
   padding-top: 20px;
   color: #333e48;
@@ -107,6 +129,8 @@ a:focus, a:hover {
   height: 12px;
   width: 18px;
   border: none; }
+  .findwine_menu-button-none {
+    display: none; }
 .findwine_nav-icon {
   display: inline-block;
   width: 1.5em;
