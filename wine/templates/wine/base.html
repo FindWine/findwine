@@ -58,7 +58,7 @@
   <!-- * The nav changes on search results and wine details pages -->
   <!-- * Classes to be toggled for search results page and wine details pages 1. navbar-new 2.findwine_menu-button-none 3.nav-item-new 4.nav-link-new 5.findwine_nav-logo-none-->
 
-  <nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-ne">
+  <nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-new">
     <div class="container findwine_nav--menu">
       <button class="navbar-toggler" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -73,16 +73,16 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active nav-item-ne">
+          <li class="nav-item active nav-item-new">
   <!-- * Needs to navigate to home page -->
-            <a class="nav-link nav-link-ne" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link nav-link-new" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item nav-item-ne">
-            <a class="nav-link nav-link-ne" href="{% url 'content:about' %}">About</a>
+          <li class="nav-item nav-item-new">
+            <a class="nav-link nav-link-new" href="{% url 'content:about' %}">About</a>
           </li>
-          <li class="nav-item nav-item-ne">
+          <li class="nav-item nav-item-new">
   <!-- * Needs to navigate to home page -->
-            <a class="nav-link nav-link-ne hidden-sm-up" href="#">Search</a>
+            <a class="nav-link nav-link-new hidden-sm-up" href="#">Search</a>
           </li>
         </ul>
         <!-- This will be added at a later stage -->
@@ -94,7 +94,7 @@
       </div>
     </div>
     <!-- * This should only be visible on search results and wine details pages. Toggle class findwine_nav-logo-none -->
-    <div class="findwine_nav-logo" style="display: none">
+    <div class="findwine_nav-logo">
       <img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine">
     </div>
   </nav>
