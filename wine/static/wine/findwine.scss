@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-//$primary-font: 'Gotham A', 'Gotham B';
-$primary-font: 'Gotham A', sans-serif;
+$primary-font: 'Gotham A', 'Gotham B';
+//$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -123,8 +123,10 @@ $primary-font: 'Gotham A', sans-serif;
   font-family: $primary-font;
   color: $white !important;
   font-size: 14px;
+  font-weight: 500;
   padding-right: 40px !important;
   padding-left: 0px !important;
+  cursor: pointer;
 
   &:hover {
     color: $primary-green !important;
@@ -143,7 +145,7 @@ $primary-font: 'Gotham A', sans-serif;
 
 .form-control:focus {
   outline: none;
-  border-color: rgba(0, 0, 0, .15);
+  border-color: $primary-green;
 }
 
 a:focus, a:hover {
@@ -170,6 +172,12 @@ button:focus, button:hover {
 // Slider styles
 .rc-slider {
   width: 90% !important;
+
+  @include breakpoint(lg) {
+
+    margin-top: 20px;
+    margin-left: 10px;
+  }
 }
 
 .rc-slider-rail {
@@ -225,10 +233,31 @@ button:focus, button:hover {
 
 }
 
+.category {
+
+  @include breakpoint(lg) {
+    margin-top: 6px;
+  }
+
+}
+
+.sub-category {
+
+  @include breakpoint(lg) {
+    margin-top: 6px;
+  }
+
+}
+
 .price-range {
   font-family: $primary-font;
   font-size: 14px;
   color: $light-grey-text;
+
+  @include breakpoint(lg) {
+    color: $primary-text;
+    margin: 0px 7px;
+  }
 }
 
 .findwine {
@@ -327,7 +356,10 @@ button:focus, button:hover {
     @include breakpoint(lg) {
 
       width: 270px;
-      margin-top: -15%;
+      margin-top: 151px;
+      height: 60px;
+      padding: 0px;
+      margin-bottom: 31px;
 
     }
 
@@ -355,6 +387,7 @@ button:focus, button:hover {
     @include breakpoint(lg) {
 
       height: 580px;
+      margin-bottom: 0px;
 
     }
 
@@ -378,7 +411,7 @@ button:focus, button:hover {
     @include breakpoint(lg) {
 
       margin-top: -320px;
-      padding: 20px 40px;
+      padding: 40px;
       background-color: white;
 
     }
@@ -405,6 +438,23 @@ button:focus, button:hover {
     color: $primary-text;
     display: block;
 
+  }
+
+  &_subcategory-row {
+
+    @include breakpoint(lg) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+
+  &_subcategory {
+    padding: 0px;
+
+    @include breakpoint(lg) {
+      padding: 0px 15px;
+    }
   }
 
   &_content-paragraph {
@@ -456,12 +506,14 @@ button:focus, button:hover {
     font-family: $primary-font;
     font-size: 14px;
     font-weight: 500;
-
+    margin-bottom: 23px;
 
     @include breakpoint(md) {
-
       width: auto;
+    }
 
+    @include breakpoint(lg) {
+      margin-top: 38px;
     }
 
     &-outer {
@@ -720,9 +772,16 @@ button:focus, button:hover {
     margin-top: 30px;
     margin-bottom: 20px;
 
+    .form-group:active, .form-group:hover, .form-group:focus {
+      outline: none;
+    }
+
     @include breakpoint(lg) {
       width: 100%;
       margin-top: 0px;
+      margin-bottom: 0px;
+      justify-content: flex-end;
+
     }
 
   }
@@ -1182,6 +1241,19 @@ button:focus, button:hover {
   }
 
   // Search results
+
+  &_filter-holder {
+
+    @include breakpoint(lg) {
+      height: 304px;
+      width: 955px;
+      margin: auto;
+      position: absolute;
+      margin-top: -34px;
+      left: 0;
+      right: 0;
+    }
+  }
 
   &_search-results {
     display: flex;
