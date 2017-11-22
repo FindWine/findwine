@@ -276,7 +276,49 @@ class SearchControls extends React.Component {
     }
 }
 
-// This along with collapsed filters and 'Ratings Explained' should be visible after user clicks on 'Search Wines'
+class RatingsExplanationBar extends React.Component {
+    render () {
+      return (
+        <div className="findwine_ratings-explained--container">
+          <div className="findwine_ratings-heading">
+              Ratings explained
+          </div>
+          <button type="button" className="findwine_ratings-info" data-toggle="modal" data-target="#ratingsExplained">
+            <img src={ constructImagePath('wine/images/SVGs/info.svg') } className="findwine_ratings-info-icon" />
+          </button>
+        </div>
+      );
+    }
+}
+
+class RatingsModal extends React.Component {
+  render() {
+    return (
+      <div class="modal fade" id="ratingsExplained" tabindex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body findwine_modal">
+              <div class="findwine_modal-ratings">
+                <img src={ constructImagePath('wine/images/SVGs/ratings.svg') } class="findwine_modal-ratings-icon" />
+              </div>
+              <div class="findwine_modal-heading">
+                Ratings Explained
+              </div>
+              <div class="findwine_modal-content">
+                Maecenas vitae ligula quis nunc pharetra rhoncus. Nunc in lacus vitae tortor gravida consequat quis id tortor.
+                In ullamcorper ligula justo, at varius purus vulputate vel. Suspendisse vel pharetra risus, eu vulputate nulla.
+                Sed at congue nisl, et pellentesque nisi. Maecenas vitae ligula quis nunc pharetra.
+              </div>
+            </div>
+            <div class="modal-footer findwine_modal-footer">
+              <button type="button" class="btn btn-secondary findwine_modal-button" data-dismiss="modal">Got it</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 class WineList extends React.Component {
     render() {
@@ -506,6 +548,7 @@ class SearchPage extends React.Component {
     }
 
     render() {
+        let ratingsExplained = this.state.firstSearchMade ? <RatingsExplanationBar /> : '';
         let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines}/> : '';
         let paginator = this.state.firstSearchMade ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
@@ -530,8 +573,10 @@ class SearchPage extends React.Component {
                     searchClicked={(event) => this.searchClicked(event)}
                     updateSearchResults={() => this.updateSearchResults()}
                 />
+                {ratingsExplained}
                 {wineList}
                 {paginator}
+                <RatingsModal />
             </div>
         )
     }
