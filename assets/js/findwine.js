@@ -249,7 +249,7 @@ class SearchControls extends React.Component {
                 </div>
                 <div className="findwine_filters-bullet"></div>
                 <div className="findwine_filters-more">
-                  + 2 more
+                  R { this.props.minPrice } - R { this.props.maxPrice }
                 </div>
               </div>
             </div>

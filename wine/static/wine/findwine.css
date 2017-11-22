@@ -117,7 +117,7 @@ button:focus, button:hover {
     margin-top: 6px; } }
 
 @media (min-width: 1024px) {
-  .sub-category {
+  .subcategory {
     margin-top: 6px; } }
 
 .price-range {
