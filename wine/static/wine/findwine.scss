@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham A', 'Gotham B';
-//$primary-font: 'Gotham A', sans-serif;
+//$primary-font: 'Gotham A', 'Gotham B';
+$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -123,8 +123,10 @@ $primary-font: 'Gotham A', 'Gotham B';
   font-family: $primary-font;
   color: $white !important;
   font-size: 14px;
+  font-weight: 500;
   padding-right: 40px !important;
   padding-left: 0px !important;
+  cursor: pointer;
 
   &:hover {
     color: $primary-green !important;
@@ -143,7 +145,7 @@ $primary-font: 'Gotham A', 'Gotham B';
 
 .form-control:focus {
   outline: none;
-  border-color: rgba(0, 0, 0, .15);
+  border-color: $primary-green;
 }
 
 a:focus, a:hover {
@@ -153,6 +155,10 @@ a:focus, a:hover {
 
 .btn.focus, .btn:focus {
   box-shadow: none;
+}
+
+button:focus, button:hover {
+  outline: none;
 }
 
 .table-sm td, .table-sm th {
@@ -166,6 +172,12 @@ a:focus, a:hover {
 // Slider styles
 .rc-slider {
   width: 90% !important;
+
+  @include breakpoint(lg) {
+
+    margin-top: 20px;
+    margin-left: 10px;
+  }
 }
 
 .rc-slider-rail {
@@ -221,10 +233,31 @@ a:focus, a:hover {
 
 }
 
+.category {
+
+  @include breakpoint(lg) {
+    margin-top: 6px;
+  }
+
+}
+
+.sub_category {
+
+  @include breakpoint(lg) {
+    margin-top: 6px;
+  }
+
+}
+
 .price-range {
   font-family: $primary-font;
   font-size: 14px;
   color: $light-grey-text;
+
+  @include breakpoint(lg) {
+    color: $primary-text;
+    margin: 0px 7px;
+  }
 }
 
 .findwine {
@@ -323,7 +356,10 @@ a:focus, a:hover {
     @include breakpoint(lg) {
 
       width: 270px;
-      margin-top: -15%;
+      margin-top: 151px;
+      height: 60px;
+      padding: 0px;
+      margin-bottom: 31px;
 
     }
 
@@ -351,6 +387,7 @@ a:focus, a:hover {
     @include breakpoint(lg) {
 
       height: 580px;
+      margin-bottom: 0px;
 
     }
 
@@ -374,7 +411,7 @@ a:focus, a:hover {
     @include breakpoint(lg) {
 
       margin-top: -320px;
-      padding: 20px 40px;
+      padding: 40px;
       background-color: white;
 
     }
@@ -401,6 +438,23 @@ a:focus, a:hover {
     color: $primary-text;
     display: block;
 
+  }
+
+  &_subcategory-row {
+
+    @include breakpoint(lg) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+
+  &_subcategory {
+    padding: 0px;
+
+    @include breakpoint(lg) {
+      padding: 0px 15px;
+    }
   }
 
   &_content-paragraph {
@@ -452,12 +506,14 @@ a:focus, a:hover {
     font-family: $primary-font;
     font-size: 14px;
     font-weight: 500;
-
+    margin-bottom: 23px;
 
     @include breakpoint(md) {
-
       width: auto;
+    }
 
+    @include breakpoint(lg) {
+      margin-top: 38px;
     }
 
     &-outer {
@@ -716,9 +772,16 @@ a:focus, a:hover {
     margin-top: 30px;
     margin-bottom: 20px;
 
+    .form-group:active, .form-group:hover, .form-group:focus {
+      outline: none;
+    }
+
     @include breakpoint(lg) {
       width: 100%;
       margin-top: 0px;
+      margin-bottom: 0px;
+      justify-content: flex-end;
+
     }
 
   }
@@ -1087,6 +1150,7 @@ a:focus, a:hover {
 
   &_buy-button {
     font-family: $primary-font;
+    font-weight: 500;
     color: $white;
     background-color: $primary-green;
     width: 71px;
@@ -1177,6 +1241,19 @@ a:focus, a:hover {
   }
 
   // Search results
+
+  &_filter-holder {
+
+    @include breakpoint(lg) {
+      height: 304px;
+      width: 955px;
+      margin: auto;
+      position: absolute;
+      margin-top: -34px;
+      left: 0;
+      right: 0;
+    }
+  }
 
   &_search-results {
     display: flex;
@@ -1321,6 +1398,49 @@ a:focus, a:hover {
   &_ratings-info-icon {
     height: 18px;
     width: 18px;
+  }
+
+  &_modal {
+    padding: 30px;
+  }
+
+  &_modal-ratings {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &_modal-ratings-icon {
+    height: 71px;
+    width: 56px;
+  }
+
+  &_modal-heading {
+    font-family: $primary-font;
+    font-size: 24px;
+    color: $primary-text;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &_modal-content {
+    font-family: $primary-font;
+    font-size: 14px;
+    color: $light-grey-text;
+    text-align: center;
+  }
+
+  &_modal-footer{
+    padding: 30px;
+  }
+
+  &_modal-button{
+    background-color: $primary-green;
+    font-family: $primary-font;
+    color: $white;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-color: $primary-green;
   }
 
 }

@@ -124,7 +124,6 @@ class SearchControls extends React.Component {
             return (
                 <div className="col-lg-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button"
-                            style={{marginBottom: '16px', marginTop: '16px'}}
                             onClick={(event) => this.props.searchClicked(event)}> SEARCH WINES <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
                     </button>
                 </div>
@@ -167,7 +166,7 @@ class SearchControls extends React.Component {
         return (
                 <form className="search-form" role="search">
                     {this.renderCollapseButton()}
-                    <div className="row d-flex align-items-end findwine_search-form">
+                    <div className="row d-flex align-items-start findwine_search-form">
 
                         <div className="col-md-3">
                             <div className="form-group category">
@@ -196,8 +195,8 @@ class SearchControls extends React.Component {
                             </div>
                         </div>
 
-                        <div className="col-xs-12 col-md-6">
-                            <div className="col-xs-12 col-md-3" style={{padding: '0px', display:'inline-block'}}>
+                        <div className="col-xs-12 col-md-6 findwine_subcategory-row">
+                            <div className="col-xs-12 col-md-3 findwine_subcategory" >
                                 <div className="form-group sub_category">
                                     <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range </label>
                                 </div>
@@ -206,14 +205,15 @@ class SearchControls extends React.Component {
                             <div className="col-xs-12 hidden-md-up">
                                 {this.getSlider()}
                             </div>
-                            <div className="col-xs-6 col-md-4 findwine_price-input">
+                            <div className="col-xs-6 col-md-9 findwine_price-input">
                                <div className="form-group min_price">
                                    R <input className="form-control" type="number" name="min_price"
                                           value={this.props.minPrice} min="0" required id="id_min_price"
                                           onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                                    />
                                </div>
-                               <div className="price-range"> TO </div>
+                               <div className="price-range hidden-md-up"> TO </div>
+                              <div className="price-range hidden-sm-down"> - </div>
                                <div className="form-group max_price">
                                  R  <input className="form-control" type="number" name="max_price"
                                            value={this.props.maxPrice} min="0" required id="id_max_price"
@@ -249,7 +249,7 @@ class SearchControls extends React.Component {
                 </div>
                 <div className="findwine_filters-bullet"></div>
                 <div className="findwine_filters-more">
-                  + 2 more
+                  R { this.props.minPrice } - R { this.props.maxPrice }
                 </div>
               </div>
             </div>
