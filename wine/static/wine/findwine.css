@@ -489,6 +489,11 @@ button:focus, button:hover {
   font-size: 18px;
   line-height: 18px;
   font-weight: 500; }
+  @media (min-width: 1024px) {
+    .findwine_producer-main {
+      color: #00ad68;
+      font-size: 16px;
+      margin-bottom: 15px; } }
 .findwine_producer-vintage {
   font-family: "Gotham A", sans-serif;
   color: #333e48;
@@ -497,6 +502,10 @@ button:focus, button:hover {
   font-weight: 500;
   margin-top: 12px;
   margin-bottom: 17px; }
+  @media (min-width: 1024px) {
+    .findwine_producer-vintage {
+      font-size: 26px;
+      margin-bottom: 15px; } }
 .findwine_category {
   font-family: "Gotham A", sans-serif;
   color: #333e48;
@@ -505,6 +514,12 @@ button:focus, button:hover {
   height: 17px;
   font-style: italic;
   margin-bottom: 8px; }
+  @media (min-width: 1024px) {
+    .findwine_category {
+      font-style: normal;
+      font-size: 14px;
+      color: #86929a;
+      margin-bottom: 17px; } }
 .findwine_place {
   font-family: "Gotham A", sans-serif;
   color: #333e48;
@@ -514,30 +529,56 @@ button:focus, button:hover {
   margin-bottom: 20px; }
   .findwine_place img {
     margin-right: 7px; }
+  @media (min-width: 1024px) {
+    .findwine_place {
+      font-size: 14px;
+      color: #86929a;
+      margin-bottom: 88px; } }
+@media (min-width: 1024px) {
+  .findwine_awards-holder {
+    display: flex;
+    justify-content: flex-start; } }
 .findwine_rating {
   font-family: "Gotham A", sans-serif;
   font-size: 14px;
   line-height: 28px;
   text-align: center;
   color: #ffffff;
-  margin-bottom: 5px; }
+  margin-bottom: 0px; }
 .findwine_rating-box {
-  height: auto;
+  height: 40px;
   width: 40px;
   border-radius: 5px;
-  display: block;
-  margin-top: 25px; }
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media (min-width: 1024px) {
+    .findwine_rating-box {
+      margin-top: 0px;
+      margin-right: 30px; } }
 .findwine_rating-box-gold {
   background-color: #c9a564; }
 .findwine_rating-box-sliver {
   background-color: #a5b2b3; }
 .findwine_rating-box-bronze {
   background-color: #b5664a; }
+.findwine_awards-container {
+  margin-top: 10px; }
+  @media (min-width: 1024px) {
+    .findwine_awards-container {
+      margin-top: 0px;
+      margin-bottom: 40px; } }
 .findwine_award-list {
   list-style-type: none;
   font-family: "Gotham A", sans-serif;
   font-size: 12px;
-  color: #86929a; }
+  color: #86929a;
+  display: block; }
+  @media (min-width: 1024px) {
+    .findwine_award-list {
+      display: table-cell;
+      width: 194px; } }
 .findwine_award-list-bullet {
   width: 6px;
   height: 6px;
@@ -546,8 +587,19 @@ button:focus, button:hover {
   margin-right: 5px;
   display: inline-block;
   margin-bottom: 2px; }
+.findwine_award-heading {
+  font-family: "Gotham A", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  color: #86929a;
+  display: block;
+  margin-bottom: 8px; }
 .findwine_list-group {
   display: block; }
+  @media (min-width: 1024px) {
+    .findwine_list-group {
+      display: inline-block; } }
 .findwine_detail-nav {
   position: relative !important;
   height: 56px;
@@ -606,6 +658,11 @@ button:focus, button:hover {
   border-bottom: 1px solid #dbe0e4;
   padding: 0px 15px;
   min-height: 20px; }
+  @media (min-width: 1024px) {
+    .findwine_detail-heading {
+      background-color: transparent;
+      border: none;
+      padding: 0px; } }
 .findwine_detail-header {
   font-family: "Gotham A", sans-serif;
   color: #86929a;
@@ -614,6 +671,10 @@ button:focus, button:hover {
   letter-spacing: 0.7px;
   margin-top: 31px;
   margin-bottom: 11px; }
+  @media (min-width: 1024px) {
+    .findwine_detail-header {
+      margin-top: 0px;
+      margin-bottom: 20px; } }
 .findwine_detail-header--2 {
   font-family: "Gotham A", sans-serif;
   font-size: 14px;
@@ -656,19 +717,39 @@ button:focus, button:hover {
   padding: 0.3rem 0px; }
 .findwine_detail-list {
   align-items: flex-start; }
+  @media (min-width: 1024px) {
+    .findwine_detail-list {
+      border: 1px solid #dbe0e4 !important;
+      margin-bottom: 20px;
+      max-width: 670px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between; } }
 .findwine_merchant-holder {
   width: 260px; }
+  @media (min-width: 1024px) {
+    .findwine_merchant-holder {
+      width: auto; } }
 .findwine_merchant-name {
   font-family: "Gotham A", sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: #333e48;
   margin-bottom: 5px; }
+  @media (min-width: 1024px) {
+    .findwine_merchant-name {
+      display: inline-block;
+      margin-right: 25px; } }
 .findwine_merchant-unit {
   font-family: "Gotham A", sans-serif;
   font-size: 12px;
   color: #86929a;
   margin-bottom: 15px; }
+  @media (min-width: 1024px) {
+    .findwine_merchant-unit {
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 0px; } }
 .findwine_merchant-delivery {
   font-family: #333e48;
   font-size: 12px;
@@ -676,18 +757,31 @@ button:focus, button:hover {
   line-height: 1.42;
   color: #86929a;
   padding-right: 5px; }
+  @media (min-width: 1024px) {
+    .findwine_merchant-delivery {
+      line-height: 1.5; } }
 .findwine_merchant-pricing {
   width: 71px; }
+  @media (min-width: 1024px) {
+    .findwine_merchant-pricing {
+      width: auto; } }
 .findwine_merchant-currency {
   display: inline-block;
   font-family: "Gotham A", sans-serif;
   font-size: 16px;
   font-weight: 500; }
+  @media (min-width: 1024px) {
+    .findwine_merchant-currency {
+      color: #86929a;
+      font-size: 18px; } }
 .findwine_merchant-price {
   display: inline-block;
   font-family: "Gotham A", sans-serif;
   font-size: 26px;
   font-weight: 500; }
+  @media (min-width: 1024px) {
+    .findwine_merchant-price {
+      font-size: 18px; } }
 .findwine_buy-button {
   font-family: "Gotham A", sans-serif;
   font-weight: 500;
@@ -698,6 +792,10 @@ button:focus, button:hover {
   text-align: center;
   outline: none;
   margin-top: 5px; }
+  @media (min-width: 1024px) {
+    .findwine_buy-button {
+      margin-top: 0px;
+      margin-left: 15px; } }
 .findwine_vintage-rating--box {
   height: 22px;
   width: 25px;
@@ -807,6 +905,9 @@ button:focus, button:hover {
   height: 56px;
   border: 1px solid #dbe0e4;
   padding: 20px 15px; }
+  @media (min-width: 1024px) {
+    .findwine_filters-collapsed {
+      margin-top: 34px; } }
 .findwine_filters-filter-icon {
   width: 11px;
   height: 13px;

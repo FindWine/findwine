@@ -254,7 +254,7 @@ class SearchControls extends React.Component {
               </div>
             </div>
             <div className="findwine_filters-expand">
-              <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': true})}>
+              <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': true})} style={{outline: 'none', border:'none', background: "none"}}>
                 <img src={ constructImagePath('wine/images/SVGs/arrow-down.svg') } className="findwine_filters-expand-arrow" />
               </button>
             </div>
@@ -283,7 +283,7 @@ class RatingsExplanationBar extends React.Component {
           <div className="findwine_ratings-heading">
               Ratings explained
           </div>
-          <button type="button" className="findwine_ratings-info" data-toggle="modal" data-target="#ratingsExplained">
+          <button type="button" className="findwine_ratings-info" data-toggle="modal" data-target="#ratingsExplained" style={{outline: 'none', border:'none', background: "none"}}>
             <img src={ constructImagePath('wine/images/SVGs/info.svg') } className="findwine_ratings-info-icon" />
           </button>
         </div>
@@ -332,7 +332,6 @@ class WineList extends React.Component {
                             <tr key={index} className="findwine_search-results">
                                 <td className="findwine_search-result--table">
                                   <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.avg_rating} </div>
-                                    {/*I've added this class everywhere else findwine_rating-box-{{ winevintage.rating_category }}*/}
                                   <div className="findwine_vintage--image">
                                     <img src={ winevintage.image_url } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
                                   </div>

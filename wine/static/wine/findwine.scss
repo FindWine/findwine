@@ -869,6 +869,12 @@ button:focus, button:hover {
     line-height: 18px;
     font-weight: 500;
 
+    @include breakpoint(lg) {
+      color: $primary-green;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
   }
 
   &_producer-vintage {
@@ -879,6 +885,11 @@ button:focus, button:hover {
     font-weight: 500;
     margin-top: 12px;
     margin-bottom: 17px;
+
+    @include breakpoint(lg) {
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
   }
 
   &_category {
@@ -889,6 +900,13 @@ button:focus, button:hover {
     height: 17px;
     font-style: italic;
     margin-bottom: 8px;
+
+    @include breakpoint(lg) {
+      font-style: normal;
+      font-size: 14px;
+      color: $light-grey-text;
+      margin-bottom: 17px;
+    }
   }
 
   &_place {
@@ -902,6 +920,19 @@ button:focus, button:hover {
     img {
       margin-right: 7px;
     }
+
+    @include breakpoint(lg) {
+      font-size: 14px;
+      color: $light-grey-text;
+      margin-bottom: 88px;
+    }
+  }
+
+  &_awards-holder {
+    @include breakpoint(lg) {
+      display: flex;
+      justify-content: flex-start;
+    }
   }
 
   &_rating {
@@ -911,15 +942,22 @@ button:focus, button:hover {
     //font-weight: bold;
     text-align: center;
     color: $white;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
   }
 
   &_rating-box {
-    height: auto;
+    height: 40px;
     width: 40px;
     border-radius: 5px;
-    display: block;
     margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include breakpoint(lg) {
+      margin-top: 0px;
+      margin-right: 30px;
+    }
   }
 
   &_rating-box-gold {
@@ -934,11 +972,27 @@ button:focus, button:hover {
     background-color: $bronze;
   }
 
+  &_awards-container {
+
+    margin-top: 10px;
+
+    @include breakpoint(lg) {
+      margin-top: 0px;
+      margin-bottom: 40px;
+    }
+  }
+
   &_award-list {
     list-style-type: none;
     font-family: $primary-font;
     font-size: 12px;
     color: $light-grey-text;
+    display: block;
+
+    @include breakpoint(lg) {
+      display: table-cell;
+      width: 194px;
+    }
   }
 
   &_award-list-bullet {
@@ -951,8 +1005,22 @@ button:focus, button:hover {
     margin-bottom: 2px;
   }
 
+  &_award-heading {
+    font-family: $primary-font;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+    color: $light-grey-text;
+    display: block;
+    margin-bottom: 8px;
+  }
+
   &_list-group {
     display: block;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+    }
   }
 
   &_detail-nav {
@@ -1039,6 +1107,12 @@ button:focus, button:hover {
     padding: 0px 15px;
     min-height: 20px;
 
+    @include breakpoint(lg) {
+      background-color: transparent;
+      border: none;
+      padding: 0px;
+    }
+
   }
 
   &_detail-header {
@@ -1050,6 +1124,11 @@ button:focus, button:hover {
     letter-spacing: 0.7px;
     margin-top: 31px;
     margin-bottom: 11px;
+
+    @include breakpoint(lg) {
+      margin-top: 0px;
+      margin-bottom: 20px;
+    }
 
   }
 
@@ -1105,10 +1184,23 @@ button:focus, button:hover {
 
   &_detail-list {
     align-items: flex-start;
+
+    @include breakpoint(lg) {
+      border: 1px solid $lightest-grey-border !important;
+      margin-bottom: 20px;
+      max-width: 670px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &_merchant-holder {
     width: 260px;
+
+    @include breakpoint(lg) {
+      width: auto;
+    }
   }
 
   &_merchant-name {
@@ -1117,6 +1209,13 @@ button:focus, button:hover {
     font-weight: 500;
     color: $primary-text;
     margin-bottom: 5px;
+
+    @include breakpoint(lg) {
+
+      display: inline-block;
+      margin-right: 25px;
+
+    }
   }
 
   &_merchant-unit {
@@ -1124,6 +1223,12 @@ button:focus, button:hover {
     font-size: 12px;
     color: $light-grey-text;
     margin-bottom: 15px;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 0px;
+    }
   }
 
   &_merchant-delivery {
@@ -1133,10 +1238,18 @@ button:focus, button:hover {
     line-height: 1.42;
     color: $light-grey-text;
     padding-right: 5px;
+
+    @include breakpoint(lg) {
+      line-height: 1.5;
+    }
   }
 
   &_merchant-pricing {
     width: 71px;
+
+    @include breakpoint(lg) {
+      width: auto;
+    }
   }
 
   &_merchant-currency {
@@ -1144,6 +1257,11 @@ button:focus, button:hover {
     font-family: $primary-font;
     font-size: 16px;
     font-weight: 500;
+
+    @include breakpoint(lg) {
+      color: $light-grey-text;
+      font-size: 18px;
+    }
   }
 
   &_merchant-price {
@@ -1151,6 +1269,11 @@ button:focus, button:hover {
     font-family: $primary-font;
     font-size: 26px;
     font-weight: 500;
+
+    @include breakpoint(lg) {
+      font-size: 18px;
+    }
+
   }
 
   &_buy-button {
@@ -1163,6 +1286,11 @@ button:focus, button:hover {
     text-align: center;
     outline: none;
     margin-top: 5px;
+
+    @include breakpoint(lg) {
+      margin-top: 0px;
+      margin-left: 15px;
+    }
 
   }
 
@@ -1333,6 +1461,10 @@ button:focus, button:hover {
     height: 56px;
     border: 1px solid $lightest-grey-border;
     padding: 20px 15px;
+
+    @include breakpoint(lg) {
+      margin-top: 34px;
+    }
   }
 
   &_filters-filter-icon {

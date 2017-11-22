@@ -3,6 +3,69 @@
 
 {% block content %}
 
+<!-- Nav for 'Home page'-->
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded landing-page-content">
+  <div class="container findwine_nav--menu">
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span>
+          <!-- Icon to be visible on home page. Toggle findwine_menu-button-none-->
+          <img src="{% static 'wine/images/SVGs/menu.svg' %}" class="findwine_menu-button">
+        </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'content:about' %}">About</a>
+        </li>
+        <!--<li class="nav-item nav-item-new">-->
+        <!--<a class="nav-link nav-link-new hidden-sm-up" href="{% url 'wine:search' %}">Search</a>-->
+        <!--</li>-->
+      </ul>
+      <!-- This will be added at a later stage -->
+      <!--<form class="form-inline my-2 my-lg-0 hidden-sm-down">-->
+      <!--<input class="form-control mr-sm-2 findwine_search-field" type="text" placeholder="Search wine or winery">-->
+      <!--<button class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"><img-->
+      <!--src="{% static 'wine/images/SVGs/search.svg' %}" class="findwine_search-icon"></button>-->
+      <!--</form>-->
+    </div>
+  </div>
+</nav>
+
+<!-- Nav for search-->
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-new search-page-content" style="display: none">
+  <div class="container findwine_nav--menu">
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span>
+          <!-- Icon to be visible on search and wine details pages -->
+          <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
+        </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active nav-item-new">
+          <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item nav-item-new">
+          <a class="nav-link nav-link-new" href="{% url 'content:about' %}">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- * This should only be visible on search results and wine details pages. Toggle class findwine_nav-logo-none -->
+  <div class="findwine_nav-logo search-page-content">
+    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
+  </div>
+</nav>
+
     <div class="findwine_banner-main landing-page-content">
         <img src="{% static 'wine/images/logo/logo-standard@3x.png' %}" class="d-inline-block align-top findwine_logo-standard" alt="FindWine">
     </div>
