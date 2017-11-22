@@ -74,15 +74,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active nav-item-new">
-  <!-- * Needs to navigate to home page -->
-            <a class="nav-link nav-link-new" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item nav-item-new">
             <a class="nav-link nav-link-new" href="{% url 'content:about' %}">About</a>
           </li>
           <li class="nav-item nav-item-new">
-  <!-- * Needs to navigate to home page -->
-            <a class="nav-link nav-link-new hidden-sm-up" href="#">Search</a>
+            <a class="nav-link nav-link-new hidden-sm-up" href="{% url 'wine:search' %}">Search</a>
           </li>
         </ul>
         <!-- This will be added at a later stage -->
@@ -94,7 +92,7 @@
       </div>
     </div>
     <!-- * This should only be visible on search results and wine details pages. Toggle class findwine_nav-logo-none -->
-    <div class="findwine_nav-logo">
+    <div class="findwine_nav-logo search-page-content" style="display: none">
       <img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine">
     </div>
   </nav>
