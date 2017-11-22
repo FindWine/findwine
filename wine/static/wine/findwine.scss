@@ -169,6 +169,11 @@ button:focus, button:hover {
   padding: 0px 15px;
 }
 
+.footer {
+  position: absolute;
+  //bottom: 0;
+}
+
 // Slider styles
 .rc-slider {
   width: 90% !important;

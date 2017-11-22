@@ -67,6 +67,9 @@ button:focus, button:hover {
 .search-form {
   padding: 0px 15px; }
 
+.footer {
+  position: absolute; }
+
 .rc-slider {
   width: 90% !important; }
   @media (min-width: 1024px) {
