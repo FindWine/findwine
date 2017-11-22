@@ -3,49 +3,12 @@
 
 {% block content %}
 
-<!-- This should disappear when 'search' button is clicked on home page -->
     <div class="findwine_banner-main landing-page-content">
         <img src="{% static 'wine/images/logo/logo-standard@3x.png' %}" class="d-inline-block align-top findwine_logo-standard" alt="FindWine">
     </div>
 
     <div id="react-home" class="findwine_filter-holder">
     </div>
-
-<!-- Ratings explained-->
-<!-- ** Cory, this should be below the collapsed filters, above the search results-->
-<div class="findwine_ratings-explained--container">
-  <div class="findwine_ratings-heading">
-      Ratings explained
-  </div>
-  <button type="button" class="findwine_ratings-info" data-toggle="modal" data-target="#ratingsExplained">
-    <img src="{% static 'wine/images/SVGs/info.svg' %}" class="findwine_ratings-info-icon">
-  </button>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="ratingsExplained" tabindex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body findwine_modal">
-        <div class="findwine_modal-ratings">
-          <img src="{% static 'wine/images/SVGs/ratings.svg' %}" class="findwine_modal-ratings-icon">
-        </div>
-        <div class="findwine_modal-heading">
-          Ratings Explained
-        </div>
-        <div class="findwine_modal-content">
-          Maecenas vitae ligula quis nunc pharetra rhoncus. Nunc in lacus vitae tortor gravida consequat quis id tortor.
-          In ullamcorper ligula justo, at varius purus vulputate vel. Suspendisse vel pharetra risus, eu vulputate nulla.
-          Sed at congue nisl, et pellentesque nisi. Maecenas vitae ligula quis nunc pharetra.
-        </div>
-      </div>
-      <div class="modal-footer findwine_modal-footer">
-        <button type="button" class="btn btn-secondary findwine_modal-button" data-dismiss="modal">Got it</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End modal-->
 
     <div class="findwine_content landing-page-content">
         <div class="container">
