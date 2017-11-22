@@ -400,8 +400,10 @@ class SearchPage extends React.Component {
         // todo: should this be managed by react?
         if (searchMade) {
             $('.landing-page-content').hide();
+            $('.search-page-content').show();
         } else {
             $('.landing-page-content').show();
+            $('.search-page-content').hide();
         }
     }
 
