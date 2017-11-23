@@ -484,7 +484,7 @@
           {% endif %}
         </div>
         <div class="findwine_vintage-details">
-          <a class="findwine_vintage-producer" href={winevintage.details_url}>
+          <a class="findwine_vintage-producer" href="{{winevintage.details_url}}">
             {{ other_vintage.wine.producer.name }}
           </a>
           <h4 class="findwine_vintage-vintage"> {{ other_vintage.wine.name }} {{ other_vintage.year }} </h4>
@@ -497,7 +497,7 @@
       <td class="findwine_vintage-table--display">
         <div class="findwine_vintage-currency"> R</div>
         <div class="findwine_vintage-price"> {{ other_vintage.preferred_merchant.price }}</div>
-        <a class="btn findwine_buy-button hidden-sm-down" href={winevintage.details_url} target="_blank" role="button"> View
+        <a class="btn findwine_buy-button hidden-sm-down" href="{{winevintage.details_url}}" target="_blank" role="button"> View
           <img src="{% static 'wine/images/SVGs/arrow-right-white.svg' %}"
                class="findwine_detail-right-arrow">
         </a>

@@ -273,7 +273,7 @@ button:focus, button:hover {
     z-index: 1000;
 
     @include breakpoint(lg) {
-      margin-left: auto;
+      margin-left: 260px;
     }
   }
 
@@ -288,6 +288,9 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       text-align: left;
+      margin-left: 40px;
+      width: 185px;
+      height: 40px;
     }
 
   }
@@ -1535,6 +1538,7 @@ button:focus, button:hover {
   &_filter-holder-search-result {
 
     @include breakpoint(lg) {
+      min-height: 100vh;
       height: auto;
       position:relative;
       margin-top: 0px;
@@ -1578,17 +1582,32 @@ button:focus, button:hover {
     justify-content: space-between;
     padding: 0px 15px;
     margin-bottom: 17px;
+    margin-top: 17px;
 
     @include breakpoint(lg) {
       margin-bottom: 0px;
+      padding: 50px 0px;
+      display: flex;
+      flex-flow: column;
+      text-align: center;
     }
   }
 
   &_search-page--inner {
     display: inherit;
+
+    @include breakpoint(lg) {
+      order: 2;
+      margin-top: 20px;
+    }
+
   }
 
   &_search-button--container {
+
+    @include breakpoint(lg) {
+      order: 1;
+    }
 
   }
 
@@ -1598,12 +1617,22 @@ button:focus, button:hover {
     font-weight: bold;
     color: $light-grey-text;
     margin-right: 14px;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+    }
+
   }
 
   &_search-winesTotal {
     font-family: $primary-font;
     font-size: 12px;
     color: $light-grey-text;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+    }
+
   }
 
   &_search-next--button {
@@ -1614,6 +1643,12 @@ button:focus, button:hover {
 
     &-left {
       border-radius: 2px 0px 0px 2px;
+
+      @include breakpoint(lg) {
+        margin-right: 20px;
+        border-radius: 4px;
+      }
+
     }
 
     &-inactive {
@@ -1622,6 +1657,63 @@ button:focus, button:hover {
       border-radius: 2px;
       background-color: $lightest-grey;
       border: 1px solid $lightest-grey-border;
+
+      @include breakpoint(lg) {
+        background-color: $white;
+        border: 2px solid $primary-green;
+        width: 140px;
+        height: 44px;
+        border-radius: 4px;
+      }
+    }
+
+    @include breakpoint(lg) {
+      width: 140px;
+      height: 44px;
+      border-radius: 4px;
+    }
+  }
+
+  &_search-next--button-text {
+    font-family: $primary-font;
+    font-size: 14px;
+    display: inline-block;
+    color: $white;
+
+    &-inactive {
+      font-family: $primary-font;
+      font-size: 14px;
+      display: inline-block;
+      color: $primary-green;
+    }
+  }
+
+  &_search-next--button-arrow-right {
+
+    @include breakpoint(lg) {
+      margin-left: 10px;
+    }
+
+  }
+
+  &_search-next--button-arrow {
+
+    @include breakpoint(lg) {
+      margin-right: 10px;
+    }
+
+  }
+
+  &_search-next--button-green-arrow {
+    @include breakpoint(lg) {
+      margin-right: 10px;
+    }
+  }
+
+  &_search-next--button-green-arrow-right {
+    @include breakpoint(lg) {
+      margin-left: 10px;
+      transform: rotate(180deg);
     }
   }
 
@@ -1696,6 +1788,14 @@ button:focus, button:hover {
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+
+    @include breakpoint(lg) {
+      justify-content: flex-start;
+      padding: 0px;
+      height: auto;
+      padding: 20px 0px 30px 0px;
+    }
+
   }
 
   &_ratings-heading {
@@ -1703,6 +1803,18 @@ button:focus, button:hover {
     font-size: 14px;
     color: $light-grey-text;
     display: inline-block;
+
+    @include breakpoint(lg) {
+      order: 2;
+    }
+  }
+
+  &_ratings-info{
+
+    @include breakpoint(lg) {
+      order: 1;
+      padding-left: 0px;
+    }
   }
 
   &_ratings-info-icon {
@@ -1751,6 +1863,38 @@ button:focus, button:hover {
     font-weight: bold;
     text-align: center;
     border-color: $primary-green;
+  }
+
+  // No results
+
+  &_no-results-holder {
+    background-color: $white;
+    border: 1px solid $lightest-grey-border;
+    padding: 50px 0px;
+    text-align: center;
+  }
+
+  &_no-results-holder-image {
+    height: 50px;
+    width: 255px;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  &_no-results-text-heading {
+    text-align: center;
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  &_no-results-text {
+    text-align: center;
+    font-family: $primary-font;
+    color: $light-grey-text;
+    font-size: 14px;
+    margin-bottom: 0px;
   }
 
 }
