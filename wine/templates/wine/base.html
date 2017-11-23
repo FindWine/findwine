@@ -52,51 +52,6 @@
 	</head>
 	<body>
 
-  <!-- This is the navigation bar at the top of the page-->
-
-  <!--** Cory - please take note of the following comments that I have marked with a *-->
-  <!-- * The nav changes on search results and wine details pages -->
-  <!-- * Classes to be toggled for search results page and wine details pages 1. navbar-new 2.findwine_menu-button-none 3.nav-item-new 4.nav-link-new 5.findwine_nav-logo-none-->
-
-  <nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-new">
-    <div class="container findwine_nav--menu">
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span>
-          <!-- Icon to be visible on home page. Toggle findwine_menu-button-none-->
-          <img src="{% static 'wine/images/SVGs/menu.svg' %}" class="findwine_menu-button" style="display: none">
-          <!-- Icon to be visible on search and wine details pages -->
-          <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
-        </span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active nav-item-new">
-            <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item nav-item-new">
-            <a class="nav-link nav-link-new" href="{% url 'content:about' %}">About</a>
-          </li>
-          <li class="nav-item nav-item-new">
-            <a class="nav-link nav-link-new hidden-sm-up" href="{% url 'wine:search' %}">Search</a>
-          </li>
-        </ul>
-        <!-- This will be added at a later stage -->
-        <!--<form class="form-inline my-2 my-lg-0 hidden-sm-down">-->
-          <!--<input class="form-control mr-sm-2 findwine_search-field" type="text" placeholder="Search wine or winery">-->
-          <!--<button class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"><img-->
-            <!--src="{% static 'wine/images/SVGs/search.svg' %}" class="findwine_search-icon"></button>-->
-        <!--</form>-->
-      </div>
-    </div>
-    <!-- * This should only be visible on search results and wine details pages. Toggle class findwine_nav-logo-none -->
-    <div class="findwine_nav-logo search-page-content" style="display: none">
-      <img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine">
-    </div>
-  </nav>
-
 		<!-- OTHER PAGES -->
 		{% block content %}
 		<!--No need to input anything here. This is where the body of code will go from the other .html pages-->

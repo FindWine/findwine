@@ -198,7 +198,7 @@ class SearchControls extends React.Component {
                         <div className="col-xs-12 col-md-6 findwine_subcategory-row">
                             <div className="col-xs-12 col-md-3 findwine_subcategory" >
                                 <div className="form-group sub_category">
-                                    <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range </label>
+                                    <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
                                 </div>
                             </div>
                             {/*Slider - mobile layout slider appears above max and min price*/}
@@ -254,7 +254,7 @@ class SearchControls extends React.Component {
               </div>
             </div>
             <div className="findwine_filters-expand">
-              <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': true})}>
+              <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': true})} style={{outline: 'none', border:'none', background: "none"}}>
                 <img src={ constructImagePath('wine/images/SVGs/arrow-down.svg') } className="findwine_filters-expand-arrow" />
               </button>
             </div>
@@ -279,11 +279,11 @@ class SearchControls extends React.Component {
 class RatingsExplanationBar extends React.Component {
     render () {
       return (
-        <div className="findwine_ratings-explained--container">
+        <div className="findwine_ratings-explained--container" id="modal">
           <div className="findwine_ratings-heading">
               Ratings explained
           </div>
-          <button type="button" className="findwine_ratings-info" data-toggle="modal" data-target="#ratingsExplained">
+          <button type="button" className="findwine_ratings-info" data-toggle="modal" data-target="#ratingsExplained" style={{outline: 'none', border:'none', background: "none"}}>
             <img src={ constructImagePath('wine/images/SVGs/info.svg') } className="findwine_ratings-info-icon" />
           </button>
         </div>
@@ -325,14 +325,13 @@ class WineList extends React.Component {
         if (this.props.wines.length > 0) {
             return (
 
-                <table className="table table-responsive table-sm">
+                <table className="table table-responsive table-sm findwine_vintage-table">
                     <tbody>
                     {this.props.wines.map((winevintage, index) => {
                         return (
                             <tr key={index} className="findwine_search-results">
                                 <td className="findwine_search-result--table">
                                   <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.avg_rating} </div>
-                                    {/*I've added this class everywhere else findwine_rating-box-{{ winevintage.rating_category }}*/}
                                   <div className="findwine_vintage--image">
                                     <img src={ winevintage.image_url } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
                                   </div>
@@ -349,6 +348,9 @@ class WineList extends React.Component {
                                 <td className="findwine_vintage-table--display">
                                   <div className="findwine_vintage-currency"> R </div>
                                   <div className="findwine_vintage-price"> {winevintage.price} </div>
+                                  <a class="btn findwine_buy-button hidden-sm-down" href={winevintage.details_url} target="_blank" role="button"> View
+                                    <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') } class="findwine_detail-right-arrow"></img>
+                                  </a>
                                 </td>
                             </tr>
                         );
@@ -358,8 +360,11 @@ class WineList extends React.Component {
             );
         } else {
             return (
-                <p style={{textAlign: 'center', paddingTop: '10%', marginBottom: '450px'}}>No results are available.
-                    Adjust criteria and search again.</p>
+              <div className="findwine_no-results-holder">
+                <img src={ constructImagePath('wine/images/SVGs/no-results.svg') } class="findwine_no-results-holder-image"></img>
+                <p className="findwine_no-results-text-heading"> No results found. </p>
+                <p className="findwine_no-results-text"> Please adjust your serch criteria. </p>
+              </div>
             )
         }
     }
@@ -373,9 +378,23 @@ class Paginator extends React.Component {
     render() {
         // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
         let nextButton = this.props.showNext ?
-            <a className="btn findwine_search-next--button" onClick={(event) => this.props.nextPage()}><img src={constructImagePath('wine/images/SVGs/arrow-right.svg')} alt="Next"></img></a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}><img src={constructImagePath('wine/images/SVGs/arrow-right-greyLight.svg')} alt="Next"></img></a>;
+            <a className="btn findwine_search-next--button" href="#modal" onClick={(event) => this.props.nextPage()}>
+              <p className="findwine_search-next--button-text hidden-sm-down">Next</p>
+              <img src={constructImagePath('wine/images/SVGs/arrow-right.svg')} alt="Next" className="findwine_search-next--button-arrow-right"></img>
+            </a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}>
+            <p className="findwine_search-next--button-text-inactive hidden-sm-down">Next</p>
+            <img src={constructImagePath('wine/images/SVGs/arrow-right-greyLight.svg')} alt="Next" className="hidden-md-up"></img>
+            <img src={constructImagePath('wine/images/SVGs/arrow-left-green.svg')} alt="Next" className="hidden-sm-down findwine_search-next--button-green-arrow-right"></img>
+          </a>;
         let prevButton = this.props.showPrevious ?
-            <a className="btn findwine_search-next--button findwine_search-next--button-left" onClick={(event) => this.props.prevPage()}><img src={constructImagePath('wine/images/SVGs/arrow-left.svg')} alt="Previous"></img></a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}><img src={constructImagePath('wine/images/SVGs/arrow-left-grey.svg')} alt="Next"></img></a>;
+            <a className="btn findwine_search-next--button findwine_search-next--button-left" href="#modal" onClick={(event) => this.props.prevPage()}>
+              <img src={constructImagePath('wine/images/SVGs/arrow-left.svg')} alt="Previous" className="findwine_search-next--button-arrow"></img>
+              <p className="findwine_search-next--button-text hidden-sm-down">Previous</p>
+            </a> : <a className="btn findwine_search-next--button-inactive findwine_search-next--button-left" onClick={(event) => this.props.nextPage()}>
+            <img src={constructImagePath('wine/images/SVGs/arrow-left-grey.svg')} alt="Previous" className="hidden-md-up"></img>
+            <img src={constructImagePath('wine/images/SVGs/arrow-left-green.svg')} alt="Previous" className="hidden-sm-down findwine_search-next--button-green-arrow"></img>
+            <p className="findwine_search-next--button-text-inactive hidden-sm-down">Previous</p>
+          </a>;
 
             return (
             <div className="findwine_search-page--container">
@@ -443,9 +462,11 @@ class SearchPage extends React.Component {
         if (searchMade) {
             $('.landing-page-content').hide();
             $('.search-page-content').show();
+            $('.findwine_filter-holder').addClass('findwine_filter-holder-search-result');
         } else {
             $('.landing-page-content').show();
             $('.search-page-content').hide();
+            $('.findwine_filter-holder').removeClass('findwine_filter-holder-search-result');
         }
     }
 

@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-//$primary-font: 'Gotham A', 'Gotham B';
-$primary-font: 'Gotham A', sans-serif;
+$primary-font: 'Gotham A', 'Gotham B';
+//$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -169,6 +169,11 @@ button:focus, button:hover {
   padding: 0px 15px;
 }
 
+.footer {
+  position: absolute;
+  margin-top: 0px;
+}
+
 // Slider styles
 .rc-slider {
   width: 90% !important;
@@ -268,7 +273,7 @@ button:focus, button:hover {
     z-index: 1000;
 
     @include breakpoint(lg) {
-      margin-left: auto;
+      margin-left: 260px;
     }
   }
 
@@ -279,6 +284,13 @@ button:focus, button:hover {
 
     &-none {
       display: none;
+    }
+
+    @include breakpoint(lg) {
+      text-align: left;
+      margin-left: 40px;
+      width: 185px;
+      height: 40px;
     }
 
   }
@@ -628,11 +640,11 @@ button:focus, button:hover {
 
   &_subscribe {
 
-    padding-top: 30px;
+    padding: 30px 0px;
 
     @include breakpoint(lg) {
 
-      padding-top: 3em;
+      padding: 3em 0px ;
 
     }
 
@@ -817,6 +829,17 @@ button:focus, button:hover {
     overflow: hidden;
     cursor: pointer;
     padding: 15px;
+    display: flex;
+    justify-content: center;
+
+    &:hover, &:active, &:focus {
+      border: 1px solid $primary-green;
+      outline: none;
+    }
+
+    img {
+      max-height: 58px;
+    }
 
   }
 
@@ -830,6 +853,17 @@ button:focus, button:hover {
     overflow: hidden;
     cursor: pointer;
     padding: 15px;
+    display: flex;
+    justify-content: center;
+
+    &:hover, &:active, &:focus {
+      border: 1px solid $primary-green;
+      outline: none;
+    }
+
+    img {
+      max-height: 58px;
+    }
 
   }
 
@@ -844,8 +878,7 @@ button:focus, button:hover {
   }
 
   &_detail-image-main {
-    height: 100%;
-    padding: 30px;
+    max-height: 318px;
   }
 
   &_producer {
@@ -864,6 +897,16 @@ button:focus, button:hover {
     line-height: 18px;
     font-weight: 500;
 
+    @include breakpoint(lg) {
+      color: $primary-green;
+      font-size: 16px;
+      margin-bottom: 15px;
+
+      &:active, &:hover, &:focus {
+        text-decoration: underline;
+      }
+    }
+
   }
 
   &_producer-vintage {
@@ -874,6 +917,11 @@ button:focus, button:hover {
     font-weight: 500;
     margin-top: 12px;
     margin-bottom: 17px;
+
+    @include breakpoint(lg) {
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
   }
 
   &_category {
@@ -884,6 +932,13 @@ button:focus, button:hover {
     height: 17px;
     font-style: italic;
     margin-bottom: 8px;
+
+    @include breakpoint(lg) {
+      font-style: normal;
+      font-size: 14px;
+      color: $light-grey-text;
+      margin-bottom: 17px;
+    }
   }
 
   &_place {
@@ -897,6 +952,19 @@ button:focus, button:hover {
     img {
       margin-right: 7px;
     }
+
+    @include breakpoint(lg) {
+      font-size: 14px;
+      color: $light-grey-text;
+      margin-bottom: 88px;
+    }
+  }
+
+  &_awards-holder {
+    @include breakpoint(lg) {
+      display: flex;
+      justify-content: flex-start;
+    }
   }
 
   &_rating {
@@ -906,15 +974,22 @@ button:focus, button:hover {
     //font-weight: bold;
     text-align: center;
     color: $white;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
   }
 
   &_rating-box {
-    height: auto;
+    height: 40px;
     width: 40px;
     border-radius: 5px;
-    display: block;
     margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include breakpoint(lg) {
+      margin-top: 0px;
+      margin-right: 30px;
+    }
   }
 
   &_rating-box-gold {
@@ -929,11 +1004,27 @@ button:focus, button:hover {
     background-color: $bronze;
   }
 
+  &_awards-container {
+
+    margin-top: 10px;
+
+    @include breakpoint(lg) {
+      margin-top: 0px;
+      margin-bottom: 40px;
+    }
+  }
+
   &_award-list {
     list-style-type: none;
     font-family: $primary-font;
     font-size: 12px;
     color: $light-grey-text;
+    display: block;
+
+    @include breakpoint(lg) {
+      display: table-cell;
+      width: 194px;
+    }
   }
 
   &_award-list-bullet {
@@ -946,8 +1037,22 @@ button:focus, button:hover {
     margin-bottom: 2px;
   }
 
+  &_award-heading {
+    font-family: $primary-font;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+    color: $light-grey-text;
+    display: block;
+    margin-bottom: 8px;
+  }
+
   &_list-group {
     display: block;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+    }
   }
 
   &_detail-nav {
@@ -992,6 +1097,17 @@ button:focus, button:hover {
   &_detail-rowHeight {
     height: 113px;
     overflow: hidden;
+
+    @include breakpoint(lg) {
+      height: auto;
+      margin-left: 0px;
+      margin-right: 0px;
+      background-color: $white;
+      border: 1px solid $lightest-grey-border;
+      border-radius: 4px;
+      padding: 30px 15px;
+      flex: 1;
+    }
   }
 
   &_detail-expand {
@@ -1034,6 +1150,12 @@ button:focus, button:hover {
     padding: 0px 15px;
     min-height: 20px;
 
+    @include breakpoint(lg) {
+      background-color: transparent;
+      border: none;
+      padding: 0px;
+    }
+
   }
 
   &_detail-header {
@@ -1046,6 +1168,16 @@ button:focus, button:hover {
     margin-top: 31px;
     margin-bottom: 11px;
 
+    @include breakpoint(lg) {
+      margin-top: 0px;
+      margin-bottom: 20px;
+    }
+
+  }
+
+  &_detail-header--desktop {
+    padding-top: 50px;
+    margin-bottom: 24px;
   }
 
   &_detail-header--2 {
@@ -1055,6 +1187,13 @@ button:focus, button:hover {
     letter-spacing: 0.9px;
     margin: 26px 15px 13px 15px;
     color: $primary-text;
+
+    @include breakpoint(lg) {
+      margin: 0px 0px 20px 0px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1.1px;
+    }
   }
 
   &_detail-content {
@@ -1068,6 +1207,14 @@ button:focus, button:hover {
     margin-bottom: 20px;
     height: 43px;
     overflow: hidden;
+
+    @include breakpoint(lg) {
+      margin: 0px;
+      font-size: 16px;
+      line-height: 1.75;
+      height: auto;
+    }
+
   }
 
   &_detail-content-left {
@@ -1080,6 +1227,14 @@ button:focus, button:hover {
     margin-right: 15px;
     margin-bottom: 20px;
     width: 125px;
+
+    @include breakpoint(lg) {
+      padding: 0px !important;
+      border: none !important;
+      display: block;
+      width: 100%;
+      margin: 20px 0px 0px 0px;
+    }
   }
 
   &_detail-content-right {
@@ -1092,6 +1247,22 @@ button:focus, button:hover {
     margin-right: 15px;
     margin-bottom: 20px;
     width: 250px;
+
+    @include breakpoint(lg) {
+      padding: 0px !important;
+      border: none !important;
+      display: block;
+      width: 100%;
+      font-weight: 500;
+      margin: 0px;
+      color: $primary-text;
+    }
+  }
+
+  &_detail-list-inline-item {
+    @include breakpoint(lg) {
+      margin: 0px;
+    }
   }
 
   &_detail-content-list {
@@ -1100,10 +1271,23 @@ button:focus, button:hover {
 
   &_detail-list {
     align-items: flex-start;
+
+    @include breakpoint(lg) {
+      border: 1px solid $lightest-grey-border !important;
+      margin-bottom: 20px;
+      max-width: 670px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &_merchant-holder {
     width: 260px;
+
+    @include breakpoint(lg) {
+      width: auto;
+    }
   }
 
   &_merchant-name {
@@ -1112,6 +1296,13 @@ button:focus, button:hover {
     font-weight: 500;
     color: $primary-text;
     margin-bottom: 5px;
+
+    @include breakpoint(lg) {
+
+      display: inline-block;
+      margin-right: 25px;
+
+    }
   }
 
   &_merchant-unit {
@@ -1119,19 +1310,34 @@ button:focus, button:hover {
     font-size: 12px;
     color: $light-grey-text;
     margin-bottom: 15px;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 0px;
+    }
   }
 
   &_merchant-delivery {
-    font-family: $primary-text;
+    font-family: $primary-font;
     font-size: 12px;
     font-style: italic;
     line-height: 1.42;
     color: $light-grey-text;
     padding-right: 5px;
+
+    @include breakpoint(lg) {
+      line-height: 1.5;
+      font-style: normal;
+    }
   }
 
   &_merchant-pricing {
     width: 71px;
+
+    @include breakpoint(lg) {
+      width: auto;
+    }
   }
 
   &_merchant-currency {
@@ -1139,6 +1345,11 @@ button:focus, button:hover {
     font-family: $primary-font;
     font-size: 16px;
     font-weight: 500;
+
+    @include breakpoint(lg) {
+      color: $light-grey-text;
+      font-size: 18px;
+    }
   }
 
   &_merchant-price {
@@ -1146,10 +1357,16 @@ button:focus, button:hover {
     font-family: $primary-font;
     font-size: 26px;
     font-weight: 500;
+
+    @include breakpoint(lg) {
+      font-size: 18px;
+    }
+
   }
 
   &_buy-button {
     font-family: $primary-font;
+    font-size: 14px;
     font-weight: 500;
     color: $white;
     background-color: $primary-green;
@@ -1159,13 +1376,53 @@ button:focus, button:hover {
     outline: none;
     margin-top: 5px;
 
+    @include breakpoint(lg) {
+      margin-top: 0px;
+      margin-left: 15px ;
+    }
+
+  }
+
+  &_detail-holder {
+
+    @include breakpoint(lg) {
+      background-color: $lightest-grey;;
+      padding: 0px 100px 50px 100px;
+      margin-top: 50px;
+    }
+  }
+
+  &_details-specs {
+    @include breakpoint(lg) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &_details-margin {
+    @include breakpoint(lg) {
+      margin-right: 30px;
+    }
   }
 
   // Other vintages
 
+  &_vintage-table {
+
+    margin-bottom: 0px !important;
+
+    @include breakpoint(lg) {
+      background-color: $white;
+      border: 1px solid $lightest-grey-border;
+      width: 100%;
+      padding: 0px;
+    }
+
+  }
+
   &_vintage-rating--box {
-    height: 22px;
-    width: 25px;
+    height: 40px;
+    width: 40px;
     border-radius: 0px 3px 3px 0px;
     display: block;
     margin-top: 5px;
@@ -1174,6 +1431,15 @@ button:focus, button:hover {
     line-height: 22px;
     text-align: center;
     display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include breakpoint(lg) {
+      border-radius: 3px;
+      margin-top: 0px;
+    }
+
   }
 
   &_vintage-rating {
@@ -1185,10 +1451,24 @@ button:focus, button:hover {
     height: 98px;
     display: inline-block;
     text-align: center;
+
+    @include breakpoint(lg) {
+      width: 80px;
+      height: 120px;
+      margin: 0px 50px;
+    }
+
   }
 
   &_vintage--image-img {
     max-height: 98px;
+    font-family: $primary-font;
+    font-size: 12px;
+    color: $light-grey-text;
+
+    @include breakpoint(lg) {
+      max-height: 120px;
+    }
   }
 
   &_vintage-producer {
@@ -1215,6 +1495,11 @@ button:focus, button:hover {
     font-style: italic;
     margin-top: 20px;
     margin-bottom: 0px;
+
+    @include breakpoint(lg) {
+      font-style: normal;
+      line-height: 1.42;
+    }
   }
 
   &_vintage-currency {
@@ -1233,11 +1518,25 @@ button:focus, button:hover {
     color: $primary-text;
     display: inline-block;
     margin-top: 60px;
+
+    @include breakpoint(lg) {
+      margin-right: 30px;
+      margin-top: 0px;
+    }
+
   }
 
   &_vintage-table--display {
     display: inline-table;
     width: 75px;
+
+    @include breakpoint(lg) {
+      border: none !important;
+      width: 236px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   // Search results
@@ -1255,6 +1554,20 @@ button:focus, button:hover {
     }
   }
 
+  &_filter-holder-search-result {
+
+    @include breakpoint(lg) {
+      min-height: 100vh;
+      height: auto;
+      position:relative;
+      margin-top: 0px;
+      width: 100%;
+      background-color: $lightest-grey;
+      padding: 0px 100px;
+    }
+
+  }
+
   &_search-results {
     display: flex;
     align-items: flex-start;
@@ -1262,12 +1575,24 @@ button:focus, button:hover {
     &:last-child {
       border-bottom: 1px solid $lightest-grey-border;
     }
+
+    @include breakpoint(lg) {
+      display: flex;
+      align-items: center;
+      padding: 0px 50px;
+      border: 1px solid $lightest-grey-border;
+    }
   }
 
   &_search-result--table {
     padding: 17px 0px 0px 0px !important;
     display: flex;
     align-items: flex-start;
+
+    @include breakpoint(lg) {
+      border: none !important;
+      width: 900px;
+    }
   }
 
   &_search-page--container {
@@ -1276,13 +1601,32 @@ button:focus, button:hover {
     justify-content: space-between;
     padding: 0px 15px;
     margin-bottom: 17px;
+    margin-top: 17px;
+
+    @include breakpoint(lg) {
+      margin-bottom: 0px;
+      padding: 50px 0px;
+      display: flex;
+      flex-flow: column;
+      text-align: center;
+    }
   }
 
   &_search-page--inner {
     display: inherit;
+
+    @include breakpoint(lg) {
+      order: 2;
+      margin-top: 20px;
+    }
+
   }
 
   &_search-button--container {
+
+    @include breakpoint(lg) {
+      order: 1;
+    }
 
   }
 
@@ -1292,12 +1636,22 @@ button:focus, button:hover {
     font-weight: bold;
     color: $light-grey-text;
     margin-right: 14px;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+    }
+
   }
 
   &_search-winesTotal {
     font-family: $primary-font;
     font-size: 12px;
     color: $light-grey-text;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+    }
+
   }
 
   &_search-next--button {
@@ -1305,9 +1659,17 @@ button:focus, button:hover {
     height: 42px;
     border-radius: 0px 2px 2px 0px;
     background-color: $primary-green;
+    cursor: pointer;
 
     &-left {
       border-radius: 2px 0px 0px 2px;
+      cursor: pointer;
+
+      @include breakpoint(lg) {
+        margin-right: 20px;
+        border-radius: 4px;
+      }
+
     }
 
     &-inactive {
@@ -1316,6 +1678,63 @@ button:focus, button:hover {
       border-radius: 2px;
       background-color: $lightest-grey;
       border: 1px solid $lightest-grey-border;
+
+      @include breakpoint(lg) {
+        background-color: $white;
+        border: 2px solid $primary-green;
+        width: 140px;
+        height: 44px;
+        border-radius: 4px;
+      }
+    }
+
+    @include breakpoint(lg) {
+      width: 140px;
+      height: 44px;
+      border-radius: 4px;
+    }
+  }
+
+  &_search-next--button-text {
+    font-family: $primary-font;
+    font-size: 14px;
+    display: inline-block;
+    color: $white;
+
+    &-inactive {
+      font-family: $primary-font;
+      font-size: 14px;
+      display: inline-block;
+      color: $primary-green;
+    }
+  }
+
+  &_search-next--button-arrow-right {
+
+    @include breakpoint(lg) {
+      margin-left: 10px;
+    }
+
+  }
+
+  &_search-next--button-arrow {
+
+    @include breakpoint(lg) {
+      margin-right: 10px;
+    }
+
+  }
+
+  &_search-next--button-green-arrow {
+    @include breakpoint(lg) {
+      margin-right: 10px;
+    }
+  }
+
+  &_search-next--button-green-arrow-right {
+    @include breakpoint(lg) {
+      margin-left: 10px;
+      transform: rotate(180deg);
     }
   }
 
@@ -1328,6 +1747,10 @@ button:focus, button:hover {
     height: 56px;
     border: 1px solid $lightest-grey-border;
     padding: 20px 15px;
+
+    @include breakpoint(lg) {
+
+    }
   }
 
   &_filters-filter-icon {
@@ -1386,6 +1809,14 @@ button:focus, button:hover {
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+
+    @include breakpoint(lg) {
+      justify-content: flex-start;
+      padding: 0px;
+      height: auto;
+      padding: 20px 0px 30px 0px;
+    }
+
   }
 
   &_ratings-heading {
@@ -1393,6 +1824,18 @@ button:focus, button:hover {
     font-size: 14px;
     color: $light-grey-text;
     display: inline-block;
+
+    @include breakpoint(lg) {
+      order: 2;
+    }
+  }
+
+  &_ratings-info{
+
+    @include breakpoint(lg) {
+      order: 1;
+      padding-left: 0px;
+    }
   }
 
   &_ratings-info-icon {
@@ -1434,13 +1877,52 @@ button:focus, button:hover {
   }
 
   &_modal-button{
-    background-color: $primary-green;
+    background-color: $white;
     font-family: $primary-font;
-    color: $white;
+    color: $primary-green;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
-    border-color: $primary-green;
+    border: 2px solid $primary-green;
+    cursor: pointer;
+
+    &:focus, &:hover, &:active {
+      border: 2px solid $primary-green;
+      background-color: $primary-green;
+      color: $white;
+    }
+  }
+
+  // No results
+
+  &_no-results-holder {
+    background-color: $white;
+    border: 1px solid $lightest-grey-border;
+    padding: 50px 0px;
+    text-align: center;
+  }
+
+  &_no-results-holder-image {
+    height: 50px;
+    width: 255px;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  &_no-results-text-heading {
+    text-align: center;
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  &_no-results-text {
+    text-align: center;
+    font-family: $primary-font;
+    color: $light-grey-text;
+    font-size: 14px;
+    margin-bottom: 0px;
   }
 
 }
