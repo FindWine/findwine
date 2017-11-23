@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-//$primary-font: 'Gotham A', 'Gotham B';
-$primary-font: 'Gotham A', sans-serif;
+$primary-font: 'Gotham A', 'Gotham B';
+//$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -171,7 +171,7 @@ button:focus, button:hover {
 
 .footer {
   position: absolute;
-  //bottom: 0;
+  margin-top: 0px;
 }
 
 // Slider styles
@@ -633,11 +633,11 @@ button:focus, button:hover {
 
   &_subscribe {
 
-    padding-top: 30px;
+    padding: 30px 0px;
 
     @include breakpoint(lg) {
 
-      padding-top: 3em;
+      padding: 3em 0px ;
 
     }
 
@@ -823,6 +823,11 @@ button:focus, button:hover {
     cursor: pointer;
     padding: 15px;
 
+    &:hover, &:active, &:focus {
+      border: 1px solid $primary-green;
+      outline: none;
+    }
+
   }
 
   &_detail-image-2 {
@@ -835,6 +840,11 @@ button:focus, button:hover {
     overflow: hidden;
     cursor: pointer;
     padding: 15px;
+
+    &:hover, &:active, &:focus {
+      border: 1px solid $primary-green;
+      outline: none;
+    }
 
   }
 
@@ -1065,6 +1075,17 @@ button:focus, button:hover {
   &_detail-rowHeight {
     height: 113px;
     overflow: hidden;
+
+    @include breakpoint(lg) {
+      height: auto;
+      margin-left: 0px;
+      margin-right: 0px;
+      background-color: $white;
+      border: 1px solid $lightest-grey-border;
+      border-radius: 4px;
+      padding: 30px 15px;
+      flex: 1;
+    }
   }
 
   &_detail-expand {
@@ -1132,6 +1153,11 @@ button:focus, button:hover {
 
   }
 
+  &_detail-header--desktop {
+    padding-top: 50px;
+    margin-bottom: 24px;
+  }
+
   &_detail-header--2 {
     font-family: $primary-font;
     font-size: 14px;
@@ -1139,6 +1165,13 @@ button:focus, button:hover {
     letter-spacing: 0.9px;
     margin: 26px 15px 13px 15px;
     color: $primary-text;
+
+    @include breakpoint(lg) {
+      margin: 0px 0px 20px 0px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1.1px;
+    }
   }
 
   &_detail-content {
@@ -1152,6 +1185,14 @@ button:focus, button:hover {
     margin-bottom: 20px;
     height: 43px;
     overflow: hidden;
+
+    @include breakpoint(lg) {
+      margin: 0px;
+      font-size: 16px;
+      line-height: 1.75;
+      height: auto;
+    }
+
   }
 
   &_detail-content-left {
@@ -1164,6 +1205,14 @@ button:focus, button:hover {
     margin-right: 15px;
     margin-bottom: 20px;
     width: 125px;
+
+    @include breakpoint(lg) {
+      padding: 0px !important;
+      border: none !important;
+      display: block;
+      width: 100%;
+      margin: 20px 0px 0px 0px;
+    }
   }
 
   &_detail-content-right {
@@ -1176,6 +1225,22 @@ button:focus, button:hover {
     margin-right: 15px;
     margin-bottom: 20px;
     width: 250px;
+
+    @include breakpoint(lg) {
+      padding: 0px !important;
+      border: none !important;
+      display: block;
+      width: 100%;
+      font-weight: 500;
+      margin: 0px;
+      color: $primary-text;
+    }
+  }
+
+  &_detail-list-inline-item {
+    @include breakpoint(lg) {
+      margin: 0px;
+    }
   }
 
   &_detail-content-list {
@@ -1232,7 +1297,7 @@ button:focus, button:hover {
   }
 
   &_merchant-delivery {
-    font-family: $primary-text;
+    font-family: $primary-font;
     font-size: 12px;
     font-style: italic;
     line-height: 1.42;
@@ -1241,6 +1306,7 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       line-height: 1.5;
+      font-style: normal;
     }
   }
 
@@ -1278,6 +1344,7 @@ button:focus, button:hover {
 
   &_buy-button {
     font-family: $primary-font;
+    font-size: 14px;
     font-weight: 500;
     color: $white;
     background-color: $primary-green;
@@ -1289,16 +1356,51 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       margin-top: 0px;
-      margin-left: 15px;
+      margin-left: 15px ;
     }
 
   }
 
+  &_detail-holder {
+
+    @include breakpoint(lg) {
+      background-color: $background-grey;
+      padding: 0px 100px 50px 100px;
+      margin-top: 50px;
+    }
+  }
+
+  &_details-specs {
+    @include breakpoint(lg) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &_details-margin {
+    @include breakpoint(lg) {
+      margin-right: 30px;
+    }
+  }
+
   // Other vintages
 
+  &_vintage-table {
+
+    margin-bottom: 0px !important;
+
+    @include breakpoint(lg) {
+      background-color: $white;
+      border: 1px solid $lightest-grey-border;
+      width: 100%;
+      padding: 0px 50px;
+    }
+
+  }
+
   &_vintage-rating--box {
-    height: 22px;
-    width: 25px;
+    height: 40px;
+    width: 40px;
     border-radius: 0px 3px 3px 0px;
     display: block;
     margin-top: 5px;
@@ -1307,6 +1409,15 @@ button:focus, button:hover {
     line-height: 22px;
     text-align: center;
     display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include breakpoint(lg) {
+      border-radius: 3px;
+      margin-top: 0px;
+    }
+
   }
 
   &_vintage-rating {
@@ -1318,10 +1429,21 @@ button:focus, button:hover {
     height: 98px;
     display: inline-block;
     text-align: center;
+
+    @include breakpoint(lg) {
+      width: 80px;
+      height: 120px;
+      margin: 0px 50px;
+    }
+
   }
 
   &_vintage--image-img {
     max-height: 98px;
+
+    @include breakpoint(lg) {
+      max-height: 120px;
+    }
   }
 
   &_vintage-producer {
@@ -1348,6 +1470,11 @@ button:focus, button:hover {
     font-style: italic;
     margin-top: 20px;
     margin-bottom: 0px;
+
+    @include breakpoint(lg) {
+      font-style: normal;
+      line-height: 1.42;
+    }
   }
 
   &_vintage-currency {
@@ -1366,11 +1493,25 @@ button:focus, button:hover {
     color: $primary-text;
     display: inline-block;
     margin-top: 60px;
+
+    @include breakpoint(lg) {
+      margin-right: 30px;
+      margin-top: 0px;
+    }
+
   }
 
   &_vintage-table--display {
     display: inline-table;
     width: 75px;
+
+    @include breakpoint(lg) {
+      border: none !important;
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   // Search results
@@ -1394,6 +1535,15 @@ button:focus, button:hover {
 
     &:last-child {
       border-bottom: 1px solid $lightest-grey-border;
+
+      @include breakpoint(lg) {
+        border: none;
+      }
+    }
+
+    @include breakpoint(lg) {
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -1401,6 +1551,11 @@ button:focus, button:hover {
     padding: 17px 0px 0px 0px !important;
     display: flex;
     align-items: flex-start;
+
+    @include breakpoint(lg) {
+      border: none !important;
+      width: 900px;
+    }
   }
 
   &_search-page--container {
