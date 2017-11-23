@@ -325,7 +325,7 @@ class WineList extends React.Component {
         if (this.props.wines.length > 0) {
             return (
 
-                <table className="table table-responsive table-sm">
+                <table className="table table-responsive table-sm findwine_vintage-table">
                     <tbody>
                     {this.props.wines.map((winevintage, index) => {
                         return (
@@ -348,6 +348,9 @@ class WineList extends React.Component {
                                 <td className="findwine_vintage-table--display">
                                   <div className="findwine_vintage-currency"> R </div>
                                   <div className="findwine_vintage-price"> {winevintage.price} </div>
+                                  <a class="btn findwine_buy-button hidden-sm-down" href={winevintage.details_url} target="_blank" role="button"> View
+                                    <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') } class="findwine_detail-right-arrow"></img>
+                                  </a>
                                 </td>
                             </tr>
                         );
@@ -442,9 +445,11 @@ class SearchPage extends React.Component {
         if (searchMade) {
             $('.landing-page-content').hide();
             $('.search-page-content').show();
+            $('.findwine_filter-holder').addClass('findwine_filter-holder-search-result');
         } else {
             $('.landing-page-content').show();
             $('.search-page-content').hide();
+            $('.findwine_filter-holder').removeClass('findwine_filter-holder-search-result');
         }
     }
 

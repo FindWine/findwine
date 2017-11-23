@@ -286,6 +286,10 @@ button:focus, button:hover {
       display: none;
     }
 
+    @include breakpoint(lg) {
+      text-align: left;
+    }
+
   }
 
   &_nav-logo-icon {
@@ -859,8 +863,7 @@ button:focus, button:hover {
   }
 
   &_detail-image-main {
-    height: 100%;
-    padding: 30px;
+    max-height: 318px;
   }
 
   &_producer {
@@ -1364,7 +1367,7 @@ button:focus, button:hover {
   &_detail-holder {
 
     @include breakpoint(lg) {
-      background-color: $background-grey;
+      background-color: $lightest-grey;;
       padding: 0px 100px 50px 100px;
       margin-top: 50px;
     }
@@ -1393,7 +1396,7 @@ button:focus, button:hover {
       background-color: $white;
       border: 1px solid $lightest-grey-border;
       width: 100%;
-      padding: 0px 50px;
+      padding: 0px;
     }
 
   }
@@ -1507,7 +1510,7 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       border: none !important;
-      width: auto;
+      width: 236px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1529,21 +1532,32 @@ button:focus, button:hover {
     }
   }
 
+  &_filter-holder-search-result {
+
+    @include breakpoint(lg) {
+      height: auto;
+      position:relative;
+      margin-top: 0px;
+      width: 100%;
+      background-color: $lightest-grey;
+      padding: 0px 100px;
+    }
+
+  }
+
   &_search-results {
     display: flex;
     align-items: flex-start;
 
     &:last-child {
       border-bottom: 1px solid $lightest-grey-border;
-
-      @include breakpoint(lg) {
-        border: none;
-      }
     }
 
     @include breakpoint(lg) {
       display: flex;
       align-items: center;
+      padding: 0px 50px;
+      border: 1px solid $lightest-grey-border;
     }
   }
 
@@ -1564,6 +1578,10 @@ button:focus, button:hover {
     justify-content: space-between;
     padding: 0px 15px;
     margin-bottom: 17px;
+
+    @include breakpoint(lg) {
+      margin-bottom: 0px;
+    }
   }
 
   &_search-page--inner {
@@ -1618,7 +1636,7 @@ button:focus, button:hover {
     padding: 20px 15px;
 
     @include breakpoint(lg) {
-      margin-top: 34px;
+
     }
   }
 
