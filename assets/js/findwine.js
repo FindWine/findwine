@@ -186,7 +186,7 @@ class SearchControls extends React.Component {
 
                         <div className="col-md-3">
                             <div className="form-group sub_category">
-                                <label htmlFor="id_sub_category" className="findwine_heading-3"> Select Type(s)</label>
+                                <label htmlFor="id_sub_category" className="findwine_heading-3"> Select type(s)</label>
                                 <SubCategorySelect
                                     selectedCategory={this.props.selectedCategory}
                                     selectedSubcategory={this.props.selectedSubcategory}
@@ -198,7 +198,7 @@ class SearchControls extends React.Component {
                         <div className="col-xs-12 col-md-6 findwine_subcategory-row">
                             <div className="col-xs-12 col-md-3 findwine_subcategory" >
                                 <div className="form-group sub_category">
-                                    <label htmlFor="id_sub_category" className="findwine_heading-3"> Price Range </label>
+                                    <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
                                 </div>
                             </div>
                             {/*Slider - mobile layout slider appears above max and min price*/}
@@ -279,7 +279,7 @@ class SearchControls extends React.Component {
 class RatingsExplanationBar extends React.Component {
     render () {
       return (
-        <div className="findwine_ratings-explained--container">
+        <div className="findwine_ratings-explained--container" id="modal">
           <div className="findwine_ratings-heading">
               Ratings explained
           </div>
@@ -378,7 +378,7 @@ class Paginator extends React.Component {
     render() {
         // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
         let nextButton = this.props.showNext ?
-            <a className="btn findwine_search-next--button" onClick={(event) => this.props.nextPage()}>
+            <a className="btn findwine_search-next--button" href="#modal" onClick={(event) => this.props.nextPage()}>
               <p className="findwine_search-next--button-text hidden-sm-down">Next</p>
               <img src={constructImagePath('wine/images/SVGs/arrow-right.svg')} alt="Next" className="findwine_search-next--button-arrow-right"></img>
             </a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}>
@@ -387,7 +387,7 @@ class Paginator extends React.Component {
             <img src={constructImagePath('wine/images/SVGs/arrow-left-green.svg')} alt="Next" className="hidden-sm-down findwine_search-next--button-green-arrow-right"></img>
           </a>;
         let prevButton = this.props.showPrevious ?
-            <a className="btn findwine_search-next--button findwine_search-next--button-left" onClick={(event) => this.props.prevPage()}>
+            <a className="btn findwine_search-next--button findwine_search-next--button-left" href="#modal" onClick={(event) => this.props.prevPage()}>
               <img src={constructImagePath('wine/images/SVGs/arrow-left.svg')} alt="Previous" className="findwine_search-next--button-arrow"></img>
               <p className="findwine_search-next--button-text hidden-sm-down">Previous</p>
             </a> : <a className="btn findwine_search-next--button-inactive findwine_search-next--button-left" onClick={(event) => this.props.nextPage()}>

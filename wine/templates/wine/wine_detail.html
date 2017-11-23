@@ -480,7 +480,8 @@
           <img src="{{ other_vintage.image_pack_shot.url }}" alt="{{ other_vintage.wine.name }}"
                class="img-fluid rounded findwine_vintage--image-img"/>
           {% else %}
-          <p>{{ other_vintage.wine.name }}</p>
+          <img src="{% static 'wine/images/SVGs/port.svg' %}" alt="{{ other_vintage.wine.name }}"
+               class="img-fluid rounded findwine_vintage--image-img"/>
           {% endif %}
         </div>
         <div class="findwine_vintage-details">

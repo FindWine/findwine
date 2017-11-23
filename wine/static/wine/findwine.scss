@@ -829,10 +829,16 @@ button:focus, button:hover {
     overflow: hidden;
     cursor: pointer;
     padding: 15px;
+    display: flex;
+    justify-content: center;
 
     &:hover, &:active, &:focus {
       border: 1px solid $primary-green;
       outline: none;
+    }
+
+    img {
+      max-height: 58px;
     }
 
   }
@@ -847,10 +853,16 @@ button:focus, button:hover {
     overflow: hidden;
     cursor: pointer;
     padding: 15px;
+    display: flex;
+    justify-content: center;
 
     &:hover, &:active, &:focus {
       border: 1px solid $primary-green;
       outline: none;
+    }
+
+    img {
+      max-height: 58px;
     }
 
   }
@@ -889,6 +901,10 @@ button:focus, button:hover {
       color: $primary-green;
       font-size: 16px;
       margin-bottom: 15px;
+
+      &:active, &:hover, &:focus {
+        text-decoration: underline;
+      }
     }
 
   }
@@ -1446,6 +1462,9 @@ button:focus, button:hover {
 
   &_vintage--image-img {
     max-height: 98px;
+    font-family: $primary-font;
+    font-size: 12px;
+    color: $light-grey-text;
 
     @include breakpoint(lg) {
       max-height: 120px;
@@ -1640,9 +1659,11 @@ button:focus, button:hover {
     height: 42px;
     border-radius: 0px 2px 2px 0px;
     background-color: $primary-green;
+    cursor: pointer;
 
     &-left {
       border-radius: 2px 0px 0px 2px;
+      cursor: pointer;
 
       @include breakpoint(lg) {
         margin-right: 20px;
@@ -1856,13 +1877,20 @@ button:focus, button:hover {
   }
 
   &_modal-button{
-    background-color: $primary-green;
+    background-color: $white;
     font-family: $primary-font;
-    color: $white;
+    color: $primary-green;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
-    border-color: $primary-green;
+    border: 2px solid $primary-green;
+    cursor: pointer;
+
+    &:focus, &:hover, &:active {
+      border: 2px solid $primary-green;
+      background-color: $primary-green;
+      color: $white;
+    }
   }
 
   // No results
