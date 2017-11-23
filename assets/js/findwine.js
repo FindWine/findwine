@@ -171,7 +171,7 @@ class SearchControls extends React.Component {
 
                         <div className="col-md-3">
                             <div className="form-group sub_category">
-                                <label htmlFor="id_sub_category" className="findwine_heading-3"> Select Type(s)</label>
+                                <label htmlFor="id_sub_category" className="findwine_heading-3"> Select type(s)</label>
                                 <SubCategorySelect
                                     selectedCategory={this.props.selectedCategory}
                                     selectedSubcategory={this.props.selectedSubcategory}
