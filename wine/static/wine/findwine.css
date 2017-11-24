@@ -48,6 +48,9 @@ body {
   .nav-link-new {
     color: #333e48 !important; }
 
+.nav-link-home {
+  color: #00ad68 !important; }
+
 .nav-item-new {
   z-index: 1000;
   background-color: #ffffff; }
@@ -426,7 +429,8 @@ button:focus, button:hover {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 14px;
   font-weight: 500;
-  height: 40px; }
+  height: 40px;
+  margin-top: -1px !important; }
   @media (max-width: 575px) {
     .findwine_newsletter-button {
       margin-top: 6px !important; } }

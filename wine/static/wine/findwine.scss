@@ -144,6 +144,10 @@ body {
 
 }
 
+.nav-link-home {
+  color: $primary-green !important;
+}
+
 .nav-item-new {
   z-index: 1000;
   background-color: $white;
@@ -757,6 +761,7 @@ button:focus, button:hover {
     font-size: 14px;
     font-weight: 500;
     height: 40px;
+    margin-top: -1px !important;
 
     @include breakpoint(xs) {
       margin-top: 6px !important;

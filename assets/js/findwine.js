@@ -252,7 +252,8 @@ class SearchControls extends React.Component {
 
     renderCollapsedControls() {
         return (
-          <div className="findwine_filters-collapsed">
+          // This is for mobile - collapsed
+          <div className="findwine_filters-collapsed hidden-md-up">
             <div className="findwine_filters-icon">
               <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
             </div>
@@ -286,7 +287,7 @@ class SearchControls extends React.Component {
   renderCollapsedControlsOpen() {
     if (this.props.firstSearchMade && this.state.isExpanded) {
       return (
-        <div className="findwine_filters-collapsed-filter">
+        <div className="findwine_filters-collapsed-filter hidden-md-up">
           <div className="findwine_filters-icon">
             <img src={constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon"/>
           </div>
