@@ -85,7 +85,7 @@ button:focus, button:hover {
   margin-top: 0px; }
 
 .rc-slider {
-  width: 90% !important; }
+  width: 92% !important; }
   @media (min-width: 1024px) {
     .rc-slider {
       margin-top: 20px;
@@ -331,10 +331,20 @@ button:focus, button:hover {
       width: auto; } }
   @media (min-width: 1024px) {
     .findwine_button {
-      margin-top: 38px; } }
+      margin-top: 38px;
+      height: 45px;
+      width: 163px;
+      letter-spacing: 0.7px; } }
+  .findwine_button:hover {
+    background-color: #0a9761 !important;
+    border-color: #0a9761 !important; }
+  .findwine_button:active, .findwine_button:focus {
+    background-color: #14815b !important;
+    border-color: #14815b !important; }
   .findwine_button-outer {
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    padding: 0px; }
     @media (min-width: 678px) {
       .findwine_button-outer {
         display: flex;
@@ -446,7 +456,7 @@ button:focus, button:hover {
   margin-top: -1px !important; }
   @media (max-width: 575px) {
     .findwine_newsletter-button {
-      margin-top: 5px !important; } }
+      margin-top: 4px !important; } }
 .findwine_mailchimp-holder {
   width: 100%;
   display: flex;
@@ -461,7 +471,7 @@ button:focus, button:hover {
     color: #ffffff;
     font-family: "Gotham SSm A", "Gotham SSm B";
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 300;
     line-height: 30px; }
     .findwine_footer--text-spacing {
       margin-right: 20px;
@@ -476,15 +486,16 @@ button:focus, button:hover {
       float: right;
       color: #ffffff; }
   .findwine_footer--icon {
-    height: 30px;
-    width: 30px;
+    height: 18px;
+    width: auto;
     margin-left: 10px; }
 .findwine_price-input {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 30px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  padding: 0px; }
   .findwine_price-input .form-group:active, .findwine_price-input .form-group:hover, .findwine_price-input .form-group:focus {
     outline: none; }
   @media (min-width: 1024px) {
@@ -754,9 +765,10 @@ button:focus, button:hover {
     .findwine_detail-header {
       margin-top: 0px;
       margin-bottom: 20px; } }
-.findwine_detail-header--desktop {
-  padding-top: 50px;
-  margin-bottom: 24px; }
+@media (min-width: 1024px) {
+  .findwine_detail-header--desktop {
+    padding-top: 50px;
+    margin-bottom: 24px; } }
 .findwine_detail-header--2 {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 14px;

@@ -1,10 +1,11 @@
 //Variables
 
 // Colours
-
 $primary-green: #00ad68;
 $primary-text: #333e48;
 $white: #ffffff;
+$hover-green: #0a9761;
+$focus-green: #14815b;
 
 $light-grey: #c8ced2;
 $background-grey: #c8ced2;
@@ -192,7 +193,7 @@ button:focus, button:hover {
 
 // Slider styles
 .rc-slider {
-  width: 90% !important;
+  width: 92% !important;
 
   @include breakpoint(lg) {
 
@@ -587,12 +588,26 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       margin-top: 38px;
+      height: 45px;
+      width: 163px;
+      letter-spacing: 0.7px;
+    }
+
+    &:hover {
+      background-color: $hover-green !important;
+      border-color: $hover-green !important;
+    }
+
+    &:active, &:focus {
+      background-color: $focus-green !important;
+      border-color: $focus-green !important;
     }
 
     &-outer {
 
       display: flex;
       justify-content: center;
+      padding: 0px;
 
       @include breakpoint(md) {
         display: flex;
@@ -710,19 +725,13 @@ button:focus, button:hover {
     padding: 30px 0px;
 
     @include breakpoint(lg) {
-
       padding: 3em 0px ;
-
     }
 
     .form-inline {
-
       @include breakpoint(lg) {
-
         float: right;
-
       }
-
     }
 
     &--flex {
@@ -786,7 +795,7 @@ button:focus, button:hover {
     margin-top: -1px !important;
 
     @include breakpoint(xs) {
-      margin-top: 5px !important;
+      margin-top: 4px !important;
     }
 
   }
@@ -804,17 +813,15 @@ button:focus, button:hover {
     height: auto;
 
     &--logo {
-
       height: 30px;
       margin-right: 20px;
-
     }
 
     &--text {
       color: $white;
       font-family: $primary-font;
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 300;
       line-height: 30px;
 
       &-spacing {
@@ -838,8 +845,8 @@ button:focus, button:hover {
     }
 
     &--icon {
-      height: 30px;
-      width: 30px;
+      height: 18px;
+      width: auto;
       margin-left: 10px;
 
     }
@@ -851,6 +858,7 @@ button:focus, button:hover {
     align-items: center;
     margin-top: 30px;
     margin-bottom: 20px;
+    padding: 0px;
 
     .form-group:active, .form-group:hover, .form-group:focus {
       outline: none;
@@ -1244,8 +1252,12 @@ button:focus, button:hover {
   }
 
   &_detail-header--desktop {
-    padding-top: 50px;
-    margin-bottom: 24px;
+
+    @include breakpoint(lg) {
+      padding-top: 50px;
+      margin-bottom: 24px;
+    }
+
   }
 
   &_detail-header--2 {
