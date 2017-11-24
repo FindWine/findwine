@@ -12,20 +12,23 @@ const queryString = require('query-string');
 const WINE_API_URL = '/api/wine-vintages/';
 
 class CategorySelect extends React.Component {
+  render() {
+    let choices = getCategoryChoices(this.props.category).map((category) => {
+      return {'value': category, 'label': category}
+    });
 
-    render() {
-        return (
-            <select className="form-control" name="category" id="id_category"
-                    value={this.props.selectedCategory}
-                    onChange={(event) => this.props.categoryChanged(event.target.value)}>
-                {getCategoryChoices().map((category, index) => {
-                    return (
-                        <option key={index} value={category}>{category}</option>
-                    )
-                })}
-            </select>
-        );
-    }
+    return (
+      <Select
+        value={this.props.selectedCategory}
+        options={choices}
+        onChange={(event) => this.props.categoryChanged(event)}
+        multi={false}
+        simpleValue={true}
+        placeholder='Show all'
+      />
+    )
+  }
+
 }
 
 class CategorySelectMobile extends React.Component {
@@ -71,7 +74,7 @@ class SubCategorySelect extends React.Component {
                 onChange={(event) => this.props.subcategoryChanged(event)}
                 multi={true}
                 simpleValue={true}
-                placeholder='Show All'
+                placeholder='Show all'
             />
         )
     }
@@ -196,7 +199,7 @@ class SearchControls extends React.Component {
                         </div>
 
                         <div className="col-xs-12 col-md-6 findwine_subcategory-row">
-                            <div className="col-xs-12 col-md-3 findwine_subcategory" >
+                            <div className="col-xs-12 col-md-4 findwine_subcategory" >
                                 <div className="form-group sub_category">
                                     <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
                                 </div>
@@ -205,7 +208,7 @@ class SearchControls extends React.Component {
                             <div className="col-xs-12 hidden-md-up">
                                 {this.getSlider()}
                             </div>
-                            <div className="col-xs-6 col-md-9 findwine_price-input">
+                            <div className="col-xs-6 col-md-8 findwine_price-input">
                                <div className="form-group min_price">
                                    R <input className="form-control" type="number" name="min_price"
                                           value={this.props.minPrice} min="0" required id="id_min_price"
@@ -417,7 +420,7 @@ class SearchPage extends React.Component {
         // initialize with first category / subcategory selected
         const category = getCategoryChoices()[0];
         this.state = {
-            selectedCategory: category,
+            selectedCategory: null,
             selectedSubcategory: null,
             minPrice: 0,
             maxPrice: 500,
