@@ -405,6 +405,18 @@ button:focus, button:hover {
     border: none;
     border-radius: 0px 4px 4px 1px;
 
+    &:hover {
+      background-color: $hover-green !important;
+      border-color: $hover-green !important;
+      color: $white;
+    }
+
+    &:active, &:focus {
+      background-color: $focus-green !important;
+      border-color: $focus-green !important;
+      color: $white;
+    }
+
   }
 
   &_search-icon {
@@ -596,11 +608,13 @@ button:focus, button:hover {
     &:hover {
       background-color: $hover-green !important;
       border-color: $hover-green !important;
+      color: $white;
     }
 
     &:active, &:focus {
       background-color: $focus-green !important;
       border-color: $focus-green !important;
+      color: $white;
     }
 
     &-outer {
@@ -666,7 +680,6 @@ button:focus, button:hover {
 
     margin: 9px 0px 6px 0px;
     word-break: break-all;
-
 
     p {
       margin-bottom: 0px !important;
@@ -798,6 +811,18 @@ button:focus, button:hover {
       margin-top: 4px !important;
     }
 
+    &:hover {
+      background-color: $hover-green !important;
+      border-color: $hover-green !important;
+      color: $white;
+    }
+
+    &:active, &:focus {
+      background-color: $focus-green !important;
+      border-color: $focus-green !important;
+      color: $white;
+    }
+
   }
 
   &_mailchimp-holder {
@@ -888,6 +913,7 @@ button:focus, button:hover {
     justify-content: center;
     margin-right: 38px;
     margin-left: 100px;
+    flex: 1;
   }
 
   &_detail-images-small {
@@ -946,13 +972,14 @@ button:focus, button:hover {
   }
 
   &_detail-image-main--holder {
-    width: 380px;
+    max-width: 380px;
     height: 450px;
     border-radius: 2px;
     border: solid 1px #dadada;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1;
   }
 
   &_detail-image-main {
@@ -974,12 +1001,11 @@ button:focus, button:hover {
     font-weight: 500;
 
     @include breakpoint(lg) {
-      color: $primary-green;
       font-size: 16px;
       margin-bottom: 15px;
 
       &:active, &:hover, &:focus {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
 
@@ -1010,7 +1036,6 @@ button:focus, button:hover {
     margin-bottom: 8px;
 
     @include breakpoint(lg) {
-      font-style: normal;
       font-size: 14px;
       color: $light-grey-text;
       margin-bottom: 17px;
@@ -1119,6 +1144,10 @@ button:focus, button:hover {
     margin-right: 5px;
     display: inline-block;
     margin-bottom: 2px;
+
+    &-light {
+      background-color: $light-grey-text;
+    }
   }
 
   &_award-heading {
@@ -1152,7 +1181,6 @@ button:focus, button:hover {
   &_detail--menu-button {
     width: 25px;
     height: 13px;
-
   }
 
   &_detail-back {
@@ -1308,6 +1336,26 @@ button:focus, button:hover {
 
   }
 
+  &_detail-table-content {
+    display: flex;
+    border-bottom: 1px solid $lightest-grey-border;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+
+    @include breakpoint(lg) {
+      display: block;
+      border-bottom: none;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
   &_detail-content-left {
     font-family: $primary-font;
     font-size: 14px;
@@ -1316,8 +1364,7 @@ button:focus, button:hover {
     color: $light-grey-text;
     margin-left: 15px;
     margin-right: 15px;
-    margin-bottom: 20px;
-    width: 125px;
+    width: 40%;
 
     @include breakpoint(lg) {
       padding: 0px !important;
@@ -1336,8 +1383,7 @@ button:focus, button:hover {
     color: $light-grey-text;
     margin-left: 15px;
     margin-right: 15px;
-    margin-bottom: 20px;
-    width: 250px;
+    width: 60%;
 
     @include breakpoint(lg) {
       padding: 0px !important;
@@ -1477,6 +1523,18 @@ button:focus, button:hover {
       margin-top: 0px;
     }
 
+    &:hover {
+      background-color: $hover-green !important;
+      border-color: $hover-green !important;
+      color: $white;
+    }
+
+    &:active, &:focus {
+      background-color: $focus-green !important;
+      border-color: $focus-green !important;
+      color: $white;
+    }
+
   }
 
   &_detail-holder {
@@ -1573,6 +1631,10 @@ button:focus, button:hover {
     font-family: $primary-font;
     font-size: 18px;
     color: $primary-text;
+
+    @include breakpoint(lg) {
+      cursor: default;
+    }
   }
 
   &_vintage-details {
@@ -1775,6 +1837,16 @@ button:focus, button:hover {
     background-color: $primary-green;
     cursor: pointer;
 
+    &:hover {
+      background-color: $hover-green !important;
+      border-color: $hover-green !important;
+    }
+
+    &:active, &:focus {
+      background-color: $focus-green !important;
+      border-color: $focus-green !important;
+    }
+
     &-left {
       border-radius: 2px 0px 0px 2px;
       cursor: pointer;
@@ -1821,6 +1893,17 @@ button:focus, button:hover {
       display: inline-block;
       color: $primary-green;
     }
+
+    &:hover {
+      background-color: $hover-green !important;
+      border-color: $hover-green !important;
+    }
+
+    &:active, &:focus {
+      background-color: $focus-green !important;
+      border-color: $focus-green !important;
+    }
+
   }
 
   &_search-next--button-arrow-right {
@@ -2022,6 +2105,18 @@ button:focus, button:hover {
     &:focus, &:hover, &:active {
       border: 2px solid $primary-green;
       background-color: $primary-green;
+      color: $white;
+    }
+
+    &:hover {
+      background-color: $hover-green !important;
+      border: 2px solid $hover-green !important;
+      color: $white;
+    }
+
+    &:active, &:focus {
+      background-color: $focus-green !important;
+      border: 2px solid $focus-green !important;
       color: $white;
     }
   }
