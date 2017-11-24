@@ -25,7 +25,6 @@ class CategorySelect extends React.Component {
         multi={false}
         simpleValue={true}
         searchable={false}
-        placeholder='Show all'
       />
     )
   }
@@ -79,7 +78,7 @@ class SubCategorySelect extends React.Component {
                 autosize={false}
                 removeSelected={false}
                 stayOpen={true}
-                placeholder='Show all'
+                placeholder='All'
             />
         )
     }
@@ -226,7 +225,7 @@ class SearchControls extends React.Component {
                             </div>
                             <div className="col-xs-6 col-md-8 findwine_price-input">
                                <div className="form-group min_price">
-                                   R <input className="form-control" type="number" name="min_price"
+                                   R <input className="form-control" type="text" name="min_price"
                                           value={this.props.minPrice} min="0" required id="id_min_price"
                                           onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                                    />
@@ -234,7 +233,7 @@ class SearchControls extends React.Component {
                                <div className="price-range hidden-md-up"> TO </div>
                               <div className="price-range hidden-sm-down"> - </div>
                                <div className="form-group max_price">
-                                 R  <input className="form-control" type="number" name="max_price"
+                                 R  <input className="form-control" type="text" name="max_price"
                                            value={this.props.maxPrice} min="0" required id="id_max_price"
                                            onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
                                />
@@ -457,7 +456,7 @@ class SearchPage extends React.Component {
         // initialize with first category / subcategory selected
         const category = getCategoryChoices()[0];
         this.state = {
-            selectedCategory: null,
+            selectedCategory: category,
             selectedSubcategory: null,
             minPrice: 0,
             maxPrice: 1000,
