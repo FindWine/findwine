@@ -322,6 +322,15 @@ button:focus, button:hover {
     }
   }
 
+  &_nav--menu-home {
+    margin-left: 0px;
+
+    @include breakpoint(lg) {
+      margin-left: 100px;
+    }
+
+  }
+
   &_nav-logo {
     width: 100%;
     text-align: center;

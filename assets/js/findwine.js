@@ -172,7 +172,7 @@ class SearchControls extends React.Component {
     renderCollapseButton() {
         if (this.props.firstSearchMade && this.state.isExpanded) {
           return (
-            <button className="findwine_filters-expand-button findwine_filters-close-button" type="button" href="#modal" onClick={() => this.setState({'isExpanded': false})}>
+            <button className="findwine_filters-expand-button findwine_filters-close-button" type="button" href="#modal" onClick={() => this.setState({'isExpanded': false})} style={{outline: 'none', border:'none', background: "none"}}>
               X
             </button>
           )
@@ -345,9 +345,9 @@ class RatingsModal extends React.Component {
                 Ratings Explained
               </div>
               <div class="findwine_modal-content">
-                Maecenas vitae ligula quis nunc pharetra rhoncus. Nunc in lacus vitae tortor gravida consequat quis id tortor.
-                In ullamcorper ligula justo, at varius purus vulputate vel. Suspendisse vel pharetra risus, eu vulputate nulla.
-                Sed at congue nisl, et pellentesque nisi. Maecenas vitae ligula quis nunc pharetra.
+                Our smart ratings system calculates a unique score for each wine based on
+                the awards they’ve won and the prestige of the award body. Scores fall
+                between 0 and 10, with 10 being the highest rating a wine can receive.
               </div>
             </div>
             <div class="modal-footer findwine_modal-footer">

@@ -172,6 +172,11 @@ button:focus, button:hover {
   @media (min-width: 1024px) {
     .findwine_nav--menu {
       margin-left: 260px; } }
+.findwine_nav--menu-home {
+  margin-left: 0px; }
+  @media (min-width: 1024px) {
+    .findwine_nav--menu-home {
+      margin-left: 100px; } }
 .findwine_nav-logo {
   width: 100%;
   text-align: center;
