@@ -76,6 +76,9 @@ class SubCategorySelect extends React.Component {
                 multi={true}
                 simpleValue={true}
                 searchable={false}
+                autosize={false}
+                removeSelected={false}
+                stayOpen={true}
                 placeholder='Show all'
             />
         )
@@ -98,7 +101,6 @@ class SortSelect extends React.Component {
         );
     }
 }
-
 
 class SearchControls extends React.Component {
     constructor() {
@@ -129,19 +131,19 @@ class SearchControls extends React.Component {
             return (
                 <div className="col-lg-12 findwine_button-outer">
                     <button type="submit" className="btn btn-primary btn-block findwine_button" href="#modal"
-                            onClick={(event) => this.props.searchClicked(event)}> SEARCH WINES <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
+                            onClick={(event) => this.props.searchClicked(event)}> SEARCH WINES <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up findwine_button-image"></img>
                     </button>
                 </div>
             );
         }
     }
 
-  _getSearchButtonFilter() {
+    _getSearchButtonFilter() {
     if (this.props.firstSearchMade) {
       return (
         <div className="col-lg-12 findwine_button-outer">
-          <button type="submit" className="btn btn-primary btn-block findwine_button"
-                  onClick={() => this.setState({'isExpanded': false})}> SEARCH WINES <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
+          <button type="button" className="btn btn-primary btn-block findwine_button"
+                  onClick={() => this.setState({'isExpanded': false})}> SEARCH WINES <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up findwine_button-image"></img>
           </button>
         </div>
       );
@@ -247,13 +249,13 @@ class SearchControls extends React.Component {
                     {this._getSearchButton()}
                     {this._getSearchButtonFilter()}
                 </form>
-            );
+        );
     }
 
     renderCollapsedControls() {
         return (
           // This is for mobile - collapsed
-          <div className="findwine_filters-collapsed hidden-md-up">
+          <div className="findwine_filters-collapsed">
             <div className="findwine_filters-icon">
               <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
             </div>
@@ -284,23 +286,23 @@ class SearchControls extends React.Component {
         );
     }
 
-  renderCollapsedControlsOpen() {
-    if (this.props.firstSearchMade && this.state.isExpanded) {
-      return (
-        <div className="findwine_filters-collapsed-filter hidden-md-up">
-          <div className="findwine_filters-icon">
-            <img src={constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon"/>
+    renderCollapsedControlsOpen() {
+      if (this.props.firstSearchMade && this.state.isExpanded) {
+        return (
+          <div className="findwine_filters-collapsed-filter hidden-md-up">
+            <div className="findwine_filters-icon">
+              <img src={constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon"/>
+            </div>
+            <div className="findwine_filters-heading">
+              Filters
+            </div>
+            <div className="findwine_filters-expand">
+              {this.renderCollapseButton()}
+            </div>
           </div>
-          <div className="findwine_filters-heading">
-            Filters
-          </div>
-          <div className="findwine_filters-expand">
-            {this.renderCollapseButton()}
-          </div>
-        </div>
-      );
+        );
+      }
     }
-  }
 
     showSearchControls() {
         return !this.props.firstSearchMade || this.state.isExpanded;
@@ -365,12 +367,11 @@ class WineList extends React.Component {
         if (this.props.wines.length > 0) {
             return (
 
-                <table className="table table-responsive table-sm findwine_vintage-table">
-                    <tbody>
+                <div className="findwine_vintage-table">
                     {this.props.wines.map((winevintage, index) => {
                         return (
-                            <tr key={index} className="findwine_search-results">
-                                <td className="findwine_search-result--table">
+                            <div key={index} className="findwine_search-results">
+                                <div className="findwine_search-result--table">
                                   <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.avg_rating} </div>
                                   <div className="findwine_vintage--image">
                                     <img src={ winevintage.image_url } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
@@ -384,19 +385,18 @@ class WineList extends React.Component {
                                       { winevintage.sub_category }
                                     </p>
                                   </div>
-                                </td>
-                                <td className="findwine_vintage-table--display">
+                                </div>
+                                <div className="findwine_vintage-table--display">
                                   <div className="findwine_vintage-currency"> R </div>
                                   <div className="findwine_vintage-price"> {winevintage.price} </div>
                                   <a class="btn findwine_buy-button hidden-sm-down" href={winevintage.details_url} target="_blank" role="button"> View
                                     <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') } class="findwine_detail-right-arrow"></img>
                                   </a>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         );
                     })}
-                    </tbody>
-                </table>
+                </div>
             );
         } else {
             return (
