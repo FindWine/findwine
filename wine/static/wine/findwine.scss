@@ -886,6 +886,8 @@ button:focus, button:hover {
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    margin-right: 38px;
+    margin-left: 100px;
   }
 
   &_detail-images-small {
@@ -908,7 +910,7 @@ button:focus, button:hover {
     display: flex;
     justify-content: center;
 
-    &:hover, &:active, &:focus {
+    &:hover, &:active, &:focus, &:visited {
       border: 1px solid $primary-green;
       outline: none;
     }
@@ -932,7 +934,7 @@ button:focus, button:hover {
     display: flex;
     justify-content: center;
 
-    &:hover, &:active, &:focus {
+    &:hover, &:active, &:focus, &:visited {
       border: 1px solid $primary-green;
       outline: none;
     }
@@ -959,6 +961,8 @@ button:focus, button:hover {
 
   &_producer {
     padding: 0px;
+    margin-right: 100px;
+    flex: 1;
   }
 
   &_producer-main {
@@ -1168,6 +1172,7 @@ button:focus, button:hover {
   &_detail-padding {
     padding-top: 30px;
     display: flex;
+    justify-content: center;
   }
 
   &_detail-right-arrow {
@@ -1356,6 +1361,7 @@ button:focus, button:hover {
   }
 
   &_detail-list {
+    display: flex;
     align-items: flex-start;
 
     @include breakpoint(lg) {
@@ -1369,11 +1375,15 @@ button:focus, button:hover {
   }
 
   &_merchant-holder {
-    width: 260px;
+    flex: 1;
 
     @include breakpoint(lg) {
       width: auto;
     }
+  }
+
+  &_merchant-price-holder {
+
   }
 
   &_merchant-name {
@@ -1419,7 +1429,8 @@ button:focus, button:hover {
   }
 
   &_merchant-pricing {
-    width: 71px;
+    display: flex;
+    flex-flow: column;
 
     @include breakpoint(lg) {
       width: auto;
@@ -1464,7 +1475,6 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       margin-top: 0px;
-      margin-left: 15px ;
     }
 
   }
