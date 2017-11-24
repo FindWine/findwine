@@ -12,20 +12,24 @@ const queryString = require('query-string');
 const WINE_API_URL = '/api/wine-vintages/';
 
 class CategorySelect extends React.Component {
+  render() {
+    let choices = getCategoryChoices(this.props.category).map((category) => {
+      return {'value': category, 'label': category}
+    });
 
-    render() {
-        return (
-            <select className="form-control" name="category" id="id_category"
-                    value={this.props.selectedCategory}
-                    onChange={(event) => this.props.categoryChanged(event.target.value)}>
-                {getCategoryChoices().map((category, index) => {
-                    return (
-                        <option key={index} value={category}>{category}</option>
-                    )
-                })}
-            </select>
-        );
-    }
+    return (
+      <Select
+        value={this.props.selectedCategory}
+        options={choices}
+        onChange={(event) => this.props.categoryChanged(event)}
+        multi={false}
+        simpleValue={true}
+        searchable={false}
+        placeholder='Show all'
+      />
+    )
+  }
+
 }
 
 class CategorySelectMobile extends React.Component {
@@ -71,7 +75,8 @@ class SubCategorySelect extends React.Component {
                 onChange={(event) => this.props.subcategoryChanged(event)}
                 multi={true}
                 simpleValue={true}
-                placeholder='Show All'
+                searchable={false}
+                placeholder='Show all'
             />
         )
     }
@@ -123,7 +128,7 @@ class SearchControls extends React.Component {
         if (!this.props.firstSearchMade) {
             return (
                 <div className="col-lg-12 findwine_button-outer">
-                    <button type="submit" className="btn btn-primary btn-block findwine_button"
+                    <button type="submit" className="btn btn-primary btn-block findwine_button" href="#modal"
                             onClick={(event) => this.props.searchClicked(event)}> SEARCH WINES <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
                     </button>
                 </div>
@@ -131,13 +136,25 @@ class SearchControls extends React.Component {
         }
     }
 
+  _getSearchButtonFilter() {
+    if (this.props.firstSearchMade) {
+      return (
+        <div className="col-lg-12 findwine_button-outer">
+          <button type="submit" className="btn btn-primary btn-block findwine_button"
+                  onClick={() => this.setState({'isExpanded': false})}> SEARCH WINES <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up"></img>
+          </button>
+        </div>
+      );
+    }
+  }
+
     getSlider() {
         const minPriceInt = parseInt(this.props.minPrice) || 0;
-        const maxPriceInt = parseInt(this.props.maxPrice) || 500;
+        const maxPriceInt = parseInt(this.props.maxPrice) || 1000;
         return (
             <Range
-                defaultValue={[0,500]}
-                max={500}
+                defaultValue={[0,1000]}
+                max={1000}
                 value={[minPriceInt, maxPriceInt]}
                 allowCross={false}
                 onChange={(value) => {
@@ -155,8 +172,8 @@ class SearchControls extends React.Component {
     renderCollapseButton() {
         if (this.props.firstSearchMade && this.state.isExpanded) {
           return (
-            <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': false})}>
-              &#10006;
+            <button className="findwine_filters-expand-button findwine_filters-close-button" type="button" href="#modal" onClick={() => this.setState({'isExpanded': false})}>
+              X
             </button>
           )
         }
@@ -165,7 +182,7 @@ class SearchControls extends React.Component {
     renderControls() {
         return (
                 <form className="search-form" role="search">
-                    {this.renderCollapseButton()}
+                    {this.renderCollapsedControlsOpen()}
                     <div className="row d-flex align-items-start findwine_search-form">
 
                         <div className="col-md-3">
@@ -196,7 +213,7 @@ class SearchControls extends React.Component {
                         </div>
 
                         <div className="col-xs-12 col-md-6 findwine_subcategory-row">
-                            <div className="col-xs-12 col-md-3 findwine_subcategory" >
+                            <div className="col-xs-12 col-md-4 findwine_subcategory" >
                                 <div className="form-group sub_category">
                                     <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
                                 </div>
@@ -205,7 +222,7 @@ class SearchControls extends React.Component {
                             <div className="col-xs-12 hidden-md-up">
                                 {this.getSlider()}
                             </div>
-                            <div className="col-xs-6 col-md-9 findwine_price-input">
+                            <div className="col-xs-6 col-md-8 findwine_price-input">
                                <div className="form-group min_price">
                                    R <input className="form-control" type="number" name="min_price"
                                           value={this.props.minPrice} min="0" required id="id_min_price"
@@ -228,30 +245,35 @@ class SearchControls extends React.Component {
                         {this._getSortSelect()}
                     </div>
                     {this._getSearchButton()}
+                    {this._getSearchButtonFilter()}
                 </form>
             );
     }
 
     renderCollapsedControls() {
         return (
-          <div className="findwine_filters-collapsed">
+          // This is for mobile - collapsed
+          <div className="findwine_filters-collapsed hidden-md-up">
             <div className="findwine_filters-icon">
               <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
             </div>
-            <div className="findwine_filters-filters">
-              <div className="findwine_filters-list">
-                <div className="findwine_filters-1">
-                    { this.props.selectedCategory }
-                </div>
-                <div className="findwine_filters-bullet"></div>
-                <div className="findwine_filters-2">
-                    { this.props.selectedSubcategory }
-                </div>
-                <div className="findwine_filters-bullet"></div>
-                <div className="findwine_filters-more">
-                  R { this.props.minPrice } - R { this.props.maxPrice }
-                </div>
-              </div>
+            {/*<div className="findwine_filters-filters">*/}
+              {/*<div className="findwine_filters-list">*/}
+                {/*<div className="findwine_filters-1">*/}
+                    {/*{ this.props.selectedCategory }*/}
+                {/*</div>*/}
+                {/*<div className="findwine_filters-bullet"></div>*/}
+                {/*<div className="findwine_filters-2">*/}
+                    {/*{ this.props.selectedSubcategory }*/}
+                {/*</div>*/}
+                {/*<div className="findwine_filters-bullet"></div>*/}
+                {/*<div className="findwine_filters-more">*/}
+                  {/*R { this.props.minPrice } - R { this.props.maxPrice }*/}
+                {/*</div>*/}
+              {/*</div>*/}
+            {/*</div>*/}
+            <div className="findwine_filters-heading">
+              Filters
             </div>
             <div className="findwine_filters-expand">
               <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': true})} style={{outline: 'none', border:'none', background: "none"}}>
@@ -261,6 +283,24 @@ class SearchControls extends React.Component {
           </div>
         );
     }
+
+  renderCollapsedControlsOpen() {
+    if (this.props.firstSearchMade && this.state.isExpanded) {
+      return (
+        <div className="findwine_filters-collapsed-filter hidden-md-up">
+          <div className="findwine_filters-icon">
+            <img src={constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon"/>
+          </div>
+          <div className="findwine_filters-heading">
+            Filters
+          </div>
+          <div className="findwine_filters-expand">
+            {this.renderCollapseButton()}
+          </div>
+        </div>
+      );
+    }
+  }
 
     showSearchControls() {
         return !this.props.firstSearchMade || this.state.isExpanded;
@@ -417,10 +457,10 @@ class SearchPage extends React.Component {
         // initialize with first category / subcategory selected
         const category = getCategoryChoices()[0];
         this.state = {
-            selectedCategory: category,
+            selectedCategory: null,
             selectedSubcategory: null,
             minPrice: 0,
-            maxPrice: 500,
+            maxPrice: 1000,
             selectedSort: getSortChoices()[0][1],
             // results / pagination
             wines: [],
