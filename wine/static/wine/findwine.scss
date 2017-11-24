@@ -759,7 +759,7 @@ button:focus, button:hover {
     height: 40px;
 
     @include breakpoint(xs) {
-      margin-top: 7px !important;
+      margin-top: 6px !important;
     }
 
   }
@@ -1595,6 +1595,13 @@ button:focus, button:hover {
     }
   }
 
+  &_filters-heading {
+    font-family: $primary-font;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+  }
+
   &_filter-holder-search-result {
 
     @include breakpoint(lg) {
@@ -1794,6 +1801,18 @@ button:focus, button:hover {
     }
   }
 
+  &_filters-collapsed-filter {
+    padding: 15px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $lightest-grey-border;
+    margin: 0px -15px 15px -15px;
+  }
+
   &_filters-filter-icon {
     width: 11px;
     height: 13px;
@@ -1831,6 +1850,13 @@ button:focus, button:hover {
 
   &_filters-expand-button {
     padding: 0px;
+  }
+
+  &_filters-close-button {
+    font-family: $primary-font;
+    font-size: 16px;
+    color: $primary-text;
+    font-weight: 500;
   }
 
   &_filters-expand-arrow {
