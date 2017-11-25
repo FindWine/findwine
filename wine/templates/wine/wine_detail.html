@@ -49,13 +49,13 @@
   <div class="hidden-sm-down findwine_detail-images-desktop">
     <div class="findwine_detail-images-small">
       {% if winevintage.image_pack_shot %}
-      <div class="findwine_detail-image-1">
+      <div class="findwine_detail-image-1 js-green-class findwine_detail-image-border-green" onclick="imageGreenBorder()">
         <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
       {% endif %}
       {% if winevintage.image_label_vertical %}
-      <div class="findwine_detail-image-2">
+      <div class="findwine_detail-image-2 js-green-class" onclick="imageGreenBorder()">
         <img src="{{ winevintage.image_label_vertical.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
@@ -216,7 +216,7 @@
         {% if winevintage.winemakers.count %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Winemaker:</div>
-          <div class="findwine_detail-content">
+          <div class="findwine_detail-content-right">
             {% for winemaker in winevintage.winemakers.all %}
             {{ winemaker }}
             {% endfor %}
@@ -492,7 +492,9 @@
             <div class="findwine_vintage-producer-main">
               {{ other_vintage.wine.producer.name }}
             </div>
-            <h4 class="findwine_vintage-vintage"> {{ other_vintage.wine.name }} {{ other_vintage.year }} </h4>
+            <h4 class="findwine_vintage-vintage">
+              {{ other_vintage.wine.name }} {{ other_vintage.year }}
+            </h4>
             <div class="findwine_vintage-row">
               <p class="findwine_vintage-category">
                 {{ other_vintage.sub_category }}
@@ -500,10 +502,14 @@
               {% if other_vintage.preferred_merchant %}
               <div class="findwine_vintage-table--display">
                 <div class="findwine_vintage-currency"> R</div>
-                <div class="findwine_vintage-price"> {{ other_vintage.preferred_merchant.price }}</div>
-                <button class="btn findwine_buy-button hidden-sm-down" target="_blank" role="button" href={{ winevintage.details_url }}> View
+                <div class="findwine_vintage-price">
+                  {{ other_vintage.preferred_merchant.price }}
+                </div>
+                <button class="btn findwine_view-button hidden-sm-down"
+                        target="_self" role="button" href={{ winevintage.details_url }}>
+                  View
                   <img src="{% static 'wine/images/SVGs/arrow-right-white.svg' %}"
-                       class="findwine_detail-right-arrow">
+                       class="findwine_view-button-arrow">
                 </button>
               </div>
               {% endif %}
@@ -585,6 +591,10 @@
       } else {
         serveContent.style.height = "43px";
       }
+
+    }
+
+    function imageGreenBorder() {
 
     }
 
