@@ -1470,7 +1470,9 @@ button:focus, button:hover {
   }
 
   &_merchant-price-holder {
-
+    @include breakpoint(lg) {
+      margin-right: 15px;
+    }
   }
 
   &_merchant-name {
@@ -1521,6 +1523,8 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       width: auto;
+      flex-flow: row;
+      align-items: center;
     }
   }
 
