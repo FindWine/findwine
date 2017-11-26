@@ -132,7 +132,6 @@ body {
 .nav-link {
 
   font-family: $primary-font;
-  color: $white !important;
   font-size: 14px;
   font-weight: 500;
   padding-right: 40px !important;
@@ -145,6 +144,10 @@ body {
 
   &-new {
     color: $primary-text !important;
+  }
+
+  @include breakpoint(md) {
+    color: $white !important;
   }
 
 }
@@ -363,7 +366,7 @@ button:focus, button:hover {
   }
 
   &_nav-logo {
-    width: 100%;
+    width: auto;
     text-align: center;
     position: absolute;
 
@@ -383,6 +386,71 @@ button:focus, button:hover {
   &_nav-logo-icon {
     width: 146px;
     height: 33px;
+  }
+
+  &_modal-nav {
+    margin: 0px;
+    width: 85%;
+    height: 100%;
+
+    &-close {
+      opacity: 1;
+    }
+
+    &-header {
+      border-bottom: none;
+    }
+
+    &-content {
+      height: 100%;
+    }
+
+    &-link {
+      font-family: $primary-font;
+      color: $primary-text !important;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    &-footer {
+      border-top: none;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+
+      &-links-ul {
+        list-style: none;
+        padding: 0px;
+      }
+
+      &-links-li {
+        margin-bottom: 15px;
+      }
+
+      &-link {
+        font-family: $primary-font;
+        color: $light-grey-text;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover, &:active, &:focus {
+          color: $focus-green;
+        }
+      }
+
+      &-social {
+        margin-top: 20px;
+        margin-bottom: 25px;
+        margin-left: 0px;
+      }
+
+      &-icon {
+        height: 24px;
+        margin-right: 40px;
+      }
+    }
   }
 
   &_menu-icon {

@@ -40,7 +40,6 @@ body {
 
 .nav-link {
   font-family: "Gotham SSm A", "Gotham SSm B";
-  color: #ffffff !important;
   font-size: 14px;
   font-weight: 500;
   padding-right: 40px !important;
@@ -50,6 +49,9 @@ body {
     color: #00ad68 !important; }
   .nav-link-new {
     color: #333e48 !important; }
+  @media (min-width: 678px) {
+    .nav-link {
+      color: #ffffff !important; } }
 
 .nav-link-home {
   color: #00ad68 !important; }
@@ -198,7 +200,7 @@ button:focus, button:hover {
     .findwine_nav--menu-home {
       margin-left: 100px; } }
 .findwine_nav-logo {
-  width: 100%;
+  width: auto;
   text-align: center;
   position: absolute; }
   .findwine_nav-logo-none {
@@ -212,6 +214,47 @@ button:focus, button:hover {
 .findwine_nav-logo-icon {
   width: 146px;
   height: 33px; }
+.findwine_modal-nav {
+  margin: 0px;
+  width: 85%;
+  height: 100%; }
+  .findwine_modal-nav-close {
+    opacity: 1; }
+  .findwine_modal-nav-header {
+    border-bottom: none; }
+  .findwine_modal-nav-content {
+    height: 100%; }
+  .findwine_modal-nav-link {
+    font-family: "Gotham SSm A", "Gotham SSm B";
+    color: #333e48 !important;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px; }
+  .findwine_modal-nav-footer {
+    border-top: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column; }
+    .findwine_modal-nav-footer-links-ul {
+      list-style: none;
+      padding: 0px; }
+    .findwine_modal-nav-footer-links-li {
+      margin-bottom: 15px; }
+    .findwine_modal-nav-footer-link {
+      font-family: "Gotham SSm A", "Gotham SSm B";
+      color: #86929a;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none; }
+      .findwine_modal-nav-footer-link:hover, .findwine_modal-nav-footer-link:active, .findwine_modal-nav-footer-link:focus {
+        color: #14815b; }
+    .findwine_modal-nav-footer-social {
+      margin-top: 20px;
+      margin-bottom: 25px;
+      margin-left: 0px; }
+    .findwine_modal-nav-footer-icon {
+      height: 24px;
+      margin-right: 40px; }
 .findwine_menu-icon {
   padding-top: 20px;
   color: #333e48;
