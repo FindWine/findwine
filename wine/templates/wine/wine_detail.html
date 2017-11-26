@@ -3,14 +3,11 @@
 
 {% block content %}
 
-<!-- Nav for search-->
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-new">
+<!-- Nav -->
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-new search-page-content" id="top">
   <div class="container findwine_nav--menu">
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
         <span>
-          <!-- Icon to be visible on search and wine details pages -->
           <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
         </span>
     </button>
@@ -18,8 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active nav-item-new">
-          <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span
-            class="sr-only">(current)</span></a>
+          <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item nav-item-new">
           <a class="nav-link nav-link-new" href="{% url 'content:about' %}">About</a>
@@ -27,11 +23,8 @@
       </ul>
     </div>
   </div>
-  <!-- * This should only be visible on search results and wine details pages. Toggle class findwine_nav-logo-none -->
   <div class="findwine_nav-logo search-page-content">
-    <a href="{% url 'wine:search' %}">
-      <img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine">
-    </a>
+    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
   </div>
 </nav>
 
@@ -49,13 +42,13 @@
   <div class="hidden-sm-down findwine_detail-images-desktop">
     <div class="findwine_detail-images-small">
       {% if winevintage.image_pack_shot %}
-      <div class="findwine_detail-image-1 js-green-class findwine_detail-image-border-green" onclick="imageGreenBorder()">
+      <div class="findwine_detail-image-1 js-green-class" onclick="imageFocus()">
         <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
       {% endif %}
       {% if winevintage.image_label_vertical %}
-      <div class="findwine_detail-image-2 js-green-class" onclick="imageGreenBorder()">
+      <div class="findwine_detail-image-2 js-green-class" onclick="imageFocus()">
         <img src="{{ winevintage.image_label_vertical.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
@@ -204,7 +197,7 @@
       More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
     </button>
   </div>
-  <div class="findwine_detail-heading"></div>
+  <div class="findwine_detail-heading hidden-md-up"></div>
   {% endif %}
 
   <!-- Wine details -->
@@ -313,7 +306,7 @@
       More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
     </button>
   </div>
-  <div class="findwine_detail-heading"></div>
+  <div class="findwine_detail-heading hidden-md-up"></div>
 
 <!-- Wine details and specs - Desktop -->
 <div class="findwine_details-specs">
@@ -366,46 +359,44 @@
   <div class="findwine_detail-rowHeight hidden-sm-down findwine_details-margin">
     <div class="findwine_detail-info">
       <h5 class="findwine_detail-header--2">Specs</h5>
-      <table class="table table-responsive table-sm">
-        <tbody>
+      <div class="table table-responsive table-sm">
         {% if winevintage.contains_sulphites %}
-        <tr>
-          <td class="findwine_detail-content-left">Contains Sulphites:</td>
-          <td class="findwine_detail-content-right">{{ winevintage.contains_sulphites|yesno:"Yes,No,Unknown" }}</td>
-        </tr>
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Contains Sulphites:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.contains_sulphites|yesno:"Yes,No,Unknown" }}</div>
+        </div>
         {% endif %}
         {% if winevintage.vegetarian %}
-        <tr>
-          <td class="findwine_detail-content-left">Vegetarian:</td>
-          <td class="findwine_detail-content-right">{{ winevintage.vegetarian|yesno:"Yes,No,Unknown" }}</td>
-        </tr>
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Vegetarian:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.vegetarian|yesno:"Yes,No,Unknown" }}</div>
+        </div>
         {% endif %}
         {% if winevintage.residual_sugar %}
-        <tr>
-          <td class="findwine_detail-content-left">Residual sugar:</td>
-          <td class="findwine_detail-content-right">{{ winevintage.residual_sugar }} g/l</td>
-        </tr>
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Residual sugar:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar }} g/l</div>
+        </div>
         {% endif %}
         {% if winevintage.ph %}
-        <tr>
-          <td class="findwine_detail-content-left">pH:</td>
-          <td class="findwine_detail-content-right">{{ winevintage.ph }}</td>
-        </tr>
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">pH:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.ph }}</div>
+        </div>
         {% endif %}
         {% if winevintage.total_acidity %}
-        <tr>
-          <td class="findwine_detail-content-left">Total acidity:</td>
-          <td class="findwine_detail-content-right">{{ winevintage.total_acidity }} g/l</td>
-        </tr>
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Total acidity:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_acidity }} g/l</div>
+        </div>
         {% endif %}
         {% if winevintage.total_sulphur %}
-        <tr>
-          <td class="findwine_detail-content-left">Total sulphur:</td>
-          <td class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:1 }} mg/l</td>
-        </tr>
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Total sulphur:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:1 }} mg/l</div>
+        </div>
         {% endif %}
-        </tbody>
-      </table>
+      </div>
     </div>
   </div>
 
@@ -594,7 +585,7 @@
 
     }
 
-    function imageGreenBorder() {
+    function imageFocus() {
 
     }
 
