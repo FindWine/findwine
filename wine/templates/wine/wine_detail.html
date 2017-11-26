@@ -28,21 +28,72 @@
   </div>
 </nav>
 
+<!-- Modal - Mobile Nav -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog findwine_modal-nav" role="document">
+    <div class="modal-content findwine_modal-nav-content">
+      <div class="modal-header findwine_modal-nav-header">
+        <button type="button" class="close findwine_modal-nav-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><img src="{% static 'wine/images/SVGs/close.svg' %}" class="findwine_menu-button"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link findwine_modal-nav-link" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link findwine_modal-nav-link" href="{% url 'content:about' %}">About</a>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer findwine_modal-nav-footer">
+        <div class="findwine_modal-nav-footer-links">
+          <ul class="findwine_modal-nav-footer-links-ul">
+            <li class="findwine_modal-nav-footer-links-li">
+              <a class="findwine_modal-nav-footer-link" href="{% url 'content:contact' %}">Contact Us <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="findwine_modal-nav-footer-links-li">
+              <a class="findwine_modal-nav-footer-link" href="{% url 'content:terms' %}">Privacy & Terms</a>
+            </li>
+          </ul>
+        </div>
+        <div class="findwine_modal-nav-footer-social">
+          <a href="https://www.instagram.com/findwinesa/" target="_blank" class="findwine_footer--flex-right">
+            <!-- This is a placeholder image - remember to replace -->
+            <img src="{% static 'wine/images/SVGs/instagram-dark.svg' %}" class="findwine_modal-nav-footer-icon">
+          </a>
+          <a href="https://twitter.com/FindWineSA" target="_blank" class="findwine_footer--flex-right">
+            <img src="{% static 'wine/images/SVGs/twitter-dark.svg' %}" class="findwine_modal-nav-footer-icon">
+          </a>
+          <a href="https://www.facebook.com/FindWineSA/" target="_blank" class="findwine_footer--flex-right">
+            <img src="{% static 'wine/images/SVGs/facebook-dark.svg' %}" class="findwine_modal-nav-footer-icon">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--Insert all of the page specific content here-->
 <div class="findwine_detail-padding">
 
   <!--image - MOBILE-->
   <div class="hidden-md-up">
     {% if winevintage.image_pack_shot %}
-    <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
-         class="img-fluid rounded float-left findwine_detail-image">
+      <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+          class="img-fluid rounded float-left findwine_detail-image">
+    {% else %}
+      <img src="{% static 'wine/images/other/placeholder.jpg' %}" alt="{{ other_vintage.wine.name }}"
+          class="img-fluid rounded findwine_vintage--image-img"/>
     {% endif %}
   </div>
 
+  {% if winevintage.image_pack_shot %}
   <div class="hidden-sm-down findwine_detail-images-desktop">
     <div class="findwine_detail-images-small">
       {% if winevintage.image_pack_shot %}
-      <div class="findwine_detail-image-1 js-green-class" onclick="imageFocus()">
+      <div class="findwine_detail-image-1 js-green-class findwine_detail-image-border-green" onclick="imageFocus()">
         <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
@@ -63,6 +114,9 @@
     </div>
     {% endif %}
   </div>
+  {% else %}
+  <div class="hidden-sm-down findwine_detail-images-desktop findwine_detail-images-desktop-none"></div>
+  {% endif %}
 
   <!-- Wine detail -->
   <div class="findwine_producer">
@@ -475,7 +529,7 @@
             <img src="{{ other_vintage.image_pack_shot.url }}" alt="{{ other_vintage.wine.name }}"
                  class="img-fluid rounded findwine_vintage--image-img"/>
             {% else %}
-            <img src="{% static 'wine/images/SVGs/port.svg' %}" alt="{{ other_vintage.wine.name }}"
+            <img src="{% static 'wine/images/other/placeholder.jpg' %}" alt="{{ other_vintage.wine.name }}"
                  class="img-fluid rounded findwine_vintage--image-img"/>
             {% endif %}
           </div>
@@ -588,6 +642,7 @@
     function imageFocus() {
 
     }
+
 
   </script>
 
