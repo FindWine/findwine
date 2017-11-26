@@ -3,14 +3,11 @@
 
 {% block content %}
 
-<!-- Nav for search-->
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-new">
+<!-- Nav -->
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-new search-page-content" id="top">
 	<div class="container findwine_nav--menu">
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-						aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
         <span>
-          <!-- Icon to be visible on search and wine details pages -->
           <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
         </span>
 		</button>
@@ -18,8 +15,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active nav-item-new">
-					<a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span
-						class="sr-only">(current)</span></a>
+					<a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item nav-item-new">
 					<a class="nav-link nav-link-new" href="{% url 'content:about' %}">About</a>
@@ -27,11 +23,8 @@
 			</ul>
 		</div>
 	</div>
-	<!-- * This should only be visible on search results and wine details pages. Toggle class findwine_nav-logo-none -->
 	<div class="findwine_nav-logo search-page-content">
-		<a href="{% url 'wine:search' %}">
-			<img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine">
-		</a>
+		<a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
 	</div>
 </nav>
 
