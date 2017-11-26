@@ -1,7 +1,15 @@
+html {
+  height: 100%;
+  box-sizing: border-box; }
+
 body {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 12px;
-  color: #333e48; }
+  color: #333e48;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%; }
 
 .navbar {
   position: absolute;
@@ -47,11 +55,19 @@ body {
   cursor: pointer; }
   .nav-link:hover {
     color: #00ad68 !important; }
-  .nav-link-new {
-    color: #333e48 !important; }
   @media (min-width: 678px) {
     .nav-link {
       color: #ffffff !important; } }
+  .nav-link-new {
+    color: #333e48 !important;
+    font-family: "Gotham SSm A", "Gotham SSm B";
+    font-size: 14px;
+    font-weight: 500;
+    padding-right: 40px !important;
+    padding-left: 0px !important;
+    cursor: pointer; }
+    .nav-link-new:hover {
+      color: #00ad68 !important; }
 
 .nav-link-home {
   color: #00ad68 !important; }
@@ -89,6 +105,9 @@ button:focus, button:hover {
 
 .footer {
   position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
   margin-top: 0px; }
 
 .rc-slider {
@@ -545,7 +564,7 @@ button:focus, button:hover {
   justify-content: center; }
 .findwine_footer {
   background-color: #333e48;
-  height: auto; }
+  height: 60px; }
   .findwine_footer--logo {
     height: 30px;
     margin-right: 20px; }
