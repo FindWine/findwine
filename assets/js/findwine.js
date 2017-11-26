@@ -259,7 +259,7 @@ class SearchControls extends React.Component {
       <form className="search-form-collapsed" role="search">
         {this.renderCollapsedControlsOpen()}
         <div className="row d-flex align-items-start findwine_search-form-collapsed">
-          <div className="col-md-3">
+          <div className="col-md-6 col-lg-3">
             <div className="form-group category">
               <label htmlFor="id_category" className="findwine_heading-3">Select wine</label>
               <div className="findwine_select-collapse">
@@ -271,7 +271,7 @@ class SearchControls extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-6 col-lg-3">
             <div className="form-group sub_category">
               <label htmlFor="id_sub_category" className="findwine_heading-3"> Select type(s)</label>
               <div className="findwine_select-collapse">
@@ -283,7 +283,7 @@ class SearchControls extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-md-3 findwine_subcategory-row">
+          <div className="col-md-6 col-lg-3 findwine_subcategory-row">
             <div className="col-md-12 findwine_subcategory" >
               <div className="form-group sub_category-collapse">
                 <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
@@ -316,7 +316,7 @@ class SearchControls extends React.Component {
   renderCollapsedControls() {
     return (
       // This is for mobile - collapsed
-      <div className="findwine_filters-collapsed">
+      <div className="findwine_filters-collapsed" onClick={() => this.setState({'isExpanded': true})}>
         <div className="findwine_filters-icon">
           <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
         </div>
@@ -339,7 +339,7 @@ class SearchControls extends React.Component {
           Filters
         </div>
         <div className="findwine_filters-expand">
-          <button className="findwine_filters-expand-button" type="button" onClick={() => this.setState({'isExpanded': true})}
+          <button className="findwine_filters-expand-button" type="button"
                   style={{outline: 'none', border:'none', background: "none"}}>
             <img src={ constructImagePath('wine/images/SVGs/arrow-down.svg') } className="findwine_filters-expand-arrow" />
           </button>
@@ -351,7 +351,7 @@ class SearchControls extends React.Component {
   renderCollapsedControlsOpen() {
     if (this.props.firstSearchMade && this.state.isExpanded) {
       return (
-        <div className="findwine_filters-collapsed-filter-open hidden-md-up">
+        <div className="findwine_filters-collapsed-filter-open">
           <div className="findwine_filters-icon">
             <img src={constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon"/>
           </div>
