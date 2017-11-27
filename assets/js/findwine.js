@@ -315,7 +315,7 @@ class SearchControls extends React.Component {
 
   renderCollapsedControls() {
     return (
-      // This is for mobile - collapsed
+      // This is for mobile and tablet - collapsed
       <div className="findwine_filters-collapsed" onClick={() => this.setState({'isExpanded': true})}>
         <div className="findwine_filters-icon">
           <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
