@@ -111,7 +111,7 @@ class SearchControls extends React.Component {
   _getSortSelect() {
     if (this.props.firstSearchMade) {
       return (
-        <div className="col-sm-2 col-md-12">
+        <div className="col-12">
           <div className="form-group">
             <label htmlFor="id_sort" className="findwine_heading-3">Sort by</label>
             <SortSelect
@@ -131,7 +131,7 @@ class SearchControls extends React.Component {
           <button type="submit" className="btn btn-primary btn-block findwine_button" href="#modal"
                   onClick={(event) => this.props.searchClicked(event)}>
             SEARCH WINES
-            <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up findwine_button-image"></img>
+            <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
           </button>
         </div>
       );
@@ -141,11 +141,11 @@ class SearchControls extends React.Component {
   _getSearchButtonFilter() {
   if (this.props.firstSearchMade) {
     return (
-      <div className="col-md-6 offset-md-3 col-lg-12 offset-lg-0 findwine_button-outer">
+      <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0 findwine_button-outer">
         <button type="button" className="btn btn-primary btn-block findwine_button"
                 onClick={() => this.setState({'isExpanded': false})}>
           SEARCH WINES
-          <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-md-up findwine_button-image"></img>
+          <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
         </button>
       </div>
     );
@@ -226,7 +226,7 @@ class SearchControls extends React.Component {
           <div className="col-xs-12 hidden-lg-up">
               {this.getSlider()}
           </div>
-          <div className="col-xs-6 col-md-6 offset-md-3 col-lg-8 offset-lg-0 findwine_price-input">
+          <div className="col-xs-6 col-lg-8 findwine_price-input">
              <div className="form-group min_price">
                R <input className="form-control" type="text" name="min_price"
                         value={this.props.minPrice} min="0" required id="id_min_price"
@@ -374,7 +374,7 @@ class SearchControls extends React.Component {
     if (this.showSearchControls()) {
       return this.renderControls();
     } else {
-      if (window.innerWidth < 1023) {
+      if (window.innerWidth < 992) {
         return this.renderCollapsedControls();
       } else {
         return this.renderCollapsedControlsDesktop();
