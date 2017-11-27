@@ -301,7 +301,7 @@
         {% if winevintage.wooded %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Wooded:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Wooded,Unwooded,Unknown" }}</div>
+          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Yes,No,Unknown" }}</div>
         </div>
         {% endif %}
         {% if winevintage.organic %}
@@ -325,7 +325,7 @@
         {% if winevintage.residual_sugar %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Residual sugar:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar }} g/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar|floatformat:1 }} g/l</div>
         </div>
         {% endif %}
         {% if winevintage.ph %}
@@ -337,13 +337,13 @@
         {% if winevintage.total_acidity %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Total acidity:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.total_acidity }} g/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_acidity|floatformat:1 }} g/l</div>
         </div>
         {% endif %}
         {% if winevintage.total_sulphur %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Total sulphur:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:1 }} mg/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:0 }} mg/l</div>
         </div>
         {% endif %}
       </div>
@@ -399,7 +399,7 @@
         {% endif %}
         {% if winevintage.wooded %}
           <div class="findwine_detail-content-left">Wooded:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Wooded,Unwooded,Unknown" }}</div>
+          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Yes,No,Unknown" }}</div>
         {% endif %}
         {% if winevintage.organic %}
           <div class="findwine_detail-content-left">Organic:</div>
@@ -427,7 +427,7 @@
         {% if winevintage.residual_sugar %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Residual sugar:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar }} g/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar|floatformat:1 }} g/l</div>
         </div>
         {% endif %}
         {% if winevintage.ph %}
@@ -439,13 +439,13 @@
         {% if winevintage.total_acidity %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Total acidity:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.total_acidity }} g/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_acidity|floatformat:1 }} g/l</div>
         </div>
         {% endif %}
         {% if winevintage.total_sulphur %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Total sulphur:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:1 }} mg/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:0 }} mg/l</div>
         </div>
         {% endif %}
       </div>
@@ -544,7 +544,7 @@
               <div class="findwine_vintage-table--display">
                 <div class="findwine_vintage-currency"> R</div>
                 <div class="findwine_vintage-price">
-                  {{ other_vintage.preferred_merchant.price }}
+                  {{ other_vintage.preferred_merchant.price|floatformat:0 }}
                 </div>
                 <button class="btn findwine_view-button hidden-sm-down"
                         target="_self" role="button" href={{ winevintage.details_url }}>
