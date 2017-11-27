@@ -331,7 +331,7 @@ button:focus, button:hover {
 .findwine_banner-main {
   height: 190px;
   width: 100%;
-  background: url("images/background/rohit-tandon-67718@3x.png");
+  background: url("images/background/home-mob.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -341,9 +341,11 @@ button:focus, button:hover {
   margin-bottom: 1rem; }
   @media (min-width: 678px) {
     .findwine_banner-main {
+      background: url("images/background/home-tab.png");
       height: 300px; } }
   @media (min-width: 1024px) {
     .findwine_banner-main {
+      background: url("images/background/home.png");
       height: 580px;
       margin-bottom: 0px; } }
 .findwine_banner-text {
@@ -1596,5 +1598,99 @@ button:focus, button:hover {
   color: #86929a;
   font-size: 14px;
   margin-bottom: 0px; }
+.findwine_about-banner {
+  background: url("images/background/about-mob.png") center center;
+  height: 130px;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  flex-flow: column;
+  padding: 30px 55px; }
+  @media (min-width: 678px) {
+    .findwine_about-banner {
+      background: url("images/background/about-tab.png") center center;
+      height: 250px; } }
+  @media (min-width: 1024px) {
+    .findwine_about-banner {
+      background: url("images/background/about.png") center center;
+      background-size: cover;
+      height: 350px;
+      padding: 137px 420px; } }
+.findwine_about-heading-1 {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  letter-spacing: -0.4px; }
+.findwine_about-heading-2 {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #333e48;
+  font-size: 18px;
+  font-weight: 500; }
+.findwine_about-heading-3 {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43; }
+.findwine_about-heading-4 {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #333e48;
+  font-size: 14px;
+  font-weight: 500; }
+.findwine_about-paragraph {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #86929a;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.57;
+  margin-top: 25px; }
+.findwine_about-content-1 {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column;
+  padding: 30px 15px;
+  border-bottom: 1px solid #dbe0e4; }
+  @media (min-width: 1024px) {
+    .findwine_about-content-1 {
+      flex-flow: row;
+      padding: 60px 130px; } }
+  @media (min-width: 1024px) {
+    .findwine_about-content-1-left {
+      width: 50%; } }
+  .findwine_about-content-1-right {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; }
+    @media (min-width: 1024px) {
+      .findwine_about-content-1-right {
+        width: 50%; } }
+.findwine_about-content-icon {
+  height: 116px; }
+.findwine_about-content-2 {
+  padding: 20px 15px; }
+.findwine_about-link {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #00ad68;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.57;
+  margin-top: 25px;
+  text-decoration: none; }
+  .findwine_about-link:focus, .findwine_about-link:hover, .findwine_about-link:active {
+    text-decoration: underline; }
+.findwine_about-icon {
+  align-self: flex-start;
+  justify-self: flex-start;
+  margin-bottom: 20px; }
+.findwine_about-us-icon {
+  height: 70px; }
 
 /*# sourceMappingURL=findwine.css.map */
