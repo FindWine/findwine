@@ -113,7 +113,7 @@ class SearchControls extends React.Component {
       return (
         <div className="col-sm-2 col-md-12">
           <div className="form-group">
-            <label htmlFor="id_sort">Sort by</label>
+            <label htmlFor="id_sort" className="findwine_heading-3">Sort by</label>
             <SortSelect
                 selectedSort={this.props.selectedSort}
                 sortChanged={this.props.sortChanged}
@@ -177,7 +177,7 @@ class SearchControls extends React.Component {
     if (this.props.firstSearchMade && this.state.isExpanded) {
       return (
         <button className="findwine_filters-expand-button findwine_filters-close-button"
-                type="button" href="#modal" onClick={() => this.setState({'isExpanded': false})}
+                type="button" href="#modal"
                 style={{outline: 'none', border:'none', background: "none"}}>
           X
         </button>
@@ -258,9 +258,9 @@ class SearchControls extends React.Component {
     return(
       <form className="search-form-collapsed" role="search">
         {this.renderCollapsedControlsOpen()}
-        <div className="row d-flex align-items-start findwine_search-form-collapsed">
-          <div className="col-md-6 col-lg-3">
-            <div className="form-group category">
+        <div className="findwine_filter-collapse-left">
+          <div className="d-flex align-items-start findwine_search-form-collapsed">
+            <div className="form-group category findwine_filter-collapse-category">
               <label htmlFor="id_category" className="findwine_heading-3">Select wine</label>
               <div className="findwine_select-collapse">
                 <CategorySelect
@@ -270,9 +270,7 @@ class SearchControls extends React.Component {
                 />
               </div>
             </div>
-          </div>
-          <div className="col-md-6 col-lg-3">
-            <div className="form-group sub_category">
+            <div className="form-group sub_category findwine_filter-collapse-category">
               <label htmlFor="id_sub_category" className="findwine_heading-3"> Select type(s)</label>
               <div className="findwine_select-collapse">
                 <SubCategorySelect
@@ -282,30 +280,32 @@ class SearchControls extends React.Component {
                 />
               </div>
             </div>
-          </div>
-          <div className="col-md-6 col-lg-3 findwine_subcategory-row">
-            <div className="col-md-12 findwine_subcategory" >
-              <div className="form-group sub_category-collapse">
-                <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
+            <div className="findwine_subcategory-row findwine_filter-collapse-category-price">
+              <div className="findwine_subcategory findwine_subcategory-collapse" >
+                <div className="form-group sub_category-collapse">
+                  <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
+                </div>
+              </div>
+              <div className="findwine_price-input-collapse">
+                <div className="form-group min_price">
+                  R <input className="form-control" type="text" name="min_price"
+                           value={this.props.minPrice} min="0" required id="id_min_price"
+                           onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
+                />
+                </div>
+                <div className="price-range-collapse"> - </div>
+                <div className="form-group max_price">
+                  R  <input className="form-control" type="text" name="max_price"
+                            value={this.props.maxPrice} min="0" required id="id_max_price"
+                            onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
+                />
+                </div>
               </div>
             </div>
-            <div className="col-md-12 findwine_price-input-collapse">
-              <div className="form-group min_price">
-                R <input className="form-control" type="text" name="min_price"
-                         value={this.props.minPrice} min="0" required id="id_min_price"
-                         onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
-              />
-              </div>
-              <div className="price-range-collapse"> - </div>
-              <div className="form-group max_price">
-                R  <input className="form-control" type="text" name="max_price"
-                          value={this.props.maxPrice} min="0" required id="id_max_price"
-                          onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
-              />
-              </div>
-            </div>
           </div>
-          <div className="col-md-3">
+        </div>
+        <div className="findwine_filter-collapse-right">
+          <div className="findwine_filter-collapse-category findwine_filter-collapse-category-align">
           {this._getSortSelect()}
           </div>
         </div>
@@ -351,7 +351,7 @@ class SearchControls extends React.Component {
   renderCollapsedControlsOpen() {
     if (this.props.firstSearchMade && this.state.isExpanded) {
       return (
-        <div className="findwine_filters-collapsed-filter-open">
+        <div className="findwine_filters-collapsed-filter-open" onClick={() => this.setState({'isExpanded': false})}>
           <div className="findwine_filters-icon">
             <img src={constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon"/>
           </div>
@@ -386,11 +386,12 @@ class SearchControls extends React.Component {
 class RatingsExplanationBar extends React.Component {
     render () {
       return (
-        <div className="findwine_ratings-explained--container" data-toggle="modal" data-target="#ratingsExplained">
-          <div className="findwine_ratings-heading">
+        <div className="findwine_ratings-explained--container">
+          <div className="findwine_ratings-heading" data-toggle="modal" data-target="#ratingsExplained">
               Ratings explained
           </div>
-          <button type="button" className="findwine_ratings-info" style={{outline: 'none', border:'none', background: "none"}}>
+          <button type="button" className="findwine_ratings-info" style={{outline: 'none', border:'none', background: "none"}}
+                  data-toggle="modal" data-target="#ratingsExplained">
             <img src={ constructImagePath('wine/images/SVGs/info.svg') } className="findwine_ratings-info-icon" />
           </button>
         </div>
@@ -760,6 +761,17 @@ function getSortChoices() {
         ['Price', 'price'],
         ['Name', 'wine__producer__name,wine__name'],
     ];
+}
+
+function loader() {
+  if (this.props.wines.length > 0) {
+    document.getElementById('loader').style.display='block';
+    setTimeout("hide()", 500);
+  }
+}
+
+function hide() {
+  document.getElementById("loader").style.display="none";
 }
 
 ReactDOM.render(
