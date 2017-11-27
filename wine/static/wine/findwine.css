@@ -103,7 +103,7 @@ button:focus, button:hover {
 .search-form {
   padding: 0px 15px; }
   .search-form-collapsed {
-    padding: 25px 0px 15px 0px;
+    padding: 25px 0px 0px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center; }
@@ -824,6 +824,10 @@ button:focus, button:hover {
   @media (min-width: 1024px) {
     .findwine_list-group {
       display: inline-block; } }
+.findwine_list {
+  padding: 0px; }
+.findwine_list-item {
+  list-style-type: none; }
 .findwine_detail-nav {
   position: relative !important;
   height: 56px;

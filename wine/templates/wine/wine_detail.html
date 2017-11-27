@@ -280,10 +280,9 @@
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Blend:</div>
           <div class="findwine_detail-content-right">
-            <ul class="list-inline" style="margin-bottom: 0px">
+            <ul class="findwine_list" style="margin-bottom: 0px">
               {% for winegrape in winevintage.winegrape_set.all %}
-              <li class="list-inline-item">
-                <div class="findwine_award-list-bullet findwine_award-list-bullet-light"></div>
+              <li class="findwine_list-item">
                 {{ winegrape.grape }}
                 {{ winegrape.percentage|floatformat:0 }}
                 {% if winegrape.percentage %} % {% endif %}
@@ -383,10 +382,9 @@
         {% if winevintage.winegrape_set.all %}
           <div class="findwine_detail-content-left">Blend:</div>
           <div class="findwine_detail-content-right">
-            <ul class="list-inline findwine_detail-list-inline-item">
+            <ul class="findwine_list findwine_detail-list-inline-item">
               {% for winegrape in winevintage.winegrape_set.all %}
-              <li class="list-inline-item findwine_detail-list-inline-item">
-                <div class="findwine_award-list-bullet"></div>
+              <li class="findwine_list-item findwine_detail-list-inline-item">
                 {{ winegrape.grape }}
                 {{ winegrape.percentage|floatformat:0 }}
                 {% if winegrape.percentage %} % {% endif %}
@@ -465,18 +463,16 @@
           <div class="findwine_detail-content-left">Food pairing:</div>
           <div class="findwine_detail-content-right">
             {% if winevintage.winefoodpairing_set.all %}
-            <ul class="list-inline findwine_detail-list-inline-item hidden-md-up">
+            <ul class="findwine_list findwine_detail-list-inline-item hidden-md-up">
               {% for winefoodpairing in winevintage.winefoodpairing_set.all %}
-              <li class="list-inline-item findwine_detail-list-inline-item">
-                <div class="findwine_award-list-bullet findwine_award-list-bullet-light"></div>
+              <li class="findwine_list-item findwine_detail-list-inline-item">
                 {{ winefoodpairing.food_pairing.name }}
               </li>
               {% endfor %}
             </ul>
-            <ul class="list-inline findwine_detail-list-inline-item hidden-sm-down">
+            <ul class="findwine_list findwine_detail-list-inline-item hidden-sm-down">
               {% for winefoodpairing in winevintage.winefoodpairing_set.all %}
-              <li class="list-inline-item findwine_detail-list-inline-item">
-                <div class="findwine_award-list-bullet"></div>
+              <li class="findwine_list-item findwine_detail-list-inline-item">
                 {{ winefoodpairing.food_pairing.name }}
               </li>
               {% endfor %}

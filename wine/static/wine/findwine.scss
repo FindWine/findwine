@@ -215,7 +215,7 @@ button:focus, button:hover {
   padding: 0px 15px;
 
   &-collapsed {
-    padding: 25px 0px 15px 0px;
+    padding: 25px 0px 0px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1332,6 +1332,14 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       display: inline-block;
     }
+  }
+
+  &_list {
+    padding: 0px;
+  }
+
+  &_list-item {
+    list-style-type: none;
   }
 
   &_detail-nav {
