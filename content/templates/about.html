@@ -5,91 +5,141 @@
 
 <!-- Nav -->
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content" id="top">
-	<div class="container findwine_nav--menu">
-		<button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
+  <div class="container findwine_nav--menu">
+    <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
         <span>
           <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
         </span>
-		</button>
+    </button>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active nav-item-new">
-					<a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item nav-item-new">
-					<a class="nav-link nav-link-new nav-link-home" href="{% url 'content:about' %}">About</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="findwine_nav-logo search-page-content">
-		<a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-beta-dark.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
-	</div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active nav-item-new">
+          <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span
+            class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item nav-item-new">
+          <a class="nav-link nav-link-new nav-link-home" href="{% url 'content:about' %}">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="findwine_nav-logo search-page-content">
+    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-beta-dark.svg' %}"
+                                           class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
+  </div>
 </nav>
 <!-- Modal - Mobile Nav -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	<div class="modal-dialog findwine_modal-nav" role="document">
-		<div class="modal-content findwine_modal-nav-content">
-			<div class="modal-header findwine_modal-nav-header">
-				<button type="button" class="close findwine_modal-nav-close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><img src="{% static 'wine/images/SVGs/close.svg' %}" class="findwine_menu-button"></span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link findwine_modal-nav-link" href="{% url 'wine:search' %}">Home<span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link findwine_modal-nav-link" href="{% url 'content:about' %}">About</a>
-					</li>
-				</ul>
-			</div>
-			<div class="modal-footer findwine_modal-nav-footer">
-				<div class="findwine_modal-nav-footer-links">
-					<ul class="findwine_modal-nav-footer-links-ul">
-						<li class="findwine_modal-nav-footer-links-li">
-							<a class="findwine_modal-nav-footer-link" href="{% url 'content:contact' %}">Contact Us <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="findwine_modal-nav-footer-links-li">
-							<a class="findwine_modal-nav-footer-link" href="{% url 'content:terms' %}">Privacy & Terms</a>
-						</li>
-					</ul>
-				</div>
-				<div class="findwine_modal-nav-footer-social">
-					<a href="https://www.instagram.com/findwinesa/" target="_blank" class="findwine_footer--flex-right">
-						<!-- This is a placeholder image - remember to replace -->
-						<img src="{% static 'wine/images/SVGs/instagram-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-					</a>
-					<a href="https://twitter.com/FindWineSA" target="_blank" class="findwine_footer--flex-right">
-						<img src="{% static 'wine/images/SVGs/twitter-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-					</a>
-					<a href="https://www.facebook.com/FindWineSA/" target="_blank" class="findwine_footer--flex-right">
-						<img src="{% static 'wine/images/SVGs/facebook-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+  <div class="modal-dialog findwine_modal-nav" role="document">
+    <div class="modal-content findwine_modal-nav-content">
+      <div class="modal-header findwine_modal-nav-header">
+        <button type="button" class="close findwine_modal-nav-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><img src="{% static 'wine/images/SVGs/close.svg' %}"
+                                        class="findwine_menu-button"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link findwine_modal-nav-link" href="{% url 'wine:search' %}">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link findwine_modal-nav-link" href="{% url 'content:about' %}">About</a>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer findwine_modal-nav-footer">
+        <div class="findwine_modal-nav-footer-links">
+          <ul class="findwine_modal-nav-footer-links-ul">
+            <li class="findwine_modal-nav-footer-links-li">
+              <a class="findwine_modal-nav-footer-link" href="{% url 'content:contact' %}">Contact Us <span
+                class="sr-only">(current)</span></a>
+            </li>
+            <li class="findwine_modal-nav-footer-links-li">
+              <a class="findwine_modal-nav-footer-link" href="{% url 'content:terms' %}">Privacy & Terms</a>
+            </li>
+          </ul>
+        </div>
+        <div class="findwine_modal-nav-footer-social">
+          <a href="https://www.instagram.com/findwinesa/" target="_blank" class="findwine_footer--flex-right">
+            <!-- This is a placeholder image - remember to replace -->
+            <img src="{% static 'wine/images/SVGs/instagram-dark.svg' %}" class="findwine_modal-nav-footer-icon">
+          </a>
+          <a href="https://twitter.com/FindWineSA" target="_blank" class="findwine_footer--flex-right">
+            <img src="{% static 'wine/images/SVGs/twitter-dark.svg' %}" class="findwine_modal-nav-footer-icon">
+          </a>
+          <a href="https://www.facebook.com/FindWineSA/" target="_blank" class="findwine_footer--flex-right">
+            <img src="{% static 'wine/images/SVGs/facebook-dark.svg' %}" class="findwine_modal-nav-footer-icon">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="container py-4">
-    <h1>ABOUT FINDWINE</h1>
-	<p>Search for award-winning wine at the price you want to pay.</p>
-    <h3>What is FindWine?</h3>
-    <p>FindWine is your guide to finding the best wine. No more standing at wine shops, staring at labels or debating prices.</p>
-	<p>We list only award-winning wines that are available to order online and be delivered to your door.</p>
-	<p>Simply select wine type and desired price, and our smart ratings will sort results based on a unique aggregate of respected award body rankings.</p>
-	<p>With us, finding great wine is as easy as search, compare, buy… enjoy!</p>
-    <h3>What is our smart ratings system?</h3>
-    <p>There are a lot of South African and international awards bodies out there, and we don’t expect you to keep track of them all. That’s what we do.</p>
-	<p>Our smart ratings system calculates a unique score for each wine based on the awards they’ve won and the prestige of the award body.</p>
-	<p>These unique scores fall between 0 and 10, with 10 being the highest rating a wine can receive.</p>
-    <h3>Who are we?</h3>
-    <p>We are wine lovers that don’t actually know a great deal about wine. But we do know we like to drink great wine. And that we want that wine to fit into our budget – whether that’s R50 or R500.</p>
-	<p>We want buying wine to be as enjoyable as drinking it But we know we’re not there yet.</p>
-	<p>FindWine is a new service that will only get better with your help. We’d love to hear your comments on what we’re getting right, and what we’re getting wrong. Get in touch and email us <a href="{% url 'content:contact' %}">here</a>.</p>
-	<!-- Alicia please check the link to Contact Us page -->
+<div class="findwine_about-banner">
+  <div class="findwine_about-heading-1">About Us</div>
+  <div class="findwine_about-heading-3">Search for award-winning wine at the price you want to pay.</div>
 </div>
+<div class="findwine_about-content-1">
+  <div class="findwine_about-content-1-left">
+    <div class="findwine_about-heading-2">What is FindWine?</div>
+    <div class="findwine_about-paragraph">FindWine is your guide to finding the best wine. No more standing at wine
+      shops, staring at labels or debating prices.
+    </div>
+    <div class="findwine_about-paragraph">We list only award-winning wines that are available to order online and be
+      delivered to your door.
+    </div>
+    <div class="findwine_about-paragraph">Simply select wine type and desired price, and our smart ratings will sort
+      results based on a unique aggregate of respected award body rankings.
+    </div>
+    <div class="findwine_about-paragraph">With us, finding great wine is as easy as search, compare, buy… enjoy!</div>
+  </div>
+  <div class="findwine_about-content-1-right">
+    <img class="findwine_about-content-icon" src="{% static 'wine/images/other/search@3x.png' %}">
+    <img class="findwine_about-content-icon" src="{% static 'wine/images/other/compare@3x.png' %}">
+    <img class="findwine_about-content-icon" src="{% static 'wine/images/other/buy@3x.png' %}">
+    <img class="findwine_about-content-icon" src="{% static 'wine/images/other/enjoy@3x.png' %}">
+  </div>
+</div>
+<div class="findwine_detail-heading hidden-lg-up"></div>
+<div class="findwine_about-content-2">
+  <div class="findwine_about-icon">
+    <img class="findwine_about-us-icon" src="{% static 'wine/images/SVGs/ratings.svg' %}">
+  </div>
+  <div class="findwine_about-heading-4">What is our smart ratings system?</div>
+  <div class="findwine_about-paragraph">There are a lot of South African and international awards bodies out there, and
+    we don’t expect you to keep track of them all. That’s what we do.
+  </div>
+  <div class="findwine_about-paragraph">Our smart ratings system calculates a unique score for each wine based on the
+    awards they’ve won and the prestige
+    of
+    the award body.
+  </div>
+  <div class="findwine_about-paragraph">These unique scores fall between 0 and 10, with 10 being the highest rating a
+    wine can receive.
+  </div>
+</div>
+<div class="findwine_detail-heading hidden-lg-up"></div>
+<div class="findwine_about-content-2">
+  <div class="findwine_about-icon" style="margin-left: 15px">
+    <img class="findwine_about-us-icon" src="{% static 'wine/images/SVGs/wine-heart.svg' %}">
+  </div>
+  <div class="findwine_about-heading-4">Who are we?</div>
+  <div class="findwine_about-paragraph">We are wine lovers that don’t actually know a great deal about wine.
+    But we do know we like to drink great wine. And that we want that wine to fit into our budget – whether that’s R50
+    or R500.
+  </div>
+  <div class="findwine_about-paragraph">We want buying wine to be as enjoyable as drinking it But we know we’re not
+    there yet.
+  </div>
+  <div class="findwine_about-paragraph">FindWine is a new service that will only get better with your help. We’d love to
+    hear your
+    comments on what we’re getting right, and what we’re getting wrong. Get in touch and email us <a
+      class="findwine_about-link" href="{% url 'content:contact' %}">here</a>.
+  </div>
+</div>
+<div class="findwine_detail-heading hidden-lg-up"></div>
 {% endblock %}

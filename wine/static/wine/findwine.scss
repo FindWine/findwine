@@ -569,7 +569,7 @@ button:focus, button:hover {
 
     height: 190px;
     width: 100%;
-    background: url("images/background/rohit-tandon-67718@3x.png");
+    background: url("images/background/home-mob.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -579,11 +579,12 @@ button:focus, button:hover {
     margin-bottom: 1rem;
 
     @include breakpoint(md) {
+      background: url("images/background/home-tab.png");
       height: 300px;
     }
 
     @include breakpoint(lg) {
-
+      background: url("images/background/home.png");
       height: 580px;
       margin-bottom: 0px;
 
@@ -2433,6 +2434,137 @@ button:focus, button:hover {
     color: $light-grey-text;
     font-size: 14px;
     margin-bottom: 0px;
+  }
+
+  // About page
+
+  &_about-banner {
+    background: url('images/background/about-mob.png') center center;
+    height: 130px;
+    width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    flex-flow: column;
+    padding: 30px 55px;
+
+    @include breakpoint(md) {
+      background: url('images/background/about-tab.png') center center;
+      height: 250px;
+    }
+
+    @include breakpoint(lg) {
+      background: url('images/background/about.png') center center;
+      background-size: cover;
+      height: 350px;
+      padding: 137px 420px;
+    }
+  }
+
+  &_about-heading-1 {
+    font-family: $primary-font;
+    color: $white;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+  }
+
+  &_about-heading-2 {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &_about-heading-3 {
+    font-family: $primary-font;
+    color: $white;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.43;
+  }
+
+  &_about-heading-4 {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &_about-paragraph {
+    font-family: $primary-font;
+    color: $light-grey-text;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.57;
+    margin-top: 25px;
+  }
+
+  &_about-content-1 {
+    display: flex;
+    align-items: flex-start;
+    flex-flow: column;
+    padding: 30px 15px;
+    border-bottom: 1px solid $lightest-grey-border;
+
+    @include breakpoint(lg) {
+      flex-flow: row;
+      padding: 60px 130px;
+    }
+
+    &-left {
+      @include breakpoint(lg) {
+        width: 50%;
+      }
+    }
+
+    &-right {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      @include breakpoint(lg) {
+        width: 50%;
+      }
+    }
+  }
+
+  &_about-content-icon {
+    height: 116px;
+  }
+
+  &_about-content-2 {
+    padding: 20px 15px;
+  }
+
+  &_about-link {
+    font-family: $primary-font;
+    color: $primary-green;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.57;
+    margin-top: 25px;
+    text-decoration: none;
+
+    &:focus, &:hover, &:active {
+      text-decoration: underline;
+    }
+  }
+
+  &_about-icon {
+    align-self: flex-start;
+    justify-self: flex-start;
+    margin-bottom: 20px;
+  }
+
+  &_about-us-icon {
+    height: 70px;
   }
 
 }
