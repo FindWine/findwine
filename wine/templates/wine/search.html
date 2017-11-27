@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- Nav for 'Home page'-->
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded landing-page-content">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded landing-page-content">
   <div class="container findwine_nav--menu-home">
     <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
         <span>
@@ -49,7 +49,7 @@
             <a class="nav-link findwine_modal-nav-link" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link findwine_modal-nav-link" href="{% url 'content:about' %}">About us</a>
+            <a class="nav-link findwine_modal-nav-link" href="{% url 'content:about' %}">About</a>
           </li>
         </ul>
       </div>
@@ -57,10 +57,10 @@
         <div class="findwine_modal-nav-footer-links">
           <ul class="findwine_modal-nav-footer-links-ul">
             <li class="findwine_modal-nav-footer-links-li">
-              <a class="findwine_modal-nav-footer-link" href="{% url 'content:contact' %}">Contact us <span class="sr-only">(current)</span></a>
+              <a class="findwine_modal-nav-footer-link" href="{% url 'content:contact' %}">Contact Us <span class="sr-only">(current)</span></a>
             </li>
             <li class="findwine_modal-nav-footer-links-li">
-              <a class="findwine_modal-nav-footer-link" href="{% url 'content:terms' %}">Privacy & terms</a>
+              <a class="findwine_modal-nav-footer-link" href="{% url 'content:terms' %}">Privacy & Terms</a>
             </li>
           </ul>
         </div>
@@ -82,7 +82,7 @@
 </div>
 
 <!-- Nav for search-->
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded navbar-new search-page-content" style="display: none" id="top">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content" style="display: none" id="top">
   <div class="container findwine_nav--menu">
     <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
         <span>

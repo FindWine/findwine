@@ -87,9 +87,7 @@ body {
   width: 100%;
 
   @include breakpoint(lg) {
-
     padding: 40px 0px;
-
   }
 
   &-toggler {
@@ -105,7 +103,7 @@ body {
     display: flex;
     align-items: center;
 
-    @include breakpoint(md) {
+    @include breakpoint(lg) {
       height: 100px;
     }
 
@@ -376,7 +374,7 @@ button:focus, button:hover {
     margin-left: 0px;
     z-index: 1000;
 
-    @include breakpoint(md) {
+    @include breakpoint(lg) {
       margin-left: 260px;
     }
   }
@@ -1126,7 +1124,7 @@ button:focus, button:hover {
   }
 
   &_detail-image-main--holder {
-    max-width: 380px;
+    max-width: 400px;
     height: 400px;
     border-radius: 2px;
     border: solid 1px #dadada;
