@@ -397,7 +397,7 @@ button:focus, button:hover {
       display: none;
     }
 
-    @include breakpoint(md) {
+    @include breakpoint(lg) {
       text-align: left;
       margin-left: 40px;
       width: 185px;
