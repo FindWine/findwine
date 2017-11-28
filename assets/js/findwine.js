@@ -703,7 +703,8 @@ class SearchPage extends React.Component {
     render() {
         let ratingsExplained = this.state.firstSearchMade ? <RatingsExplanationBar /> : '';
         let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
-        let paginator = this.state.firstSearchMade ? <Paginator
+        let showPaginator = (this.state.firstSearchMade && this.state.wines.length);
+        let paginator = showPaginator ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
             prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
             count={this.state.resultCount} page={this.state.resultPage}
