@@ -579,15 +579,16 @@ button:focus, button:hover {
     margin-bottom: 1rem;
 
     @include breakpoint(md) {
-      background: url("images/background/home-tab.png");
+      background: url("images/background/home-tab.png") no-repeat;
       height: 300px;
+      background-size: cover;
     }
 
     @include breakpoint(lg) {
-      background: url("images/background/home.png");
+      background: url("images/background/home.png") no-repeat;
       height: 580px;
       margin-bottom: 0px;
-
+      background-size: cover;
     }
 
   }
@@ -2472,6 +2473,11 @@ button:focus, button:hover {
     line-height: 22px;
     font-weight: 500;
     letter-spacing: -0.4px;
+
+    @include breakpoint(lg) {
+      font-size: 26px;
+      letter-spacing: -0.6px;
+    }
   }
 
   &_about-heading-2 {
@@ -2487,6 +2493,10 @@ button:focus, button:hover {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.43;
+
+    @include breakpoint(lg) {
+      font-size: 18px;
+    }
   }
 
   &_about-heading-4 {
@@ -2494,6 +2504,10 @@ button:focus, button:hover {
     color: $primary-text;
     font-size: 14px;
     font-weight: 500;
+
+    @include breakpoint(lg) {
+      font-size: 18px;
+    }
   }
 
   &_about-paragraph {
@@ -2503,6 +2517,11 @@ button:focus, button:hover {
     font-size: 14px;
     line-height: 1.57;
     margin-top: 25px;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+      line-height: 1.75;
+    }
   }
 
   &_about-content-1 {
@@ -2531,16 +2550,45 @@ button:focus, button:hover {
 
       @include breakpoint(lg) {
         width: 50%;
+        margin-left: 90px;
       }
     }
   }
 
   &_about-content-icon {
     height: 116px;
+
+    @include breakpoint(lg) {
+      height: 177px;
+      margin-right: 20px;
+    }
+  }
+
+  &_about-content-container {
+
+    @include breakpoint(lg) {
+      background-color: $lightest-grey;
+      display: flex;
+      padding: 50px 100px;
+      border: 1px solid $lightest-grey-border;
+    }
+
   }
 
   &_about-content-2 {
     padding: 20px 15px;
+
+    @include breakpoint(lg) {
+      background-color: $white;
+      border: 1px solid $lightest-grey-border;
+      flex: 1;
+      padding: 30px;
+
+      &:last-child{
+        margin-left: 30px;
+      }
+    }
+
   }
 
   &_about-link {
