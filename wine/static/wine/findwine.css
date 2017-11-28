@@ -341,13 +341,15 @@ button:focus, button:hover {
   margin-bottom: 1rem; }
   @media (min-width: 678px) {
     .findwine_banner-main {
-      background: url("images/background/home-tab.png");
-      height: 300px; } }
+      background: url("images/background/home-tab.png") no-repeat;
+      height: 300px;
+      background-size: cover; } }
   @media (min-width: 1024px) {
     .findwine_banner-main {
-      background: url("images/background/home.png");
+      background: url("images/background/home.png") no-repeat;
       height: 580px;
-      margin-bottom: 0px; } }
+      margin-bottom: 0px;
+      background-size: cover; } }
 .findwine_banner-text {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 24px;
@@ -1628,6 +1630,10 @@ button:focus, button:hover {
   line-height: 22px;
   font-weight: 500;
   letter-spacing: -0.4px; }
+  @media (min-width: 1024px) {
+    .findwine_about-heading-1 {
+      font-size: 26px;
+      letter-spacing: -0.6px; } }
 .findwine_about-heading-2 {
   font-family: "Gotham SSm A", "Gotham SSm B";
   color: #333e48;
@@ -1639,11 +1645,17 @@ button:focus, button:hover {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.43; }
+  @media (min-width: 1024px) {
+    .findwine_about-heading-3 {
+      font-size: 18px; } }
 .findwine_about-heading-4 {
   font-family: "Gotham SSm A", "Gotham SSm B";
   color: #333e48;
   font-size: 14px;
   font-weight: 500; }
+  @media (min-width: 1024px) {
+    .findwine_about-heading-4 {
+      font-size: 18px; } }
 .findwine_about-paragraph {
   font-family: "Gotham SSm A", "Gotham SSm B";
   color: #86929a;
@@ -1651,6 +1663,10 @@ button:focus, button:hover {
   font-size: 14px;
   line-height: 1.57;
   margin-top: 25px; }
+  @media (min-width: 1024px) {
+    .findwine_about-paragraph {
+      font-size: 16px;
+      line-height: 1.75; } }
 .findwine_about-content-1 {
   display: flex;
   align-items: flex-start;
@@ -1671,11 +1687,30 @@ button:focus, button:hover {
     width: 100%; }
     @media (min-width: 1024px) {
       .findwine_about-content-1-right {
-        width: 50%; } }
+        width: 50%;
+        margin-left: 90px; } }
 .findwine_about-content-icon {
   height: 116px; }
+  @media (min-width: 1024px) {
+    .findwine_about-content-icon {
+      height: 177px;
+      margin-right: 20px; } }
+@media (min-width: 1024px) {
+  .findwine_about-content-container {
+    background-color: #f4f5f4;
+    display: flex;
+    padding: 50px 100px;
+    border: 1px solid #dbe0e4; } }
 .findwine_about-content-2 {
   padding: 20px 15px; }
+  @media (min-width: 1024px) {
+    .findwine_about-content-2 {
+      background-color: #ffffff;
+      border: 1px solid #dbe0e4;
+      flex: 1;
+      padding: 30px; }
+      .findwine_about-content-2:last-child {
+        margin-left: 30px; } }
 .findwine_about-link {
   font-family: "Gotham SSm A", "Gotham SSm B";
   color: #00ad68;
