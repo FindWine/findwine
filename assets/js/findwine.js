@@ -137,7 +137,7 @@ class SearchControls extends React.Component {
     return (
       <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0 findwine_button-outer">
         <button type="button" className="btn btn-primary btn-block findwine_button"
-                onClick={() => this.props.setExpanded(false)}>
+                onClick={(e) => this._doMobileSearch()}>
           SEARCH WINES
           <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
         </button>
@@ -145,6 +145,11 @@ class SearchControls extends React.Component {
     );
   }
 }
+
+  _doMobileSearch() {
+      this.props.setExpanded(false);
+      this.props.searchClicked();
+  }
 
   getSlider() {
     const minPriceInt = parseInt(this.props.minPrice) || 0;
@@ -615,12 +620,14 @@ class SearchPage extends React.Component {
     }
 
     searchClicked(event) {
-        event.preventDefault();
+        if (event) {
+            event.preventDefault();
+        }
         this._updateSearchResults();
     }
 
     updateSearchResults() {
-        if (this.state['firstSearchMade']) {
+        if (this.state['firstSearchMade'] && !this.state['searchControlsExpanded']) {
             this._updateSearchResults();
         }
     }
