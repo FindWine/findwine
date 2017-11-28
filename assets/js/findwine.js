@@ -101,12 +101,6 @@ class SortSelect extends React.Component {
 }
 
 class SearchControls extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        isExpanded: false
-    }
-  }
 
   _getSortSelect() {
     if (this.props.firstSearchMade) {
@@ -143,7 +137,7 @@ class SearchControls extends React.Component {
     return (
       <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0 findwine_button-outer">
         <button type="button" className="btn btn-primary btn-block findwine_button"
-                onClick={() => this.setState({'isExpanded': false})}>
+                onClick={(e) => this._doMobileSearch()}>
           SEARCH WINES
           <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
         </button>
@@ -151,6 +145,11 @@ class SearchControls extends React.Component {
     );
   }
 }
+
+  _doMobileSearch() {
+      this.props.setExpanded(false);
+      this.props.searchClicked();
+  }
 
   getSlider() {
     const minPriceInt = parseInt(this.props.minPrice) || 0;
@@ -174,7 +173,7 @@ class SearchControls extends React.Component {
   }
 
   renderCollapseButton() {
-    if (this.props.firstSearchMade && this.state.isExpanded) {
+    if (this.props.firstSearchMade && this.props.isExpanded) {
       return (
         <button className="findwine_filters-expand-button findwine_filters-close-button"
                 type="button" href="#modal"
@@ -316,7 +315,7 @@ class SearchControls extends React.Component {
   renderCollapsedControls() {
     return (
       // This is for mobile and tablet - collapsed
-      <div className="findwine_filters-collapsed" onClick={() => this.setState({'isExpanded': true})}>
+      <div className="findwine_filters-collapsed" onClick={() => this.props.setExpanded(true)}>
         <div className="findwine_filters-icon">
           <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
         </div>
@@ -349,9 +348,9 @@ class SearchControls extends React.Component {
   }
 
   renderCollapsedControlsOpen() {
-    if (this.props.firstSearchMade && this.state.isExpanded) {
+    if (this.props.firstSearchMade && this.props.isExpanded) {
       return (
-        <div className="findwine_filters-collapsed-filter-open" onClick={() => this.setState({'isExpanded': false})}>
+        <div className="findwine_filters-collapsed-filter-open" onClick={() => this.props.setExpanded(false)}>
           <div className="findwine_filters-icon">
             <img src={constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon"/>
           </div>
@@ -367,7 +366,7 @@ class SearchControls extends React.Component {
   }
 
   showSearchControls() {
-    return !this.props.firstSearchMade || this.state.isExpanded;
+    return !this.props.firstSearchMade || this.props.isExpanded;
   }
 
   render() {
@@ -430,7 +429,15 @@ class RatingsModal extends React.Component {
 
 class WineList extends React.Component {
   render() {
-    if (this.props.wines.length > 0) {
+    if (this.props.isLoading) {
+      return (
+        <div className="text-center">
+          <img src={ constructImagePath('wine/images/other/loading.gif')} alt="loading..." />
+          <p>Loading wines...</p>
+        </div>
+      );
+    }
+    else if (this.props.wines.length > 0) {
       return (
         <div className="findwine_vintage-table">
           {this.props.wines.map((winevintage, index) => {
@@ -483,14 +490,10 @@ class WineList extends React.Component {
             <p className="findwine_no-results-text-heading"> No results found. </p>
             <p className="findwine_no-results-text"> Please adjust your search criteria. </p>
           </div>
-        )
+        );
     }
   }
 }
-
-/**
- *  <div className="findwine_merchant-currency"> R </div> <div className="findwine_merchant-price"> {{ merchantwine.price }} </div>
- */
 
 class Paginator extends React.Component {
     render() {
@@ -549,6 +552,8 @@ class SearchPage extends React.Component {
             nextPageUrl: null,
             prevPageUrl: null,
             firstSearchMade: false,
+            searchControlsExpanded: false,
+            isLoading: false,
         }
     }
 
@@ -592,16 +597,17 @@ class SearchPage extends React.Component {
         this.setState({
             selectedCategory: category,
             selectedSubcategory: '',  // default to empty/all
+            resultPage: 1,  // have to reset page on every change
         }, this.updateSearchResults);
     }
 
     updateSubcategory(subcategory) {
-        this.setState({selectedSubcategory: subcategory}, this.updateSearchResults);
+        this.setState({selectedSubcategory: subcategory, resultPage: 1}, this.updateSearchResults);
     }
 
     updateMinPrice(price, updateResults) {
         if (updateResults) {
-          this.setState({minPrice: price}, this.updateSearchResults);
+          this.setState({minPrice: price, resultPage: 1}, this.updateSearchResults);
         } else {
           this.setState({minPrice: price});
         }
@@ -609,23 +615,25 @@ class SearchPage extends React.Component {
 
     updateMaxPrice(price, updateResults) {
         if (updateResults) {
-          this.setState({maxPrice: price}, this.updateSearchResults);
+          this.setState({maxPrice: price, resultPage: 1}, this.updateSearchResults);
         } else {
           this.setState({maxPrice: price});
         }
     }
 
     updateSort(sort) {
-        this.setState({selectedSort: sort}, this.updateSearchResults);
+        this.setState({selectedSort: sort, resultPage: 1}, this.updateSearchResults);
     }
 
     searchClicked(event) {
-        event.preventDefault();
+        if (event) {
+            event.preventDefault();
+        }
         this._updateSearchResults();
     }
 
     updateSearchResults() {
-        if (this.state['firstSearchMade']) {
+        if (this.state['firstSearchMade'] && !this.state['searchControlsExpanded']) {
             this._updateSearchResults();
         }
     }
@@ -637,24 +645,11 @@ class SearchPage extends React.Component {
             min_price: this.state['minPrice'],
             max_price: this.state['maxPrice'],
             sort_by: this.state['selectedSort'],
-        }
-        // TODO: this duplication is silly
-        let queryParams = {
-            selectedCategory: this.state['selectedCategory'],
-            selectedSubcategory: this.state['selectedSubcategory'],
-            minPrice: this.state['minPrice'],
-            maxPrice: this.state['maxPrice'],
-            selectedSort: this.state['selectedSort'],
-        }
-        if (this.state['firstSearchMade']) {
-            window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
-        } else {
-            // back button support for first search
-            window.history.pushState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+            page: this.state['resultPage'],
         }
         params = queryString.stringify(params);
         fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
-        this.setState({firstSearchMade: true});
+        this.setState({firstSearchMade: true, isLoading: true});
         this._updateLandingPage(true);
     }
 
@@ -670,6 +665,24 @@ class SearchPage extends React.Component {
         }
     }
 
+    _updateUrl() {
+        // TODO: this duplication is silly
+        let queryParams = {
+            selectedCategory: this.state['selectedCategory'],
+            selectedSubcategory: this.state['selectedSubcategory'],
+            minPrice: this.state['minPrice'],
+            maxPrice: this.state['maxPrice'],
+            selectedSort: this.state['selectedSort'],
+            resultPage: this.state['resultPage']
+        }
+        if (this.state['firstSearchMade']) {
+            window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+        } else {
+            // back button support for first search
+            window.history.pushState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+        }
+    }
+
     _updateResultsFromResponse(response) {
         if (response.ok) {
             response.json().then((responseJson) => {
@@ -681,15 +694,17 @@ class SearchPage extends React.Component {
                     resultPage: responseJson.page,
                     resultStart: responseJson.start,
                     resultEnd: responseJson.end,
-                });
+                    isLoading: false,
+                }, this._updateUrl);
             });
         }
     }
 
     render() {
         let ratingsExplained = this.state.firstSearchMade ? <RatingsExplanationBar /> : '';
-        let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines}/> : '';
-        let paginator = this.state.firstSearchMade ? <Paginator
+        let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
+        let showPaginator = (this.state.firstSearchMade && this.state.wines.length);
+        let paginator = showPaginator ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
             prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
             count={this.state.resultCount} page={this.state.resultPage}
@@ -711,6 +726,8 @@ class SearchPage extends React.Component {
                     sortChanged={(sort) => this.updateSort(sort)}
                     searchClicked={(event) => this.searchClicked(event)}
                     updateSearchResults={() => this.updateSearchResults()}
+                    isExpanded={this.state.searchControlsExpanded}
+                    setExpanded={(expanded) => this.setState({'searchControlsExpanded': expanded})}
                 />
                 {ratingsExplained}
                 {wineList}
