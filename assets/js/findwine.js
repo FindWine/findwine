@@ -429,7 +429,15 @@ class RatingsModal extends React.Component {
 
 class WineList extends React.Component {
   render() {
-    if (this.props.wines.length > 0) {
+    if (this.props.isLoading) {
+      return (
+        <div className="text-center">
+          <img src={ constructImagePath('wine/images/other/loading.gif')} alt="loading..." />
+          <p>Loading wines...</p>
+        </div>
+      );
+    }
+    else if (this.props.wines.length > 0) {
       return (
         <div className="findwine_vintage-table">
           {this.props.wines.map((winevintage, index) => {
@@ -482,14 +490,10 @@ class WineList extends React.Component {
             <p className="findwine_no-results-text-heading"> No results found. </p>
             <p className="findwine_no-results-text"> Please adjust your search criteria. </p>
           </div>
-        )
+        );
     }
   }
 }
-
-/**
- *  <div className="findwine_merchant-currency"> R </div> <div className="findwine_merchant-price"> {{ merchantwine.price }} </div>
- */
 
 class Paginator extends React.Component {
     render() {
@@ -549,6 +553,7 @@ class SearchPage extends React.Component {
             prevPageUrl: null,
             firstSearchMade: false,
             searchControlsExpanded: false,
+            isLoading: false,
         }
     }
 
@@ -592,16 +597,17 @@ class SearchPage extends React.Component {
         this.setState({
             selectedCategory: category,
             selectedSubcategory: '',  // default to empty/all
+            resultPage: 1,  // have to reset page on every change
         }, this.updateSearchResults);
     }
 
     updateSubcategory(subcategory) {
-        this.setState({selectedSubcategory: subcategory}, this.updateSearchResults);
+        this.setState({selectedSubcategory: subcategory, resultPage: 1}, this.updateSearchResults);
     }
 
     updateMinPrice(price, updateResults) {
         if (updateResults) {
-          this.setState({minPrice: price}, this.updateSearchResults);
+          this.setState({minPrice: price, resultPage: 1}, this.updateSearchResults);
         } else {
           this.setState({minPrice: price});
         }
@@ -609,14 +615,14 @@ class SearchPage extends React.Component {
 
     updateMaxPrice(price, updateResults) {
         if (updateResults) {
-          this.setState({maxPrice: price}, this.updateSearchResults);
+          this.setState({maxPrice: price, resultPage: 1}, this.updateSearchResults);
         } else {
           this.setState({maxPrice: price});
         }
     }
 
     updateSort(sort) {
-        this.setState({selectedSort: sort}, this.updateSearchResults);
+        this.setState({selectedSort: sort, resultPage: 1}, this.updateSearchResults);
     }
 
     searchClicked(event) {
@@ -643,7 +649,7 @@ class SearchPage extends React.Component {
         }
         params = queryString.stringify(params);
         fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
-        this.setState({firstSearchMade: true});
+        this.setState({firstSearchMade: true, isLoading: true});
         this._updateLandingPage(true);
     }
 
@@ -688,6 +694,7 @@ class SearchPage extends React.Component {
                     resultPage: responseJson.page,
                     resultStart: responseJson.start,
                     resultEnd: responseJson.end,
+                    isLoading: false,
                 }, this._updateUrl);
             });
         }
@@ -695,7 +702,7 @@ class SearchPage extends React.Component {
 
     render() {
         let ratingsExplained = this.state.firstSearchMade ? <RatingsExplanationBar /> : '';
-        let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines}/> : '';
+        let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
         let paginator = this.state.firstSearchMade ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
             prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
