@@ -1141,7 +1141,13 @@ button:focus, button:hover {
   }
 
   &_detail-image-main {
-    max-height: 400px;
+
+    max-height: 380px;
+
+    @include breakpoint(lg){
+      max-height: 420px;
+    }
+
   }
 
   &_producer {
@@ -1613,9 +1619,7 @@ button:focus, button:hover {
   }
 
   &_merchant-price-holder {
-    @include breakpoint(lg) {
-      margin-right: 15px;
-    }
+
   }
 
   &_merchant-name {
@@ -2480,6 +2484,20 @@ button:focus, button:hover {
     }
   }
 
+  &_contact-heading-1 {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+
+    @include breakpoint(lg) {
+      font-size: 26px;
+      letter-spacing: -0.6px;
+    }
+  }
+
   &_about-heading-2 {
     font-family: $primary-font;
     color: $primary-text;
@@ -2496,6 +2514,20 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       font-size: 18px;
+    }
+  }
+
+  &_contact-heading-3 {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.43;
+    margin-top: 20px;
+
+    @include breakpoint(lg) {
+      font-size: 18px;
+      margin-top: 25px;
     }
   }
 
@@ -2517,6 +2549,40 @@ button:focus, button:hover {
     font-size: 14px;
     line-height: 1.57;
     margin-top: 25px;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+      line-height: 1.75;
+    }
+  }
+
+  &_contact-paragraph {
+    font-family: $primary-font;
+    color: $light-grey-text;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.57;
+    margin-top: 15px;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+      line-height: 1.75;
+    }
+  }
+
+  &_about-link {
+    font-family: $primary-font;
+    color: $primary-green;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.57;
+    margin-top: 25px;
+    text-decoration: none;
+
+    &:focus, &:hover, &:active {
+      text-decoration: underline;
+      color: $primary-green;
+    }
 
     @include breakpoint(lg) {
       font-size: 16px;
@@ -2591,20 +2657,6 @@ button:focus, button:hover {
 
   }
 
-  &_about-link {
-    font-family: $primary-font;
-    color: $primary-green;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.57;
-    margin-top: 25px;
-    text-decoration: none;
-
-    &:focus, &:hover, &:active {
-      text-decoration: underline;
-    }
-  }
-
   &_about-icon {
     align-self: flex-start;
     justify-self: flex-start;
@@ -2613,6 +2665,18 @@ button:focus, button:hover {
 
   &_about-us-icon {
     height: 70px;
+  }
+
+  &_contact-content {
+    display: flex;
+    align-items: flex-start;
+    flex-flow: column;
+    padding: 30px 15px;
+
+    @include breakpoint(lg) {
+      padding: 60px 130px;
+    }
+
   }
 
 }

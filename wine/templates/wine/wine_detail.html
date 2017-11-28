@@ -83,9 +83,6 @@
     {% if winevintage.image_pack_shot %}
       <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
           class="img-fluid rounded float-left findwine_detail-image">
-    {% else %}
-      <img src="{% static 'wine/images/other/placeholder.jpg' %}" alt="{{ other_vintage.wine.name }}"
-          class="img-fluid rounded findwine_vintage--image-img"/>
     {% endif %}
   </div>
 
@@ -187,7 +184,7 @@
           <div class="findwine_merchant-pricing">
             <div class="findwine_merchant-price-holder">
               <div class="findwine_merchant-currency"> R</div>
-              <div class="findwine_merchant-price"> {{ merchantwine.rounded_price }}</div>
+              <div class="findwine_vintage-price"> {{ merchantwine.rounded_price }}</div>
             </div>
             <a class="btn findwine_buy-button" href={{ merchantwine.url }} target="_blank" role="button"> BUY</a>
           </div>
@@ -508,11 +505,13 @@
 
   <!-- Other vintages -->
   {% if winevintage.other_vintages %}
+  {% for other_vintage in winevintage.other_vintages %}
+  {% if other_vintage.preferred_merchant %}
   <div class="findwine_detail-heading">
     <h5 class="findwine_detail-header findwine_detail-header--desktop">OTHER VINTAGES</h5>
   </div>
 
-  {% for other_vintage in winevintage.other_vintages %}
+
   <a href="{{ winevintage.details_url }}" class="findwine_vintage-producer">
     <div class="findwine_vintage-table">
       <div class="findwine_search-results">
@@ -523,9 +522,6 @@
           <div class="findwine_vintage--image">
             {% if other_vintage.image_pack_shot %}
             <img src="{{ other_vintage.image_pack_shot.url }}" alt="{{ other_vintage.wine.name }}"
-                 class="img-fluid rounded findwine_vintage--image-img"/>
-            {% else %}
-            <img src="{% static 'wine/images/other/placeholder.jpg' %}" alt="{{ other_vintage.wine.name }}"
                  class="img-fluid rounded findwine_vintage--image-img"/>
             {% endif %}
           </div>
@@ -540,7 +536,6 @@
               <p class="findwine_vintage-category">
                 {{ other_vintage.sub_category }}
               </p>
-              {% if other_vintage.preferred_merchant %}
               <div class="findwine_vintage-table--display">
                 <div class="findwine_vintage-currency"> R</div>
                 <div class="findwine_vintage-price">
@@ -553,13 +548,13 @@
                        class="findwine_view-button-arrow">
                 </button>
               </div>
-              {% endif %}
             </div>
           </div>
         </div>
       </div>
     </div>
   </a>
+  {% endif %}
   {% endfor %}
   <div class="findwine_detail-heading hidden-lg-up"></div>
   {% endif %}
