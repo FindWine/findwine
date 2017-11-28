@@ -226,7 +226,7 @@ button:focus, button:hover {
   position: absolute; }
   .findwine_nav-logo-none {
     display: none; }
-  @media (min-width: 678px) {
+  @media (min-width: 1024px) {
     .findwine_nav-logo {
       text-align: left;
       margin-left: 40px;
