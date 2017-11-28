@@ -262,6 +262,7 @@
           <div class="findwine_detail-content-left">Winemaker:</div>
           <div class="findwine_detail-content-right">
             {% for winemaker in winevintage.winemakers.all %}
+                {% if not forloop.first %} &amp; {% endif %}
             {{ winemaker }}
             {% endfor %}
           </div>
@@ -368,7 +369,8 @@
           <div class="findwine_detail-content-left">Winemaker:</div>
           <div class="findwine_detail-content-right">
             {% for winemaker in winevintage.winemakers.all %}
-            {{ winemaker }}
+                 {% if not forloop.first %} &amp; {% endif %}
+                 {{ winemaker }}
             {% endfor %}
           </div>
         {% endif %}
