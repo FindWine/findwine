@@ -120,8 +120,7 @@ class Winemaker(models.Model):
     surname = models.CharField(max_length=256)
 
     def __str__(self):
-        return '{}, {}{}'.format(self.surname, self.forename_1,
-                                 '' if not self.forename_2 else ' {}'.format(self.forename_2))
+        return '{} {} {}'.format(self.forename_1, '' if not self.forename_2 else ' {}'.format(self.forename_2), self.surname)
 
     class Meta:
         ordering = ['surname', 'forename_1', 'forename_2']
@@ -222,6 +221,11 @@ class WineVintage(models.Model):
     @property
     def other_vintages(self):
         return WineVintage.objects.filter(wine=self.wine).exclude(id=self.id).all()
+
+    def get_prioritized_purchase_options(self):
+        return self.merchantwine_set.select_related('merchant').order_by(
+            'price', 'minimum_purchase_unit', 'merchant__priority'
+        )
 
     def __str__(self):
         return self.long_name

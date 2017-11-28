@@ -434,13 +434,14 @@ class WineList extends React.Component {
       return (
         <div className="findwine_vintage-table">
           {this.props.wines.map((winevintage, index) => {
+            const imageUrl = winevintage.image_url ? winevintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
             return (
               <a href={winevintage.details_url}>
                 <div key={index} className="findwine_search-results">
                   <div className="findwine_search-result--table">
                     <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.avg_rating} </div>
                     <div className="findwine_vintage--image">
-                      <img src={ winevintage.image_url } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
+                      <img src={ imageUrl } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
                     </div>
                     <div className="findwine_vintage-details">
                       <div className="findwine_vintage-producer">

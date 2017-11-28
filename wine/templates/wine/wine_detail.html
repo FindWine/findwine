@@ -171,9 +171,9 @@
       <div class="findwine_detail-heading">
         <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
       </div>
-      {% if winevintage.merchantwine_set.all %}
+      {% if winevintage.merchantwine_set.exists %}
       <ul class="list-group list-group-flush">
-        {% for merchantwine in winevintage.merchantwine_set.all %}
+        {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
         <li class="list-group-item findwine_detail-list">
           <div class="findwine_merchant-holder">
             <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
@@ -203,9 +203,9 @@
       <div class="findwine_detail-heading">
         <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
       </div>
-      {% if winevintage.merchantwine_set.all %}
+      {% if winevintage.merchantwine_set.exists %}
       <ul class="list-group list-group-flush">
-        {% for merchantwine in winevintage.merchantwine_set.all %}
+        {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
         <li class="list-group-item findwine_detail-list">
           <div class="findwine_merchant-holder">
             <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
@@ -262,6 +262,7 @@
           <div class="findwine_detail-content-left">Winemaker:</div>
           <div class="findwine_detail-content-right">
             {% for winemaker in winevintage.winemakers.all %}
+                {% if not forloop.first %} &amp; {% endif %}
             {{ winemaker }}
             {% endfor %}
           </div>
@@ -298,7 +299,7 @@
         {% if winevintage.wooded %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Wooded:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Wooded,Unwooded,Unknown" }}</div>
+          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Yes,No,Unknown" }}</div>
         </div>
         {% endif %}
         {% if winevintage.organic %}
@@ -322,7 +323,7 @@
         {% if winevintage.residual_sugar %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Residual sugar:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar }} g/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar|floatformat:1 }} g/l</div>
         </div>
         {% endif %}
         {% if winevintage.ph %}
@@ -334,13 +335,13 @@
         {% if winevintage.total_acidity %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Total acidity:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.total_acidity }} g/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_acidity|floatformat:1 }} g/l</div>
         </div>
         {% endif %}
         {% if winevintage.total_sulphur %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Total sulphur:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:1 }} mg/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:0 }} mg/l</div>
         </div>
         {% endif %}
       </div>
@@ -368,7 +369,8 @@
           <div class="findwine_detail-content-left">Winemaker:</div>
           <div class="findwine_detail-content-right">
             {% for winemaker in winevintage.winemakers.all %}
-            {{ winemaker }}
+                 {% if not forloop.first %} &amp; {% endif %}
+                 {{ winemaker }}
             {% endfor %}
           </div>
         {% endif %}
@@ -396,7 +398,7 @@
         {% endif %}
         {% if winevintage.wooded %}
           <div class="findwine_detail-content-left">Wooded:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Wooded,Unwooded,Unknown" }}</div>
+          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Yes,No,Unknown" }}</div>
         {% endif %}
         {% if winevintage.organic %}
           <div class="findwine_detail-content-left">Organic:</div>
@@ -424,7 +426,7 @@
         {% if winevintage.residual_sugar %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Residual sugar:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar }} g/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar|floatformat:1 }} g/l</div>
         </div>
         {% endif %}
         {% if winevintage.ph %}
@@ -436,13 +438,13 @@
         {% if winevintage.total_acidity %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Total acidity:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.total_acidity }} g/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_acidity|floatformat:1 }} g/l</div>
         </div>
         {% endif %}
         {% if winevintage.total_sulphur %}
         <div class="findwine_detail-table-content">
           <div class="findwine_detail-content-left">Total sulphur:</div>
-          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:1 }} mg/l</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:0 }} mg/l</div>
         </div>
         {% endif %}
       </div>
@@ -513,7 +515,7 @@
   </div>
 
 
-  <a href="{{ winevintage.details_url }}" class="findwine_vintage-producer">
+  <a href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}" class="findwine_vintage-producer">
     <div class="findwine_vintage-table">
       <div class="findwine_search-results">
         <div class="findwine_search-result--table">
@@ -540,10 +542,10 @@
               <div class="findwine_vintage-table--display">
                 <div class="findwine_vintage-currency"> R</div>
                 <div class="findwine_vintage-price">
-                  {{ other_vintage.preferred_merchant.price }}
+                  {{ other_vintage.preferred_merchant.price|floatformat:0 }}
                 </div>
                 <button class="btn findwine_view-button hidden-sm-down"
-                        target="_self" role="button" href={{ winevintage.details_url }}>
+                        target="_self" role="button" href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}">
                   View
                   <img src="{% static 'wine/images/SVGs/arrow-right-white.svg' %}"
                        class="findwine_view-button-arrow">
