@@ -513,7 +513,7 @@
   </div>
 
 
-  <a href="{{ winevintage.details_url }}" class="findwine_vintage-producer">
+  <a href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}" class="findwine_vintage-producer">
     <div class="findwine_vintage-table">
       <div class="findwine_search-results">
         <div class="findwine_search-result--table">
@@ -543,7 +543,7 @@
                   {{ other_vintage.preferred_merchant.price|floatformat:0 }}
                 </div>
                 <button class="btn findwine_view-button hidden-sm-down"
-                        target="_self" role="button" href={{ winevintage.details_url }}>
+                        target="_self" role="button" href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}">
                   View
                   <img src="{% static 'wine/images/SVGs/arrow-right-white.svg' %}"
                        class="findwine_view-button-arrow">
