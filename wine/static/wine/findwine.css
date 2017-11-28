@@ -1749,6 +1749,10 @@ button:focus, button:hover {
     display: flex;
     padding: 50px 100px;
     border: 1px solid #dbe0e4; } }
+@media (min-width: 1024px) {
+  .findwine_about-content-container-contact {
+    padding: 50px 100px 0px 100px;
+    border: none; } }
 .findwine_about-content-2 {
   padding: 20px 15px; }
   @media (min-width: 1024px) {
@@ -1759,6 +1763,11 @@ button:focus, button:hover {
       padding: 30px; }
       .findwine_about-content-2:last-child {
         margin-left: 30px; } }
+  .findwine_about-content-2-single {
+    margin-left: 0px !important; }
+    @media (min-width: 1024px) {
+      .findwine_about-content-2-single-last {
+        margin-bottom: 50px; } }
 .findwine_about-icon {
   align-self: flex-start;
   justify-self: flex-start;
@@ -1773,5 +1782,25 @@ button:focus, button:hover {
   @media (min-width: 1024px) {
     .findwine_contact-content {
       padding: 60px 130px; } }
+.findwine_contact-banner {
+  background-color: #333e48;
+  height: 130px;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-flow: column;
+  padding: 30px 55px; }
+  @media (min-width: 678px) {
+    .findwine_contact-banner {
+      height: 250px; } }
+  @media (min-width: 1024px) {
+    .findwine_contact-banner {
+      height: 350px;
+      padding: 137px 420px; } }
 
 /*# sourceMappingURL=findwine.css.map */
