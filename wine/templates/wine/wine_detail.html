@@ -171,9 +171,9 @@
       <div class="findwine_detail-heading">
         <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
       </div>
-      {% if winevintage.merchantwine_set.all %}
+      {% if winevintage.merchantwine_set.exists %}
       <ul class="list-group list-group-flush">
-        {% for merchantwine in winevintage.merchantwine_set.all %}
+        {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
         <li class="list-group-item findwine_detail-list">
           <div class="findwine_merchant-holder">
             <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
@@ -203,9 +203,9 @@
       <div class="findwine_detail-heading">
         <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
       </div>
-      {% if winevintage.merchantwine_set.all %}
+      {% if winevintage.merchantwine_set.exists %}
       <ul class="list-group list-group-flush">
-        {% for merchantwine in winevintage.merchantwine_set.all %}
+        {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
         <li class="list-group-item findwine_detail-list">
           <div class="findwine_merchant-holder">
             <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
