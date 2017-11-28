@@ -481,7 +481,7 @@ class WineList extends React.Component {
           <div className="findwine_no-results-holder">
             <img src={ constructImagePath('wine/images/SVGs/no-results.svg') } class="findwine_no-results-holder-image"></img>
             <p className="findwine_no-results-text-heading"> No results found. </p>
-            <p className="findwine_no-results-text"> Please adjust your serch criteria. </p>
+            <p className="findwine_no-results-text"> Please adjust your search criteria. </p>
           </div>
         )
     }
