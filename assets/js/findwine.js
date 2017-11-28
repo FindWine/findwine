@@ -639,20 +639,7 @@ class SearchPage extends React.Component {
             min_price: this.state['minPrice'],
             max_price: this.state['maxPrice'],
             sort_by: this.state['selectedSort'],
-        }
-        // TODO: this duplication is silly
-        let queryParams = {
-            selectedCategory: this.state['selectedCategory'],
-            selectedSubcategory: this.state['selectedSubcategory'],
-            minPrice: this.state['minPrice'],
-            maxPrice: this.state['maxPrice'],
-            selectedSort: this.state['selectedSort'],
-        }
-        if (this.state['firstSearchMade']) {
-            window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
-        } else {
-            // back button support for first search
-            window.history.pushState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+            page: this.state['resultPage'],
         }
         params = queryString.stringify(params);
         fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
@@ -672,6 +659,24 @@ class SearchPage extends React.Component {
         }
     }
 
+    _updateUrl() {
+        // TODO: this duplication is silly
+        let queryParams = {
+            selectedCategory: this.state['selectedCategory'],
+            selectedSubcategory: this.state['selectedSubcategory'],
+            minPrice: this.state['minPrice'],
+            maxPrice: this.state['maxPrice'],
+            selectedSort: this.state['selectedSort'],
+            resultPage: this.state['resultPage']
+        }
+        if (this.state['firstSearchMade']) {
+            window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+        } else {
+            // back button support for first search
+            window.history.pushState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+        }
+    }
+
     _updateResultsFromResponse(response) {
         if (response.ok) {
             response.json().then((responseJson) => {
@@ -683,7 +688,7 @@ class SearchPage extends React.Component {
                     resultPage: responseJson.page,
                     resultStart: responseJson.start,
                     resultEnd: responseJson.end,
-                });
+                }, this._updateUrl);
             });
         }
     }
