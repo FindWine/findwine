@@ -463,7 +463,8 @@ button:focus, button:hover {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     padding: 0px;
     color: #333e48;
-    font-size: 13px;
+    font-size: 12px;
+    letter-spacing: -0.5px;
     font-family: "Gotham SSm A", "Gotham SSm B";
     font-weight: 400;
     width: 60px;
