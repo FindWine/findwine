@@ -207,6 +207,20 @@ class WineVintage(models.Model):
             avg_rating=Avg('award__tier__normalised_rating'))
 
     @property
+    def rating_display(self):
+        """Aggregate normalised rating from the wine awards."""
+        rating = self.rating
+        if rating and rating['avg_rating']:
+            rating = rating['avg_rating']
+            display = '{0:.1f}'.format(rating)
+            # hack - manually show perfect 10s
+            if display == '10.0':
+                display = '10'
+            return display
+        else:
+            return '?'
+
+    @property
     def rating_category(self):
         """Aggregate normalised rating from the wine awards."""
         rating = self.rating

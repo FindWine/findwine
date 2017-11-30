@@ -90,23 +90,22 @@
   <div class="hidden-md-down findwine_detail-images-desktop">
     <div class="findwine_detail-images-small">
       {% if winevintage.image_pack_shot %}
-      <div class="findwine_detail-image-1 js-green-class findwine_detail-image-border-green" onclick="imageFocus()">
+      <div class="wine-thumbnail findwine_detail-image-1 findwine_detail-image-border-green">
         <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
       {% endif %}
       {% if winevintage.image_label_vertical %}
-      <div class="findwine_detail-image-2 js-green-class" onclick="imageFocus()">
+      <div class="wine-thumbnail findwine_detail-image-2" >
         <img src="{{ winevintage.image_label_vertical.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
       {% endif %}
     </div>
 
-    {# TODO: this will need to be updated based on the image that's clicked on the left #}
     {% if winevintage.image_pack_shot %}
     <div class="findwine_detail-image-main--holder">
-      <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+      <img id='main-wine-image' src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
            class="img-fluid rounded float-left findwine_detail-image-main">
     </div>
     {% endif %}
@@ -144,7 +143,7 @@
     <div class="findwine_awards-holder">
       <!-- Rating -->
       <div class="findwine_rating-box findwine_rating-box-{{ winevintage.rating_category }}">
-        <p class="findwine_rating">{{ winevintage.rating.avg_rating|floatformat:1 }}</p>
+        <p class="findwine_rating">{{ winevintage.rating_display }}</p>
       </div>
 
       <!-- Awards -->
@@ -520,7 +519,7 @@
       <div class="findwine_search-results">
         <div class="findwine_search-result--table">
           <div class="findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-{{ winevintage.rating_category }}">
-            {{ other_vintage.rating.avg_rating|default:"?"}}
+            {{ other_vintage.rating_display }}
           </div>
           <div class="findwine_vintage--image">
             {% if other_vintage.image_pack_shot %}
@@ -562,9 +561,9 @@
   <div class="findwine_detail-heading hidden-lg-up"></div>
   {% endif %}
 </div>
-
-  <script>
-
+{% endblock %}
+{% block page_scripts %}
+<script>
     function expandInfo() {
       let info = document.getElementById('info');
       let infoButton = document.getElementById('infoButton');
@@ -633,11 +632,18 @@
 
     }
 
-    function imageFocus() {
+    $(function () {
+        // wire up click handling for image switching
+        $(".wine-thumbnail").click(function () {
+            // unhighlight all thumbnails
+            $('.wine-thumbnail').removeClass('findwine_detail-image-border-green');
+            // highlight selected thumbnail
+            $(this).addClass('findwine_detail-image-border-green');
+            // set main image
+            var imgSrc = $(this).children('img')[0].src;
+            $('#main-wine-image')[0].src = imgSrc;
+        });
+    });
 
-    }
-
-
-  </script>
-
-  {% endblock %}
+</script>
+{% endblock %}

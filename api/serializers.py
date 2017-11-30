@@ -22,7 +22,8 @@ class WineVintageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WineVintage
-        fields = ('url', 'slug', 'wine', 'avg_rating', 'rating_category', 'details_url', 'category',
+        fields = ('url', 'slug', 'wine', 'avg_rating', 'rating_display',
+                  'rating_category', 'details_url', 'category',
                   'sub_category', 'price', 'year', 'preferred_merchant_url', 'image_url')
 
     def get_details_url(self, obj):

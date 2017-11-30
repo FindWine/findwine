@@ -446,7 +446,7 @@ class WineList extends React.Component {
               <a href={winevintage.details_url}>
                 <div key={index} className="findwine_search-results">
                   <div className="findwine_search-result--table">
-                    <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.avg_rating} </div>
+                    <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.rating_display} </div>
                     <div className="findwine_vintage--image">
                       <img src={ imageUrl } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
                     </div>
