@@ -443,8 +443,8 @@ class WineList extends React.Component {
           {this.props.wines.map((winevintage, index) => {
             const imageUrl = winevintage.image_url ? winevintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
             return (
-              <a href={winevintage.details_url}>
-                <div key={index} className="findwine_search-results">
+              <a href={winevintage.details_url} key={index} >
+                <div className="findwine_search-results">
                   <div className="findwine_search-result--table">
                     <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.rating_display} </div>
                     <div className="findwine_vintage--image">
