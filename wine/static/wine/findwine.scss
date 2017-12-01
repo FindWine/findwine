@@ -49,7 +49,7 @@ $primary-font: 'Gotham SSm A', 'Gotham SSm B';
       @content;
     }
   } @else if $class == lg {
-    @media (min-width: 1024px) {
+    @media (min-width: 992px) {
       @content;
     }
   } @else if $class == xl {
@@ -217,6 +217,7 @@ button:focus, button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
   }
 }
 
@@ -649,6 +650,7 @@ button:focus, button:hover {
       margin-top: -320px;
       padding: 40px;
       background-color: white;
+      border-radius: 4px;
     }
 
     &-collapsed {
@@ -761,11 +763,13 @@ button:focus, button:hover {
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     background-color: $primary-green;
+    border-color: $primary-green;
     height: 52px;
     font-family: $primary-font;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 23px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
 
     @include breakpoint(lg) {
       width: auto;
@@ -838,6 +842,7 @@ button:focus, button:hover {
 
   &_button-image {
     margin-top: -3px;
+    margin-left: 10px;
   }
 
   &_svg {
@@ -1042,8 +1047,7 @@ button:focus, button:hover {
     &--icon {
       height: 18px;
       width: auto;
-      margin-left: 10px;
-
+      margin-left: 30px;
     }
   }
 
@@ -2021,7 +2025,10 @@ button:focus, button:hover {
     margin-top: 0px;
 
     &-align {
-      margin-right: -15px;
+      @include breakpoint(lg) {
+        margin-right: -15px;
+        margin-left: -15px;
+      }
     }
   }
 
