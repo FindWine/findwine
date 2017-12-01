@@ -24,6 +24,7 @@ class CategorySelect extends React.Component {
         multi={false}
         simpleValue={true}
         searchable={false}
+        clearable={false}
       />
     )
   }
@@ -70,7 +71,7 @@ class SubCategorySelect extends React.Component {
       <Select
         value={this.props.selectedSubcategory}
         options={choices}
-        onChange={(event) => this.props.subcategoryChanged(event)}
+        onChange={(value) => this.props.subcategoryChanged(value)}
         multi={true}
         simpleValue={true}
         searchable={false}
@@ -85,19 +86,22 @@ class SubCategorySelect extends React.Component {
 
 class SortSelect extends React.Component {
 
-    render() {
-        return (
-            <select className="form-control" id="id_sort"
-                    value={this.props.selectedSort}
-                    onChange={(event) => this.props.sortChanged(event.target.value)}>
-                {getSortChoices().map((sortChoice, index) => {
-                    return (
-                        <option key={index} value={sortChoice[1]}>{sortChoice[0]}</option>
-                    )
-                })}
-            </select>
-        );
-    }
+  render() {
+    let choices = getSortChoices().map((sortChoice, index) => {
+      return {'value': sortChoice[1], 'label': sortChoice[0]};
+    });
+    return (
+      <Select
+        value={this.props.selectedSort}
+        options={choices}
+        onChange={(value) => this.props.sortChanged(value)}
+        multi={false}
+        simpleValue={true}
+        searchable={false}
+        clearable={false}
+      />
+    );
+  }
 }
 
 class SearchControls extends React.Component {
@@ -214,14 +218,12 @@ class SearchControls extends React.Component {
             />
           </div>
         </div>
-
         <div className="col-xs-12 col-lg-6 findwine_subcategory-row">
           <div className="col-xs-12 col-lg-4 findwine_subcategory" >
             <div className="form-group sub_category">
               <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
             </div>
           </div>
-          {/*Slider - mobile layout slider appears above max and min price*/}
           <div className="col-xs-12 hidden-lg-up">
               {this.getSlider()}
           </div>
@@ -319,21 +321,6 @@ class SearchControls extends React.Component {
         <div className="findwine_filters-icon">
           <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
         </div>
-        {/*<div className="findwine_filters-filters">*/}
-          {/*<div className="findwine_filters-list">*/}
-            {/*<div className="findwine_filters-1">*/}
-                {/*{ this.props.selectedCategory }*/}
-            {/*</div>*/}
-            {/*<div className="findwine_filters-bullet"></div>*/}
-            {/*<div className="findwine_filters-2">*/}
-                {/*{ this.props.selectedSubcategory }*/}
-            {/*</div>*/}
-            {/*<div className="findwine_filters-bullet"></div>*/}
-            {/*<div className="findwine_filters-more">*/}
-              {/*R { this.props.minPrice } - R { this.props.maxPrice }*/}
-            {/*</div>*/}
-          {/*</div>*/}
-        {/*</div>*/}
         <div className="findwine_filters-heading">
           Filters
         </div>
@@ -369,11 +356,12 @@ class SearchControls extends React.Component {
     return !this.props.firstSearchMade || this.props.isExpanded;
   }
 
+
   render() {
     if (this.showSearchControls()) {
       return this.renderControls();
     } else {
-      if (window.innerWidth < 992) {
+      if (isMobile()) {
         return this.renderCollapsedControls();
       } else {
         return this.renderCollapsedControlsDesktop();
@@ -401,24 +389,24 @@ class RatingsExplanationBar extends React.Component {
 class RatingsModal extends React.Component {
   render() {
     return (
-      <div class="modal fade" id="ratingsExplained" tabindex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body findwine_modal">
-              <div class="findwine_modal-ratings">
-                <img src={ constructImagePath('wine/images/SVGs/ratings.svg') } class="findwine_modal-ratings-icon" />
+      <div className="modal fade" id="ratingsExplained" tabIndex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-body findwine_modal">
+              <div className="findwine_modal-ratings">
+                <img src={ constructImagePath('wine/images/SVGs/ratings.svg') } className="findwine_modal-ratings-icon" />
               </div>
-              <div class="findwine_modal-heading">
+              <div className="findwine_modal-heading">
                 Ratings Explained
               </div>
-              <div class="findwine_modal-content">
+              <div className="findwine_modal-content">
                 Our smart ratings system calculates a unique score for each wine based on
                 the awards they’ve won and the prestige of the award body. Scores fall
                 between 0 and 10, with 10 being the highest rating a wine can receive.
               </div>
             </div>
-            <div class="modal-footer findwine_modal-footer">
-              <button type="button" class="btn btn-secondary findwine_modal-button" data-dismiss="modal">Got it</button>
+            <div className="modal-footer findwine_modal-footer">
+              <button type="button" className="btn btn-secondary findwine_modal-button" data-dismiss="modal">Got it</button>
             </div>
           </div>
         </div>
@@ -443,8 +431,8 @@ class WineList extends React.Component {
           {this.props.wines.map((winevintage, index) => {
             const imageUrl = winevintage.image_url ? winevintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
             return (
-              <a href={winevintage.details_url}>
-                <div key={index} className="findwine_search-results">
+              <a href={winevintage.details_url} key={index} >
+                <div className="findwine_search-results">
                   <div className="findwine_search-result--table">
                     <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.rating_display} </div>
                     <div className="findwine_vintage--image">
@@ -457,7 +445,7 @@ class WineList extends React.Component {
                       <h4 className="findwine_vintage-vintage">
                         {winevintage.wine.name } { winevintage.year }
                       </h4>
-                      <div class="findwine_vintage-row">
+                      <div className="findwine_vintage-row">
                         <p className="findwine_vintage-category">
                           { winevintage.sub_category }
                         </p>
@@ -466,12 +454,12 @@ class WineList extends React.Component {
                           <div className="findwine_vintage-price">
                             {winevintage.price}
                           </div>
-                          <button class="btn findwine_view-button hidden-sm-down"
+                          <button className="btn findwine_view-button hidden-sm-down"
                                   href={winevintage.details_url} target="_self"
                                   role="button">
                             View
                             <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
-                                 class="findwine_view-button-arrow"></img>
+                                 className="findwine_view-button-arrow"></img>
                           </button>
                         </div>
                       </div>
@@ -486,7 +474,7 @@ class WineList extends React.Component {
     } else {
         return (
           <div className="findwine_no-results-holder">
-            <img src={ constructImagePath('wine/images/SVGs/no-results.svg') } class="findwine_no-results-holder-image"></img>
+            <img src={ constructImagePath('wine/images/SVGs/no-results.svg') } className="findwine_no-results-holder-image"></img>
             <p className="findwine_no-results-text-heading"> No results found. </p>
             <p className="findwine_no-results-text"> Please adjust your search criteria. </p>
           </div>
@@ -648,7 +636,8 @@ class SearchPage extends React.Component {
             page: this.state['resultPage'],
         }
         params = queryString.stringify(params);
-        fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
+        let addToHistory = !this.state.firstSearchMade;
+        fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response, addToHistory));
         this.setState({firstSearchMade: true, isLoading: true});
         this._updateLandingPage(true);
     }
@@ -665,7 +654,7 @@ class SearchPage extends React.Component {
         }
     }
 
-    _updateUrl() {
+    _updateUrl(addToHistory) {
         // TODO: this duplication is silly
         let queryParams = {
             selectedCategory: this.state['selectedCategory'],
@@ -675,15 +664,15 @@ class SearchPage extends React.Component {
             selectedSort: this.state['selectedSort'],
             resultPage: this.state['resultPage']
         }
-        if (this.state['firstSearchMade']) {
-            window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
-        } else {
+        if (addToHistory) {
             // back button support for first search
             window.history.pushState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+        } else {
+            window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
         }
     }
 
-    _updateResultsFromResponse(response) {
+    _updateResultsFromResponse(response, addToHistory) {
         if (response.ok) {
             response.json().then((responseJson) => {
                 this.setState({
@@ -695,15 +684,17 @@ class SearchPage extends React.Component {
                     resultStart: responseJson.start,
                     resultEnd: responseJson.end,
                     isLoading: false,
-                }, this._updateUrl);
+                }, () => this._updateUrl(addToHistory));
             });
         }
     }
 
     render() {
-        let ratingsExplained = this.state.firstSearchMade ? <RatingsExplanationBar /> : '';
-        let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
-        let showPaginator = (this.state.firstSearchMade && this.state.wines.length);
+        const mobileFiltersOpen = isMobile() && this.state.searchControlsExpanded
+        const showWineList = this.state.firstSearchMade && !mobileFiltersOpen;
+        let ratingsExplained = showWineList ? <RatingsExplanationBar /> : '';
+        let wineList = showWineList ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
+        let showPaginator = (showWineList && this.state.wines.length);
         let paginator = showPaginator ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
             prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
@@ -790,6 +781,10 @@ function loader() {
 
 function hide() {
   document.getElementById("loader").style.display="none";
+}
+
+function isMobile() {
+  return window.innerWidth < 992;
 }
 
 ReactDOM.render(
