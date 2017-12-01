@@ -214,14 +214,12 @@ class SearchControls extends React.Component {
             />
           </div>
         </div>
-
         <div className="col-xs-12 col-lg-6 findwine_subcategory-row">
           <div className="col-xs-12 col-lg-4 findwine_subcategory" >
             <div className="form-group sub_category">
               <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
             </div>
           </div>
-          {/*Slider - mobile layout slider appears above max and min price*/}
           <div className="col-xs-12 hidden-lg-up">
               {this.getSlider()}
           </div>
@@ -319,21 +317,6 @@ class SearchControls extends React.Component {
         <div className="findwine_filters-icon">
           <img src={ constructImagePath('wine/images/SVGs/filter.svg')} className="findwine_filters-filter-icon" />
         </div>
-        {/*<div className="findwine_filters-filters">*/}
-          {/*<div className="findwine_filters-list">*/}
-            {/*<div className="findwine_filters-1">*/}
-                {/*{ this.props.selectedCategory }*/}
-            {/*</div>*/}
-            {/*<div className="findwine_filters-bullet"></div>*/}
-            {/*<div className="findwine_filters-2">*/}
-                {/*{ this.props.selectedSubcategory }*/}
-            {/*</div>*/}
-            {/*<div className="findwine_filters-bullet"></div>*/}
-            {/*<div className="findwine_filters-more">*/}
-              {/*R { this.props.minPrice } - R { this.props.maxPrice }*/}
-            {/*</div>*/}
-          {/*</div>*/}
-        {/*</div>*/}
         <div className="findwine_filters-heading">
           Filters
         </div>
