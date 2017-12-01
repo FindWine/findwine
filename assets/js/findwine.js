@@ -352,11 +352,12 @@ class SearchControls extends React.Component {
     return !this.props.firstSearchMade || this.props.isExpanded;
   }
 
+
   render() {
     if (this.showSearchControls()) {
       return this.renderControls();
     } else {
-      if (window.innerWidth < 992) {
+      if (isMobile()) {
         return this.renderCollapsedControls();
       } else {
         return this.renderCollapsedControlsDesktop();
@@ -685,9 +686,11 @@ class SearchPage extends React.Component {
     }
 
     render() {
-        let ratingsExplained = this.state.firstSearchMade ? <RatingsExplanationBar /> : '';
-        let wineList = this.state.firstSearchMade ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
-        let showPaginator = (this.state.firstSearchMade && this.state.wines.length);
+        const mobileFiltersOpen = isMobile() && this.state.searchControlsExpanded
+        const showWineList = this.state.firstSearchMade && !mobileFiltersOpen;
+        let ratingsExplained = showWineList ? <RatingsExplanationBar /> : '';
+        let wineList = showWineList ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
+        let showPaginator = (showWineList && this.state.wines.length);
         let paginator = showPaginator ? <Paginator
             nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
             prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
@@ -774,6 +777,10 @@ function loader() {
 
 function hide() {
   document.getElementById("loader").style.display="none";
+}
+
+function isMobile() {
+  return window.innerWidth < 992;
 }
 
 ReactDOM.render(
