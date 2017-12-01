@@ -648,7 +648,8 @@ class SearchPage extends React.Component {
             page: this.state['resultPage'],
         }
         params = queryString.stringify(params);
-        fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
+        let addToHistory = !this.state.firstSearchMade;
+        fetch(WINE_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response, addToHistory));
         this.setState({firstSearchMade: true, isLoading: true});
         this._updateLandingPage(true);
     }
@@ -665,7 +666,7 @@ class SearchPage extends React.Component {
         }
     }
 
-    _updateUrl() {
+    _updateUrl(addToHistory) {
         // TODO: this duplication is silly
         let queryParams = {
             selectedCategory: this.state['selectedCategory'],
@@ -675,17 +676,15 @@ class SearchPage extends React.Component {
             selectedSort: this.state['selectedSort'],
             resultPage: this.state['resultPage']
         }
-        if (this.state['firstSearchMade']) {
-            console.log('replace state');
-            window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
-        } else {
+        if (addToHistory) {
             // back button support for first search
-            console.log('back button');
             window.history.pushState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
+        } else {
+            window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
         }
     }
 
-    _updateResultsFromResponse(response) {
+    _updateResultsFromResponse(response, addToHistory) {
         if (response.ok) {
             response.json().then((responseJson) => {
                 this.setState({
@@ -697,7 +696,7 @@ class SearchPage extends React.Component {
                     resultStart: responseJson.start,
                     resultEnd: responseJson.end,
                     isLoading: false,
-                }, this._updateUrl);
+                }, () => this._updateUrl(addToHistory));
             });
         }
     }
