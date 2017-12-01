@@ -401,7 +401,7 @@ class RatingsExplanationBar extends React.Component {
 class RatingsModal extends React.Component {
   render() {
     return (
-      <div className="modal fade" id="ratingsExplained" tabindex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
+      <div className="modal fade" id="ratingsExplained" tabIndex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-body findwine_modal">
