@@ -365,6 +365,40 @@ button:focus, button:hover {
   outline: none !important;
 }
 
+// Modal
+.modal.left .modal-dialog {
+  position: fixed;
+}
+
+.modal.left .modal-content {
+  overflow-y: auto;
+}
+
+.modal.left.fade .modal-dialog {
+  left: 0px;
+}
+
+.modal.left.fade.in .modal-dialog {
+  left: 0;
+}
+
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transition: -webkit-transform .3s ease-out;
+  -o-transition: -o-transform .3s ease-out;
+  transition: transform .3s ease-out;
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out, -o-transform .3s ease-out;
+  -webkit-transform: translate(-25%, 0);
+  -o-transform: translate(-25%, 0);
+  transform: translate(-25%, 0);
+}
+
+.modal.show .modal-dialog {
+  -webkit-transform: translate(0,0);
+  -o-transform: translate(0,0);
+  transform: translate(0,0);
+}
+
 // Custom styling
 
 .findwine {
@@ -878,7 +912,7 @@ button:focus, button:hover {
     padding: 30px 0px;
 
     @include breakpoint(lg) {
-      padding: 3em 0px ;
+      padding: 3em 0px;
     }
 
     .form-inline {
@@ -1144,7 +1178,7 @@ button:focus, button:hover {
   &_detail-image-main {
     max-height: 380px;
 
-    @include breakpoint(lg){
+    @include breakpoint(lg) {
       max-height: 420px;
     }
   }
@@ -1972,7 +2006,7 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       min-height: 100vh;
       height: auto;
-      position:relative;
+      position: relative;
       margin-top: 0px;
       width: 100%;
       background-color: $lightest-grey;
@@ -2323,7 +2357,7 @@ button:focus, button:hover {
     }
   }
 
-  &_ratings-info{
+  &_ratings-info {
 
     @include breakpoint(lg) {
       order: 1;
@@ -2366,11 +2400,11 @@ button:focus, button:hover {
     text-align: center;
   }
 
-  &_modal-footer{
+  &_modal-footer {
     padding: 30px;
   }
 
-  &_modal-button{
+  &_modal-button {
     background-color: $white;
     font-family: $primary-font;
     color: $primary-green;
@@ -2646,7 +2680,7 @@ button:focus, button:hover {
       flex: 1;
       padding: 30px;
 
-      &:last-child{
+      &:last-child {
         margin-left: 30px;
       }
     }
@@ -2654,7 +2688,7 @@ button:focus, button:hover {
     &-single {
       margin-left: 0px !important;
 
-      &-last{
+      &-last {
         @include breakpoint(lg) {
           margin-bottom: 50px;
         }

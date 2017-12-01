@@ -209,6 +209,33 @@ button:focus, button:hover {
   background-color: #ffffff !important;
   outline: none !important; }
 
+.modal.left .modal-dialog {
+  position: fixed; }
+
+.modal.left .modal-content {
+  overflow-y: auto; }
+
+.modal.left.fade .modal-dialog {
+  left: 0px; }
+
+.modal.left.fade.in .modal-dialog {
+  left: 0; }
+
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transition: -webkit-transform .3s ease-out;
+  -o-transition: -o-transform .3s ease-out;
+  transition: transform .3s ease-out;
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out, -o-transform .3s ease-out;
+  -webkit-transform: translate(-25%, 0);
+  -o-transform: translate(-25%, 0);
+  transform: translate(-25%, 0); }
+
+.modal.show .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0); }
+
 .findwine_nav--menu {
   margin-left: 0px;
   z-index: 1000; }
