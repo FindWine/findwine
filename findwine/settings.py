@@ -180,7 +180,7 @@ INTERNAL_IPS = (
     '127.0.0.1',
 )
 
-SITE_URL = 'http://beta.findwine.com'
+SITE_URL = 'https://www.findwine.com'
 try:
     from .localsettings import *
 except ImportError:
