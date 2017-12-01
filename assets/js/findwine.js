@@ -85,19 +85,21 @@ class SubCategorySelect extends React.Component {
 
 class SortSelect extends React.Component {
 
-    render() {
-        return (
-            <select className="form-control" id="id_sort"
-                    value={this.props.selectedSort}
-                    onChange={(event) => this.props.sortChanged(event.target.value)}>
-                {getSortChoices().map((sortChoice, index) => {
-                    return (
-                        <option key={index} value={sortChoice[1]}>{sortChoice[0]}</option>
-                    )
-                })}
-            </select>
-        );
-    }
+  render() {
+    let choices = getSortChoices().map((sortChoice, index) => {
+      return {'value': sortChoice[1], 'label': sortChoice[0]};
+    });
+    return (
+      <Select
+        value={this.props.selectedSort}
+        options={choices}
+        onChange={(value) => this.props.sortChanged(value)}
+        multi={false}
+        simpleValue={true}
+        searchable={false}
+      />
+    );
+  }
 }
 
 class SearchControls extends React.Component {
