@@ -401,24 +401,24 @@ class RatingsExplanationBar extends React.Component {
 class RatingsModal extends React.Component {
   render() {
     return (
-      <div class="modal fade" id="ratingsExplained" tabindex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body findwine_modal">
-              <div class="findwine_modal-ratings">
-                <img src={ constructImagePath('wine/images/SVGs/ratings.svg') } class="findwine_modal-ratings-icon" />
+      <div className="modal fade" id="ratingsExplained" tabindex="-1" role="dialog" aria-labelledby="ratingsExplainedLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-body findwine_modal">
+              <div className="findwine_modal-ratings">
+                <img src={ constructImagePath('wine/images/SVGs/ratings.svg') } className="findwine_modal-ratings-icon" />
               </div>
-              <div class="findwine_modal-heading">
+              <div className="findwine_modal-heading">
                 Ratings Explained
               </div>
-              <div class="findwine_modal-content">
+              <div className="findwine_modal-content">
                 Our smart ratings system calculates a unique score for each wine based on
                 the awards they’ve won and the prestige of the award body. Scores fall
                 between 0 and 10, with 10 being the highest rating a wine can receive.
               </div>
             </div>
-            <div class="modal-footer findwine_modal-footer">
-              <button type="button" class="btn btn-secondary findwine_modal-button" data-dismiss="modal">Got it</button>
+            <div className="modal-footer findwine_modal-footer">
+              <button type="button" className="btn btn-secondary findwine_modal-button" data-dismiss="modal">Got it</button>
             </div>
           </div>
         </div>
@@ -457,7 +457,7 @@ class WineList extends React.Component {
                       <h4 className="findwine_vintage-vintage">
                         {winevintage.wine.name } { winevintage.year }
                       </h4>
-                      <div class="findwine_vintage-row">
+                      <div className="findwine_vintage-row">
                         <p className="findwine_vintage-category">
                           { winevintage.sub_category }
                         </p>
@@ -466,12 +466,12 @@ class WineList extends React.Component {
                           <div className="findwine_vintage-price">
                             {winevintage.price}
                           </div>
-                          <button class="btn findwine_view-button hidden-sm-down"
+                          <button className="btn findwine_view-button hidden-sm-down"
                                   href={winevintage.details_url} target="_self"
                                   role="button">
                             View
                             <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
-                                 class="findwine_view-button-arrow"></img>
+                                 className="findwine_view-button-arrow"></img>
                           </button>
                         </div>
                       </div>
@@ -486,7 +486,7 @@ class WineList extends React.Component {
     } else {
         return (
           <div className="findwine_no-results-holder">
-            <img src={ constructImagePath('wine/images/SVGs/no-results.svg') } class="findwine_no-results-holder-image"></img>
+            <img src={ constructImagePath('wine/images/SVGs/no-results.svg') } className="findwine_no-results-holder-image"></img>
             <p className="findwine_no-results-text-heading"> No results found. </p>
             <p className="findwine_no-results-text"> Please adjust your search criteria. </p>
           </div>
@@ -676,9 +676,11 @@ class SearchPage extends React.Component {
             resultPage: this.state['resultPage']
         }
         if (this.state['firstSearchMade']) {
+            console.log('replace state');
             window.history.replaceState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
         } else {
             // back button support for first search
+            console.log('back button');
             window.history.pushState(queryParams, 'Search Results', `/search/?${queryString.stringify(queryParams)}`)
         }
     }
