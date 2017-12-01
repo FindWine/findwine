@@ -24,6 +24,7 @@ class CategorySelect extends React.Component {
         multi={false}
         simpleValue={true}
         searchable={false}
+        clearable={false}
       />
     )
   }
@@ -70,7 +71,7 @@ class SubCategorySelect extends React.Component {
       <Select
         value={this.props.selectedSubcategory}
         options={choices}
-        onChange={(event) => this.props.subcategoryChanged(event)}
+        onChange={(value) => this.props.subcategoryChanged(value)}
         multi={true}
         simpleValue={true}
         searchable={false}
@@ -97,6 +98,7 @@ class SortSelect extends React.Component {
         multi={false}
         simpleValue={true}
         searchable={false}
+        clearable={false}
       />
     );
   }
