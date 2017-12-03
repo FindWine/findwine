@@ -2,7 +2,7 @@
     <defs>
         <path id="a" d="M0 10.59L4.327 6 0 1.41 1.332 0 7 6l-5.668 6z"/>
     </defs>
-    <g fill="none" fill-rule="evenodd" opacity="1">
+    <g fill="#fff" fill-rule="evenodd" opacity="1">
         <path d="M16-6H-8v24h24z"/>
         <g transform="matrix(-1 0 0 1 7 0)">
             <mask id="b" fill="#fff">

@@ -2165,9 +2165,10 @@ button:focus, button:hover {
     &-inactive {
       width: 62.8px;
       height: 42px;
-      border-radius: 2px;
+      border-radius: 2px 0px 0px 2px;
       background-color: $lightest-grey;
       border: 1px solid $lightest-grey-border;
+      border-right: none;
 
       @include breakpoint(md) {
         background-color: $white;

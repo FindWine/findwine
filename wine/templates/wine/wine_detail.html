@@ -451,7 +451,7 @@
   </div>
 
   <!-- Serving suggestions -->
-  <div class="findwine_detail-rowHeight " id="serve">
+  <div class="findwine_detail-rowHeight" id="serve">
     <div class="findwine_detail-info">
       <h5 class="findwine_detail-header--2">Serving suggestion</h5>
       <p class="findwine_detail-content hidden-lg-up" id="serveContent"> Food pairings, serving temperatures and best years to
@@ -503,6 +503,11 @@
       More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
     </button>
   </div>
+  {% if winevintage.other_vintages %}
+  <div class="findwine_detail-heading hidden-lg-up" style="display: none;"></div>
+  {% else %}
+  <div class="findwine_detail-heading hidden-lg-up"></div>
+  {% endif %}
 </div>
 
   <!-- Other vintages -->
@@ -512,7 +517,6 @@
   <div class="findwine_detail-heading">
     <h5 class="findwine_detail-header findwine_detail-header--desktop">OTHER VINTAGES</h5>
   </div>
-
 
   <a href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}" class="findwine_vintage-producer">
     <div class="findwine_vintage-table">
