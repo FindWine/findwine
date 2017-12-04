@@ -1488,6 +1488,10 @@ button:focus, button:hover {
       border: none;
       padding: 0px;
     }
+
+    &-none {
+      display: none;
+    }
   }
 
   &_detail-header {

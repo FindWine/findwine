@@ -949,6 +949,8 @@ button:focus, button:hover {
       background-color: transparent;
       border: none;
       padding: 0px; } }
+  .findwine_detail-heading-none {
+    display: none; }
 .findwine_detail-header {
   font-family: "Gotham SSm A", "Gotham SSm B";
   color: #86929a;

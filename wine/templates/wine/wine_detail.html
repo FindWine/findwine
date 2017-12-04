@@ -503,11 +503,7 @@
       More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
     </button>
   </div>
-  {% if winevintage.other_vintages %}
-  <div class="findwine_detail-heading hidden-lg-up" style="display: none;"></div>
-  {% else %}
-  <div class="findwine_detail-heading hidden-lg-up"></div>
-  {% endif %}
+  <div class="{% if winevintage.other_vintages %} findwine_detail-heading-none {% else %} findwine_detail-heading {% endif %} hidden-lg-up"></div>
 </div>
 
   <!-- Other vintages -->
