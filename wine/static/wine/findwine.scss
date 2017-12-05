@@ -1018,6 +1018,10 @@ button:focus, button:hover {
     width: 100%;
     display: flex;
     justify-content: center;
+
+    @include breakpoint(lg) {
+      width: auto;
+    }
   }
 
   // Footer styling
