@@ -508,12 +508,11 @@
 
   <!-- Other vintages -->
   {% if winevintage.other_vintages %}
-  {% for other_vintage in winevintage.other_vintages %}
-  {% if other_vintage.preferred_merchant %}
   <div class="findwine_detail-heading">
     <h5 class="findwine_detail-header findwine_detail-header--desktop">OTHER VINTAGES</h5>
   </div>
-
+  {% for other_vintage in winevintage.other_vintages %}
+  {% if other_vintage.preferred_merchant %}
   <a href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}" class="findwine_vintage-producer">
     <div class="findwine_vintage-table">
       <div class="findwine_search-results">

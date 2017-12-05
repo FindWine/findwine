@@ -234,7 +234,9 @@ class WineVintage(models.Model):
 
     @property
     def other_vintages(self):
-        return WineVintage.objects.filter(wine=self.wine).exclude(id=self.id).all()
+        return WineVintage.objects.filter(wine=self.wine).exclude(id=self.id).filter(
+            merchantwine__available=True
+        ).distinct()
 
     def get_prioritized_purchase_options(self):
         return self.merchantwine_set.filter(available=True).select_related('merchant').order_by(
