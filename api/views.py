@@ -20,6 +20,9 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
         sort_by = self.request.GET.get('sort_by', None)
         if sort_by is None:
             sort_by = ['-avg_rating', 'price']
+        elif sort_by == '-avg_rating':
+            # add second layer of sorting
+            sort_by = ['-avg_rating', 'price']
         else:
             sort_by = sort_by.split(',')
         #1 todo: Add country
