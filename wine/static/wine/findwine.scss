@@ -2190,6 +2190,7 @@ button:focus, button:hover {
       background-color: $lightest-grey;
       border: 1px solid $lightest-grey-border;
       border-right: none;
+      cursor: default;
 
       @include breakpoint(md) {
         background-color: $white;

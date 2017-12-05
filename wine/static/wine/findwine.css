@@ -1447,7 +1447,8 @@ button:focus, button:hover {
     border-radius: 2px 0px 0px 2px;
     background-color: #f4f5f4;
     border: 1px solid #dbe0e4;
-    border-right: none; }
+    border-right: none;
+    cursor: default; }
     @media (min-width: 678px) {
       .findwine_search-next--button-inactive {
         background-color: #ffffff;
