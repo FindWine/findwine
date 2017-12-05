@@ -1239,6 +1239,7 @@ button:focus, button:hover {
 .findwine_vintage-producer {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 18px;
+  line-height: 1;
   color: #333e48;
   font-weight: 300; }
   @media (min-width: 992px) {
@@ -1256,10 +1257,12 @@ button:focus, button:hover {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 14px;
   color: #333e48;
-  font-weight: 300; }
+  font-weight: 300;
+  margin-top: 2px; }
   @media (min-width: 992px) {
     .findwine_vintage-vintage {
-      cursor: default; } }
+      cursor: default;
+      margin-top: 5px; } }
 .findwine_vintage-category {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 12px;

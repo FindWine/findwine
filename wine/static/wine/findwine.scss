@@ -1894,6 +1894,7 @@ button:focus, button:hover {
   &_vintage-producer {
     font-family: $primary-font;
     font-size: 18px;
+    line-height: 1;
     color: $primary-text;
     font-weight: 300;
 
@@ -1918,9 +1919,11 @@ button:focus, button:hover {
     font-size: 14px;
     color: $primary-text;
     font-weight: 300;
+    margin-top: 2px;
 
     @include breakpoint(lg) {
       cursor: default;
+      margin-top: 5px;
     }
   }
 
