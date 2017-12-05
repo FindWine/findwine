@@ -143,6 +143,8 @@ button:focus, button:hover {
   margin-top: -10px !important; }
 
 .min_price {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  font-size: 16px;
   display: inline-flex;
   align-items: center;
   margin-bottom: 0px; }
@@ -151,6 +153,8 @@ button:focus, button:hover {
     margin-left: 15px; }
 
 .max_price {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  font-size: 16px;
   display: inline-flex;
   align-items: center;
   margin-bottom: 0px; }
@@ -422,6 +426,12 @@ button:focus, button:hover {
   @media (min-width: 992px) {
     .findwine_heading-3 {
       font-size: 14px; } }
+.findwine_price {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  font-size: 14px; }
+  @media (min-width: 992px) {
+    .findwine_price {
+      font-size: 16px; } }
 @media (min-width: 992px) {
   .findwine_subcategory-row {
     display: flex;

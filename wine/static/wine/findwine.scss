@@ -265,6 +265,8 @@ button:focus, button:hover {
 
 .min_price {
 
+  font-family: $primary-font;
+  font-size: 16px;
   display: inline-flex;
   align-items: center;
   margin-bottom: 0px;
@@ -278,6 +280,8 @@ button:focus, button:hover {
 
 .max_price {
 
+  font-family: $primary-font;
+  font-size: 16px;
   display: inline-flex;
   align-items: center;
   margin-bottom: 0px;
@@ -691,6 +695,15 @@ button:focus, button:hover {
       font-size: 14px;
     }
 
+  }
+
+  &_price {
+    font-family: $primary-font;
+    font-size: 14px;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+    }
   }
 
   &_subcategory-row {

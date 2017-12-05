@@ -229,7 +229,7 @@ class SearchControls extends React.Component {
           </div>
           <div className="col-xs-6 col-lg-8 findwine_price-input">
              <div className="form-group min_price">
-               R <input className="form-control" type="text" name="min_price"
+               R <input className="form-control findwine_price" type="text" name="min_price"
                         value={this.props.minPrice} min="0" required id="id_min_price"
                         onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                />
@@ -237,7 +237,7 @@ class SearchControls extends React.Component {
              <div className="price-range hidden-lg-up"> TO </div>
             <div className="price-range hidden-md-down"> - </div>
              <div className="form-group max_price">
-               R  <input className="form-control" type="text" name="max_price"
+               R  <input className="form-control findwine_price" type="text" name="max_price"
                          value={this.props.maxPrice} min="0" required id="id_max_price"
                          onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
               />
@@ -289,14 +289,14 @@ class SearchControls extends React.Component {
               </div>
               <div className="findwine_price-input-collapse">
                 <div className="form-group min_price">
-                  R <input className="form-control" type="text" name="min_price"
+                  R <input className="form-control findwine_price" type="text" name="min_price"
                            value={this.props.minPrice} min="0" required id="id_min_price"
                            onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                 />
                 </div>
                 <div className="price-range-collapse"> - </div>
                 <div className="form-group max_price">
-                  R  <input className="form-control" type="text" name="max_price"
+                  R  <input className="form-control findwine_price" type="text" name="max_price"
                             value={this.props.maxPrice} min="0" required id="id_max_price"
                             onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
                 />
