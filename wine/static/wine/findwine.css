@@ -624,6 +624,9 @@ button:focus, button:hover {
   width: 100%;
   display: flex;
   justify-content: center; }
+  @media (min-width: 992px) {
+    .findwine_mailchimp-holder {
+      width: auto; } }
 .findwine_footer {
   background-color: #333e48;
   height: 60px; }
