@@ -1906,7 +1906,7 @@ button:focus, button:hover {
     display: block;
     flex-flow: column;
     flex: 1;
-    padding-right: 25px;
+    padding-right: 20px;
 
     @include breakpoint(lg) {
       cursor: default;
@@ -2082,7 +2082,7 @@ button:focus, button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 15px;
+    padding: 0px 20px;
     margin-bottom: 17px;
     margin-top: 17px;
 
@@ -2225,6 +2225,7 @@ button:focus, button:hover {
   }
 
   &_search-next--button-arrow {
+    transform: rotate(180deg);
 
     @include breakpoint(md) {
       margin-right: 10px;
