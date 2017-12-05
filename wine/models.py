@@ -237,7 +237,7 @@ class WineVintage(models.Model):
         return WineVintage.objects.filter(wine=self.wine).exclude(id=self.id).all()
 
     def get_prioritized_purchase_options(self):
-        return self.merchantwine_set.select_related('merchant').order_by(
+        return self.merchantwine_set.filter(available=True).select_related('merchant').order_by(
             'price', 'minimum_purchase_unit', 'merchant__priority'
         )
 
