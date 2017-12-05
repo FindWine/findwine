@@ -74,6 +74,10 @@ class WineVintageAdmin(admin.ModelAdmin):
 class WineAdmin(admin.ModelAdmin):
     list_display = ('producer', 'name')
 
+class MerchantWineAdmin(admin.ModelAdmin):
+    list_display = ('wine_vintage', 'merchant', 'available')
+    list_filter = ('available', 'merchant')
+
 
 admin.site.register(Appellation)
 admin.site.register(Category)
@@ -85,7 +89,7 @@ admin.site.register(Awardification)
 admin.site.register(AwardBody)
 admin.site.register(WineAward)
 admin.site.register(Merchant)
-admin.site.register(MerchantWine)
+admin.site.register(MerchantWine, MerchantWineAdmin)
 admin.site.register(Customer)
 admin.site.register(MerchantWineClick)
 admin.site.register(CustomerWineInterest)
