@@ -265,6 +265,8 @@ button:focus, button:hover {
 
 .min_price {
 
+  font-family: $primary-font;
+  font-size: 16px;
   display: inline-flex;
   align-items: center;
   margin-bottom: 0px;
@@ -278,6 +280,8 @@ button:focus, button:hover {
 
 .max_price {
 
+  font-family: $primary-font;
+  font-size: 16px;
   display: inline-flex;
   align-items: center;
   margin-bottom: 0px;
@@ -331,6 +335,8 @@ button:focus, button:hover {
 .mc-field-group {
   display: flex;
   justify-content: center;
+  border: 1px solid $lightest-grey-border;
+  border-radius: 2px;
 }
 
 // Select styling
@@ -605,7 +611,7 @@ button:focus, button:hover {
 
   &_banner-main {
 
-    height: 190px;
+    height: 170px;
     width: 100%;
     background: url("images/background/home-mob.png");
     -webkit-background-size: cover;
@@ -689,6 +695,15 @@ button:focus, button:hover {
       font-size: 14px;
     }
 
+  }
+
+  &_price {
+    font-family: $primary-font;
+    font-size: 14px;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+    }
   }
 
   &_subcategory-row {
@@ -822,6 +837,7 @@ button:focus, button:hover {
       overflow-wrap: break-word;
       white-space: normal;
       margin-bottom: 15px;
+      border-radius: 2px;
 
       @include breakpoint(sm) {
         width: 80px;
@@ -857,7 +873,7 @@ button:focus, button:hover {
 
   &_button-type {
 
-    margin: 9px 0px 6px 0px;
+    margin: 9px 0px 7px 0px;
     word-break: break-all;
 
     p {
@@ -869,7 +885,11 @@ button:focus, button:hover {
   &_button-bar {
 
     height: 4px;
-    border-radius: 2px;
+    border-radius: 0px 0px 2px 2px;
+    width: 60px;
+    margin-left: -1px;
+    margin-bottom: -3px;
+
 
     &--selected {
 
@@ -958,24 +978,18 @@ button:focus, button:hover {
 
     color: $primary-text;
     margin-right: 0px !important;
-    border: 1px solid #86929a;
-    border-radius: 4px 0px 0px 4px;
     opacity: 0.5;
     display: inline-block;
-    width: auto;
+    width: 100%;
     height: 40px;
-
-    @include breakpoint(xs) {
-      width: 166px;
-    }
-
+    border: none;
   }
 
   &_newsletter-button {
 
     background-color: $primary-green;
     border: 1px solid $primary-green;
-    border-radius: 0px 4px 4px 1px;
+    border-radius: 1px;
     color: $white;
     padding-left: 12px;
     padding-right: 12px;
@@ -1176,6 +1190,10 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       height: 450px;
+    }
+
+    @media(min-width:1260px) {
+      width: 400px;
     }
   }
 
@@ -1483,6 +1501,10 @@ button:focus, button:hover {
       background-color: transparent;
       border: none;
       padding: 0px;
+    }
+
+    &-none {
+      display: none;
     }
   }
 
@@ -1885,6 +1907,7 @@ button:focus, button:hover {
   &_vintage-producer {
     font-family: $primary-font;
     font-size: 18px;
+    line-height: 1;
     color: $primary-text;
     font-weight: 300;
 
@@ -1897,7 +1920,7 @@ button:focus, button:hover {
     display: block;
     flex-flow: column;
     flex: 1;
-    padding-right: 25px;
+    padding-right: 20px;
 
     @include breakpoint(lg) {
       cursor: default;
@@ -1909,9 +1932,11 @@ button:focus, button:hover {
     font-size: 14px;
     color: $primary-text;
     font-weight: 300;
+    margin-top: 2px;
 
     @include breakpoint(lg) {
       cursor: default;
+      margin-top: 5px;
     }
   }
 
@@ -2073,7 +2098,7 @@ button:focus, button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 15px;
+    padding: 0px 20px;
     margin-bottom: 17px;
     margin-top: 17px;
 
@@ -2161,9 +2186,11 @@ button:focus, button:hover {
     &-inactive {
       width: 62.8px;
       height: 42px;
-      border-radius: 2px;
+      border-radius: 2px 0px 0px 2px;
       background-color: $lightest-grey;
       border: 1px solid $lightest-grey-border;
+      border-right: none;
+      cursor: default;
 
       @include breakpoint(md) {
         background-color: $white;
@@ -2215,6 +2242,7 @@ button:focus, button:hover {
   }
 
   &_search-next--button-arrow {
+    transform: rotate(180deg);
 
     @include breakpoint(md) {
       margin-right: 10px;

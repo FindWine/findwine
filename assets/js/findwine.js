@@ -229,7 +229,7 @@ class SearchControls extends React.Component {
           </div>
           <div className="col-xs-6 col-lg-8 findwine_price-input">
              <div className="form-group min_price">
-               R <input className="form-control" type="text" name="min_price"
+               R <input className="form-control findwine_price" type="text" name="min_price"
                         value={this.props.minPrice} min="0" required id="id_min_price"
                         onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                />
@@ -237,7 +237,7 @@ class SearchControls extends React.Component {
              <div className="price-range hidden-lg-up"> TO </div>
             <div className="price-range hidden-md-down"> - </div>
              <div className="form-group max_price">
-               R  <input className="form-control" type="text" name="max_price"
+               R  <input className="form-control findwine_price" type="text" name="max_price"
                          value={this.props.maxPrice} min="0" required id="id_max_price"
                          onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
               />
@@ -289,14 +289,14 @@ class SearchControls extends React.Component {
               </div>
               <div className="findwine_price-input-collapse">
                 <div className="form-group min_price">
-                  R <input className="form-control" type="text" name="min_price"
+                  R <input className="form-control findwine_price" type="text" name="min_price"
                            value={this.props.minPrice} min="0" required id="id_min_price"
                            onChange={(event) => this.props.minPriceChanged(event.target.value, true)}
                 />
                 </div>
                 <div className="price-range-collapse"> - </div>
                 <div className="form-group max_price">
-                  R  <input className="form-control" type="text" name="max_price"
+                  R  <input className="form-control findwine_price" type="text" name="max_price"
                             value={this.props.maxPrice} min="0" required id="id_max_price"
                             onChange={(event) => this.props.maxPriceChanged(event.target.value, true)}
                 />
@@ -497,7 +497,7 @@ class Paginator extends React.Component {
           </a>;
         let prevButton = this.props.showPrevious ?
             <a className="btn findwine_search-next--button findwine_search-next--button-left" href="#top" onClick={(event) => this.props.prevPage()}>
-              <img src={constructImagePath('wine/images/SVGs/arrow-left.svg')} alt="Previous" className="findwine_search-next--button-arrow"></img>
+              <img src={constructImagePath('wine/images/SVGs/arrow-right.svg')} alt="Previous" className="findwine_search-next--button-arrow"></img>
               <p className="findwine_search-next--button-text hidden-sm-down">Previous</p>
             </a> : <a className="btn findwine_search-next--button-inactive findwine_search-next--button-left" onClick={(event) => this.props.nextPage()}>
             <img src={constructImagePath('wine/images/SVGs/arrow-left-grey.svg')} alt="Previous" className="hidden-md-up"></img>
@@ -509,7 +509,7 @@ class Paginator extends React.Component {
             <div className="findwine_search-page--container">
               <div className="findwine_search-page--inner">
                 <div className="findwine_search-page"> Page {this.props.page} </div>
-                <div className="findwine_search-winesTotal"> {this.props.start}-{this.props.end} of {this.props.count} wines </div>
+                <div className="findwine_search-winesTotal"> {this.props.start} - {this.props.end} of {this.props.count} wines </div>
               </div>
               <div className="findwine_search-button--container">
                 {prevButton}
