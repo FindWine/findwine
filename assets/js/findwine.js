@@ -108,12 +108,45 @@ class CategorySelectMobile extends React.Component {
   }
 }
 
+
+class SubCategoryOption extends React.Component {
+    // also adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
+    handleMouseDown (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.props.onSelect(this.props.option, event);
+    }
+    handleMouseEnter (event) {
+      this.props.onFocus(this.props.option, event);
+    }
+    handleMouseMove (event) {
+      if (this.props.isFocused) return;
+      this.props.onFocus(this.props.option, event);
+    }
+    render () {
+      const image = (
+        this.props.isSelected ?
+        constructImagePath('wine/images/other/checkbox-checked.png') :
+        constructImagePath('wine/images/other/checkbox.png')
+      );
+      return (
+        <div className={this.props.className}
+          onMouseDown={(event) => this.handleMouseDown(event)}
+          onMouseEnter={(event) => this.handleMouseEnter(event)}
+          onMouseMove={(event) => this.handleMouseMove(event)}
+          title={this.props.option.title}>
+            <img src={image}></img>
+            {this.props.children}
+        </div>
+      );
+    }
+}
+
 class SubCategorySelect extends React.Component {
   render() {
     let choices = getSubcategories(this.props.selectedCategory).map((choice) => {
       return {'value': choice, 'label': choice}
     });
-
     return (
       <Select
         value={this.props.selectedSubcategory}
@@ -126,6 +159,8 @@ class SubCategorySelect extends React.Component {
         removeSelected={false}
         stayOpen={true}
         placeholder='All'
+        optionComponent={SubCategoryOption}
+        removeSelected={false}
       />
     )
   }
