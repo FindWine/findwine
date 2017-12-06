@@ -10,6 +10,52 @@ const queryString = require('query-string');
 // todo: figure out how to django-ize these
 const WINE_API_URL = '/api/wine-vintages/';
 
+class CategoryOption extends React.Component {
+    // adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
+    handleMouseDown (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.props.onSelect(this.props.option, event);
+    }
+    handleMouseEnter (event) {
+      this.props.onFocus(this.props.option, event);
+    }
+    handleMouseMove (event) {
+      if (this.props.isFocused) return;
+      this.props.onFocus(this.props.option, event);
+    }
+    render () {
+      // console.log('props', this.props);
+      const image = this.props.isSelected ? getSelectedImagePath(this.props.option.value) : getImagePath(this.props.option.value);
+      return (
+        <div className={this.props.className}
+          onMouseDown={(event) => this.handleMouseDown(event)}
+          onMouseEnter={(event) => this.handleMouseEnter(event)}
+          onMouseMove={(event) => this.handleMouseMove(event)}
+          title={this.props.option.title}>
+            <img src={image}></img>
+            {this.props.children}
+        </div>
+      );
+    }
+}
+
+class CategoryValue  extends React.Component {
+
+  render () {
+    // console.log('value.props', this.props);
+    const image = getSelectedImagePath(this.props.value.value);
+		return (
+      <div className="Select-value" title={this.props.value.title}>
+        <span className="Select-value-label">
+          <img src={image}></img>
+          {this.props.children}
+        </span>
+      </div>
+    );
+  }
+}
+
 class CategorySelect extends React.Component {
   render() {
     let choices = getCategoryChoices(this.props.category).map((category) => {
@@ -25,10 +71,11 @@ class CategorySelect extends React.Component {
         simpleValue={true}
         searchable={false}
         clearable={false}
+        optionComponent={CategoryOption}
+        valueComponent={CategoryValue}
       />
     )
   }
-
 }
 
 class CategorySelectMobile extends React.Component {
