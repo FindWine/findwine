@@ -33,7 +33,7 @@ class CategoryOption extends React.Component {
           onMouseEnter={(event) => this.handleMouseEnter(event)}
           onMouseMove={(event) => this.handleMouseMove(event)}
           title={this.props.option.title}>
-            <img src={image}></img>
+            <img src={image} className="findwine_select-svg"></img>
             {this.props.children}
         </div>
       );
@@ -48,7 +48,6 @@ class CategoryValue  extends React.Component {
 		return (
       <div className="Select-value" title={this.props.value.title}>
         <span className="Select-value-label">
-          <img src={image}></img>
           {this.props.children}
         </span>
       </div>
@@ -61,7 +60,6 @@ class CategorySelect extends React.Component {
     let choices = getCategoryChoices(this.props.category).map((category) => {
       return {'value': category, 'label': category}
     });
-
     return (
       <Select
         value={this.props.selectedCategory}
@@ -110,36 +108,36 @@ class CategorySelectMobile extends React.Component {
 
 
 class SubCategoryOption extends React.Component {
-    // also adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
-    handleMouseDown (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.props.onSelect(this.props.option, event);
-    }
-    handleMouseEnter (event) {
-      this.props.onFocus(this.props.option, event);
-    }
-    handleMouseMove (event) {
-      if (this.props.isFocused) return;
-      this.props.onFocus(this.props.option, event);
-    }
-    render () {
-      const image = (
-        this.props.isSelected ?
-        constructImagePath('wine/images/other/checkbox-checked.png') :
-        constructImagePath('wine/images/other/checkbox.png')
-      );
-      return (
-        <div className={this.props.className}
-          onMouseDown={(event) => this.handleMouseDown(event)}
-          onMouseEnter={(event) => this.handleMouseEnter(event)}
-          onMouseMove={(event) => this.handleMouseMove(event)}
-          title={this.props.option.title}>
-            <img src={image}></img>
-            {this.props.children}
-        </div>
-      );
-    }
+  // also adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
+  handleMouseDown (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.props.onSelect(this.props.option, event);
+  }
+  handleMouseEnter (event) {
+    this.props.onFocus(this.props.option, event);
+  }
+  handleMouseMove (event) {
+    if (this.props.isFocused) return;
+    this.props.onFocus(this.props.option, event);
+  }
+  render () {
+    const image = (
+      this.props.isSelected ?
+        constructImagePath('wine/images/SVGs/tick-box-fill.svg') :
+        constructImagePath('wine/images/SVGs/tick-box.svg')
+    );
+    return (
+      <div className={this.props.className}
+        onMouseDown={(event) => this.handleMouseDown(event)}
+        onMouseEnter={(event) => this.handleMouseEnter(event)}
+        onMouseMove={(event) => this.handleMouseMove(event)}
+        title={this.props.option.title}>
+            <img src={image} className="findwine_select-box"></img>
+          {this.props.children}
+      </div>
+    );
+  }
 }
 
 class SubCategorySelect extends React.Component {
@@ -147,6 +145,13 @@ class SubCategorySelect extends React.Component {
     let choices = getSubcategories(this.props.selectedCategory).map((choice) => {
       return {'value': choice, 'label': choice}
     });
+
+    // if (this.props.selectedSubcategory.length > 1) {
+    //   let label = 'Multiple'
+    // } else {
+    //   let label = this.props.selectedSubcategory;
+    // };
+
     return (
       <Select
         value={this.props.selectedSubcategory}
@@ -155,12 +160,12 @@ class SubCategorySelect extends React.Component {
         multi={true}
         simpleValue={true}
         searchable={false}
+        clearable={false}
         autosize={false}
         removeSelected={false}
-        stayOpen={true}
+        closeOnSelect={false}
         placeholder='All'
         optionComponent={SubCategoryOption}
-        removeSelected={false}
       />
     )
   }
@@ -275,32 +280,28 @@ class SearchControls extends React.Component {
       <form className="search-form" role="search">
         {this.renderCollapsedControlsOpen()}
         <div className="row d-flex align-items-start findwine_search-form">
-          <div className="col-lg-3">
-            <div className="form-group category">
-              <label htmlFor="id_category" className="findwine_heading-3">Select wine</label>
-                <CategorySelectMobile
+          <div className="form-group category">
+            <label htmlFor="id_category" className="findwine_heading-3">Select wine</label>
+              <CategorySelectMobile
+                selectedCategory={this.props.selectedCategory}
+                categoryChanged={this.props.categoryChanged}
+              />
+            <div className="hidden-md-down">
+              <CategorySelect
                   selectedCategory={this.props.selectedCategory}
                   categoryChanged={this.props.categoryChanged}
-                />
-              <div className="hidden-md-down">
-                <CategorySelect
-                    selectedCategory={this.props.selectedCategory}
-                    categoryChanged={this.props.categoryChanged}
-                />
-              </div>
+              />
             </div>
-        </div>
-        <div className="col-lg-3">
-          <div className="form-group sub_category">
-            <label htmlFor="id_sub_category" className="findwine_heading-3"> Select type(s)</label>
-            <SubCategorySelect
-                selectedCategory={this.props.selectedCategory}
-                selectedSubcategory={this.props.selectedSubcategory}
-                subcategoryChanged={this.props.subcategoryChanged}
-            />
           </div>
+        <div className="form-group sub_category">
+          <label htmlFor="id_sub_category" className="findwine_heading-3"> Select type(s)</label>
+          <SubCategorySelect
+              selectedCategory={this.props.selectedCategory}
+              selectedSubcategory={this.props.selectedSubcategory}
+              subcategoryChanged={this.props.subcategoryChanged}
+          />
         </div>
-        <div className="col-xs-12 col-lg-6 findwine_subcategory-row">
+        <div className="findwine_subcategory-row">
           <div className="col-xs-12 col-lg-4 findwine_subcategory" >
             <div className="form-group sub_category">
               <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>

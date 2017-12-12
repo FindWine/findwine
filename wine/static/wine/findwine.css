@@ -165,7 +165,8 @@ button:focus, button:hover {
 
 @media (min-width: 992px) {
   .category {
-    margin-top: 6px; } }
+    margin-top: 6px;
+    margin-right: 20px; } }
 
 @media (min-width: 992px) {
   .sub_category {
@@ -191,17 +192,29 @@ button:focus, button:hover {
   border: 1px solid #dbe0e4;
   border-radius: 2px; }
 
-.Select.is-focused:not(.is-open) > .Select-control {
-  border-color: #00ad68 !important;
-  box-shadow: none !important; }
+.Select-value-label {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #333e48;
+  font-size: 14px; }
+  @media (min-width: 992px) {
+    .Select-value-label {
+      font-size: 16px; } }
 
-.Select-option.is-focused {
-  color: #00ad68 !important;
-  background-color: #ffffff !important; }
+.Select-option {
+  padding: 9px 15px !important;
+  display: flex;
+  align-items: center; }
 
 .Select-option.is-selected {
-  background-color: #ffffff !important;
-  color: #00ad68 !important; }
+  background-color: #f4f5f4 !important; }
+
+.Select.is-focused:not(.is-open) > .Select-control {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #dbe0e4 !important; }
+
+.Select-option.is-focused {
+  background-color: #f4f5f4 !important; }
 
 .Select--multi .Select-value {
   color: #333e48 !important;
@@ -212,9 +225,31 @@ button:focus, button:hover {
   border: none !important; }
 
 .Select--multi .Select-value-icon:hover, .Select--multi .Select-value-icon:focus {
-  color: #00ad68 !important;
-  background-color: #ffffff !important;
   outline: none !important; }
+
+.Select-control {
+  height: 42px !important; }
+  @media (min-width: 992px) {
+    .Select-control {
+      height: 45px !important;
+      width: 245px !important;
+      border-radius: 2px !important;
+      border: solid 1px #dbe0e4 !important; } }
+
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+  line-height: 43px !important;
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #333e48 !important;
+  font-size: 14px;
+  padding: 0px 15px !important; }
+  @media (min-width: 992px) {
+    .Select-placeholder, .Select--single > .Select-control .Select-value {
+      font-size: 16px; } }
+
+.Select-menu {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #333e48 !important;
+  font-size: 16px; }
 
 .modal.left .modal-dialog {
   position: fixed; }
@@ -398,10 +433,11 @@ button:focus, button:hover {
   color: #ffffff; }
 @media (min-width: 992px) {
   .findwine_search-form {
-    margin-top: -320px;
-    padding: 40px;
+    margin-top: -305px;
+    padding: 32px 30px;
     background-color: white;
-    border-radius: 4px; } }
+    border-radius: 4px;
+    height: 146px; } }
 .findwine_search-form-collapsed {
   margin-top: 0px;
   background-color: transparent;
@@ -432,6 +468,14 @@ button:focus, button:hover {
   @media (min-width: 992px) {
     .findwine_price {
       font-size: 16px; } }
+.findwine_select-svg {
+  max-width: 13px;
+  max-height: 29px;
+  margin-right: 20px; }
+.findwine_select-box {
+  height: 18px;
+  width: 18px;
+  margin-right: 20px; }
 @media (min-width: 992px) {
   .findwine_subcategory-row {
     display: flex;
@@ -674,7 +718,7 @@ button:focus, button:hover {
     justify-content: center;
     display: flex;
     align-items: center; }
-.findwine_select-collapse {
+.findwine_select-collapse .Select-control {
   max-width: 220px; }
 .findwine_detail-image {
   height: 200px;
@@ -684,6 +728,8 @@ button:focus, button:hover {
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
   margin-right: 38px;
   margin-left: 50px;
   flex: 1; }
@@ -1349,9 +1395,10 @@ button:focus, button:hover {
     background-color: #f4f5f4;
     padding: 0px 100px; } }
 .findwine_filter-collapse-category {
-  width: 220px;
   margin-right: 20px;
   margin-top: 0px; }
+  .findwine_filter-collapse-category .Select-control {
+    max-width: 220px; }
   @media (min-width: 992px) {
     .findwine_filter-collapse-category-align {
       margin-right: -15px;
