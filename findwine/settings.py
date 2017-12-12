@@ -158,8 +158,9 @@ STATICFILES_FINDERS = (
 GEOPOSITION_GOOGLE_MAPS_API_KEY = '***'  # override with localsettings
 
 
-# Google Analytics
+# Analytics
 GOOGLE_ANALYTICS_TRACKING_ID = 'UA-99343389-1'
+FACEBOOK_PIXEL_ID = '2005046383111493'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
@@ -195,4 +196,5 @@ SITE = {
     'URL': SITE_URL,
     'IMAGE': 'wine/images/logo/logo-standard@3x.png',
     'GOOGLE_ANALYTICS_ID': GOOGLE_ANALYTICS_TRACKING_ID,
+    'FACEBOOK_PIXEL_ID': FACEBOOK_PIXEL_ID,
 }
