@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.core.exceptions import ValidationError
 
 from django.db import models
 from django.db.models import Avg
@@ -182,6 +183,12 @@ class WineVintage(models.Model):
         if not self.slug:
             self.slug = generate_unique_slug(self)
         super(WineVintage, self).save(*args, **kwargs)
+
+    def clean(self):
+        if not self.sub_category.category.filter(id=self.category.id).exists():
+            raise ValidationError('Category {} and SubCategory {} are not a valid combination!'.format(
+                self.category, self.sub_category
+            ))
 
     @property
     def preferred_merchant(self):
