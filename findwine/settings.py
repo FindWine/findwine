@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'wine.apps.WineConfig',
     'api.apps.APIConfig',
     'content.apps.ContentConfig',
+    'integrations.apps.IntegrationsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

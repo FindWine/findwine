@@ -13,7 +13,7 @@ app = Celery('findwine')
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
     try:
-        from wine.tasks import debug_task
+        from integrations.tasks import debug_task
     except Exception:
         # fail hard if something went wrong bootsrapping the tasks
         traceback.print_exc()
