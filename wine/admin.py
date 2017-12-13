@@ -75,8 +75,8 @@ class WineAdmin(admin.ModelAdmin):
     list_display = ('producer', 'name')
 
 class MerchantWineAdmin(admin.ModelAdmin):
-    list_display = ('wine_vintage', 'merchant', 'available')
-    list_filter = ('available', 'merchant')
+    list_display = ('wine_vintage', 'merchant', 'available', 'last_modified')
+    list_filter = ('available', 'merchant', 'last_modified')
 
 
 admin.site.register(Appellation)
