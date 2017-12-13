@@ -145,6 +145,14 @@ $ sniffer -x -s ./manage.py -x wine.tests.test_countries
 
 Like normal tests, you can use sniffer to run any subset of the tests using the same syntax as above.
 
+# Running celery
+
+To run celery (and celerybeat) you can run:
+
+```bash
+celery -A findwine worker -l info -B
+```
+
 # Production Setup/Install
 
 See [deploy README](../deploy/README.md) for details on production setup / install.

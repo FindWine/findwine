@@ -181,6 +181,9 @@ INTERNAL_IPS = (
     '127.0.0.1',
 )
 
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
 SITE_URL = 'https://www.findwine.com'
 try:
     from .localsettings import *
