@@ -7,3 +7,4 @@ boto3  # for s3 storage - production only
 mysqlclient  # for mysql/mariadb support - production only
 celery
 redis
+requests
