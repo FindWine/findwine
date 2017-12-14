@@ -393,20 +393,21 @@ class MerchantWine(models.Model):
     url = models.URLField(max_length=256)
     external_id = models.CharField(null=True, blank=True, max_length=256)
     available = models.NullBooleanField()
+    last_modified = models.DateTimeField(auto_now=True)
     purchase_unit = models.CharField(choices=(
-    ('750', "Bottle 750ml"),
-    ('187', "Split 187ml"),
-    ('375', "Half-Bottle 375ml"),
-    ('500', "Bottle 500ml"),
-    ('1500', "Magnum 1.5 litres"),
-    ('3000', "Jeroboam or Double Magnum 3 litres"),
-    ('4500', "Rehoboam 4.5 litres"),
-    ('6000', "Imperial or Methuselah 6 litres"),
-    ('9000', "Salmanazar 9 litres"),
-    ('12000', "Balthazar 12 litres"),
-    ('15000', "Nebuchadnezzar 15 litres"),
+        ('750', "Bottle 750ml"),
+        ('187', "Split 187ml"),
+        ('375', "Half-Bottle 375ml"),
+        ('500', "Bottle 500ml"),
+        ('1500', "Magnum 1.5 litres"),
+        ('3000', "Jeroboam or Double Magnum 3 litres"),
+        ('4500', "Rehoboam 4.5 litres"),
+        ('6000', "Imperial or Methuselah 6 litres"),
+        ('9000', "Salmanazar 9 litres"),
+        ('12000', "Balthazar 12 litres"),
+        ('15000', "Nebuchadnezzar 15 litres"),
     ),
-                                     max_length=5
+        max_length=5
     )
     minimum_purchase_unit = models.PositiveIntegerField()
 

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'wine.apps.WineConfig',
     'api.apps.APIConfig',
     'content.apps.ContentConfig',
+    'integrations.apps.IntegrationsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -180,6 +181,9 @@ REST_FRAMEWORK = {
 INTERNAL_IPS = (
     '127.0.0.1',
 )
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
 SITE_URL = 'https://www.findwine.com'
 try:

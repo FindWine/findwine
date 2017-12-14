@@ -6,3 +6,4 @@ settings_production.py
 node_modules
 yarn*
 staticfiles
+celerybeat-schedule
