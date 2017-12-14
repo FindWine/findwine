@@ -13,13 +13,15 @@ app = Celery('findwine')
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
     try:
-        from integrations.tasks import debug_task
+        from integrations.tasks import cleanup_dead_links_task
     except Exception:
         # fail hard if something went wrong bootsrapping the tasks
         traceback.print_exc()
         sys.exit()
 
-    sender.add_periodic_task(1, debug_task.s(), name='Debug task to make sure things are working')
+    seconds_in_a_day = 60 * 60 * 24
+    sender.add_periodic_task(seconds_in_a_day, cleanup_dead_links_task.s(),
+                             name='De-activate wines pointing at dead links.')
 
 
 # Using a string here means the worker doesn't have to serialize

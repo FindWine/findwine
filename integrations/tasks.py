@@ -1,7 +1,7 @@
 from celery import shared_task
-from _datetime import datetime
 
 
 @shared_task
-def debug_task():
-    print('The current time is {}'.format(datetime.now()))
+def cleanup_dead_links_task():
+    from integrations.data_cleanup import clean_invalid_urls_and_notify
+    clean_invalid_urls_and_notify(debug=False)
