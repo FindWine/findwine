@@ -21,6 +21,8 @@ class Command(BaseCommand):
             print('URL for {} was not valid: {}. This can be fixed here: {}'.format(
                 merchant_wine, merchant_wine.url, _get_admin_url(merchant_wine)
             ))
+        if not cleaned_wines:
+            print('No invalid urls found! Hooray!')
 
 
 def _get_admin_url(model_instance):
