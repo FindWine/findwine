@@ -106,8 +106,8 @@ def django_stuff():
 
 def services_restart():
     require('environment', provided_by=ENVIRONMENTS)
-    _supervisor_command('stop findwine-django')
-    _supervisor_command('start findwine-django')
+    _supervisor_command('stop all')
+    _supervisor_command('start all')
 
 
 def _supervisor_command(command):
