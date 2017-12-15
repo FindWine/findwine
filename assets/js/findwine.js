@@ -140,30 +140,22 @@ class SubCategoryOption extends React.Component {
   }
 }
 
-// class SubCategoryValue  extends React.Component {
 
-  // render () {
-  //   console.log(this.props.value)
-  //   return (
-  //     <div>
-  //       <p> 1 </p>
-  //     </div>
-  //   )
-    // if (this.props.selectedSubcategory.length > 1){
-    //   return (
-    //     <div>
-    //       <p> {this.props.selectedSubcategory.length} </p>
-    //     </div>
-    //   );
-    // } else {
-    //   return (
-    //     <div>
-    //       <p> {this.props.selectedSubcategory} </p>
-    //     </div>
-    //   );
-    // }
-  // }
-// }
+class CustomSelect extends Select {
+  renderValue (valueArray, isOpen) {
+    if (this.props.multi && valueArray.length) {
+      if (valueArray.length === 1) {
+        return valueArray[0].label;
+      } else {
+        return "multiple";
+      }
+    }
+    else {
+      return super.renderValue(valueArray, isOpen);
+    }
+  }
+}
+
 
 class SubCategorySelect extends React.Component {
   render() {
@@ -172,7 +164,7 @@ class SubCategorySelect extends React.Component {
     });
     console.log(choices)
     return (
-      <Select
+      <CustomSelect
         value={this.props.selectedSubcategory}
         options={choices}
         onChange={(value) => this.props.subcategoryChanged(value)}
