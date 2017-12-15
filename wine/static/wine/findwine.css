@@ -227,6 +227,17 @@ button:focus, button:hover {
 .Select--multi .Select-value-icon:hover, .Select--multi .Select-value-icon:focus {
   outline: none !important; }
 
+.Select--multi .Select-multi-value-wrapper {
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: #333e48 !important;
+  font-size: 14px;
+  line-height: 42px;
+  padding: 0px 15px !important; }
+  @media (min-width: 992px) {
+    .Select--multi .Select-multi-value-wrapper {
+      font-size: 16px;
+      line-height: 43px; } }
+
 .Select-control {
   height: 42px !important; }
   @media (min-width: 992px) {
@@ -437,7 +448,8 @@ button:focus, button:hover {
     padding: 32px 30px;
     background-color: white;
     border-radius: 4px;
-    height: 146px; } }
+    height: 146px;
+    display: flex; } }
 .findwine_search-form-collapsed {
   margin-top: 0px;
   background-color: transparent;
@@ -590,7 +602,7 @@ button:focus, button:hover {
 .findwine_button-bar {
   height: 4px;
   border-radius: 0px 0px 2px 2px;
-  width: 60px;
+  width: auto;
   margin-left: -1px;
   margin-bottom: -3px; }
   .findwine_button-bar--selectedred {
@@ -640,7 +652,7 @@ button:focus, button:hover {
   margin-right: 0px !important;
   opacity: 0.5;
   display: inline-block;
-  width: 100%;
+  width: 100% !important;
   height: 40px;
   border: none; }
 .findwine_newsletter-button {

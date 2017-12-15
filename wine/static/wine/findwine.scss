@@ -386,6 +386,19 @@ button:focus, button:hover {
   outline: none !important;
 }
 
+.Select--multi .Select-multi-value-wrapper {
+  font-family: $primary-font;
+  color: $primary-text !important;
+  font-size: 14px;
+  line-height: 42px;
+  padding: 0px 15px !important;
+
+  @include breakpoint(lg) {
+    font-size: 16px;
+    line-height: 43px;
+  }
+}
+
 .Select-control {
   height: 42px !important;
 
@@ -701,6 +714,7 @@ button:focus, button:hover {
       background-color: white;
       border-radius: 4px;
       height: 146px;
+      display: flex;
     }
 
     &-collapsed {
@@ -941,7 +955,7 @@ button:focus, button:hover {
 
     height: 4px;
     border-radius: 0px 0px 2px 2px;
-    width: 60px;
+    width: auto;
     margin-left: -1px;
     margin-bottom: -3px;
 
@@ -1035,7 +1049,7 @@ button:focus, button:hover {
     margin-right: 0px !important;
     opacity: 0.5;
     display: inline-block;
-    width: 100%;
+    width: 100% !important;
     height: 40px;
     border: none;
   }

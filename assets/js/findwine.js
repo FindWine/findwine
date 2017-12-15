@@ -41,7 +41,6 @@ class CategoryOption extends React.Component {
 }
 
 class CategoryValue  extends React.Component {
-
   render () {
     // console.log('value.props', this.props);
     const image = getSelectedImagePath(this.props.value.value);
@@ -77,7 +76,6 @@ class CategorySelect extends React.Component {
 }
 
 class CategorySelectMobile extends React.Component {
-
   render() {
     return (
       <div className="hidden-lg-up findwine_button-outer" value={this.props.selectedCategory}>
@@ -140,14 +138,13 @@ class SubCategoryOption extends React.Component {
   }
 }
 
-
 class CustomSelect extends Select {
   renderValue (valueArray, isOpen) {
     if (this.props.multi && valueArray.length) {
       if (valueArray.length === 1) {
         return valueArray[0].label;
       } else {
-        return "multiple";
+        return "Multiple";
       }
     }
     else {
@@ -156,13 +153,11 @@ class CustomSelect extends Select {
   }
 }
 
-
 class SubCategorySelect extends React.Component {
   render() {
     let choices = getSubcategories(this.props.selectedCategory).map((choice) => {
       return {'value': choice, 'label': choice}
     });
-    console.log(choices)
     return (
       <CustomSelect
         value={this.props.selectedSubcategory}
@@ -177,14 +172,11 @@ class SubCategorySelect extends React.Component {
         closeOnSelect={false}
         placeholder='All'
         optionComponent={SubCategoryOption}
-        // valueComponent={SubCategoryValue}
       />
     )
   }
 }
-
 class SortSelect extends React.Component {
-
   render() {
     let choices = getSortChoices().map((sortChoice, index) => {
       return {'value': sortChoice[1], 'label': sortChoice[0]};
@@ -204,7 +196,6 @@ class SortSelect extends React.Component {
 }
 
 class SearchControls extends React.Component {
-
   _getSortSelect() {
     if (this.props.firstSearchMade) {
       return (
@@ -291,7 +282,7 @@ class SearchControls extends React.Component {
     return (
       <form className="search-form" role="search">
         {this.renderCollapsedControlsOpen()}
-        <div className="row d-flex align-items-start findwine_search-form">
+        <div className="align-items-start findwine_search-form">
           <div className="form-group category">
             <label htmlFor="id_category" className="findwine_heading-3">Select wine</label>
               <CategorySelectMobile
