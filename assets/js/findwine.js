@@ -140,18 +140,37 @@ class SubCategoryOption extends React.Component {
   }
 }
 
+// class SubCategoryValue  extends React.Component {
+
+  // render () {
+  //   console.log(this.props.value)
+  //   return (
+  //     <div>
+  //       <p> 1 </p>
+  //     </div>
+  //   )
+    // if (this.props.selectedSubcategory.length > 1){
+    //   return (
+    //     <div>
+    //       <p> {this.props.selectedSubcategory.length} </p>
+    //     </div>
+    //   );
+    // } else {
+    //   return (
+    //     <div>
+    //       <p> {this.props.selectedSubcategory} </p>
+    //     </div>
+    //   );
+    // }
+  // }
+// }
+
 class SubCategorySelect extends React.Component {
   render() {
     let choices = getSubcategories(this.props.selectedCategory).map((choice) => {
       return {'value': choice, 'label': choice}
     });
-
-    // if (this.props.selectedSubcategory.length > 1) {
-    //   let label = 'Multiple'
-    // } else {
-    //   let label = this.props.selectedSubcategory;
-    // };
-
+    console.log(choices)
     return (
       <Select
         value={this.props.selectedSubcategory}
@@ -166,6 +185,7 @@ class SubCategorySelect extends React.Component {
         closeOnSelect={false}
         placeholder='All'
         optionComponent={SubCategoryOption}
+        // valueComponent={SubCategoryValue}
       />
     )
   }
@@ -610,7 +630,7 @@ class SearchPage extends React.Component {
         const category = getCategoryChoices()[0];
         this.state = {
             selectedCategory: category,
-            selectedSubcategory: null,
+            selectedSubcategory: '',
             minPrice: 0,
             maxPrice: 1000,
             selectedSort: getSortChoices()[0][1],
