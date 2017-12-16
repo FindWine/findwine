@@ -298,6 +298,7 @@ button:focus, button:hover {
 
   @include breakpoint(lg) {
     margin-top: 6px;
+    margin-right: 20px;
   }
 
 }
@@ -341,19 +342,34 @@ button:focus, button:hover {
 
 // Select styling
 
-.Select.is-focused:not(.is-open) > .Select-control {
-  border-color: $primary-green !important;
-  box-shadow: none !important;
+.Select-value-label {
+  font-family: $primary-font;
+  color: $primary-text;
+  font-size: 14px;
+
+  @include breakpoint(lg) {
+    font-size: 16px;
+  }
 }
 
-.Select-option.is-focused {
-  color: $primary-green !important;
-  background-color: $white !important;
+.Select-option {
+  padding: 9px 15px !important;
+  display: flex;
+  align-items: center;
 }
 
 .Select-option.is-selected {
-  background-color: $white !important;
-  color: $primary-green !important;
+  background-color: $lightest-grey !important;
+}
+
+.Select.is-focused:not(.is-open) > .Select-control {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: $lightest-grey-border !important;
+}
+
+.Select-option.is-focused {
+  background-color: $lightest-grey !important;
 }
 
 .Select--multi .Select-value {
@@ -367,9 +383,49 @@ button:focus, button:hover {
 }
 
 .Select--multi .Select-value-icon:hover, .Select--multi .Select-value-icon:focus {
-  color: $primary-green !important;
-  background-color: $white !important;
   outline: none !important;
+}
+
+.Select--multi .Select-multi-value-wrapper {
+  font-family: $primary-font;
+  color: $primary-text !important;
+  font-size: 14px;
+  line-height: 42px;
+  padding: 0px 15px !important;
+
+  @include breakpoint(lg) {
+    font-size: 16px;
+    line-height: 43px;
+  }
+}
+
+.Select-control {
+  height: 42px !important;
+
+  @include breakpoint(lg) {
+    height: 45px !important;
+    width: 245px !important;
+    border-radius: 2px !important;
+    border: solid 1px $lightest-grey-border !important;
+  }
+}
+
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+  line-height: 43px !important;
+  font-family: $primary-font;
+  color: $primary-text !important;
+  font-size: 14px;
+  padding: 0px 15px !important;
+
+  @include breakpoint(lg) {
+    font-size: 16px;
+  }
+}
+
+.Select-menu {
+  font-family: $primary-font;
+  color: $primary-text !important;
+  font-size: 16px;
 }
 
 // Modal
@@ -653,10 +709,12 @@ button:focus, button:hover {
   &_search-form {
 
     @include breakpoint(lg) {
-      margin-top: -320px;
-      padding: 40px;
+      margin-top: -305px;
+      padding: 32px 30px;
       background-color: white;
       border-radius: 4px;
+      height: 146px;
+      display: flex;
     }
 
     &-collapsed {
@@ -704,6 +762,18 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       font-size: 16px;
     }
+  }
+
+  &_select-svg {
+    max-width: 13px;
+    max-height: 29px;
+    margin-right: 20px;
+  }
+
+  &_select-box {
+    height: 18px;
+    width: 18px;
+    margin-right: 20px;
   }
 
   &_subcategory-row {
@@ -775,7 +845,6 @@ button:focus, button:hover {
   }
 
   &_button {
-
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     background-color: $primary-green;
     border-color: $primary-green;
@@ -886,7 +955,7 @@ button:focus, button:hover {
 
     height: 4px;
     border-radius: 0px 0px 2px 2px;
-    width: 60px;
+    width: auto;
     margin-left: -1px;
     margin-bottom: -3px;
 
@@ -980,7 +1049,7 @@ button:focus, button:hover {
     margin-right: 0px !important;
     opacity: 0.5;
     display: inline-block;
-    width: 100%;
+    width: 100% !important;
     height: 40px;
     border: none;
   }
@@ -1098,7 +1167,9 @@ button:focus, button:hover {
   }
 
   &_select-collapse {
-    max-width: 220px;
+    .Select-control {
+      max-width: 220px;
+    }
   }
 
   // Wine detail page styling
@@ -1113,6 +1184,8 @@ button:focus, button:hover {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
     margin-right: 38px;
     margin-left: 50px;
     flex: 1;
@@ -2049,7 +2122,9 @@ button:focus, button:hover {
   }
 
   &_filter-collapse-category {
-    width: 220px;
+    .Select-control {
+      max-width: 220px;
+    }
     margin-right: 20px;
     margin-top: 0px;
 

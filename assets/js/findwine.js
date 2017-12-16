@@ -10,12 +10,55 @@ const queryString = require('query-string');
 // todo: figure out how to django-ize these
 const WINE_API_URL = '/api/wine-vintages/';
 
+class CategoryOption extends React.Component {
+    // adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
+    handleMouseDown (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.props.onSelect(this.props.option, event);
+    }
+    handleMouseEnter (event) {
+      this.props.onFocus(this.props.option, event);
+    }
+    handleMouseMove (event) {
+      if (this.props.isFocused) return;
+      this.props.onFocus(this.props.option, event);
+    }
+    render () {
+      // console.log('props', this.props);
+      const image = this.props.isSelected ? getSelectedImagePath(this.props.option.value) : getImagePath(this.props.option.value);
+      return (
+        <div className={this.props.className}
+          onMouseDown={(event) => this.handleMouseDown(event)}
+          onMouseEnter={(event) => this.handleMouseEnter(event)}
+          onMouseMove={(event) => this.handleMouseMove(event)}
+          title={this.props.option.title}>
+            <img src={image} className="findwine_select-svg"></img>
+            {this.props.children}
+        </div>
+      );
+    }
+}
+
+class CategoryValue  extends React.Component {
+  render () {
+    // console.log('value.props', this.props);
+    const image = getSelectedImagePath(this.props.value.value);
+		return (
+      <div className="Select-value" title={this.props.value.title}>
+        <span className="Select-value-label">
+          {this.props.children}
+        </span>
+      </div>
+    );
+  }
+}
+
 class CategorySelect extends React.Component {
   render() {
     let choices = getCategoryChoices(this.props.category).map((category) => {
       return {'value': category, 'label': category}
     });
-
     return (
       <Select
         value={this.props.selectedCategory}
@@ -25,14 +68,14 @@ class CategorySelect extends React.Component {
         simpleValue={true}
         searchable={false}
         clearable={false}
+        optionComponent={CategoryOption}
+        valueComponent={CategoryValue}
       />
     )
   }
-
 }
 
 class CategorySelectMobile extends React.Component {
-
   render() {
     return (
       <div className="hidden-lg-up findwine_button-outer" value={this.props.selectedCategory}>
@@ -61,31 +104,79 @@ class CategorySelectMobile extends React.Component {
   }
 }
 
+
+class SubCategoryOption extends React.Component {
+  // also adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
+  handleMouseDown (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.props.onSelect(this.props.option, event);
+  }
+  handleMouseEnter (event) {
+    this.props.onFocus(this.props.option, event);
+  }
+  handleMouseMove (event) {
+    if (this.props.isFocused) return;
+    this.props.onFocus(this.props.option, event);
+  }
+  render () {
+    const image = (
+      this.props.isSelected ?
+        constructImagePath('wine/images/SVGs/tick-box-fill.svg') :
+        constructImagePath('wine/images/SVGs/tick-box.svg')
+    );
+    return (
+      <div className={this.props.className}
+        onMouseDown={(event) => this.handleMouseDown(event)}
+        onMouseEnter={(event) => this.handleMouseEnter(event)}
+        onMouseMove={(event) => this.handleMouseMove(event)}
+        title={this.props.option.title}>
+            <img src={image} className="findwine_select-box"></img>
+          {this.props.children}
+      </div>
+    );
+  }
+}
+
+class CustomSelect extends Select {
+  renderValue (valueArray, isOpen) {
+    if (this.props.multi && valueArray.length) {
+      if (valueArray.length === 1) {
+        return valueArray[0].label;
+      } else {
+        return "Multiple";
+      }
+    }
+    else {
+      return super.renderValue(valueArray, isOpen);
+    }
+  }
+}
+
 class SubCategorySelect extends React.Component {
   render() {
     let choices = getSubcategories(this.props.selectedCategory).map((choice) => {
       return {'value': choice, 'label': choice}
     });
-
     return (
-      <Select
+      <CustomSelect
         value={this.props.selectedSubcategory}
         options={choices}
         onChange={(value) => this.props.subcategoryChanged(value)}
         multi={true}
         simpleValue={true}
         searchable={false}
+        clearable={false}
         autosize={false}
         removeSelected={false}
-        stayOpen={true}
+        closeOnSelect={false}
         placeholder='All'
+        optionComponent={SubCategoryOption}
       />
     )
   }
 }
-
 class SortSelect extends React.Component {
-
   render() {
     let choices = getSortChoices().map((sortChoice, index) => {
       return {'value': sortChoice[1], 'label': sortChoice[0]};
@@ -105,7 +196,6 @@ class SortSelect extends React.Component {
 }
 
 class SearchControls extends React.Component {
-
   _getSortSelect() {
     if (this.props.firstSearchMade) {
       return (
@@ -192,33 +282,29 @@ class SearchControls extends React.Component {
     return (
       <form className="search-form" role="search">
         {this.renderCollapsedControlsOpen()}
-        <div className="row d-flex align-items-start findwine_search-form">
-          <div className="col-lg-3">
-            <div className="form-group category">
-              <label htmlFor="id_category" className="findwine_heading-3">Select wine</label>
-                <CategorySelectMobile
+        <div className="align-items-start findwine_search-form">
+          <div className="form-group category">
+            <label htmlFor="id_category" className="findwine_heading-3">Select wine</label>
+              <CategorySelectMobile
+                selectedCategory={this.props.selectedCategory}
+                categoryChanged={this.props.categoryChanged}
+              />
+            <div className="hidden-md-down">
+              <CategorySelect
                   selectedCategory={this.props.selectedCategory}
                   categoryChanged={this.props.categoryChanged}
-                />
-              <div className="hidden-md-down">
-                <CategorySelect
-                    selectedCategory={this.props.selectedCategory}
-                    categoryChanged={this.props.categoryChanged}
-                />
-              </div>
+              />
             </div>
-        </div>
-        <div className="col-lg-3">
-          <div className="form-group sub_category">
-            <label htmlFor="id_sub_category" className="findwine_heading-3"> Select type(s)</label>
-            <SubCategorySelect
-                selectedCategory={this.props.selectedCategory}
-                selectedSubcategory={this.props.selectedSubcategory}
-                subcategoryChanged={this.props.subcategoryChanged}
-            />
           </div>
+        <div className="form-group sub_category">
+          <label htmlFor="id_sub_category" className="findwine_heading-3"> Select type(s)</label>
+          <SubCategorySelect
+              selectedCategory={this.props.selectedCategory}
+              selectedSubcategory={this.props.selectedSubcategory}
+              subcategoryChanged={this.props.subcategoryChanged}
+          />
         </div>
-        <div className="col-xs-12 col-lg-6 findwine_subcategory-row">
+        <div className="findwine_subcategory-row">
           <div className="col-xs-12 col-lg-4 findwine_subcategory" >
             <div className="form-group sub_category">
               <label htmlFor="id_sub_category" className="findwine_heading-3"> Price range </label>
@@ -527,7 +613,7 @@ class SearchPage extends React.Component {
         const category = getCategoryChoices()[0];
         this.state = {
             selectedCategory: category,
-            selectedSubcategory: null,
+            selectedSubcategory: '',
             minPrice: 0,
             maxPrice: 1000,
             selectedSort: getSortChoices()[0][1],
