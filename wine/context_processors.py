@@ -9,7 +9,10 @@ def absolute_url(relative_url):
 
 def site_meta(request):
     site = copy(settings.SITE)
-    site['IMAGE_URL'] = absolute_url(static(site['IMAGE']))
+    image_url = static(site['IMAGE'])
+    if not image_url.startswith('http'):
+        image_url = absolute_url(image_url)
+    site['IMAGE_URL'] = image_url
     site['TITLE'] = '{} - {}'.format(site['NAME'], site['SUBTITLE'])
     return {
         'site': site,
