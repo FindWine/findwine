@@ -260,7 +260,14 @@ button:focus, button:hover {
 .Select-menu {
   font-family: "Gotham SSm A", "Gotham SSm B";
   color: #333e48 !important;
-  font-size: 16px; }
+  font-size: 16px;
+  max-height: inherit !important;
+  height: auto !important; }
+
+.Select-menu-outer {
+  overflow: visible !important;
+  max-height: inherit !important;
+  height: auto !important; }
 
 .modal.left .modal-dialog {
   position: fixed; }
