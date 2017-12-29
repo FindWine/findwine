@@ -354,7 +354,7 @@ button:focus, button:hover {
 
 .Select-option {
   padding: 9px 15px !important;
-  display: flex;
+  display: flex !important;
   align-items: center;
 }
 
@@ -782,6 +782,13 @@ button:focus, button:hover {
     height: 18px;
     width: 18px;
     margin-right: 20px;
+  }
+
+  &_subcategory-option {
+    display: inline-block;
+    @include breakpoint(lg) {
+      max-width: 175px;
+    }
   }
 
   &_subcategory-row {
