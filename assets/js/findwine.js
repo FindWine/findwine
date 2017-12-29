@@ -131,8 +131,10 @@ class SubCategoryOption extends React.Component {
         onMouseEnter={(event) => this.handleMouseEnter(event)}
         onMouseMove={(event) => this.handleMouseMove(event)}
         title={this.props.option.title}>
-            <img src={image} className="findwine_select-box"></img>
-          {this.props.children}
+            <div className="findwine_select-box-height">
+              <img src={image} className="findwine_select-box"></img>
+            </div>
+            <div className="findwine_subcategory-option"> {this.props.children} </div>
       </div>
     );
   }

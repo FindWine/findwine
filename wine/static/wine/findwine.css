@@ -202,7 +202,7 @@ button:focus, button:hover {
 
 .Select-option {
   padding: 9px 15px !important;
-  display: flex;
+  display: flex !important;
   align-items: center; }
 
 .Select-option.is-selected {
@@ -260,7 +260,14 @@ button:focus, button:hover {
 .Select-menu {
   font-family: "Gotham SSm A", "Gotham SSm B";
   color: #333e48 !important;
-  font-size: 16px; }
+  font-size: 16px;
+  max-height: inherit !important;
+  height: auto !important; }
+
+.Select-menu-outer {
+  overflow: visible !important;
+  max-height: inherit !important;
+  height: auto !important; }
 
 .modal.left .modal-dialog {
   position: fixed; }
@@ -488,6 +495,11 @@ button:focus, button:hover {
   height: 18px;
   width: 18px;
   margin-right: 20px; }
+.findwine_subcategory-option {
+  display: inline-block; }
+  @media (min-width: 992px) {
+    .findwine_subcategory-option {
+      max-width: 175px; } }
 @media (min-width: 992px) {
   .findwine_subcategory-row {
     display: flex;
