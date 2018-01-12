@@ -12,16 +12,20 @@ app = Celery('findwine')
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
+    seconds_in_a_day = 60 * 60 * 24
+    sender.add_periodic_task(seconds_in_a_day, cleanup_dead_links_task_wrapper.s(),
+                             name='De-activate wines pointing at dead links.')
+
+@app.task
+def cleanup_dead_links_task_wrapper():
+    # this is very weird and confusing https://stackoverflow.com/a/46965132/8207
     try:
         from integrations.tasks import cleanup_dead_links_task
     except Exception:
         # fail hard if something went wrong bootsrapping the tasks
         traceback.print_exc()
         sys.exit()
-
-    seconds_in_a_day = 60 * 60 * 24
-    sender.add_periodic_task(seconds_in_a_day, cleanup_dead_links_task.s(),
-                             name='De-activate wines pointing at dead links.')
+    cleanup_dead_links_task()
 
 
 # Using a string here means the worker doesn't have to serialize
