@@ -1,3 +1,4 @@
+from django.core.mail import mail_admins
 import requests
 from wine.models import MerchantWine
 from django.urls import reverse
@@ -5,12 +6,16 @@ from django.urls import reverse
 
 def clean_invalid_urls_and_notify(debug=False):
     cleaned_wines = clean_invalid_urls(debug)
-    for merchant_wine in cleaned_wines:
-        print('URL for {} was not valid: {}. This can be fixed here: {}'.format(
+    found_issues = [
+        'URL for {} was not valid: {}. This can be fixed here: {}'.format(
             merchant_wine, merchant_wine.url, _get_admin_url(merchant_wine)
-        ))
-    if not cleaned_wines:
-        print('No invalid urls found! Hooray!')
+        )
+        for merchant_wine in cleaned_wines
+    ]
+    if not found_issues:
+        mail_admins('Merchant URL check succeeded with no issues found.', '')
+    else:
+        mail_admins('Merchant URL check found {} new issues.'.format(len(found_issues)), '\n'.join(found_issues))
 
 
 def clean_invalid_urls(debug=False):
@@ -21,7 +26,6 @@ def clean_invalid_urls(debug=False):
                 merchant_wine.available = False
                 merchant_wine.save()
             updated_merchants.append(merchant_wine)
-
     return updated_merchants
 
 
