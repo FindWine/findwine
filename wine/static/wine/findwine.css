@@ -808,8 +808,7 @@ button:focus, button:hover {
   border: solid 1px #dadada;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex: 1; }
+  justify-content: center; }
   @media (min-width: 992px) {
     .findwine_detail-image-main--holder {
       height: 450px; } }

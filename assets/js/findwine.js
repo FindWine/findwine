@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import Select from 'react-select';
 require('rc-slider/assets/index.css');
+import 'react-select/dist/react-select.css';
 import Slider, {Range} from 'rc-slider';
 const queryString = require('query-string');
 

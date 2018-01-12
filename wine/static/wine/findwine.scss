@@ -1285,7 +1285,6 @@ button:focus, button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1;
 
     @include breakpoint(lg) {
       height: 450px;
