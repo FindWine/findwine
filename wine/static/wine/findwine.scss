@@ -30,8 +30,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham SSm A', 'Gotham SSm B';
-//$primary-font: 'Gotham A', sans-serif;
+//$primary-font: 'Gotham SSm A', 'Gotham SSm B';
+$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -57,7 +57,6 @@ $primary-font: 'Gotham SSm A', 'Gotham SSm B';
       @content;
     }
   }
-
 }
 
 // Global styling
@@ -77,6 +76,14 @@ body {
 
   @include breakpoint(lg) {
     padding-bottom: 60px;
+  }
+}
+
+.container {
+
+  @include breakpoint(xs) {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -1202,11 +1209,11 @@ button:focus, button:hover {
     -webkit-justify-content: flex-end;
     -ms-flex-pack: end;
     margin-right: 38px;
-    margin-left: 50px;
+    //margin-left: 50px;
     flex: 1;
 
     @include breakpoint(lg) {
-      margin-left: 100px;
+      //margin-left: 100px;
     }
 
     &-none {
@@ -1301,7 +1308,7 @@ button:focus, button:hover {
     padding: 0px;
 
     @include breakpoint(lg) {
-      margin-right: 100px;
+      //margin-right: 100px;
       flex: 1;
     }
   }
@@ -1540,7 +1547,7 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       padding: 30px 15px;
-      margin: 0px 0px 30px 0px;
+      margin: 0px;
       height: auto;
       background-color: $white;
       border: 1px solid $lightest-grey-border;
@@ -1906,7 +1913,7 @@ button:focus, button:hover {
   &_detail-holder {
     @include breakpoint(lg) {
       background-color: $lightest-grey;;
-      padding: 0px 100px 50px 100px;
+      padding-bottom: 50px;
       margin-top: 50px;
     }
   }
@@ -1915,6 +1922,7 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       display: flex;
       justify-content: space-between;
+      margin-top: 30px;
     }
   }
 
