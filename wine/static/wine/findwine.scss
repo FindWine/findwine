@@ -30,8 +30,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-//$primary-font: 'Gotham SSm A', 'Gotham SSm B';
-$primary-font: 'Gotham A', sans-serif;
+$primary-font: 'Gotham SSm A', 'Gotham SSm B';
+//$primary-font: 'Gotham A', sans-serif;
 
 // Mixins
 
@@ -800,6 +800,8 @@ button:focus, button:hover {
 
   &_subcategory-row {
     @include breakpoint(lg) {
+      margin: 0px;
+      width: 100%;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
