@@ -2,6 +2,7 @@
 import json
 
 from django.db.models import Func
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.templatetags.static import static
 from django.utils.text import slugify
@@ -9,6 +10,7 @@ from django.views import generic
 from django.views.decorators.http import require_GET
 
 from .models import WineVintage, Producer, Category
+from integrations.tasks import fail_task
 
 
 @require_GET
@@ -88,3 +90,9 @@ class Round(Func):
 @require_GET
 def error(request):
     raise Exception('Simulated Failure!')
+
+
+@require_GET
+def celery_error(request):
+    fail_task.delay()
+    return HttpResponse('Triggered a celery task that should fail.')

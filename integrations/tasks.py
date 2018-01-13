@@ -18,5 +18,5 @@ def cleanup_dead_links_task():
 
 
 @shared_task(base=NotifyFailTask)
-def fail_task(self):
-    raise Exception("Testing failure from backgrond jobs.")
+def fail_task():
+    raise Exception("Testing failure from background jobs.")
