@@ -15,9 +15,10 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         category = self.request.GET.get('category', 'Red')
         sub_category = self.request.GET.get('sub_category')
-        min_price = self.request.GET.get('min_price', 0)
-        max_price = self.request.GET.get('max_price', MAX_PRICE)
+        min_price = self.request.GET.get('min_price', None) or 0
+        max_price = self.request.GET.get('max_price', None) or MAX_PRICE
         sort_by = self.request.GET.get('sort_by', None)
+
         if sort_by is None:
             sort_by = ['-avg_rating', 'price']
         elif sort_by == '-avg_rating':
