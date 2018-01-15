@@ -1,5 +1,6 @@
 from collections import namedtuple
 import xml.etree.ElementTree as ET
+from django.core.mail import mail_admins
 import requests
 from integrations.exceptions import FeedUpdateError
 from wine.models import MerchantWine, Merchant
@@ -33,10 +34,39 @@ class WineData(namedtuple('WineData', sorted(XML_NAMES_TO_ATTRIBUTES.values())))
         new_kwargs.update(kwargs)
         return super(WineData, cls).__new__(cls, **new_kwargs)
 
+    def __str__(self):
+        return '{} ({}, {})'.format(self.wine, self.id, self.product_url)
+
+
+def update_all(debug=False):
+    """
+    Updates all data based on the results of the port2port feed.
+    """
+    results = {}
+    skipped = []
+    not_found = []
+    for wine_data in get_port2port_data(get_raw_feed()):
+        wine, work_done = apply_update(wine_data)
+        if wine is not None:
+            if work_done:
+                results[wine] = work_done
+            else:
+                skipped.append(wine)
+        else:
+            not_found.append(wine_data)
+    subject, pretty_results = _get_printed_results(results, skipped, not_found)
+    if debug:
+        print(subject)
+        print(pretty_results)
+    else:
+        mail_admins(subject, pretty_results)
+
 
 def get_raw_feed():
     FEED_URL = 'https://www.port2port.wine/findwine.xml'
-    return requests.get(FEED_URL).content
+    r = requests.get(FEED_URL)
+    r.encoding = 'utf-8'
+    return requests.get(FEED_URL).text
 
 
 def get_port2port_data(raw_feed):
@@ -92,3 +122,25 @@ def get_wine_for_data(wine_data):
             return MerchantWine.objects.get(merchant=merchant, url=wine_data.product_url)
         except MerchantWine.DoesNotExist:
             return None
+
+
+def _get_printed_results(results, skipped, not_found):
+    total_number_processed = len(results) + len(skipped) + len(not_found)
+    subject = 'Successfully processed {}/{} results from Port2Port Feed'.format(len(results),
+                                                                                total_number_processed)
+    body = '{updated}\n{skipped}\n{missing}'.format(
+        updated='\nApplied the following {} updates: \n{}'.format(
+            len(results),
+            '\n'.join([_update_to_result(wine, work_done) for wine, work_done in results.items()])
+        ),
+        skipped='\nNo updates applied to {} wines'.format(len(skipped)),
+        missing='\n{} wines were not found in FindWine database:\n{}'.format(
+            len(not_found),
+            '\n'.join(['\t{}'.format(w) for w in not_found])
+        )
+    )
+    return subject, body
+
+
+def _update_to_result(wine, work_done):
+    return '\t{}\n{}'.format(wine, '\n'.join(['\t\t{}'.format(w) for w in work_done]))

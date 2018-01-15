@@ -1,8 +1,9 @@
 import os
+from unittest import skip
 from django.test import SimpleTestCase, TestCase
 from integrations.exceptions import FeedUpdateError
 from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, get_wine_for_data, WineData, \
-    apply_update
+    apply_update, update_all
 from wine.models import MerchantWine, Merchant
 from wine.tests.test_util import get_a_new_wine_vintage
 
@@ -115,3 +116,7 @@ class Port2PortFeedDbTest(TestCase):
         # set back and confirm changed again
         self.assertNotEqual((wine, []), apply_update(WineData(id=id, stock_availability='0')))
         self.assertFalse(MerchantWine.objects.get(pk=wine.pk).available)
+
+    @skip('Comment out the decorator to run this test.')
+    def test_print_results(self):
+        update_all(debug=True)
