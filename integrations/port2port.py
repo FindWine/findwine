@@ -65,6 +65,10 @@ def apply_update(wine_data):
             wine.external_id = wine_data.id
             work_done.append('Added external ID {}'.format(wine_data.id))
 
+        if wine_data.product_url and wine.url != wine_data.product_url:
+            work_done.append('Changed URL from {} to {}'.format(wine.url, wine_data.product_url))
+            wine.url = wine_data.product_url
+
         is_available = bool(wine_data.stock_availability and wine_data.stock_availability != '0')
         if wine.available != is_available:
             wine.available = is_available

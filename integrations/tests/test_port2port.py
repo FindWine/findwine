@@ -74,6 +74,19 @@ class Port2PortFeedDbTest(TestCase):
         wine = MerchantWine.objects.get(pk=wine.pk)
         self.assertEqual(id, wine.external_id)
 
+    def test_change_product_url(self):
+        id = 'test_change_product_url_id'
+        url = 'test_change_product_url'
+        wine = MerchantWine.objects.create(
+            merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
+            external_id=id, url=url, available=False,
+        )
+        self.assertEqual((wine, []), apply_update(WineData(id=id, product_url=url)))
+
+        update_url = 'url_changed'
+        self.assertNotEqual((wine, []), apply_update(WineData(id=id, product_url=update_url)))
+        self.assertEqual(update_url, MerchantWine.objects.get(pk=wine.pk).url)
+
     def test_disallow_changing_external_id(self):
         id = 'test_disallow_changing_external_id'
         original_id = self.merchant_wine.external_id
