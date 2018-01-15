@@ -1,4 +1,4 @@
-from wine.models import Category, SubCategory, Producer, Wine
+from wine.models import Category, SubCategory, Producer, Wine, WineVintage
 
 
 def bootstrap_categories():
@@ -27,3 +27,9 @@ def get_a_new_wine():
     wine = Wine(producer=producer, name='Grey Lady')
     wine.save()
     return wine
+
+
+def get_a_new_wine_vintage():
+    category, subcategory = bootstrap_categories()
+    wine = get_a_new_wine()
+    return WineVintage.objects.create(wine=wine, year=2017, category=category, sub_category=subcategory)
