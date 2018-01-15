@@ -1,5 +1,6 @@
 import os
 from unittest import skip
+from decimal import Decimal
 from django.test import SimpleTestCase, TestCase
 from integrations.exceptions import FeedUpdateError
 from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, get_wine_for_data, WineData, \
@@ -116,6 +117,20 @@ class Port2PortFeedDbTest(TestCase):
         # set back and confirm changed again
         self.assertNotEqual((wine, []), apply_update(WineData(id=id, stock_availability='0')))
         self.assertFalse(MerchantWine.objects.get(pk=wine.pk).available)
+
+    def test_change_price(self):
+        id = 'test_change_price_id'
+        wine = MerchantWine.objects.create(
+            merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
+            external_id=id, price=Decimal(100.0), available=False,
+        )
+        self.assertEqual((wine, []), apply_update(WineData(id=id, price='100')))
+
+        updated_price = '200'
+        self.assertNotEqual((wine, []), apply_update(WineData(id=id, price=updated_price)))
+        self.assertEqual(Decimal(updated_price), MerchantWine.objects.get(pk=wine.pk).price)
+
+
 
     @skip('Comment out the decorator to run this test.')
     def test_print_results(self):

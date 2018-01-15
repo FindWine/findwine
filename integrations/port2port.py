@@ -1,5 +1,6 @@
 from collections import namedtuple
 import xml.etree.ElementTree as ET
+from decimal import Decimal
 from django.core.mail import mail_admins
 import requests
 from integrations.exceptions import FeedUpdateError
@@ -104,6 +105,11 @@ def apply_update(wine_data, debug=False):
             wine.available = is_available
             work_done.append('Set available to {} based on a stock of {}'.format(is_available,
                                                                                  wine_data.stock_availability))
+        price = Decimal(wine_data.price) if wine_data.price else None
+        if price and wine.price != price:
+            work_done.append('Changed price from {} to {}'.format(wine.price, price))
+            wine.price = price
+
         if work_done and not debug:
             wine.save()
     return wine, work_done
