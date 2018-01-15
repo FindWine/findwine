@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Offers>
+    <Offer>
+        <Category>Wine</Category>
+        <Id>2261</Id>
+        <Manufacturer>Arendsig</Manufacturer>
+        <Wine>1000 Vines Viognier</Wine>
+        <Vintage>2016</Vintage>
+        <ProductName>Arendsig 1000 Vines Viognier 2016</ProductName>
+        <Volume>750 ml</Volume>
+        <ProductURL>https://www.port2port.wine/buy-wine/arendsig/1000-vines-viognier-2016</ProductURL>
+        <StockAvailability>56</StockAvailability>
+        <Price>150.00</Price>
+        <DeliveryCost>120</DeliveryCost>
+        <Currency>ZAR</Currency>
+    </Offer>
+    <Offer>
+        <Category>Wine</Category>
+        <Id>1921</Id>
+        <Manufacturer>Steenberg</Manufacturer>
+        <Wine>1682 Chardonnay MCC</Wine>
+        <Vintage>NV</Vintage>
+        <ProductName>Steenberg 1682 Chardonnay MCC NV</ProductName>
+        <Volume>750 ml</Volume>
+        <ProductURL>https://www.port2port.wine/buy-wine/steenberg/1682-chardonnay-mcc-nv</ProductURL>
+        <StockAvailability>59</StockAvailability>
+        <Price>175.00</Price>
+        <DeliveryCost>120</DeliveryCost>
+        <Currency>ZAR</Currency>
+    </Offer>
+</Offers>
