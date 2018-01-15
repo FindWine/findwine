@@ -1,6 +1,8 @@
 import os
 from django.test import SimpleTestCase, TestCase
-from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, get_wine_for_data, WineData
+from integrations.exceptions import FeedUpdateError
+from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, get_wine_for_data, WineData, \
+    apply_update
 from wine.models import MerchantWine, Merchant
 from wine.tests.test_util import get_a_new_wine_vintage
 
@@ -23,7 +25,7 @@ class Port2PortFeedTest(SimpleTestCase):
         self.assertEqual('750 ml', wine_info.volume)
         self.assertEqual('https://www.port2port.wine/buy-wine/arendsig/1000-vines-viognier-2016',
                          wine_info.product_url)
-        self.assertEqual('56', wine_info.stockavailability)
+        self.assertEqual('56', wine_info.stock_availability)
         self.assertEqual('150.00', wine_info.price)
         self.assertEqual('120', wine_info.deliverycost)
         self.assertEqual('ZAR', wine_info.currency)
@@ -38,12 +40,7 @@ class Port2PortFeedDbTest(TestCase):
         cls.wine_vintage = get_a_new_wine_vintage()
         cls.merchant_wine = MerchantWine.objects.create(
             merchant=cls.merchant, wine_vintage=cls.wine_vintage, minimum_purchase_unit=1,
-            external_id='test_id', url='http://test.com/wine-url'
-        )
-        cls.bogus_merchant_wine = MerchantWine.objects.create(
-            merchant=Merchant.objects.create(name='bogus', priority=1),
-            wine_vintage=cls.wine_vintage, minimum_purchase_unit=1,
-            external_id='bogus_id', url='http://test.com/bogus-wine-url'
+            external_id='test_id', url='http://test.com/wine-url',
         )
 
     def test_get_no_match(self):
@@ -57,5 +54,51 @@ class Port2PortFeedDbTest(TestCase):
         self.assertEqual(self.merchant_wine, get_wine_for_data(WineData(product_url=self.merchant_wine.url)))
 
     def test_get_wrong_merchant(self):
-        self.assertEqual(None, get_wine_for_data(WineData(id=self.bogus_merchant_wine.external_id,
-                                                          product_url=self.bogus_merchant_wine.url)))
+        bogus_merchant_wine = MerchantWine.objects.create(
+            merchant=Merchant.objects.create(name='bogus', priority=1),
+            wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
+            external_id='bogus_id', url='http://test.com/bogus-wine-url'
+        )
+        self.addCleanup(bogus_merchant_wine.delete)
+        self.assertEqual(None, get_wine_for_data(WineData(id=bogus_merchant_wine.external_id,
+                                                          product_url=bogus_merchant_wine.url)))
+
+    def test_set_external_id_if_null(self):
+        url = 'test_set_external_id_if_null_url'
+        id = 'test_set_external_id_if_null_id'
+        wine = MerchantWine.objects.create(
+            merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
+            url=url,
+        )
+        apply_update(WineData(id=id, product_url=url))
+        wine = MerchantWine.objects.get(pk=wine.pk)
+        self.assertEqual(id, wine.external_id)
+
+    def test_disallow_changing_external_id(self):
+        id = 'test_disallow_changing_external_id'
+        original_id = self.merchant_wine.external_id
+        with self.assertRaises(FeedUpdateError):
+            apply_update(WineData(id=id, product_url=self.merchant_wine.url))
+        wine = MerchantWine.objects.get(pk=self.merchant_wine.pk)
+        self.assertEqual(original_id, wine.external_id)
+
+    def test_set_available(self):
+        id = 'test_set_available'
+        wine = MerchantWine.objects.create(
+            merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
+            available=False, external_id=id,
+        )
+        self.assertEqual((wine, []), apply_update(WineData(id=id)))
+        self.assertFalse(MerchantWine.objects.get(pk=wine.pk).available)
+        self.assertEqual((wine, []), apply_update(WineData(id=id, stock_availability='0')))
+        self.assertFalse(MerchantWine.objects.get(pk=wine.pk).available)
+
+        # set some stock and confirm changed
+        self.assertNotEqual((wine, []), apply_update(WineData(id=id, stock_availability='10')))
+        self.assertTrue(MerchantWine.objects.get(pk=wine.pk).available)
+        self.assertEqual((wine, []), apply_update(WineData(id=id, stock_availability='20')))
+        self.assertTrue(MerchantWine.objects.get(pk=wine.pk).available)
+
+        # set back and confirm changed again
+        self.assertNotEqual((wine, []), apply_update(WineData(id=id, stock_availability='0')))
+        self.assertFalse(MerchantWine.objects.get(pk=wine.pk).available)

@@ -1,0 +1,4 @@
+
+
+class FeedUpdateError(Exception):
+    pass

@@ -1,6 +1,7 @@
 from collections import namedtuple
 import xml.etree.ElementTree as ET
 import requests
+from integrations.exceptions import FeedUpdateError
 from wine.models import MerchantWine, Merchant
 
 
@@ -14,7 +15,7 @@ XML_NAMES_TO_ATTRIBUTES = {
     "ProductName": "productname",
     "Volume": "volume",
     "ProductURL": "product_url",
-    "StockAvailability": "stockavailability",
+    "StockAvailability": "stock_availability",
     "Price": "price",
     "DeliveryCost": "deliverycost",
     "Currency": "currency",
@@ -54,8 +55,24 @@ def _element_to_data(feed_item):
 
 def apply_update(wine_data):
     wine = get_wine_for_data(wine_data)
+    work_done = []
     if wine:
-        pass
+        if wine.external_id != wine_data.id:
+            if wine.external_id:
+                raise FeedUpdateError("Prevented change of external ID for {} from {} to {}.".format(
+                    wine, wine.external_id, wine_data.id
+                ))
+            wine.external_id = wine_data.id
+            work_done.append('Added external ID {}'.format(wine_data.id))
+
+        is_available = bool(wine_data.stock_availability and wine_data.stock_availability != '0')
+        if wine.available != is_available:
+            wine.available = is_available
+            work_done.append('Set available to {} based on a stock of {}'.format(is_available,
+                                                                                 wine_data.stock_availability))
+        if work_done:
+            wine.save()
+    return wine, work_done
 
 
 def get_port2port_merchant():
