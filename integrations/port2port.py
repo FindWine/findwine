@@ -53,7 +53,7 @@ def _element_to_data(feed_item):
     return WineData(**vals)
 
 
-def apply_update(wine_data):
+def apply_update(wine_data, debug=False):
     wine = get_wine_for_data(wine_data)
     work_done = []
     if wine:
@@ -74,7 +74,7 @@ def apply_update(wine_data):
             wine.available = is_available
             work_done.append('Set available to {} based on a stock of {}'.format(is_available,
                                                                                  wine_data.stock_availability))
-        if work_done:
+        if work_done and not debug:
             wine.save()
     return wine, work_done
 
