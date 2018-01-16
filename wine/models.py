@@ -185,10 +185,11 @@ class WineVintage(models.Model):
         super(WineVintage, self).save(*args, **kwargs)
 
     def clean(self):
-        if not self.sub_category.category.filter(id=self.category.id).exists():
-            raise ValidationError('Category {} and SubCategory {} are not a valid combination!'.format(
-                self.category, self.sub_category
-            ))
+        if self.sub_category_id is not None:
+            if not self.sub_category.category.filter(id=self.category.id).exists():
+                raise ValidationError('Category {} and SubCategory {} are not a valid combination!'.format(
+                    self.category, self.sub_category
+                ))
 
     @property
     def preferred_merchant(self):
