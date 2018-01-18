@@ -30,8 +30,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-//$primary-font: 'Gotham SSm A', 'Gotham SSm B';
-$primary-font: 'Gotham A', sans-serif;
+$primary-font: 'Gotham SSm A', 'Gotham SSm B';
+//$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
 
@@ -472,9 +472,9 @@ button:focus, button:hover {
 }
 
 .modal.show .modal-dialog {
-  -webkit-transform: translate(0,0);
-  -o-transform: translate(0,0);
-  transform: translate(0,0);
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
 }
 
 // Custom styling
@@ -987,7 +987,6 @@ button:focus, button:hover {
     margin-left: -1px;
     margin-bottom: -3px;
 
-
     &--selected {
 
       &red {
@@ -1296,7 +1295,7 @@ button:focus, button:hover {
       height: 450px;
     }
 
-    @media(min-width:1260px) {
+    @media(min-width: 1260px) {
       width: 400px;
     }
   }
@@ -1958,8 +1957,6 @@ button:focus, button:hover {
     height: 22px;
     width: 25px;
     border-radius: 0px 3px 3px 0px;
-    display: block;
-    margin-top: 5px;
     color: $white;
     font-size: 12px;
     line-height: 22px;
@@ -2904,7 +2901,141 @@ button:focus, button:hover {
     }
   }
 
+  //  Producer page
+  &_producer-banner {
+    height: 130px;
+    width: 100%;
+
+    @include breakpoint(md) {
+      height: 250px;
+    }
+
+    @include breakpoint(lg) {
+      height: 350px;
+    }
+
+    &-image {
+      height: 130px;
+      width: 100%;
+
+      @include breakpoint(md) {
+        height: 250px;
+      }
+
+      @include breakpoint(lg) {
+        height: 350px;
+      }
+    }
+  }
+
+  &_producer-content {
+
+    @include breakpoint(lg) {
+      padding: 60px 0px;
+    }
+  }
+
+  &_producer-vintage {
+
+    @include breakpoint(lg) {
+      margin: 0px 0px 15px 0px;
+    }
+  }
+
+  &_producer-place {
+    display: flex;
+    align-items: center;
+  }
+
+  &_producer-place-image {
+
+    @include breakpoint(lg) {
+      height: 14px;
+      width: 9px;
+      margin-right: 8px;
+      margin-bottom: 3px;
+    }
+  }
+
+  &_producer-place-name {
+    font-family: $primary-font;
+    color: $primary-text;
+    font-weight: 500;
+
+    @include breakpoint(lg) {
+      font-size: 14px;
+      letter-spacing: 0.9px;
+    }
+  }
+
+  &_producer-description {
+    font-family: $primary-font;
+    color: $light-grey-text;
+
+    @include breakpoint(lg) {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 28px;
+    }
+  }
+
+  &_producer-detail-holder {
+    @include breakpoint(lg) {
+      background-color: $lightest-grey;;
+      padding-bottom: 50px;
+      border-top: 1px solid $lightest-grey-border;
+    }
+  }
+
+  &_producer-top-wines {
+    background-color: $white;
+
+    @include breakpoint(lg) {
+      border: 1px solid $lightest-grey-border;
+      margin-top: 50px;
+      padding: 30px;
+    }
+  }
+
+  &_producer-wines-images {
+    display: flex;
+  }
+
+  &_producer-wines-outer {
+    background-color: $white;
+    border: 1px solid $lightest-grey-border;
+    border-radius: 4px;
+
+    @include breakpoint(lg) {
+      margin-right: 20px;
+      height: 200px;
+      width: 200px;
+    }
+  }
+
+  &_producer-rating--box {
+    height: 22px;
+    width: 25px;
+    border-radius: 0px 3px 3px 0px;
+    color: $white;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+      border-radius: 3px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+
 }
+
 
 
 
