@@ -51,10 +51,16 @@
 		<div class="row">		
 			<div class="col-6" style="margin-top: 8%">
 				<h4>Top wines</h4>
-				{% if producer.wine_set.all %}
+				{% if producer.get_top_wines.exists %}
 				<ul class="list-group list-group-flush">
-					{% for wine in producer.wine_set.all %}
-					<li class="list-group-item">{{ wine }}</li>
+					{% for wine in producer.get_top_wines %}
+					<li class="list-group-item">
+                        {{ wine }} | {{ wine.avg_rating }}
+                    {% if wine.image_pack_shot %}
+                        <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
+                             class="img-fluid rounded float-left findwine_detail-image">
+                        {% endif %}
+                    </li>
 					{% endfor %}
 				{% else %}
 					<p style="margin-left:20px">No wines captured.</p>

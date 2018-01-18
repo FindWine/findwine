@@ -9,6 +9,12 @@ from wine.const import get_all_country_wine_choices, get_all_merchant_country_ch
     get_all_currency_choices, SOUTH_AFRICA_CODE, SOUTH_AFRICAN_RAND_CODE
 from wine.geoposition import geoposition_to_dms_string
 from wine.util import generate_unique_slug, MAX_UNIQUE_CHARFIELD, generate_unique_producer_slug
+from django.db.models import Func
+
+
+class Round(Func):
+    function = 'ROUND'
+    template = '%(function)s(%(expressions)s, 1)'
 
 
 class Appellation(models.Model):
@@ -71,6 +77,9 @@ class Producer(models.Model):
         if not self.slug:
             self.slug = generate_unique_producer_slug(self)
         super(Producer, self).save(*args, **kwargs)
+
+    def get_top_wines(self, limit=5):
+        return WineVintage.with_rating().filter(wine__producer=self).order_by('-avg_rating')[:limit]
 
 
 class Wine(models.Model):
@@ -190,6 +199,12 @@ class WineVintage(models.Model):
                 raise ValidationError('Category {} and SubCategory {} are not a valid combination!'.format(
                     self.category, self.sub_category
                 ))
+
+    @classmethod
+    def with_rating(cls):
+        return cls.objects.annotate(
+            avg_rating=Round(Avg('wineaward__award__tier__normalised_rating')),
+        )
 
     @property
     def preferred_merchant(self):
