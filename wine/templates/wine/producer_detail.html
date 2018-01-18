@@ -120,9 +120,35 @@
 <!--Grid with top wines - expand - desktop-->
 <div class="findwine_producer-detail-holder">
   <div class="container">
-
+    <div class="findwine_producer-top-wines">
+      <h5 class="findwine_detail-header--2">Top wines</h5>
+      {% if producer.wine_set.all %}
+      <div class="findwine_producer-wines-images">
+        {% for wine in producer.wine_set.all %}
+        <div class="findwine_producer-wines-outer">
+          <div class="findwine_producer-rating--box findwine_rating-box-gold">
+            9.4
+          </div>
+          <div class="findwine_vintage--image">
+            <img src="{{ other_vintage.image_pack_shot.url }}" alt="{{ other_vintage.wine.name }}"
+                 class="img-fluid rounded findwine_vintage--image-img"/>
+          </div>
+        </div>
+        <div class="findwine_prodcer-wines-price">
+          <h5 class="findwine_detail-header--2">R80</h5>
+        </div>
+        <div class="findwine_producer-wines-vintage">
+          {{ wine }}
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p style="margin-left:20px">No wines captured.</p>
+      {% endif %}
+    </div>
   </div>
 </div>
+
 <!--Farm details-->
 <!--Mobile: Tastings, Hours, Location, Contact details-->
 <!--Desktop: Tastings, Location; Hours; Contact details-->
