@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django.db.models import Func
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.templatetags.static import static
@@ -80,11 +79,6 @@ class ProducerDetailView(generic.DetailView):
         if self.object.logo:
             context['page_image'] = self.object.logo.url
         return context
-
-
-class Round(Func):
-    function = 'ROUND'
-    template = '%(function)s(%(expressions)s, 1)'
 
 
 @require_GET

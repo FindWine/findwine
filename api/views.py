@@ -1,8 +1,7 @@
 from django.db.models import Min, Avg
 from rest_framework import viewsets
 from api.serializers import WineVintageSerializer
-from wine.models import WineVintage, MerchantWine
-from wine.views import Round
+from wine.models import WineVintage, MerchantWine, Round
 
 
 MAX_PRICE = 9999999
