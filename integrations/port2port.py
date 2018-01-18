@@ -1,9 +1,9 @@
 from collections import namedtuple
 import xml.etree.ElementTree as ET
 from decimal import Decimal
-from django.core.mail import mail_admins
 import requests
 from integrations.exceptions import FeedUpdateError
+from integrations.util import notify_data_team
 from wine.models import MerchantWine, Merchant
 
 
@@ -60,7 +60,7 @@ def update_all(debug=False):
         print(subject)
         print(pretty_results)
     else:
-        mail_admins(subject, pretty_results)
+        notify_data_team(subject, pretty_results)
 
 
 def get_raw_feed():

@@ -185,6 +185,8 @@ INTERNAL_IPS = (
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
+DATA_TEAM_EMAIL = 'data-notifications@findwine.com'
+
 SITE_URL = 'https://www.findwine.com'
 try:
     from .localsettings import *
