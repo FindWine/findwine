@@ -30,8 +30,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham SSm A', 'Gotham SSm B';
-//$primary-font: 'Gotham SSm A', sans-serif;
+//$primary-font: 'Gotham SSm A', 'Gotham SSm B';
+$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
 
@@ -218,6 +218,10 @@ button:focus, button:hover {
 
 .search-form {
   padding: 0px 15px;
+
+  @include breakpoint(lg) {
+    width: 955px;
+  }
 
   &-collapsed {
     padding: 25px 0px 0px 0px;
