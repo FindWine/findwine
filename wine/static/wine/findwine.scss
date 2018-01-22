@@ -2909,6 +2909,7 @@ button:focus, button:hover {
   &_producer-banner {
     height: 130px;
     width: 100%;
+    overflow: hidden;
 
     @include breakpoint(md) {
       height: 250px;
@@ -2919,20 +2920,20 @@ button:focus, button:hover {
     }
 
     &-image {
-      height: 130px;
       width: 100%;
 
       @include breakpoint(md) {
-        height: 250px;
+
       }
 
       @include breakpoint(lg) {
-        height: 350px;
+        margin-top: -130px;
       }
     }
   }
 
   &_producer-content {
+    padding: 15px 15px 0px 15px;
 
     @include breakpoint(lg) {
       padding: 60px 0px;
@@ -2940,6 +2941,8 @@ button:focus, button:hover {
   }
 
   &_producer-vintage {
+    margin-top: 5px;
+    font-size: 22px;
 
     @include breakpoint(lg) {
       margin: 0px 0px 15px 0px;
@@ -2952,29 +2955,26 @@ button:focus, button:hover {
   }
 
   &_producer-place-image {
-
-    @include breakpoint(lg) {
-      height: 14px;
-      width: 9px;
-      margin-right: 8px;
-      margin-bottom: 3px;
-    }
+    height: 13px;
+    width: 9px;
+    margin-right: 8px;
+    margin-bottom: 3px;
   }
 
   &_producer-place-name {
     font-family: $primary-font;
     color: $primary-text;
     font-weight: 500;
-
-    @include breakpoint(lg) {
-      font-size: 14px;
-      letter-spacing: 0.9px;
-    }
+    font-size: 14px;
+    letter-spacing: 0.9px;
   }
 
   &_producer-description {
     font-family: $primary-font;
     color: $light-grey-text;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 22px;
 
     @include breakpoint(lg) {
       margin-top: 20px;
@@ -2986,8 +2986,14 @@ button:focus, button:hover {
   &_producer-detail-holder {
     @include breakpoint(lg) {
       background-color: $lightest-grey;;
-      padding-bottom: 50px;
+      padding-bottom: 20px;
       border-top: 1px solid $lightest-grey-border;
+    }
+  }
+
+  &_producer-wines-container {
+    @include breakpoint(xl) {
+      width: 1200px;
     }
   }
 
@@ -3001,14 +3007,20 @@ button:focus, button:hover {
     }
   }
 
+  &_producer-image-box {
+    display: flex;
+  }
+
   &_producer-wines-images {
     display: flex;
+    flex-flow: column;
   }
 
   &_producer-wines-outer {
     background-color: $white;
     border: 1px solid $lightest-grey-border;
     border-radius: 4px;
+    overflow: hidden;
 
     @include breakpoint(lg) {
       margin-right: 20px;
@@ -3025,19 +3037,76 @@ button:focus, button:hover {
     font-size: 12px;
     line-height: 22px;
     text-align: center;
-    display: inline-block;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
 
     @include breakpoint(lg) {
       font-size: 16px;
-      border-radius: 3px;
+      border-radius: 3px 0px 3px 0px;
       height: 40px;
       width: 40px;
     }
   }
 
+  &_producer-vintage-image {
+
+    width: 50px;
+    height: 98px;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    align-self: flex-end;
+
+    @include breakpoint(lg) {
+      width: 140px;
+      height: 200px;
+      margin: 20px 30px 0px 30px;
+    }
+  }
+
+  &_producer-wine{
+
+    @include breakpoint(lg) {
+      width: 80px;
+    }
+  }
+
+  &_producer-wines-price {
+    font-family: $primary-font;
+    font-weight: 500;
+    color: $primary-text;
+
+    @include breakpoint(lg) {
+      max-width: 200px;
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 1.67;
+    }
+  }
+
+  &_producer-wines-vintage {
+    font-family: $primary-font;
+    font-weight: 300;
+    color: $light-grey-text;
+
+    @include breakpoint(lg) {
+      max-width: 200px;
+      font-size: 18px;
+      line-height: 1.67;
+    }
+  }
+
+  &_producer-details-container {
+    background-color: $white;
+
+    @include breakpoint(lg) {
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid $lightest-grey-border;
+    }
+  }
 }
 
 
