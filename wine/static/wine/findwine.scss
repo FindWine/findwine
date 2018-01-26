@@ -30,8 +30,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham SSm A', 'Gotham SSm B';
-//$primary-font: 'Gotham SSm A', sans-serif;
+//$primary-font: 'Gotham SSm A', 'Gotham SSm B';
+$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
 
@@ -2933,7 +2933,6 @@ button:focus, button:hover {
   }
 
   &_producer-content {
-    padding: 15px 15px 0px 15px;
 
     @include breakpoint(lg) {
       padding: 60px 0px;
@@ -2943,15 +2942,21 @@ button:focus, button:hover {
   &_producer-vintage {
     margin-top: 5px;
     font-size: 22px;
+    padding: 15px 15px 0px 15px;
 
     @include breakpoint(lg) {
       margin: 0px 0px 15px 0px;
+      padding: 0px;
     }
   }
 
   &_producer-place {
+    padding: 0px 15px;
     display: flex;
     align-items: center;
+    @include breakpoint(lg) {
+      padding: 0px;
+    }
   }
 
   &_producer-place-image {
@@ -2972,14 +2977,17 @@ button:focus, button:hover {
   &_producer-description {
     font-family: $primary-font;
     color: $light-grey-text;
-    margin-top: 20px;
     font-size: 14px;
     line-height: 22px;
+    padding: 20px 15px 15px 15px;
+    height: 90px;
+    overflow: hidden;
 
     @include breakpoint(lg) {
       margin-top: 20px;
       font-size: 16px;
       line-height: 28px;
+      padding: 0px;
     }
   }
 
@@ -2999,6 +3007,7 @@ button:focus, button:hover {
 
   &_producer-top-wines {
     background-color: $white;
+    margin-top: 20px;
 
     @include breakpoint(lg) {
       border: 1px solid $lightest-grey-border;
@@ -3007,13 +3016,42 @@ button:focus, button:hover {
     }
   }
 
+  &_producer-header--2 {
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.9px;
+    margin: 0px 15px 13px 15px;
+    color: $primary-text;
+
+    @include breakpoint(lg) {
+      margin: 0px 0px 20px 0px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1.1px;
+    }
+  }
+
   &_producer-image-box {
+    width: 900px;
+    padding-left: 30px;
+    align-content: flex-start;
     display: flex;
+
+    @include breakpoint(lg) {
+      width: auto;
+      padding-left: 0px;
+    }
   }
 
   &_producer-wines-images {
+    margin-right: 10px;
     display: flex;
     flex-flow: column;
+
+    @include breakpoint(lg){
+      margin: 0px;
+    }
   }
 
   &_producer-wines-outer {
@@ -3021,6 +3059,9 @@ button:focus, button:hover {
     border: 1px solid $lightest-grey-border;
     border-radius: 4px;
     overflow: hidden;
+    display: flex;
+    height: 139px;
+    width: 127px;
 
     @include breakpoint(lg) {
       margin-right: 20px;
@@ -3032,7 +3073,7 @@ button:focus, button:hover {
   &_producer-rating--box {
     height: 22px;
     width: 25px;
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 3px 0px 3px 0px;
     color: $white;
     font-size: 12px;
     line-height: 22px;
@@ -3044,22 +3085,21 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       font-size: 16px;
-      border-radius: 3px 0px 3px 0px;
       height: 40px;
       width: 40px;
     }
   }
 
   &_producer-vintage-image {
-
-    width: 50px;
-    height: 98px;
-    display: inline-block;
-    text-align: center;
-    overflow: hidden;
+    width: 70px;
+    height: 130px;
+    margin: auto;
     align-self: flex-end;
 
     @include breakpoint(lg) {
+      display: inline-block;
+      text-align: center;
+      overflow: hidden;
       width: 140px;
       height: 200px;
       margin: 20px 30px 0px 30px;
@@ -3074,9 +3114,13 @@ button:focus, button:hover {
   }
 
   &_producer-wines-price {
+    max-width: 127px;
     font-family: $primary-font;
     font-weight: 500;
     color: $primary-text;
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 18px;
 
     @include breakpoint(lg) {
       max-width: 200px;
@@ -3090,6 +3134,9 @@ button:focus, button:hover {
     font-family: $primary-font;
     font-weight: 300;
     color: $light-grey-text;
+    max-width: 127px;
+    font-size: 14px;
+    line-height: 18px;
 
     @include breakpoint(lg) {
       max-width: 200px;
@@ -3105,6 +3152,23 @@ button:focus, button:hover {
       padding: 30px;
       margin-bottom: 30px;
       border: 1px solid $lightest-grey-border;
+    }
+  }
+
+  &_producer-tasting-holder {
+    padding: 20px 15px;
+    text-align: center;
+  }
+
+  &_producer-tasting-svg {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 15px;
+
+    @include breakpoint(lg) {
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 0px;
     }
   }
 }

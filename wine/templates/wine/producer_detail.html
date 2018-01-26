@@ -103,19 +103,17 @@
       <div class="findwine_producer-place-name">{% if producer.appellation_primary %}{{ producer.appellation_primary.name }}, {% endif %}{{ producer.get_country_display }}</div>
     </div>
     {% if producer.description %}
-    <div class="findwine_producer-description" id="detail">
-      <div class="findwine_producer-description"> {{ producer.description }} </div>
-    </div>
-		<div class="findwine_detail-expand hidden-lg-up">
-			<button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
-				Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
-			</button>
-		</div>
+    <!--<div class="findwine_producer-description" id="detail">-->
+      <!--{{ producer.description }}-->
+    <!--</div>-->
+		<!--<div class="findwine_detail-expand hidden-lg-up">-->
+			<!--<button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">-->
+				<!--Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">-->
+			<!--</button>-->
+		<!--</div>-->
     {% endif %}
     <!--PLACEHOLDER REMOVE BEFORE DEPLOYING!!!-->
-    <div class="findwine_producer-description">
-      <div class="findwine_producer-description"> Blog kinfolk mlkshk wolf VHS. Vape waistcoat banh mi brooklyn adaptogen, chia yr cold-pressed pinterest swag raw denim lyft tote bag leggings pop-up. Unicorn truffaut vice hoodie ugh lo-fi. Four dollar toast craft beer poutine, small batch prism post-ironic fanny pack dreamcatcher helvetica kitsch keytar hoodie twee. Pour-over actually vape banjo. </div>
-    </div>
+      <div class="findwine_producer-description" id="detail"> Blog kinfolk mlkshk wolf VHS. Vape waistcoat banh mi brooklyn adaptogen, chia yr cold-pressed pinterest swag raw denim lyft tote bag leggings pop-up. Unicorn truffaut vice hoodie ugh lo-fi. Four dollar toast craft beer poutine, small batch prism post-ironic fanny pack dreamcatcher helvetica kitsch keytar hoodie twee. Pour-over actually vape banjo. </div>
 		<div class="findwine_detail-expand hidden-lg-up">
 			<button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
 				Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
@@ -131,7 +129,7 @@
 		<!--Carousel - mobile-->
 		<!--Grid with top wines - expand - desktop-->
 		<div class="findwine_producer-top-wines">
-			<h5 class="findwine_detail-header--2">Top wines</h5>
+			<h5 class="findwine_producer-header--2">Top wines</h5>
 			<div class="findwine_producer-image-box">
 				{% if producer.get_top_wines.exists %}
 				{% for wine in producer.get_top_wines %}
@@ -172,14 +170,16 @@
 				<div class="findwine_producer-details-left">
 					<!-- Wine tasting -->
 					<div class="findwine_producer-details-container">
-						<img src="{% static 'wine/images/SVGs/cheers.svg' %}" class="findwine_newsletter-svg">
-						<h5 class="findwine_detail-header--2">Tastings</h5>
-						<p>Minimum price {% if producer.tasting_price %}{{ producer.tasting_currency }} {% endif %}{{ producer.tasting_price }}</p>
+						<div class="findwine_producer-tasting-holder">
+							<img src="{% static 'wine/images/SVGs/cheers.svg' %}" class="findwine_producer-tasting-svg">
+							<h5 class="findwine_producer-header--2">Tastings</h5>
+							<div class="findwine_producer-wines-vintage">Minimum price {% if producer.tasting_price %}{{ producer.tasting_currency }} {% endif %}{{ producer.tasting_price }}</div>
+						</div>
 					</div>
 					<!-- Operating hours -->
 					<div class="findwine_detail-heading hidden-lg-up"></div>
 					<div class="findwine_producer-details-container">
-						<h5 class="findwine_detail-header--2">Hours</h5>
+						<h5 class="findwine_producer-header--2">Hours</h5>
 						<table class="table table-responsive table-sm">
 							<tbody>
 							<tr>
@@ -221,7 +221,7 @@
 					<div class="findwine_detail-heading hidden-lg-up"></div>
 					<!-- Location -->
 					<div class="findwine_producer-details-container">
-						<h5 class="findwine_detail-header--2">Location</h5>
+						<h5 class="findwine_producer-header--2">Location</h5>
 						<table class="table table-responsive table-sm">
 							<tbody>
 							<tr>
@@ -235,11 +235,17 @@
 							</tr>
 							{% endif %}
 							<tr>
-								<td>Google: </td>
 								<td><a class="text-primary" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank"> View on Google Maps</a></td>
 							</tr>
 							</tbody>
 						</table>
+						<div class="findwine_detail-expand">
+							<button class="btn findwine_detail-expand-button" type="button">
+								<a href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank">
+									Get directions
+								</a>
+							</button>
+						</div>
 					</div>
 				</div>
 				<div class="findwine_detail-heading hidden-lg-up">
@@ -248,7 +254,7 @@
 				<div class="findwine_producer-details-right">
 					<!-- Contact details -->
 					<div class="findwine_producer-details-container">
-						<h5 class="findwine_detail-header--2">Contact details</h5>
+						<h5 class="findwine_producer-header--2">Contact details</h5>
 						<table class="table table-responsive table-sm">
 							<tbody>
 							<tr>
