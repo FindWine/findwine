@@ -1998,7 +1998,8 @@ button:focus, button:hover {
   color: #86929a;
   font-size: 14px;
   line-height: 22px;
-  padding: 20px 15px 15px 15px;
+  padding: 20px 15px 0px 15px;
+  margin-bottom: 15px;
   height: 90px;
   overflow: hidden; }
   @media (min-width: 992px) {
@@ -2028,7 +2029,7 @@ button:focus, button:hover {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.9px;
-  margin: 0px 15px 13px 15px;
+  margin: 0px 15px 13px 0px;
   color: #333e48; }
   @media (min-width: 992px) {
     .findwine_producer-header--2 {
@@ -2143,7 +2144,8 @@ button:focus, button:hover {
     display: flex;
     justify-content: space-between; } }
 .findwine_producer-details-container {
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  padding: 20px; }
   @media (min-width: 992px) {
     .findwine_producer-details-container {
       padding: 30px;
@@ -2152,8 +2154,15 @@ button:focus, button:hover {
       max-width: 380px;
       width: 100%;
       height: fit-content; } }
+  .findwine_producer-details-container-center {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    @media (min-width: 992px) {
+      .findwine_producer-details-container-center {
+        display: block; } }
 .findwine_producer-tasting-holder {
-  padding: 20px 15px;
+  padding: 15px;
   text-align: center; }
   @media (min-width: 992px) {
     .findwine_producer-tasting-holder {
@@ -2161,13 +2170,11 @@ button:focus, button:hover {
       text-align: left; } }
 .findwine_producer-tasting-svg {
   width: 58px;
-  height: 58px;
-  margin-bottom: 15px; }
+  height: 58px; }
   @media (min-width: 992px) {
     .findwine_producer-tasting-svg {
       float: left;
-      margin-right: 20px;
-      margin-bottom: 0px; } }
+      margin-right: 20px; } }
 .findwine_producer-details-content {
   font-family: "Gotham SSm A", sans-serif;
   font-weight: 300;
@@ -2178,22 +2185,27 @@ button:focus, button:hover {
     .findwine_producer-details-content {
       font-size: 16px;
       line-height: 1.67; } }
+  .findwine_producer-details-content-pb {
+    padding-bottom: 20px; }
+    @media (min-width: 992px) {
+      .findwine_producer-details-content-pb {
+        padding-bottom: 30px; } }
+.findwine_producer-button {
+  margin: 0px -15px -17px -15px; }
   @media (min-width: 992px) {
-    .findwine_producer-details-content-pb {
-      padding-bottom: 30px; } }
-@media (min-width: 992px) {
-  .findwine_producer-button {
-    margin: 0px -30px -17px -30px; } }
+    .findwine_producer-button {
+      margin: 0px -30px -17px -30px; } }
 .findwine_producer-content-left {
   font-family: "Gotham SSm A", sans-serif;
   font-weight: 300;
   color: #86929a;
   font-size: 14px;
-  line-height: 18px; }
+  line-height: 18px;
+  display: inline-block;
+  text-align: left;
+  margin-bottom: 15px; }
   @media (min-width: 992px) {
     .findwine_producer-content-left {
-      display: inline-block;
-      text-align: left;
       font-size: 16px;
       line-height: 1.67;
       margin-bottom: 10px; } }
@@ -2206,12 +2218,12 @@ button:focus, button:hover {
   font-weight: 500;
   color: #86929a;
   font-size: 14px;
-  line-height: 18px; }
+  line-height: 18px;
+  display: inline-block;
+  text-align: right;
+  float: right; }
   @media (min-width: 992px) {
     .findwine_producer-content-right {
-      display: inline-block;
-      text-align: right;
-      float: right;
       font-size: 16px;
       line-height: 1.67; } }
 

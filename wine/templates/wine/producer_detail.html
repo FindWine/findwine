@@ -179,7 +179,7 @@
     <div class="findwine_details-specs">
       <div class="findwine_producer-details">
         <div class="findwine_producer-details-holder">
-          <div class="findwine_producer-details-container">
+          <div class="findwine_producer-details-container findwine_producer-details-container-center">
             <!-- Wine tasting -->
             <img src="{% static 'wine/images/SVGs/cheers.svg' %}" class="findwine_producer-tasting-svg">
             <div class="findwine_producer-tasting-holder">
@@ -204,7 +204,6 @@
             </div>
           </div>
         </div>
-        <div class="findwine_detail-heading hidden-lg-up">
         </div>
         <!-- Operating hours -->
         <div class="findwine_detail-heading hidden-lg-up"></div>
@@ -284,13 +283,13 @@
         <!-- Location MOBILE -->
         <div class="findwine_producer-details-container hidden-lg-up">
           <h5 class="findwine_producer-header--2">Location</h5>
-          <div class="findwine_producer-content">
+          <div class="findwine_producer-content findwine_producer-details-content-pb">
             {{ producer.address }}
           </div>
-          <div class="findwine_detail-expand">
+          <div class="findwine_detail-expand findwine_producer-button">
             <button class="btn findwine_detail-expand-button" type="button">
-              <a href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank">
-                Get directions
+              <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank">
+                Get Directions
               </a>
             </button>
           </div>
