@@ -439,7 +439,8 @@ class MerchantWine(models.Model):
         Constructs a URL, incorporating any affiliate logic, if necessary
         """
         if self.merchant.affiliate_params:
-            return '{}?{}'.format(self.url, parse.urlencode(self.merchant.affiliate_params))
+            sep = '?' if '?' not in self.url else '&'
+            return '{}{}{}'.format(self.url, sep, parse.urlencode(self.merchant.affiliate_params))
         else:
             return self.url
 
