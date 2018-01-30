@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from urllib import parse
 from django.core.exceptions import ValidationError
 
 from django.db import models
@@ -432,6 +433,15 @@ class MerchantWine(models.Model):
     @property
     def rounded_price(self):
         return int(self.price) if self.price is not None else ''
+
+    def get_url(self):
+        """
+        Constructs a URL, incorporating any affiliate logic, if necessary
+        """
+        if self.merchant.affiliate_params:
+            return '{}?{}'.format(self.url, parse.urlencode(self.merchant.affiliate_params))
+        else:
+            return self.url
 
     def __str__(self):
         return str(self.wine_vintage) + ' - ' + str(self.merchant)
