@@ -191,7 +191,7 @@
               <div class="findwine_vintage-price"> {{ merchantwine.rounded_price }}</div>
             </div>
             <a class="btn findwine_buy-button buy-link" data-merchant="{{ merchantwine.merchant.name }}"
-               data-wine-vintage="{{ winevintage.long_name }}" href={{ merchantwine.get_url }} target="_blank"
+               data-wine-vintage="{{ winevintage.long_name }}" href="{{ merchantwine.get_url }}" target="_blank"
                role="button"> BUY</a>
           </div>
         </li>
@@ -224,7 +224,7 @@
             <div class="findwine_merchant-currency"> R</div>
             <div class="findwine_merchant-price"> {{ merchantwine.rounded_price }}</div>
           </div>
-          <a class="btn findwine_buy-button" href={{ merchantwine.url }} target="_blank" role="button"> BUY</a>
+          <a class="btn findwine_buy-button" href="{{ merchantwine.get_url }}" target="_blank" role="button"> BUY</a>
         </div>
       </li>
       {% endfor %}
