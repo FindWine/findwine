@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from urllib import parse
 from django.core.exceptions import ValidationError
 
 from django.db import models
 from django.db.models import Avg
 from geoposition.fields import GeopositionField
+from jsonfield import JSONField
 from wine.const import get_all_country_wine_choices, get_all_merchant_country_choices, \
     get_all_currency_choices, SOUTH_AFRICA_CODE, SOUTH_AFRICAN_RAND_CODE
 from wine.geoposition import geoposition_to_dms_string
@@ -370,6 +372,7 @@ class Merchant(models.Model):
     delivery_threshold = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     logo = models.ImageField(upload_to='images/merchant_logos/', null=True, blank=True, max_length=500)
     url = models.URLField(null=True, blank=True, max_length=256)
+    affiliate_params = JSONField(default={})
 
     def __str__(self):
         return self.name + ' ' + self.country
@@ -430,6 +433,15 @@ class MerchantWine(models.Model):
     @property
     def rounded_price(self):
         return int(self.price) if self.price is not None else ''
+
+    def get_url(self):
+        """
+        Constructs a URL, incorporating any affiliate logic, if necessary
+        """
+        if self.merchant.affiliate_params:
+            return '{}?{}'.format(self.url, parse.urlencode(self.merchant.affiliate_params))
+        else:
+            return self.url
 
     def __str__(self):
         return str(self.wine_vintage) + ' - ' + str(self.merchant)
