@@ -1,10 +1,11 @@
 from django.db.models import Min, Avg
 from rest_framework import viewsets
 from api.serializers import WineVintageSerializer
+from api.util import coerce_to_decimal
 from wine.models import WineVintage, MerchantWine, Round
 
 
-MAX_PRICE = 9999999
+MAX_PRICE = '9999999'
 
 
 class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
@@ -14,8 +15,10 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         category = self.request.GET.get('category', 'Red')
         sub_category = self.request.GET.get('sub_category')
-        min_price = self.request.GET.get('min_price', None) or 0
-        max_price = self.request.GET.get('max_price', None) or MAX_PRICE
+        min_price = coerce_to_decimal(self.request.GET.get('min_price', None)) or '0'
+        max_price = coerce_to_decimal(self.request.GET.get('max_price', None)) or MAX_PRICE
+
+
         sort_by = self.request.GET.get('sort_by', None)
 
         if sort_by is None:
