@@ -231,6 +231,10 @@ class WineVintage(models.Model):
         return WineAward.objects.filter(wine_vintage=self).aggregate(
             avg_rating=Avg('award__tier__normalised_rating'))
 
+    def get_price(self):
+        prices = self.merchantwine_set.filter(available=True).order_by('price').values_list('price', flat=True)
+        return prices[0] if prices else None
+
     @property
     def rating_display(self):
         """Aggregate normalised rating from the wine awards."""
