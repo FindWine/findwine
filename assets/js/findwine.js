@@ -11,6 +11,9 @@ const queryString = require('query-string');
 // todo: figure out how to django-ize these
 const WINE_API_URL = '/api/wine-vintages/';
 
+const DEFAULT_MAX_PRICE = 150;
+const MAX_PRICE = 2000;
+
 class CategoryOption extends React.Component {
     // adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
     handleMouseDown (event) {
@@ -250,11 +253,11 @@ class SearchControls extends React.Component {
 
   getSlider() {
     const minPriceInt = parseInt(this.props.minPrice) || 0;
-    const maxPriceInt = parseInt(this.props.maxPrice) || 1000;
+    const maxPriceInt = parseInt(this.props.maxPrice) || DEFAULT_MAX_PRICE;
     return (
       <Range
-        defaultValue={[0,1000]}
-        max={1000}
+        defaultValue={[0,DEFAULT_MAX_PRICE]}
+        max={MAX_PRICE}
         value={[minPriceInt, maxPriceInt]}
         allowCross={false}
         onChange={(value) => {
@@ -618,7 +621,7 @@ class SearchPage extends React.Component {
             selectedCategory: category,
             selectedSubcategory: '',
             minPrice: 0,
-            maxPrice: 1000,
+            maxPrice: DEFAULT_MAX_PRICE,
             selectedSort: getSortChoices()[0][1],
             // results / pagination
             wines: [],
