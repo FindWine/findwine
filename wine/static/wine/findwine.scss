@@ -2909,6 +2909,7 @@ button:focus, button:hover {
   &_producer-banner {
     height: 130px;
     width: 100%;
+    overflow: hidden;
 
     @include breakpoint(md) {
       height: 250px;
@@ -2919,15 +2920,14 @@ button:focus, button:hover {
     }
 
     &-image {
-      height: 130px;
       width: 100%;
 
       @include breakpoint(md) {
-        height: 250px;
+
       }
 
       @include breakpoint(lg) {
-        height: 350px;
+        margin-top: -130px;
       }
     }
   }
@@ -2940,59 +2940,75 @@ button:focus, button:hover {
   }
 
   &_producer-vintage {
+    margin-top: 5px;
+    font-size: 22px;
+    padding: 15px 15px 0px 15px;
 
     @include breakpoint(lg) {
       margin: 0px 0px 15px 0px;
+      padding: 0px;
     }
   }
 
   &_producer-place {
+    padding: 0px 15px;
     display: flex;
     align-items: center;
+    @include breakpoint(lg) {
+      padding: 0px;
+    }
   }
 
   &_producer-place-image {
-
-    @include breakpoint(lg) {
-      height: 14px;
-      width: 9px;
-      margin-right: 8px;
-      margin-bottom: 3px;
-    }
+    height: 13px;
+    width: 9px;
+    margin-right: 8px;
+    margin-bottom: 3px;
   }
 
   &_producer-place-name {
     font-family: $primary-font;
     color: $primary-text;
     font-weight: 500;
-
-    @include breakpoint(lg) {
-      font-size: 14px;
-      letter-spacing: 0.9px;
-    }
+    font-size: 14px;
+    letter-spacing: 0.9px;
   }
 
   &_producer-description {
     font-family: $primary-font;
     color: $light-grey-text;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 20px 15px 0px 15px;
+    margin-bottom: 15px;
+    height: 90px;
+    overflow: hidden;
 
     @include breakpoint(lg) {
       margin-top: 20px;
       font-size: 16px;
       line-height: 28px;
+      padding: 0px;
     }
   }
 
   &_producer-detail-holder {
     @include breakpoint(lg) {
       background-color: $lightest-grey;;
-      padding-bottom: 50px;
+      padding-bottom: 20px;
       border-top: 1px solid $lightest-grey-border;
+    }
+  }
+
+  &_producer-wines-container {
+    @include breakpoint(xl) {
+      width: 1200px;
     }
   }
 
   &_producer-top-wines {
     background-color: $white;
+    margin-top: 20px;
 
     @include breakpoint(lg) {
       border: 1px solid $lightest-grey-border;
@@ -3001,14 +3017,68 @@ button:focus, button:hover {
     }
   }
 
-  &_producer-wines-images {
+  &_producer-header--2 {
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.9px;
+    margin: 0px 15px 13px 0px;
+    color: $primary-text;
+
+    @include breakpoint(lg) {
+      margin: 0px 0px 20px 0px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1.1px;
+    }
+  }
+
+  &_producer-header {
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.9px;
+    margin: 0px 15px 13px 15px;
+    color: $primary-text;
+
+    @include breakpoint(lg) {
+      margin: 0px 0px 10px 0px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1.1px;
+    }
+  }
+
+  &_producer-image-box {
+    width: 900px;
+    padding-left: 30px;
+    align-content: flex-start;
     display: flex;
+
+    @include breakpoint(lg) {
+      width: auto;
+      padding-left: 0px;
+    }
+  }
+
+  &_producer-wines-images {
+    margin-right: 10px;
+    display: flex;
+    flex-flow: column;
+
+    @include breakpoint(lg){
+      margin: 0px;
+    }
   }
 
   &_producer-wines-outer {
     background-color: $white;
     border: 1px solid $lightest-grey-border;
     border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    height: 139px;
+    width: 127px;
 
     @include breakpoint(lg) {
       margin-right: 20px;
@@ -3020,24 +3090,199 @@ button:focus, button:hover {
   &_producer-rating--box {
     height: 22px;
     width: 25px;
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 3px 0px 3px 0px;
     color: $white;
     font-size: 12px;
     line-height: 22px;
     text-align: center;
-    display: inline-block;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
 
     @include breakpoint(lg) {
       font-size: 16px;
-      border-radius: 3px;
       height: 40px;
       width: 40px;
     }
   }
 
+  &_producer-vintage-image {
+    width: 70px;
+    height: 130px;
+    margin: auto;
+    align-self: flex-end;
+
+    @include breakpoint(lg) {
+      display: inline-block;
+      text-align: center;
+      overflow: hidden;
+      width: 140px;
+      height: 200px;
+      margin: 20px 30px 0px 30px;
+    }
+  }
+
+  &_producer-wine{
+
+    @include breakpoint(lg) {
+      width: 80px;
+    }
+  }
+
+  &_producer-wines-price {
+    max-width: 127px;
+    font-family: $primary-font;
+    font-weight: 500;
+    color: $primary-text;
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 18px;
+
+    @include breakpoint(lg) {
+      max-width: 200px;
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 1.67;
+    }
+  }
+
+  &_producer-wines-vintage {
+    font-family: $primary-font;
+    font-weight: 300;
+    color: $light-grey-text;
+    max-width: 127px;
+    font-size: 14px;
+    line-height: 18px;
+
+    @include breakpoint(lg) {
+      max-width: 200px;
+      font-size: 18px;
+      line-height: 1.67;
+    }
+  }
+
+  &_producer-details {
+
+    @include breakpoint(lg) {
+      //width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &_producer-details-container {
+    background-color: $white;
+    padding: 20px;
+
+    @include breakpoint(lg) {
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid $lightest-grey-border;
+      max-width: 380px;
+      width: 100%;
+      height: fit-content;
+    }
+
+    &-center {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      @include breakpoint(lg) {
+        display: block;
+      }
+    }
+  }
+
+  &_producer-tasting-holder {
+    padding: 15px;
+    text-align: center;
+
+    @include breakpoint(lg) {
+      padding: 0px;
+      text-align: left;
+    }
+  }
+
+  &_producer-tasting-svg {
+    width: 58px;
+    height: 58px;
+
+    @include breakpoint(lg) {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+
+  &_producer-details-content {
+    font-family: $primary-font;
+    font-weight: 300;
+    color: $light-grey-text;
+    font-size: 14px;
+    line-height: 18px;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+      line-height: 1.67;
+    }
+
+    &-pb {
+      padding-bottom: 20px;
+
+      @include breakpoint(lg) {
+        padding-bottom: 30px;
+      }
+    }
+  }
+
+  &_producer-button {
+
+    margin: 0px -15px -17px -15px;
+
+    @include breakpoint(lg) {
+      margin: 0px -30px -17px -30px;
+    }
+  }
+
+  &_producer-content-left {
+    font-family: $primary-font;
+    font-weight: 300;
+    color: $light-grey-text;
+    font-size: 14px;
+    line-height: 18px;
+    display: inline-block;
+    text-align: left;
+    margin-bottom: 15px;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+      line-height: 1.67;
+      margin-bottom: 10px;
+    }
+
+    &-bold {
+      font-weight: 500;
+      margin-bottom: 0px;
+      margin-top: 10px;
+    }
+  }
+
+  &_producer-content-right {
+    font-family: $primary-font;
+    font-weight: 500;
+    color: $light-grey-text;
+    font-size: 14px;
+    line-height: 18px;
+    display: inline-block;
+    text-align: right;
+    float: right;
+
+    @include breakpoint(lg) {
+      font-size: 16px;
+      line-height: 1.67;
+    }
+  }
 }
 
 
