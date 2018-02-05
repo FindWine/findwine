@@ -141,7 +141,7 @@
     <!--Carousel - mobile-->
     <!--Grid with top wines - expand - desktop-->
     <div class="findwine_producer-top-wines">
-      <h5 class="findwine_producer-header--2">Top wines</h5>
+      <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
       <div class="findwine_producer-image-box">
         {% if producer.get_top_wines.exists %}
         {% for wine in producer.get_top_wines %}
@@ -159,7 +159,6 @@
             </div>
           </div>
           <div class="findwine_producer-wines-price">
-            <!--Replace with dynamic data-->
             R {{ wine.get_price }}
           </div>
           <div class="findwine_producer-wines-vintage">
@@ -285,7 +284,7 @@
         <!-- Location MOBILE -->
         <div class="findwine_producer-details-container hidden-lg-up">
           <h5 class="findwine_producer-header--2">Location</h5>
-          <div class="findwine_producer-content findwine_producer-details-content-pb">
+          <div class="findwine_producer-details-content findwine_producer-details-content-pb">
             {{ producer.address }}
           </div>
           <div class="findwine_detail-expand findwine_producer-button">
