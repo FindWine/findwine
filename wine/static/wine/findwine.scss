@@ -3202,7 +3202,9 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       padding: 0px;
       text-align: left;
+      display: flex;
     }
+
   }
 
   &_producer-tasting-svg {
@@ -3245,6 +3247,13 @@ button:focus, button:hover {
     }
   }
 
+  &_producer-content-outer {
+
+    @include breakpoint(lg) {
+      display: flex;
+    }
+  }
+
   &_producer-content-left {
     font-family: $primary-font;
     font-weight: 300;
@@ -3259,12 +3268,14 @@ button:focus, button:hover {
       font-size: 16px;
       line-height: 1.67;
       margin-bottom: 10px;
+      width: 30%;
     }
 
     &-bold {
       font-weight: 500;
       margin-bottom: 0px;
       margin-top: 10px;
+      width: 100%;
     }
   }
 
@@ -3280,10 +3291,12 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       font-size: 16px;
-      line-height: 1.67;
+      line-height: 1.67;width: 70%;
+      margin-bottom: 10px;
     }
   }
 }
+
 
 
 

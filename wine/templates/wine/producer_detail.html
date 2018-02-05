@@ -110,27 +110,27 @@
       </div>
     </div>
     {% if producer.description %}
-    <!--<div class="findwine_producer-description" id="detail">-->
-    <!--{{ producer.description }}-->
-    <!--</div>-->
-    <!--<div class="findwine_detail-expand hidden-lg-up">-->
-    <!--<button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">-->
-    <!--Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">-->
-    <!--</button>-->
-    <!--</div>-->
-    {% endif %}
-    <!--PLACEHOLDER REMOVE BEFORE DEPLOYING!!!-->
-    <div class="findwine_producer-description" id="detail"> Blog kinfolk mlkshk wolf VHS. Vape waistcoat banh mi
-      brooklyn adaptogen, chia yr cold-pressed pinterest swag raw denim lyft tote bag leggings pop-up. Unicorn
-      truffaut vice hoodie ugh lo-fi. Four dollar toast craft beer poutine, small batch prism post-ironic fanny
-      pack dreamcatcher helvetica kitsch keytar hoodie twee. Pour-over actually vape banjo.
+    <div class="findwine_producer-description" id="detail">
+    {{ producer.description }}
     </div>
     <div class="findwine_detail-expand hidden-lg-up">
-      <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
-        Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}"
-                       class="findwine_detail-more-arrow">
-      </button>
+    <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
+    Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+    </button>
     </div>
+    {% endif %}
+    <!--PLACEHOLDER REMOVE BEFORE DEPLOYING!!!-->
+    <!--<div class="findwine_producer-description" id="detail"> Blog kinfolk mlkshk wolf VHS. Vape waistcoat banh mi-->
+      <!--brooklyn adaptogen, chia yr cold-pressed pinterest swag raw denim lyft tote bag leggings pop-up. Unicorn-->
+      <!--truffaut vice hoodie ugh lo-fi. Four dollar toast craft beer poutine, small batch prism post-ironic fanny-->
+      <!--pack dreamcatcher helvetica kitsch keytar hoodie twee. Pour-over actually vape banjo.-->
+    <!--</div>-->
+    <!--<div class="findwine_detail-expand hidden-lg-up">-->
+      <!--<button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">-->
+        <!--Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}"-->
+                       <!--class="findwine_detail-more-arrow">-->
+      <!--</button>-->
+    <!--</div>-->
     <!--END PLACEHOLDER-->
   </div>
 </div>
@@ -181,11 +181,13 @@
         <div class="findwine_producer-details-holder">
           <div class="findwine_producer-details-container findwine_producer-details-container-center">
             <!-- Wine tasting -->
-            <img src="{% static 'wine/images/SVGs/cheers.svg' %}" class="findwine_producer-tasting-svg">
             <div class="findwine_producer-tasting-holder">
-              <h5 class="findwine_producer-header">Tastings</h5>
-              <div class="findwine_producer-details-content">
-                Minimum price {% if producer.tasting_price %} <strong> {{ producer.tasting_currency }} {{ producer.tasting_price }} </strong> {% endif %}
+              <img src="{% static 'wine/images/SVGs/cheers.svg' %}" class="findwine_producer-tasting-svg">
+              <div>
+                <h5 class="findwine_producer-header">Tastings</h5>
+                <div class="findwine_producer-details-content">
+                  {% if producer.tasting_price %} Minimum price <strong> {{ producer.tasting_currency }} {{ producer.tasting_price }} </strong> {% endif %}
+                </div>
               </div>
             </div>
           </div>
@@ -325,7 +327,7 @@
             </div>
             <div class="findwine_producer-content-right">
               <a class="nav-link-home" href={{ producer.url }} target="_blank">
-                {{ producer.url }}
+                {{ producer.name }}
               </a>
             </div>
           </div>
