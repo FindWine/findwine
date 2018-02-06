@@ -159,7 +159,7 @@
             </div>
           </div>
           <div class="findwine_producer-wines-price">
-            R {{ wine.get_price }}
+            R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
           </div>
           <div class="findwine_producer-wines-vintage">
             {{ wine }}
