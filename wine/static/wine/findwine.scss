@@ -2951,9 +2951,10 @@ button:focus, button:hover {
   }
 
   &_producer-place {
-    padding: 0px 15px;
+    padding: 0px 15px 20px 15px;
     display: flex;
     align-items: center;
+
     @include breakpoint(lg) {
       padding: 0px;
     }
@@ -2979,7 +2980,7 @@ button:focus, button:hover {
     color: $light-grey-text;
     font-size: 14px;
     line-height: 22px;
-    padding: 20px 15px 0px 15px;
+    padding: 0px 15px 0px 15px;
     margin-bottom: 15px;
     height: 90px;
     overflow: hidden;
@@ -3031,6 +3032,14 @@ button:focus, button:hover {
       font-weight: 500;
       letter-spacing: 1.1px;
     }
+
+    &-mobile {
+      padding-left: 15px;
+
+      @include breakpoint(lg) {
+        padding-left: 0px;
+      }
+    }
   }
 
   &_producer-header {
@@ -3050,14 +3059,13 @@ button:focus, button:hover {
   }
 
   &_producer-image-box {
-    width: 900px;
-    padding-left: 30px;
+    width: auto;
+    padding: 0px 0px 20px 30px;
     align-content: flex-start;
     display: flex;
 
     @include breakpoint(lg) {
-      width: auto;
-      padding-left: 0px;
+      padding: 0px;
     }
   }
 
@@ -3196,22 +3204,25 @@ button:focus, button:hover {
   }
 
   &_producer-tasting-holder {
-    padding: 15px;
+    padding: 0px;
     text-align: center;
 
     @include breakpoint(lg) {
-      padding: 0px;
       text-align: left;
+      display: flex;
     }
+
   }
 
   &_producer-tasting-svg {
     width: 58px;
     height: 58px;
+    margin-bottom: 15px;
 
     @include breakpoint(lg) {
       float: left;
       margin-right: 20px;
+      margin-bottom: 0px;
     }
   }
 
@@ -3237,12 +3248,15 @@ button:focus, button:hover {
   }
 
   &_producer-button {
-
     margin: 0px -15px -17px -15px;
 
     @include breakpoint(lg) {
       margin: 0px -30px -17px -30px;
     }
+  }
+
+  &_producer-content-outer {
+    display: flex;
   }
 
   &_producer-content-left {
@@ -3254,17 +3268,20 @@ button:focus, button:hover {
     display: inline-block;
     text-align: left;
     margin-bottom: 15px;
+    width: 40%;
 
     @include breakpoint(lg) {
       font-size: 16px;
       line-height: 1.67;
       margin-bottom: 10px;
+      width: 30%;
     }
 
     &-bold {
       font-weight: 500;
       margin-bottom: 0px;
       margin-top: 10px;
+      width: 100%;
     }
   }
 
@@ -3277,13 +3294,19 @@ button:focus, button:hover {
     display: inline-block;
     text-align: right;
     float: right;
+    width: 60%;
+    margin-bottom: 15px;
 
     @include breakpoint(lg) {
       font-size: 16px;
       line-height: 1.67;
+      width: 70%;
+      margin-bottom: 10px;
     }
   }
+
 }
+
 
 
 
