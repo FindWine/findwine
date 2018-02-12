@@ -3002,6 +3002,8 @@ button:focus, button:hover {
   }
 
   &_producer-wines-container {
+    overflow: hidden;
+
     @include breakpoint(xl) {
       width: 1200px;
     }
@@ -3059,14 +3061,19 @@ button:focus, button:hover {
   }
 
   &_producer-image-box {
-    width: auto;
+    width: 100%;
     padding: 0px 0px 20px 30px;
-    align-content: flex-start;
-    display: flex;
+    overflow: hidden;
 
     @include breakpoint(lg) {
       padding: 0px;
     }
+  }
+
+  &_producer-images-holder {
+    width: auto;
+    display: flex;
+    align-content: flex-start;
   }
 
   &_producer-wines-images {

@@ -2013,9 +2013,11 @@ button:focus, button:hover {
     background-color: #f4f5f4;
     padding-bottom: 20px;
     border-top: 1px solid #dbe0e4; } }
-@media (min-width: 1280px) {
-  .findwine_producer-wines-container {
-    width: 1200px; } }
+.findwine_producer-wines-container {
+  overflow: hidden; }
+  @media (min-width: 1280px) {
+    .findwine_producer-wines-container {
+      width: 1200px; } }
 .findwine_producer-top-wines {
   background-color: #ffffff;
   margin-top: 20px; }
@@ -2056,13 +2058,16 @@ button:focus, button:hover {
       font-weight: 500;
       letter-spacing: 1.1px; } }
 .findwine_producer-image-box {
-  width: auto;
+  width: 100%;
   padding: 0px 0px 20px 30px;
-  align-content: flex-start;
-  display: flex; }
+  overflow: hidden; }
   @media (min-width: 992px) {
     .findwine_producer-image-box {
       padding: 0px; } }
+.findwine_producer-images-holder {
+  width: auto;
+  display: flex;
+  align-content: flex-start; }
 .findwine_producer-wines-images {
   margin-right: 10px;
   display: flex;
