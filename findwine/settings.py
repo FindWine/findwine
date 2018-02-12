@@ -196,9 +196,9 @@ except ImportError:
 
 SITE = {
     'NAME': 'FindWine',
-    'SUBTITLE': 'We make buying great wine easy',
-    'DESCRIPTION': 'Search hundreds of award-winning wines using our smart ratings and online price comparison.',
-    'KEYWORDS': 'findwine, find wine, wine, purchase wine, south african wine, wine reviews',
+    'SUBTITLE': 'Discover wine online in South Africa',
+    'DESCRIPTION': 'Search and buy hundreds of award-winning wines at your budget.',
+    'KEYWORDS': 'findwine, find wine, wine, purchase wine, south african wine, wine reviews, buy wine online',
     'URL': SITE_URL,
     'IMAGE': 'wine/images/logo/logo-standard@3x.png',
     'GOOGLE_ANALYTICS_ID': GOOGLE_ANALYTICS_TRACKING_ID,
