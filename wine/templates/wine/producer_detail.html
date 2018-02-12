@@ -1,6 +1,10 @@
 {% extends 'wine/base.html' %}
 {% load static %}
-
+{% block page_head %}
+    <!-- Hammer JS swipe library CDN - will add library if we are happy with the functionality-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+    <script src="/scripts/tap-gesture.js"></script>
+{% endblock %}
 {% block content %}
 
 <!-- Nav -->
@@ -89,16 +93,13 @@
 <!--Banner image-->
 <div class="findwine_producer-banner">
   {% if producer.image %}
-  <img src="{{ producer.image.url }}" alt="{{ producer.name }}" class="img-fluid rounded">
+  <img src="{{ producer.image.url }}" alt="{{ producer.name }}" class="findwine_producer-banner-image">
   {% else %}
   <img src="{% static 'wine/images/background/producer.jpg' %}" class="findwine_producer-banner-image">
   {% endif %}
 </div>
 
 <!--Producer description-->
-<!--name-->
-<!--pin location-->
-<!--description-->
 <div class="container">
   <div class="findwine_producer-content">
     <h4 class="findwine_producer-vintage">
@@ -111,12 +112,12 @@
     </div>
     {% if producer.description %}
     <div class="findwine_producer-description" id="detail">
-    {{ producer.description }}
+      {{ producer.description }}
     </div>
     <div class="findwine_detail-expand hidden-lg-up">
-    <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
-    Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
-    </button>
+      <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
+        Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+      </button>
     </div>
     {% endif %}
   </div>
@@ -126,10 +127,45 @@
 <div class="findwine_producer-detail-holder">
   <div class="container findwine_producer-wines-container">
     <!--Carousel - mobile-->
-    <!--Grid with top wines - expand - desktop-->
-    <div class="findwine_producer-top-wines">
+    <div class="findwine_producer-top-wines hidden-lg-up">
       <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
       <div class="findwine_producer-image-box">
+        <div class="findwine_producer-images-holder" id="swipe">
+          {% if producer.get_top_wines.exists %}
+          {% for wine in producer.get_top_wines %}
+          <div class="findwine_producer-wines-images">
+            <div class="findwine_producer-wines-outer">
+              <!--Box colour to be updated dynamically-->
+              <div class="findwine_producer-rating--box findwine_rating-box-gold">
+                {{ wine.avg_rating }}
+              </div>
+              <div class="findwine_producer-vintage-image">
+                {% if wine.image_pack_shot %}
+                <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
+                     class="img-fluid rounded findwine_producer-wine">
+                {% endif %}
+              </div>
+            </div>
+            <div class="findwine_producer-wines-price">
+              R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
+            </div>
+            <div class="findwine_producer-wines-vintage">
+              {{ wine }}
+            </div>
+          </div>
+          {% endfor %}
+          {% else %}
+        </div>
+        <p style="margin-left:20px">No wines available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!--Grid with top wines - expand - desktop-->
+  <div class="findwine_producer-top-wines hidden-md-down">
+    <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
+    <div class="findwine_producer-image-box">
+      <div class="findwine_producer-images-holder">
         {% if producer.get_top_wines.exists %}
         {% for wine in producer.get_top_wines %}
         <div class="findwine_producer-wines-images">
@@ -154,174 +190,175 @@
         </div>
         {% endfor %}
         {% else %}
-        <p style="margin-left:20px">No wines available.</p>
-        {% endif %}
       </div>
-    </div>
-    <div class="findwine_detail-heading hidden-lg-up"></div>
-    <!--Farm details-->
-    <!--Mobile: Tastings, Hours, Location, Contact details-->
-    <!--Desktop: Tastings, Location; Hours; Contact details-->
-    <div class="findwine_details-specs">
-      <div class="findwine_producer-details">
-        <div class="findwine_producer-details-holder">
-          <div class="findwine_producer-details-container findwine_producer-details-container-center">
-            <!-- Wine tasting -->
-            <div class="findwine_producer-tasting-holder">
-              <img src="{% static 'wine/images/SVGs/cheers.svg' %}" class="findwine_producer-tasting-svg">
-              <div>
-                <h5 class="findwine_producer-header">Tastings</h5>
-                <div class="findwine_producer-details-content">
-                  {% if producer.tasting_price %} Minimum price <strong> {{ producer.tasting_currency }} {{ producer.tasting_price }} </strong> {% endif %}
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Location DESKTOP -->
-          <div class="findwine_producer-details-container hidden-md-down">
-            <h5 class="findwine_producer-header--2">Location</h5>
-            <div class="findwine_producer-details-content findwine_producer-details-content-pb">
-              {{ producer.address }}
-            </div>
-            <div class="findwine_detail-expand findwine_producer-button">
-              <button class="btn findwine_detail-expand-button" type="button">
-                <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank">
-                  Get Directions
-                </a>
-              </button>
-            </div>
-          </div>
-        </div>
-        </div>
-        <!-- Operating hours -->
-        <div class="findwine_detail-heading hidden-lg-up"></div>
-        <div class="findwine_producer-details-container">
-          <h5 class="findwine_producer-header--2">Hours</h5>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Monday
-            </div>
-            <div class="findwine_producer-content-right">
-              {{ producer.opening_hours_mon }}
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Tuesday
-            </div>
-            <div class="findwine_producer-content-right">
-              {{ producer.opening_hours_tue }}
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Wednesday
-            </div>
-            <div class="findwine_producer-content-right">
-              {{ producer.opening_hours_wed }}
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Thursday
-            </div>
-            <div class="findwine_producer-content-right">
-              {{ producer.opening_hours_thu }}
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Friday
-            </div>
-            <div class="findwine_producer-content-right">
-              {{ producer.opening_hours_fri }}
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Saturday
-            </div>
-            <div class="findwine_producer-content-right">
-              {{ producer.opening_hours_sat }}
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Sunday
-            </div>
-            <div class="findwine_producer-content-right">
-              {{ producer.opening_hours_sun }}
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Holidays
-            </div>
-            <div class="findwine_producer-content-right">
-              {{ producer.opening_hours_holidays }}
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left findwine_producer-content-left-bold">
-              *Closed on {{ producer.closed_days }}
-            </div>
-          </div>
-        </div>
-        <div class="findwine_detail-heading hidden-lg-up"></div>
-        <!-- Location MOBILE -->
-        <div class="findwine_producer-details-container hidden-lg-up">
-          <h5 class="findwine_producer-header--2">Location</h5>
-          <div class="findwine_producer-details-content findwine_producer-details-content-pb">
-            {{ producer.address }}
-          </div>
-          <div class="findwine_detail-expand findwine_producer-button">
-            <button class="btn findwine_detail-expand-button" type="button">
-              <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank">
-                Get Directions
-              </a>
-            </button>
-          </div>
-        </div>
-        <div class="findwine_detail-heading hidden-lg-up">
-        </div>
-        <!-- Contact details -->
-        <div class="findwine_producer-details-container">
-          <h5 class="findwine_producer-header--2">Contact details</h5>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Phone
-            </div>
-            <div class="findwine_producer-content-right">
-              <a class="nav-link-home" href="tel:{{ producer.telephone_tasting }}" target="_self">
-                {{ producer.telephone_tasting }}
-              </a>
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Email
-            </div>
-            <div class="findwine_producer-content-right">
-              <a class="nav-link-home" href="mailto:{{ producer.email_tasting }}" target="_self">
-                {{ producer.email_tasting }}
-              </a>
-            </div>
-          </div>
-          <div class="findwine_producer-content-outer">
-            <div class="findwine_producer-content-left">
-              Website
-            </div>
-            <div class="findwine_producer-content-right">
-              <a class="nav-link-home" href={{ producer.url }} target="_blank">
-                {{ producer.name }}
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="findwine_detail-heading hidden-lg-up"></div>
+      <p style="margin-left:20px">No wines available.</p>
+      {% endif %}
     </div>
   </div>
+</div>
+<div class="findwine_detail-heading hidden-lg-up"></div>
+<!--Farm details-->
+<!--Mobile: Tastings, Hours, Location, Contact details-->
+<!--Desktop: Tastings, Location; Hours; Contact details-->
+<div class="findwine_details-specs">
+  <div class="findwine_producer-details">
+    <div class="findwine_producer-details-holder">
+      <div class="findwine_producer-details-container findwine_producer-details-container-center">
+        <!-- Wine tasting -->
+        <div class="findwine_producer-tasting-holder">
+          <img src="{% static 'wine/images/SVGs/cheers.svg' %}" class="findwine_producer-tasting-svg">
+          <div>
+            <h5 class="findwine_producer-header">Tastings</h5>
+            <div class="findwine_producer-details-content">
+              {% if producer.tasting_price %} Minimum price <strong> {{ producer.tasting_currency }} {{ producer.tasting_price }} </strong> {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Location DESKTOP -->
+      <div class="findwine_producer-details-container hidden-md-down">
+        <h5 class="findwine_producer-header--2">Location</h5>
+        <div class="findwine_producer-details-content findwine_producer-details-content-pb">
+          {{ producer.address }}
+        </div>
+        <div class="findwine_detail-expand findwine_producer-button">
+          <button class="btn findwine_detail-expand-button" type="button">
+            <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}"
+               target="_blank">
+              Get Directions
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Operating hours -->
+  <div class="findwine_detail-heading hidden-lg-up"></div>
+  <div class="findwine_producer-details-container">
+    <h5 class="findwine_producer-header--2">Hours</h5>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Monday
+      </div>
+      <div class="findwine_producer-content-right">
+        {{ producer.opening_hours_mon }}
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Tuesday
+      </div>
+      <div class="findwine_producer-content-right">
+        {{ producer.opening_hours_tue }}
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Wednesday
+      </div>
+      <div class="findwine_producer-content-right">
+        {{ producer.opening_hours_wed }}
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Thursday
+      </div>
+      <div class="findwine_producer-content-right">
+        {{ producer.opening_hours_thu }}
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Friday
+      </div>
+      <div class="findwine_producer-content-right">
+        {{ producer.opening_hours_fri }}
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Saturday
+      </div>
+      <div class="findwine_producer-content-right">
+        {{ producer.opening_hours_sat }}
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Sunday
+      </div>
+      <div class="findwine_producer-content-right">
+        {{ producer.opening_hours_sun }}
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Holidays
+      </div>
+      <div class="findwine_producer-content-right">
+        {{ producer.opening_hours_holidays }}
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left findwine_producer-content-left-bold">
+        *Closed on {{ producer.closed_days }}
+      </div>
+    </div>
+  </div>
+  <div class="findwine_detail-heading hidden-lg-up"></div>
+  <!-- Location MOBILE -->
+  <div class="findwine_producer-details-container hidden-lg-up">
+    <h5 class="findwine_producer-header--2">Location</h5>
+    <div class="findwine_producer-details-content findwine_producer-details-content-pb">
+      {{ producer.address }}
+    </div>
+    <div class="findwine_detail-expand findwine_producer-button">
+      <button class="btn findwine_detail-expand-button" type="button">
+        <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank">
+          Get Directions
+        </a>
+      </button>
+    </div>
+  </div>
+  <div class="findwine_detail-heading hidden-lg-up">
+  </div>
+  <!-- Contact details -->
+  <div class="findwine_producer-details-container">
+    <h5 class="findwine_producer-header--2">Contact details</h5>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Phone
+      </div>
+      <div class="findwine_producer-content-right">
+        <a class="nav-link-home" href="tel:{{ producer.telephone_tasting }}" target="_self">
+          {{ producer.telephone_tasting }}
+        </a>
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Email
+      </div>
+      <div class="findwine_producer-content-right">
+        <a class="nav-link-home" href="mailto:{{ producer.email_tasting }}" target="_self">
+          {{ producer.email_tasting }}
+        </a>
+      </div>
+    </div>
+    <div class="findwine_producer-content-outer">
+      <div class="findwine_producer-content-left">
+        Website
+      </div>
+      <div class="findwine_producer-content-right">
+        <a class="nav-link-home" href={{ producer.url }} target="_blank">
+          {{ producer.name }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="findwine_detail-heading hidden-lg-up"></div>
 </div>
 
 {% endblock %}
@@ -350,6 +387,57 @@
       detailContent.style.height = "43px";
     }
 
+  }
+
+  //  Mobile swipe
+
+  var gallery = document.querySelector('#swipe');
+  var slideCount = gallery.childElementCount;
+  var activeSlide = 0;
+
+  var sliderManager = new Hammer.Manager(gallery);
+
+  sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
+  sliderManager.on('pan', function (e) {
+    var percentage = 100 / slideCount * e.deltaX / window.innerWidth;
+    var transformPercentage = percentage - 100 / slideCount * activeSlide;
+    gallery.style.transform = 'translateX( ' + transformPercentage + '% )';
+    if (e.isFinal) {
+      if (percentage < 0)
+        goToSlide(activeSlide + 1);
+      else if (percentage > 0)
+        goToSlide(activeSlide - 1);
+      else
+        goToSlide(activeSlide);
+    }
+  });
+
+  var goToSlide = function (number) {
+    if (number < 0)
+      activeSlide = 0;
+    else if (number > slideCount - 1)
+      activeSlide = slideCount - 1
+    else
+      activeSlide = number;
+
+    var percentage = -(100 / slideCount) * activeSlide;
+    gallery.style.transform = 'translateX(' + percentage + '%)';
+  };
+
+  if(e.isFinal) {
+    if (e.velocityX > 1) {
+      slider.goTo(slider.activeSlide - 1);
+    } else if (e.velocityX < -1) {
+      slider.goTo(slider.activeSlide + 1)
+    } else {
+      if (percentage <= -(slider.sensitivity / slider.slideCount)) {
+        slider.goTo(slider.activeSlide + 1);
+      } else if (percentage >= (slider.sensitivity / slider.slideCount)) {
+        slider.goTo(slider.activeSlide - 1);
+      } else {
+        slider.goTo(slider.activeSlide );
+      }
+    }
   }
 
 </script>
