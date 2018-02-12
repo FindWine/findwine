@@ -1,6 +1,10 @@
 {% extends 'wine/base.html' %}
 {% load static %}
-
+{% block page_head %}
+    <!-- Hammer JS swipe library CDN - will add library if we are happy with the functionality-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+    <script src="/scripts/tap-gesture.js"></script>
+{% endblock %}
 {% block content %}
 
 <!-- Nav -->
@@ -206,8 +210,7 @@
           <div>
             <h5 class="findwine_producer-header">Tastings</h5>
             <div class="findwine_producer-details-content">
-              {% if producer.tasting_price %} Minimum price <strong> {{ producer.tasting_currency }} {{
-              producer.tasting_price }} </strong> {% endif %}
+              {% if producer.tasting_price %} Minimum price <strong> {{ producer.tasting_currency }} {{ producer.tasting_price }} </strong> {% endif %}
             </div>
           </div>
         </div>
