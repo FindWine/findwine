@@ -445,7 +445,6 @@
   let gallery = document.querySelector('#swipe');
   let slideCount = gallery.childElementCount;
   let activeSlide = 0;
-
   let sliderManager = new Hammer.Manager(gallery);
 
   sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
