@@ -164,8 +164,8 @@
   <!--Grid with top wines - expand - desktop-->
   <div class="findwine_producer-top-wines hidden-md-down">
     <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
-    <div class="findwine_producer-image-box">
-      <div class="findwine_producer-images-holder">
+    <div class="findwine_producer-image-box" id="topWine">
+      <div class="findwine_producer-images-holder" id="topWineCounter">
         {% if producer.get_top_wines.exists %}
         {% for wine in producer.get_top_wines %}
         <div class="findwine_producer-wines-images">
@@ -195,6 +195,11 @@
       {% endif %}
     </div>
   </div>
+</div>
+<div class="findwine_detail-expand findwine_detail-expand-topwines hidden-md-down" id="topWineButtonBar">
+  <button class="btn findwine_detail-expand-button" type="button" id="topWineButton" onclick="moreWine()">
+    View All Wines <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+  </button>
 </div>
 <div class="findwine_detail-heading hidden-lg-up"></div>
 <!--Farm details-->
@@ -392,18 +397,61 @@
 
   }
 
+  let topWineCounter = document.getElementById('topWineCounter');
+  let topWineCount = topWineCounter.childElementCount;
+  let image = document.getElementsByClassName('findwine_producer-wines-images');
+
+  let showImages = $('.findwine_producer-wines-images:nth-of-type(1n+6)')
+
+  window.onload = function showMoreButton () {
+
+    let topWineButtonBar = document.getElementById('topWineButtonBar');
+
+    if (topWineCount <= 5){
+      topWineButtonBar.style.display = "none";
+    }
+
+    if (topWineCount > 5){
+      $(showImages).addClass('findwine_producer-wines-images-hide')
+    }
+
+  };
+
+  function moreWine() {
+
+    let topWine = document.getElementById('topWine');
+    let topWineButton = document.getElementById('topWineButton');
+
+    console.log(image)
+
+    if (topWine.style.height !== "auto") {
+      topWine.style.height = "auto";
+      topWineButton.innerHTML = "View less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+      if (topWineCount > 5 ) {
+        $(showImages).removeClass('findwine_producer-wines-images-hide')
+      }
+    } else {
+      topWine.style.height = "330px";
+      topWineButton.innerHTML = "View all wines <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+      if (topWineCount > 5 ) {
+        $(showImages).addClass('findwine_producer-wines-images-hide')
+      }
+    }
+
+  }
+
   //  Mobile swipe
 
-  var gallery = document.querySelector('#swipe');
-  var slideCount = gallery.childElementCount;
-  var activeSlide = 0;
+  let gallery = document.querySelector('#swipe');
+  let slideCount = gallery.childElementCount;
+  let activeSlide = 0;
 
-  var sliderManager = new Hammer.Manager(gallery);
+  let sliderManager = new Hammer.Manager(gallery);
 
   sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
   sliderManager.on('pan', function (e) {
-    var percentage = 100 / slideCount * e.deltaX / window.innerWidth;
-    var transformPercentage = percentage - 100 / slideCount * activeSlide;
+    let percentage = 100 / slideCount * e.deltaX / window.innerWidth;
+    let transformPercentage = percentage - 100 / slideCount * activeSlide;
     gallery.style.transform = 'translateX( ' + transformPercentage + '% )';
     if (e.isFinal) {
       if (percentage < 0)
@@ -415,7 +463,7 @@
     }
   });
 
-  var goToSlide = function (number) {
+  let goToSlide = function (number) {
     if (number < 0)
       activeSlide = 0;
     else if (number > slideCount - 1)
@@ -423,7 +471,7 @@
     else
       activeSlide = number;
 
-    var percentage = -(100 / slideCount) * activeSlide;
+    let percentage = -(100 / slideCount) * activeSlide;
     gallery.style.transform = 'translateX(' + percentage + '%)';
   };
 

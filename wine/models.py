@@ -80,8 +80,10 @@ class Producer(models.Model):
             self.slug = generate_unique_producer_slug(self)
         super(Producer, self).save(*args, **kwargs)
 
-    def get_top_wines(self, limit=5):
-        return WineVintage.with_rating().filter(wine__producer=self).order_by('-avg_rating')[:limit]
+    def get_top_wines(self):
+        return WineVintage.with_rating().filter(
+        wine__producer=self
+        ).order_by('-avg_rating')
 
 
 class Wine(models.Model):
