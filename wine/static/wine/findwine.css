@@ -2174,8 +2174,9 @@ button:focus, button:hover {
       margin-bottom: 30px;
       border: 1px solid #dbe0e4;
       max-width: 380px;
-      width: 100%;
-      height: fit-content; } }
+      height: fit-content; }
+      .findwine_producer-details-container-width {
+        width: 32%; } }
   .findwine_producer-details-container-center {
     display: flex;
     align-items: center;

@@ -29,7 +29,9 @@ $bronze: #b5664a;
 
 // Fonts
 
+// TOP is for PRODUCTION
 $primary-font: 'Gotham SSm A', 'Gotham SSm B';
+//$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
 
@@ -3197,9 +3199,11 @@ button:focus, button:hover {
   &_producer-details {
 
     @include breakpoint(lg) {
-      //width: 100%;
       display: flex;
       justify-content: space-between;
+
+      &-holder {
+      }
     }
   }
 
@@ -3212,8 +3216,11 @@ button:focus, button:hover {
       margin-bottom: 30px;
       border: 1px solid $lightest-grey-border;
       max-width: 380px;
-      width: 100%;
       height: fit-content;
+
+      &-width {
+        width: 32%;
+      }
     }
 
     &-center {

@@ -83,6 +83,7 @@ class Producer(models.Model):
     def get_top_wines(self):
         return WineVintage.with_rating().filter(
         wine__producer=self
+
         ).order_by('-avg_rating')
 
 
