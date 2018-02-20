@@ -2069,8 +2069,7 @@ button:focus, button:hover {
   overflow: hidden; }
   @media (min-width: 992px) {
     .findwine_producer-image-box {
-      padding: 0px;
-      height: 330px; } }
+      padding: 0px; } }
 .findwine_producer-images-holder {
   width: auto;
   display: flex;

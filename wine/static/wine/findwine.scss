@@ -29,9 +29,7 @@ $bronze: #b5664a;
 
 // Fonts
 
-// TOP is for PRODUCTION
 $primary-font: 'Gotham SSm A', 'Gotham SSm B';
-//$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
 
@@ -3075,7 +3073,7 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       padding: 0px;
-      height: 330px;
+      //height: 330px;
     }
   }
 
