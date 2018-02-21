@@ -378,8 +378,8 @@
 
   function expandDetail() {
 
-    let detail = document.getElementById('detail');
-    let detailButton = document.getElementById('detailButton');
+    var detail = document.getElementById('detail');
+    var detailButton = document.getElementById('detailButton');
 
     if (detail.style.height !== "auto") {
       detail.style.height = "auto";
@@ -399,22 +399,22 @@
 
   }
 
-  let topWineCounter = document.getElementById('topWineCounter');
-  let topWineCount = topWineCounter.childElementCount;
-  let image = document.getElementsByClassName('findwine_producer-wines-images');
+  var topWineCounter = document.getElementById('topWineCounter');
+  var topWineCount = topWineCounter.childElementCount;
+  var image = document.getElementsByClassName('findwine_producer-wines-images');
 
-  let showImages = $('.findwine_producer-wines-images:nth-of-type(1n+6)');
+  var showImages = $('.findwine_producer-wines-images:nth-of-type(1n+6)');
 
   // Find highest height and use to set height for all images
-  let highestHeight = Math.max.apply(null, $(image).map(function () {
+  var highestHeight = Math.max.apply(null, $(image).map(function () {
     return $(this).height();
   }).get());
 
-  let panelHeight = highestHeight + 30 + 'px';
+  var panelHeight = highestHeight + 30 + 'px';
 
   window.onload = function showMoreButton() {
 
-    let topWineButtonBar = document.getElementById('topWineButtonBar');
+    var topWineButtonBar = document.getElementById('topWineButtonBar');
 
     if (topWineCount <= 5){
       topWineButtonBar.style.display = "none";
@@ -429,8 +429,8 @@
   // Display max 5 wines on load with option to expand holder if more than 5 wines
   function moreWine() {
 
-    let topWine = document.getElementById('topWine');
-    let topWineButton = document.getElementById('topWineButton');
+    var topWine = document.getElementById('topWine');
+    var topWineButton = document.getElementById('topWineButton');
 
     // Expand function - use highest height
     if (topWine.style.height !== "auto") {
@@ -451,15 +451,15 @@
 
   //  Mobile swipe
 
-  let gallery = document.querySelector('#swipe');
-  let slideCount = gallery.childElementCount;
-  let activeSlide = 0;
-  let sliderManager = new Hammer.Manager(gallery);
+  var gallery = document.querySelector('#swipe');
+  var slideCount = gallery.childElementCount;
+  var activeSlide = 0;
+  var sliderManager = new Hammer.Manager(gallery);
 
   sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
   sliderManager.on('pan', function (e) {
-    let percentage = 100 / slideCount * e.deltaX / window.innerWidth;
-    let transformPercentage = percentage - 100 / slideCount * activeSlide;
+    var percentage = 100 / slideCount * e.deltaX / window.innerWidth;
+    var transformPercentage = percentage - 100 / slideCount * activeSlide;
     gallery.style.transform = 'translateX( ' + transformPercentage + '% )';
     if (e.isFinal) {
       if (percentage < 0)
@@ -471,7 +471,7 @@
     }
   });
 
-  let goToSlide = function (number) {
+  var goToSlide = function (number) {
     if (number < 0)
       activeSlide = 0;
     else if (number > slideCount - 1)
@@ -479,7 +479,7 @@
     else
       activeSlide = number;
 
-    let percentage = -(100 / slideCount) * activeSlide;
+    var percentage = -(100 / slideCount) * activeSlide;
     gallery.style.transform = 'translateX(' + percentage + '%)';
   };
 
