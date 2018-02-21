@@ -3336,6 +3336,12 @@ button:focus, button:hover {
     }
   }
 
+  &_producer-email {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 }
 
 
