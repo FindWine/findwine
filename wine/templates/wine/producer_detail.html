@@ -114,7 +114,7 @@
     <div class="findwine_producer-description" id="detail">
       {{ producer.description }}
     </div>
-    <div class="findwine_detail-expand hidden-lg-up">
+    <div class="findwine_detail-expand id="detailBar">
       <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
         Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
       </button>
@@ -377,27 +377,34 @@
 {% block page_scripts %}
 <script>
 
-  function expandDetail() {
+  // Show Read More button if text is more than 4 lines
+  var detail = document.getElementById('detail');
+  var detailButton = document.getElementById('detailButton');
+  var detailBar = document.getElementById('detailBar');
+  var detailHeight = $(detail).height();
 
-    var detail = document.getElementById('detail');
-    var detailButton = document.getElementById('detailButton');
+  if ($(window).width() > 992 && detailHeight > 113) {
+    detail.style.height = "113px";
+  } else if ($(window).width() < 992 && detailHeight > 90){
+    detail.style.height = "90px";
+  } else {
+    detail.style.height = "auto";
+    detailBar.style.display = "none";
+  }
+
+  function expandDetail() {
 
     if (detail.style.height !== "auto") {
       detail.style.height = "auto";
-      detailButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+      detailButton.innerHTML = "Show Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
     } else {
-      detail.style.height = "113px";
-      detailButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+      detailButton.innerHTML = "Read More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+      if ($(window).width() > 992 ) {
+        detail.style.height = "113px";
+      } else {
+        detail.style.height = "90px";
+      }
     }
-
-    let detailContent = document.getElementById('detailContent');
-
-    if (detailContent.style.height !== "auto") {
-      detailContent.style.height = "auto";
-    } else {
-      detailContent.style.height = "43px";
-    }
-
   }
 
   var topWineCounter = document.getElementById('topWineCounter');
