@@ -78,6 +78,8 @@ body {
 
 .nav-link-home {
   color: #00ad68 !important; }
+  .nav-link-home:hover {
+    color: #0a9761 !important; }
 
 .nav-item-new {
   z-index: 1000;
@@ -2160,7 +2162,12 @@ button:focus, button:hover {
     .findwine_producer-wines-vintage {
       max-width: 200px;
       font-size: 18px;
-      line-height: 1.67; } }
+      line-height: 1.67;
+      cursor: pointer; } }
+.findwine_producer-link a {
+  color: #86929a; }
+  .findwine_producer-link a:hover {
+    color: #0a9761; }
 @media (min-width: 992px) {
   .findwine_producer-details {
     display: flex;

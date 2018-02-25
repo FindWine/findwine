@@ -184,8 +184,9 @@
           <div class="findwine_producer-wines-price">
             R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
           </div>
-          <div class="findwine_producer-wines-vintage">
-            {{ wine }}
+          <div class="findwine_producer-wines-vintage findwine_producer-link">
+            <!-- INCLUDE updated href -->
+            <a href="" target="_self"> {{ wine }} </a>
           </div>
         </div>
         {% endfor %}

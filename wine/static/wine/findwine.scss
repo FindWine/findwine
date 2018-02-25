@@ -181,6 +181,10 @@ body {
 
 .nav-link-home {
   color: $primary-green !important;
+
+  &:hover {
+    color: $hover-green !important;
+  }
 }
 
 .nav-item-new {
@@ -3193,6 +3197,16 @@ button:focus, button:hover {
       max-width: 200px;
       font-size: 18px;
       line-height: 1.67;
+      cursor: pointer;
+    }
+  }
+
+  &_producer-link {
+    a {
+      color: $light-grey-text;
+      &:hover{
+        color: $hover-green;
+      }
     }
   }
 
