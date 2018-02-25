@@ -4,6 +4,7 @@
     <!-- Hammer JS swipe library CDN - will add library if we are happy with the functionality-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
     <script src="/scripts/tap-gesture.js"></script>
+
 {% endblock %}
 {% block content %}
 
@@ -156,7 +157,7 @@
           {% endfor %}
           {% else %}
         </div>
-        <p style="margin-left:20px">No wines available.</p>
+        <h5 class="findwine_producer-header">No wines available.</h5>
         {% endif %}
       </div>
     </div>
@@ -377,20 +378,53 @@
 {% block page_scripts %}
 <script>
 
-  // Show Read More button if text is more than 4 lines
   var detail = document.getElementById('detail');
   var detailButton = document.getElementById('detailButton');
   var detailBar = document.getElementById('detailBar');
   var detailHeight = $(detail).height();
 
-  if ($(window).width() > 992 && detailHeight > 113) {
-    detail.style.height = "113px";
-  } else if ($(window).width() < 992 && detailHeight > 90){
-    detail.style.height = "90px";
-  } else {
-    detail.style.height = "auto";
-    detailBar.style.display = "none";
+  var topWineButtonBar = document.getElementById('topWineButtonBar');
+  var topWineCounter = document.getElementById('topWineCounter');
+  var topWineCount = topWineCounter.childElementCount;
+  var image = document.getElementsByClassName('findwine_producer-wines-images');
+  var showImages = $('.findwine_producer-wines-images:nth-of-type(1n+6)');
+
+  function showWineButton() {
+    // Show View all Wines button if more than 5 wines
+    if (topWineCount <= 5){
+      topWineButtonBar.style.display = "none";
+    } else if (topWineCount > 5){
+      $(showImages).addClass('findwine_producer-wines-images-hide')
+    }
   }
+
+  function readMoreButton() {
+    // Show Read More button if text is more than 4 lines
+    if ($(window).width() > 992 && detailHeight > 113) {
+      detail.style.height = "113px";
+    } else if ($(window).width() < 992 && detailHeight > 90){
+      detail.style.height = "90px";
+    } else {
+      detail.style.height = "auto";
+      detailBar.style.display = "none";
+    }
+  }
+
+  function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+      window.onload = func;
+    } else {
+      window.onload = function() {
+        if (oldonload) {
+          oldonload();
+        }
+        func();
+      }
+    }
+  }
+  addLoadEvent(showWineButton);
+  addLoadEvent(readMoreButton);
 
   function expandDetail() {
 
@@ -407,32 +441,12 @@
     }
   }
 
-  var topWineCounter = document.getElementById('topWineCounter');
-  var topWineCount = topWineCounter.childElementCount;
-  var image = document.getElementsByClassName('findwine_producer-wines-images');
-
-  var showImages = $('.findwine_producer-wines-images:nth-of-type(1n+6)');
-
   // Find highest height and use to set height for all images
   var highestHeight = Math.max.apply(null, $(image).map(function () {
     return $(this).height();
   }).get());
 
   var panelHeight = highestHeight + 30 + 'px';
-
-  window.onload = function showMoreButton() {
-
-    var topWineButtonBar = document.getElementById('topWineButtonBar');
-
-    if (topWineCount <= 5){
-      topWineButtonBar.style.display = "none";
-    }
-
-    if (topWineCount > 5){
-      $(showImages).addClass('findwine_producer-wines-images-hide')
-    }
-
-  };
 
   // Display max 5 wines on load with option to expand holder if more than 5 wines
   function moreWine() {
