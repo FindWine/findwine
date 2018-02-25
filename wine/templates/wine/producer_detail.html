@@ -215,7 +215,7 @@
           <div>
             <h5 class="findwine_producer-header">Tastings</h5>
             <div class="findwine_producer-details-content">
-              {% if producer.tasting_price %} Minimum price <strong> R&nbsp;{{ producer.tasting_price }} </strong>
+              {% if producer.tasting_price %} Minimum price <strong> R{{ producer.tasting_price }} </strong>
               {% else %}
               Contact for pricing
               {% endif %}
@@ -360,9 +360,9 @@
       <div class="findwine_producer-content-left">
         Website
       </div>
-      <div class="findwine_producer-content-right">
+      <div class="findwine_producer-content-right findwine_producer-email">
         <a class="nav-link-home" href={{ producer.url }} target="_blank">
-          Open website
+          {{ producer.url }}
         </a>
       </div>
     </div>

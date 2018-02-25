@@ -2261,8 +2261,6 @@ button:focus, button:hover {
       width: 70%;
       margin-bottom: 10px; } }
 .findwine_producer-email {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  word-wrap: break-word; }
 
 /*# sourceMappingURL=findwine.css.map */
