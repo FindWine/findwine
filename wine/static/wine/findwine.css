@@ -1024,6 +1024,10 @@ button:focus, button:hover {
     border: 1px solid #dbe0e4;
     border-top: none;
     height: 74px; }
+    @media (min-width: 992px) {
+      .findwine_detail-expand-topwines {
+        margin-top: 0px;
+        padding: 0px; } }
 .findwine_detail-expand-button {
   color: #00ad68;
   font-family: "Gotham SSm A", "Gotham SSm B";

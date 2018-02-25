@@ -114,7 +114,7 @@
     <div class="findwine_producer-description" id="detail">
       {{ producer.description }}
     </div>
-    <div class="findwine_detail-expand id="detailBar">
+    <div class="findwine_detail-expand" id="detailBar">
       <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
         Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
       </button>
@@ -192,7 +192,7 @@
         {% endfor %}
         {% else %}
       </div>
-      <p style="margin-left:20px">No wines available.</p>
+      <h5 class="findwine_producer-header">No wines available.</h5>
       {% endif %}
     </div>
   </div>

@@ -35,6 +35,7 @@ $primary-font: 'Gotham SSm A', 'Gotham SSm B';
 
 // Mixins
 
+
 @mixin breakpoint($class) {
   @if $class == xs {
     @media (max-width: 575px) {
@@ -1587,6 +1588,11 @@ button:focus, button:hover {
       border: 1px solid $lightest-grey-border;
       border-top: none;
       height: 74px;
+
+      @include breakpoint(lg) {
+        margin-top: 0px;
+        padding: 0px;
+      }
     }
   }
 
