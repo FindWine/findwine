@@ -135,24 +135,26 @@
           {% if producer.get_top_wines.exists %}
           {% for wine in producer.get_top_wines %}
           <div class="findwine_producer-wines-images">
-            <div class="findwine_producer-wines-outer">
-              <!--Box colour to be updated dynamically-->
-              <div class="findwine_producer-rating--box findwine_rating-box-gold">
-                {{ wine.avg_rating }}
+            <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self">
+              <div class="findwine_producer-wines-outer">
+                <!--Box colour to be updated dynamically-->
+                <div class="findwine_producer-rating--box findwine_rating-box-gold">
+                  {{ wine.avg_rating }}
+                </div>
+                <div class="findwine_producer-vintage-image">
+                  {% if wine.image_pack_shot %}
+                  <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
+                       class="img-fluid rounded findwine_producer-wine">
+                  {% endif %}
+                </div>
               </div>
-              <div class="findwine_producer-vintage-image">
-                {% if wine.image_pack_shot %}
-                <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
-                     class="img-fluid rounded findwine_producer-wine">
-                {% endif %}
+              <div class="findwine_producer-wines-price">
+                R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
               </div>
-            </div>
-            <div class="findwine_producer-wines-price">
-              R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
-            </div>
-            <div class="findwine_producer-wines-vintage">
-              {{ wine }}
-            </div>
+              <div class="findwine_producer-wines-vintage">
+                 {{ wine }}
+              </div>
+            </a>
           </div>
           {% endfor %}
           {% else %}
@@ -477,32 +479,53 @@
   var activeSlide = 0;
   var sliderManager = new Hammer.Manager(gallery);
 
+  // Create manager to allow multiple events to be tied together
   sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
-  sliderManager.on('pan', function (event) {
-    var percentage = 100 / slideCount * event.deltaX / window.innerWidth;
+  sliderManager.on('pan', function (e) {
+    var percentage = 100 / slideCount * e.deltaX / window.innerWidth;
     var transformPercentage = percentage - 100 / slideCount * activeSlide;
+
+    // Set percentage to CSS transform for slide action
     gallery.style.transform = 'translateX( ' + transformPercentage + '% )';
-    if (event.isFinal) {
-      if (percentage < 0)
+    if (e.isFinal) {
+      if (percentage < 0) {
         goToSlide(activeSlide + 1);
-      else if (percentage > 0)
+      }
+      else if (percentage > 0) {
         goToSlide(activeSlide - 1);
-      else
+      }
+      else {
         goToSlide(activeSlide);
+      }
     }
+    console.log(activeSlide)
   });
 
+  // Function that changes slide
+  // activeSlide variable to ensure current slide snaps into place
   var goToSlide = function (number) {
-    if (number < 0)
+    if (number < 0) {
       activeSlide = 0;
-    else if (number > slideCount - 1)
-      activeSlide = slideCount - 1
-    else
+    }
+    else if (number > slideCount - 1) {
+      activeSlide = slideCount - 1;
+    }
+    else {
       activeSlide = number;
+    }
 
     var percentage = -(100 / slideCount) * activeSlide;
     gallery.style.transform = 'translateX(' + percentage + '%)';
   };
+
+  // Tap event to go to wine detail page
+
+  // var tapManager = new Hammer.Manager();
+  //
+  // tapManager.add(new Hammer.Tap({ event: 'singleTap', taps: 1 }));
+  // tapManager.on('singleTap', function(event){
+  //   console.log(event)
+  // })
 
 </script>
 {% endblock %}

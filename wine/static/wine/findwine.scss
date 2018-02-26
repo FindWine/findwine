@@ -15,7 +15,6 @@ $light-grey-text: #86929a;
 $line-grey: #e9e9e9;
 
 // Wine colours
-
 $red-wine: #b22626;
 $white-wine: #fae78c;
 $rose-wine: #f8a99f;
@@ -34,7 +33,6 @@ $primary-font: 'Gotham SSm A', 'Gotham SSm B';
 //$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
-
 
 @mixin breakpoint($class) {
   @if $class == xs {
@@ -89,7 +87,6 @@ body {
 }
 
 .navbar {
-
   position: absolute;
   background-color: transparent;
   width: 100%;
@@ -114,41 +111,30 @@ body {
     @include breakpoint(lg) {
       height: 100px;
     }
-
   }
 
   .form-control::-webkit-input-placeholder {
-
     color: $white;
     opacity: 1;
-
   }
 
   .form-control:-moz-placeholder { /* Firefox 18- */
-
     color: $white;
     opacity: 1;
-
   }
 
   .form-control::-moz-placeholder { /* Firefox 19+ */
-
     color: $white;
     opacity: 1;
-
   }
 
   .form-control:-ms-input-placeholder {
-
     color: $white;
     opacity: 1;
-
   }
-
 }
 
 .nav-link {
-
   font-family: $primary-font;
   font-size: 14px;
   font-weight: 500;
@@ -177,7 +163,6 @@ body {
       color: $primary-green !important;
     }
   }
-
 }
 
 .nav-link-home {
@@ -280,7 +265,6 @@ button:focus, button:hover {
 }
 
 .min_price {
-
   font-family: $primary-font;
   font-size: 16px;
   display: inline-flex;
@@ -291,11 +275,9 @@ button:focus, button:hover {
     width: 75px;
     margin-left: 15px;
   }
-
 }
 
 .max_price {
-
   font-family: $primary-font;
   font-size: 16px;
   display: inline-flex;
@@ -307,20 +289,16 @@ button:focus, button:hover {
     margin-left: 15px;
     outline: none !important;
   }
-
 }
 
 .category {
-
   @include breakpoint(lg) {
     margin-top: 6px;
     margin-right: 20px;
   }
-
 }
 
 .sub_category {
-
   @include breakpoint(lg) {
     margin-top: 6px;
   }
@@ -328,7 +306,6 @@ button:focus, button:hover {
   &-collapse {
     margin: 0px;
   }
-
 }
 
 .price-range {
@@ -491,7 +468,6 @@ button:focus, button:hover {
 .findwine {
 
   &_nav--menu {
-
     margin-left: 0px;
     z-index: 1000;
 
@@ -506,7 +482,6 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       margin-left: 100px;
     }
-
   }
 
   &_nav-logo {
@@ -527,7 +502,6 @@ button:focus, button:hover {
       margin-top: 0px;
       right: 85%;
     }
-
   }
 
   &_nav-logo-icon {
@@ -601,15 +575,12 @@ button:focus, button:hover {
   }
 
   &_menu-icon {
-
     padding-top: 20px;
     color: $primary-text;
     outline: none;
-
   }
 
   &_menu-button {
-
     fill: $white;
     height: 12px;
     width: 18px;
@@ -618,11 +589,9 @@ button:focus, button:hover {
     &-none {
       display: none;
     }
-
   }
 
   &_nav-icon {
-
     display: inline-block;
     width: 1.5em;
     height: 1.5em;
@@ -631,21 +600,17 @@ button:focus, button:hover {
     background: no-repeat center center;
     -webkit-background-size: 100% 100%;
     background-size: 100% 100%;
-
   }
 
   &_search-field {
-
     background-color: rgba(255, 255, 255, 0.3);
     color: $primary-text;
     margin-right: 0px !important;
     border: transparent;
     border-radius: 4px 0px 0px 4px;
-
   }
 
   &_search-button {
-
     background-color: $primary-green;
     border: none;
     border-radius: 0px 4px 4px 1px;
@@ -661,18 +626,14 @@ button:focus, button:hover {
       border-color: $focus-green !important;
       color: $white;
     }
-
   }
 
   &_search-icon {
-
     height: 18px;
     width: 18px;
-
   }
 
   &_logo-standard {
-
     width: 180px;
     object-fit: contain;
     padding: 12px 0px 11px 0px;
@@ -686,11 +647,9 @@ button:focus, button:hover {
       margin-bottom: 31px;
 
     }
-
   }
 
   &_banner-main {
-
     height: 170px;
     width: 100%;
     background: url("images/background/home-mob.png");
@@ -714,11 +673,9 @@ button:focus, button:hover {
       margin-bottom: 0px;
       background-size: cover;
     }
-
   }
 
   &_banner-text {
-
     font-family: $primary-font;
     font-size: 24px;
     font-weight: 500;
@@ -727,11 +684,9 @@ button:focus, button:hover {
     padding-bottom: 5%;
     text-align: center;
     color: $white;
-
   }
 
   &_search-form {
-
     @include breakpoint(lg) {
       margin-top: -305px;
       padding: 32px 30px;
@@ -750,22 +705,18 @@ button:focus, button:hover {
         padding-bottom: 0px;
       }
     }
-
   }
 
   &_heading-2 {
-
     font-family: $primary-font;
     font-size: 20px;
     font-weight: 500;
     text-align: left;
     color: $primary-text;
     padding-bottom: 14px;
-
   }
 
   &_heading-3 {
-
     font-family: $primary-font;
     font-size: 13px;
     font-weight: 500;
@@ -776,7 +727,6 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       font-size: 14px;
     }
-
   }
 
   &_price {
@@ -830,7 +780,6 @@ button:focus, button:hover {
   }
 
   &_content-paragraph {
-
     font-family: $primary-font;
     font-size: 14px;
     line-height: 1.57;
@@ -838,11 +787,9 @@ button:focus, button:hover {
     text-align: left;
     color: $primary-text;
     padding-bottom: 14px;
-
   }
 
   &_content-link {
-
     color: $primary-green;
     font-family: $primary-font;
     font-size: 13px;
@@ -855,30 +802,23 @@ button:focus, button:hover {
       color: $primary-green;
       text-decoration: underline;
     }
-
   }
 
   &_content {
-
     background-color: #f4f5f5;
     border: solid 1px #dbe0e4
-
   }
 
   &_content-container {
-
     padding: 35px 15px;
 
     @include breakpoint(lg) {
       padding: 35px 0px;
     }
-
   }
 
   &_content-image {
-
     width: 220px;
-
   }
 
   &_button {
@@ -957,9 +897,7 @@ button:focus, button:hover {
       &--selected {
         background-color: $white;
       }
-
     }
-
   }
 
   &_button-image {
@@ -968,28 +906,23 @@ button:focus, button:hover {
   }
 
   &_svg {
-
     margin-top: 12px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     height: 35px;
-
   }
 
   &_button-type {
-
     margin: 9px 0px 7px 0px;
     word-break: break-all;
 
     p {
       margin-bottom: 0px !important;
     }
-
   }
 
   &_button-bar {
-
     height: 4px;
     border-radius: 0px 0px 2px 2px;
     width: auto;
@@ -1017,13 +950,10 @@ button:focus, button:hover {
       &dessert {
         background-color: $port-wine;
       }
-
     }
-
   }
 
   &_newsletter-svg {
-
     width: 58px;
     height: 58px;
     float: left;
@@ -1034,11 +964,9 @@ button:focus, button:hover {
       margin-right: 20px;
 
     }
-
   }
 
   &_subscribe {
-
     padding: 30px 15px;
 
     @include breakpoint(lg) {
@@ -1055,11 +983,9 @@ button:focus, button:hover {
       display: flex;
       justify-content: center;
     }
-
   }
 
   &_newsletter-heading {
-
     font-family: $primary-font;
     font-size: 16px;
     font-weight: 500;
@@ -1067,20 +993,16 @@ button:focus, button:hover {
     color: $primary-text;
     margin-bottom: 0px;
     padding-top: 0px;
-
   }
 
   &_newsletter-paragraph {
-
     font-family: $primary-font;
     font-size: 14px;
     text-align: left;
     color: #86929a;
-
   }
 
   &_newsletter-subscribe {
-
     color: $primary-text;
     margin-right: 0px !important;
     opacity: 0.5;
@@ -1091,7 +1013,6 @@ button:focus, button:hover {
   }
 
   &_newsletter-button {
-
     background-color: $primary-green;
     border: 1px solid $primary-green;
     border-radius: 1px;
@@ -1116,7 +1037,6 @@ button:focus, button:hover {
       border-color: $focus-green !important;
       color: $white;
     }
-
   }
 
   &_mailchimp-holder {
@@ -1191,7 +1111,6 @@ button:focus, button:hover {
       margin-top: 0px;
       margin-bottom: 0px;
       justify-content: flex-end;
-
     }
 
     &-collapse {
@@ -1199,7 +1118,6 @@ button:focus, button:hover {
       display: flex;
       align-items: center;
     }
-
   }
 
   &_select-collapse {
@@ -1265,7 +1183,6 @@ button:focus, button:hover {
     img {
       max-height: 58px;
     }
-
   }
 
   &_detail-image-2 {
@@ -1288,7 +1205,6 @@ button:focus, button:hover {
     img {
       max-height: 58px;
     }
-
   }
 
   &_detail-image-main--holder {
@@ -1343,7 +1259,6 @@ button:focus, button:hover {
         text-decoration: none;
       }
     }
-
   }
 
   &_producer-vintage {
@@ -1401,7 +1316,6 @@ button:focus, button:hover {
   }
 
   &_awards-holder {
-
     @include breakpoint(md) {
       margin-bottom: 20px;
     }
@@ -1452,7 +1366,6 @@ button:focus, button:hover {
   }
 
   &_awards-container {
-
     margin-top: 10px;
 
     @include breakpoint(lg) {
@@ -1522,7 +1435,6 @@ button:focus, button:hover {
     display: flex;
     align-items: center;
     padding: 6px 16px;
-
   }
 
   &_detail--menu-button {
@@ -1620,7 +1532,6 @@ button:focus, button:hover {
   }
 
   &_detail-heading {
-
     background-color: $lightest-grey;
     border-top: 1px solid $lightest-grey-border;
     border-bottom: 1px solid $lightest-grey-border;
@@ -1639,7 +1550,6 @@ button:focus, button:hover {
   }
 
   &_detail-header {
-
     font-family: $primary-font;
     color: $light-grey-text;
     font-size: 12px;
@@ -1652,16 +1562,13 @@ button:focus, button:hover {
       margin-top: 0px;
       margin-bottom: 20px;
     }
-
   }
 
   &_detail-header--desktop {
-
     @include breakpoint(lg) {
       padding-top: 50px;
       margin-bottom: 24px;
     }
-
   }
 
   &_detail-header--2 {
@@ -1699,7 +1606,6 @@ button:focus, button:hover {
       line-height: 1.75;
       height: auto;
     }
-
   }
 
   &_detail-table-content {
@@ -1871,7 +1777,6 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       font-size: 18px;
     }
-
   }
 
   &_buy-button {
@@ -1966,9 +1871,7 @@ button:focus, button:hover {
   // Other vintages
 
   &_vintage-table {
-
     margin-bottom: 0px !important;
-
     @include breakpoint(lg) {
       background-color: $white;
       border: 1px solid $lightest-grey-border;
@@ -1976,7 +1879,6 @@ button:focus, button:hover {
       padding: 0px;
       cursor: default;
     }
-
   }
 
   &_vintage-rating--box {
@@ -1999,11 +1901,9 @@ button:focus, button:hover {
       height: 40px;
       width: 40px;
     }
-
   }
 
   &_vintage-rating {
-
   }
 
   &_vintage--image {
@@ -2019,7 +1919,6 @@ button:focus, button:hover {
       height: 120px;
       margin: 0px 50px;
     }
-
   }
 
   &_vintage--image-img {
@@ -2104,7 +2003,6 @@ button:focus, button:hover {
       margin-right: 30px;
       margin-top: 0px;
     }
-
   }
 
   &_vintage-table--display {
@@ -2133,7 +2031,6 @@ button:focus, button:hover {
   // Search results
 
   &_filter-holder {
-
     @include breakpoint(lg) {
       height: 304px;
       width: 955px;
@@ -2160,7 +2057,6 @@ button:focus, button:hover {
   }
 
   &_filter-holder-search-result {
-
     @include breakpoint(lg) {
       min-height: 100vh;
       height: auto;
@@ -2170,7 +2066,6 @@ button:focus, button:hover {
       background-color: $lightest-grey;
       padding: 0px 100px;
     }
-
   }
 
   &_filter-collapse-category {
@@ -2253,7 +2148,6 @@ button:focus, button:hover {
       order: 2;
       margin-top: 20px;
     }
-
   }
 
   &_search-button--container {
@@ -2272,7 +2166,6 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       display: inline-block;
     }
-
   }
 
   &_search-winesTotal {
@@ -2283,7 +2176,6 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       display: inline-block;
     }
-
   }
 
   &_search-next--button {
@@ -2311,7 +2203,6 @@ button:focus, button:hover {
         margin-right: 20px;
         border-radius: 4px;
       }
-
     }
 
     &-inactive {
@@ -2361,15 +2252,12 @@ button:focus, button:hover {
       background-color: $focus-green !important;
       border-color: $focus-green !important;
     }
-
   }
 
   &_search-next--button-arrow-right {
-
     @include breakpoint(md) {
       margin-left: 10px;
     }
-
   }
 
   &_search-next--button-arrow {
@@ -2378,7 +2266,6 @@ button:focus, button:hover {
     @include breakpoint(md) {
       margin-right: 10px;
     }
-
   }
 
   &_search-next--button-green-arrow {
@@ -2508,7 +2395,6 @@ button:focus, button:hover {
       border-top: none;
       cursor: default;
     }
-
   }
 
   &_ratings-heading {
@@ -2840,12 +2726,10 @@ button:focus, button:hover {
   }
 
   &_about-content-container {
-
     @include breakpoint(lg) {
       display: flex;
       padding: 0px;
     }
-
   }
 
   &_about-content-2 {
@@ -2894,7 +2778,6 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       padding: 60px 130px;
     }
-
   }
 
   &_contact-banner {
@@ -2945,7 +2828,6 @@ button:focus, button:hover {
       width: 100%;
 
       @include breakpoint(md) {
-
       }
 
       @include breakpoint(lg) {
@@ -3220,7 +3102,6 @@ button:focus, button:hover {
   }
 
   &_producer-details {
-
     @include breakpoint(lg) {
       display: flex;
       justify-content: space-between;
@@ -3265,7 +3146,6 @@ button:focus, button:hover {
       text-align: left;
       display: flex;
     }
-
   }
 
   &_producer-tasting-svg {
@@ -3362,12 +3242,4 @@ button:focus, button:hover {
   &_producer-email {
     word-wrap: break-word;
   }
-
 }
-
-
-
-
-
-
-
