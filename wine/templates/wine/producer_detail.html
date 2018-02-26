@@ -4,6 +4,7 @@
     <!-- Hammer JS swipe library CDN - will add library if we are happy with the functionality-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
     <script src="/scripts/tap-gesture.js"></script>
+
 {% endblock %}
 {% block content %}
 
@@ -114,7 +115,7 @@
     <div class="findwine_producer-description" id="detail">
       {{ producer.description }}
     </div>
-    <div class="findwine_detail-expand hidden-lg-up">
+    <div class="findwine_detail-expand" id="detailBar">
       <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
         Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
       </button>
@@ -134,29 +135,31 @@
           {% if producer.get_top_wines.exists %}
           {% for wine in producer.get_top_wines %}
           <div class="findwine_producer-wines-images">
-            <div class="findwine_producer-wines-outer">
-              <!--Box colour to be updated dynamically-->
-              <div class="findwine_producer-rating--box findwine_rating-box-gold">
-                {{ wine.avg_rating }}
+            <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self">
+              <div class="findwine_producer-wines-outer">
+                <!--Box colour to be updated dynamically-->
+                <div class="findwine_producer-rating--box findwine_rating-box-gold">
+                  {{ wine.avg_rating }}
+                </div>
+                <div class="findwine_producer-vintage-image">
+                  {% if wine.image_pack_shot %}
+                  <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
+                       class="img-fluid rounded findwine_producer-wine">
+                  {% endif %}
+                </div>
               </div>
-              <div class="findwine_producer-vintage-image">
-                {% if wine.image_pack_shot %}
-                <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
-                     class="img-fluid rounded findwine_producer-wine">
-                {% endif %}
+              <div class="findwine_producer-wines-price">
+                R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
               </div>
-            </div>
-            <div class="findwine_producer-wines-price">
-              R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
-            </div>
-            <div class="findwine_producer-wines-vintage">
-              {{ wine }}
-            </div>
+              <div class="findwine_producer-wines-vintage">
+                 {{ wine }}
+              </div>
+            </a>
           </div>
           {% endfor %}
           {% else %}
         </div>
-        <p style="margin-left:20px">No wines available.</p>
+        <h5 class="findwine_producer-header">No wines available.</h5>
         {% endif %}
       </div>
     </div>
@@ -184,14 +187,14 @@
           <div class="findwine_producer-wines-price">
             R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
           </div>
-          <div class="findwine_producer-wines-vintage">
-            {{ wine }}
+          <div class="findwine_producer-wines-vintage findwine_producer-link">
+            <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self"> {{ wine }} </a>
           </div>
         </div>
         {% endfor %}
         {% else %}
       </div>
-      <p style="margin-left:20px">No wines available.</p>
+      <h5 class="findwine_producer-header">No wines available.</h5>
       {% endif %}
     </div>
   </div>
@@ -215,7 +218,7 @@
           <div>
             <h5 class="findwine_producer-header">Tastings</h5>
             <div class="findwine_producer-details-content">
-              {% if producer.tasting_price %} Minimum price <strong> R&nbsp;{{ producer.tasting_price }} </strong>
+              {% if producer.tasting_price %} Minimum price <strong> R{{ producer.tasting_price }} </strong>
               {% else %}
               Contact for pricing
               {% endif %}
@@ -360,9 +363,9 @@
       <div class="findwine_producer-content-left">
         Website
       </div>
-      <div class="findwine_producer-content-right">
+      <div class="findwine_producer-content-right findwine_producer-email">
         <a class="nav-link-home" href={{ producer.url }} target="_blank">
-          Open website
+          {{ producer.url }}
         </a>
       </div>
     </div>
@@ -376,34 +379,68 @@
 {% block page_scripts %}
 <script>
 
-  function expandDetail() {
+  var detail = document.getElementById('detail');
+  var detailButton = document.getElementById('detailButton');
+  var detailBar = document.getElementById('detailBar');
+  var detailHeight = $(detail).height();
 
-    var detail = document.getElementById('detail');
-    var detailButton = document.getElementById('detailButton');
-
-    if (detail.style.height !== "auto") {
-      detail.style.height = "auto";
-      detailButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
-    } else {
-      detail.style.height = "113px";
-      detailButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
-    }
-
-    let detailContent = document.getElementById('detailContent');
-
-    if (detailContent.style.height !== "auto") {
-      detailContent.style.height = "auto";
-    } else {
-      detailContent.style.height = "43px";
-    }
-
-  }
-
+  var topWineButtonBar = document.getElementById('topWineButtonBar');
   var topWineCounter = document.getElementById('topWineCounter');
   var topWineCount = topWineCounter.childElementCount;
   var image = document.getElementsByClassName('findwine_producer-wines-images');
-
   var showImages = $('.findwine_producer-wines-images:nth-of-type(1n+6)');
+
+  function showWineButton() {
+    // Show View all Wines button if more than 5 wines
+    if (topWineCount <= 5){
+      topWineButtonBar.style.display = "none";
+    } else if (topWineCount > 5){
+      $(showImages).addClass('findwine_producer-wines-images-hide');
+    }
+  }
+
+  function readMoreButton() {
+    // Show Read More button if text is more than 4 lines
+    if ($(window).width() > 992 && detailHeight > 113) {
+      detail.style.height = "113px";
+    } else if ($(window).width() < 992 && detailHeight > 90){
+      detail.style.height = "90px";
+    } else {
+      detail.style.height = "auto";
+      detailBar.style.display = "none";
+    }
+  }
+
+  function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+      window.onload = func;
+    } else {
+      window.onload = function() {
+        if (oldonload) {
+          oldonload();
+        }
+        func();
+      }
+    }
+  }
+  addLoadEvent(showWineButton);
+  addLoadEvent(readMoreButton);
+
+  function expandDetail() {
+
+    if (detail.style.height !== "auto") {
+      detail.style.height = "auto";
+      detailButton.innerHTML = "Show Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+    } else {
+      detailButton.innerHTML = "Read More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+      if ($(window).width() > 992 ) {
+        detail.style.height = "113px";
+      } else {
+        detail.style.height = "90px";
+      }
+    }
+  }
 
   // Find highest height and use to set height for all images
   var highestHeight = Math.max.apply(null, $(image).map(function () {
@@ -411,20 +448,6 @@
   }).get());
 
   var panelHeight = highestHeight + 30 + 'px';
-
-  window.onload = function showMoreButton() {
-
-    var topWineButtonBar = document.getElementById('topWineButtonBar');
-
-    if (topWineCount <= 5){
-      topWineButtonBar.style.display = "none";
-    }
-
-    if (topWineCount > 5){
-      $(showImages).addClass('findwine_producer-wines-images-hide')
-    }
-
-  };
 
   // Display max 5 wines on load with option to expand holder if more than 5 wines
   function moreWine() {
@@ -456,48 +479,44 @@
   var activeSlide = 0;
   var sliderManager = new Hammer.Manager(gallery);
 
+  // Create manager to allow multiple events to be tied together
   sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
   sliderManager.on('pan', function (e) {
     var percentage = 100 / slideCount * e.deltaX / window.innerWidth;
     var transformPercentage = percentage - 100 / slideCount * activeSlide;
+
+    // Set percentage to CSS transform for slide action
     gallery.style.transform = 'translateX( ' + transformPercentage + '% )';
     if (e.isFinal) {
-      if (percentage < 0)
+      if (percentage < 0) {
         goToSlide(activeSlide + 1);
-      else if (percentage > 0)
+      }
+      else if (percentage > 0) {
         goToSlide(activeSlide - 1);
-      else
+      }
+      else {
         goToSlide(activeSlide);
+      }
     }
+    console.log(activeSlide)
   });
 
+  // Function that changes slide
+  // activeSlide variable to ensure current slide snaps into place
   var goToSlide = function (number) {
-    if (number < 0)
+    if (number < 0) {
       activeSlide = 0;
-    else if (number > slideCount - 1)
-      activeSlide = slideCount - 1
-    else
+    }
+    else if (number > slideCount - 1) {
+      activeSlide = slideCount - 1;
+    }
+    else {
       activeSlide = number;
+    }
 
     var percentage = -(100 / slideCount) * activeSlide;
     gallery.style.transform = 'translateX(' + percentage + '%)';
   };
-
-  if(e.isFinal) {
-    if (e.velocityX > 1) {
-      slider.goTo(slider.activeSlide - 1);
-    } else if (e.velocityX < -1) {
-      slider.goTo(slider.activeSlide + 1)
-    } else {
-      if (percentage <= -(slider.sensitivity / slider.slideCount)) {
-        slider.goTo(slider.activeSlide + 1);
-      } else if (percentage >= (slider.sensitivity / slider.slideCount)) {
-        slider.goTo(slider.activeSlide - 1);
-      } else {
-        slider.goTo(slider.activeSlide );
-      }
-    }
-  }
 
 </script>
 {% endblock %}
