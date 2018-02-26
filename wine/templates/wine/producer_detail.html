@@ -394,7 +394,7 @@
     if (topWineCount <= 5){
       topWineButtonBar.style.display = "none";
     } else if (topWineCount > 5){
-      $(showImages).addClass('findwine_producer-wines-images-hide')
+      $(showImages).addClass('findwine_producer-wines-images-hide');
     }
   }
 
@@ -479,11 +479,11 @@
   var sliderManager = new Hammer.Manager(gallery);
 
   sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
-  sliderManager.on('pan', function (e) {
-    var percentage = 100 / slideCount * e.deltaX / window.innerWidth;
+  sliderManager.on('pan', function (event) {
+    var percentage = 100 / slideCount * event.deltaX / window.innerWidth;
     var transformPercentage = percentage - 100 / slideCount * activeSlide;
     gallery.style.transform = 'translateX( ' + transformPercentage + '% )';
-    if (e.isFinal) {
+    if (event.isFinal) {
       if (percentage < 0)
         goToSlide(activeSlide + 1);
       else if (percentage > 0)
@@ -504,22 +504,6 @@
     var percentage = -(100 / slideCount) * activeSlide;
     gallery.style.transform = 'translateX(' + percentage + '%)';
   };
-
-  if(e.isFinal) {
-    if (e.velocityX > 1) {
-      slider.goTo(slider.activeSlide - 1);
-    } else if (e.velocityX < -1) {
-      slider.goTo(slider.activeSlide + 1)
-    } else {
-      if (percentage <= -(slider.sensitivity / slider.slideCount)) {
-        slider.goTo(slider.activeSlide + 1);
-      } else if (percentage >= (slider.sensitivity / slider.slideCount)) {
-        slider.goTo(slider.activeSlide - 1);
-      } else {
-        slider.goTo(slider.activeSlide );
-      }
-    }
-  }
 
 </script>
 {% endblock %}
