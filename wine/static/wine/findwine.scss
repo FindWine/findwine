@@ -1483,7 +1483,7 @@ button:focus, button:hover {
   }
 
   &_detail-expand {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: flex-end;
     height: 47px;
@@ -2699,11 +2699,16 @@ button:focus, button:hover {
   }
 
   &_about-content-icon {
-    height: 116px;
+    //height: 116px;
+    //
+    //@include breakpoint(lg) {
+    //  height: 177px;
+    //  margin-right: 20px;
+    //}
 
-    @include breakpoint(lg) {
-      height: 177px;
-      margin-right: 20px;
+    &-1 {
+      height: 100%;
+      width: 100%;
     }
   }
 

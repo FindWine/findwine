@@ -1009,7 +1009,7 @@ button:focus, button:hover {
       border-radius: 4px;
       flex: 1; } }
 .findwine_detail-expand {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: flex-end;
   height: 47px;
@@ -1891,12 +1891,9 @@ button:focus, button:hover {
       .findwine_about-content-1-right {
         width: 50%;
         margin-left: 90px; } }
-.findwine_about-content-icon {
-  height: 116px; }
-  @media (min-width: 992px) {
-    .findwine_about-content-icon {
-      height: 177px;
-      margin-right: 20px; } }
+.findwine_about-content-icon-1 {
+  height: 100%;
+  width: 100%; }
 @media (min-width: 992px) {
   .findwine_about-content-container-outer {
     background-color: #f4f5f4;
