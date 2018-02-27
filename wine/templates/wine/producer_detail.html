@@ -159,7 +159,7 @@
         </div>
       </div>
       {% else %}
-      <h5 class="findwine_producer-header">No wines available.</h5>
+      <h5 class="findwine_producer-header" style="padding-bottom: 7px">No wines available.</h5>
       {% endif %}
     </div>
     <!--Grid with top wines - expand - desktop-->
@@ -193,7 +193,7 @@
         </div>
       </div>
       {% else %}
-      <h5 class="findwine_producer-header">No wines available.</h5>
+      <h5 class="findwine_producer-header" style="padding-bottom: 20px">No wines available.</h5>
       {% endif %}
     </div>
     <div class="findwine_detail-expand findwine_detail-expand-topwines hidden-md-down" id="topWineButtonBar">
@@ -390,10 +390,9 @@
 
   function showWineButton() {
     // Show View all Wines button if more than 5 wines
-    if (topWineCount <= 5) {
-      topWineButtonBar.style.display = "none";
-    } else if (topWineCount > 5) {
+    if (topWineCount > 5) {
       $(showImages).addClass('findwine_producer-wines-images-hide');
+      topWineButtonBar.style.display = "flex";
     }
   }
 
@@ -401,11 +400,12 @@
     // Show Read More button if text is more than 4 lines
     if ($(window).width() > 992 && detailHeight > 113) {
       detail.style.height = "113px";
+      detailBar.style.display = "flex";
     } else if ($(window).width() < 992 && detailHeight > 90) {
       detail.style.height = "90px";
+      detailBar.style.display = "flex";
     } else {
       detail.style.height = "auto";
-      detailBar.style.display = "none";
     }
   }
 

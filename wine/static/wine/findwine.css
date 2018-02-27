@@ -1009,7 +1009,7 @@ button:focus, button:hover {
       border-radius: 4px;
       flex: 1; } }
 .findwine_detail-expand {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: flex-end;
   height: 47px;

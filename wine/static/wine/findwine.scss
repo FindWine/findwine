@@ -1483,7 +1483,7 @@ button:focus, button:hover {
   }
 
   &_detail-expand {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: flex-end;
     height: 47px;
