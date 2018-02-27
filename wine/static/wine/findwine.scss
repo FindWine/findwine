@@ -2699,11 +2699,16 @@ button:focus, button:hover {
   }
 
   &_about-content-icon {
-    height: 116px;
+    //height: 116px;
+    //
+    //@include breakpoint(lg) {
+    //  height: 177px;
+    //  margin-right: 20px;
+    //}
 
-    @include breakpoint(lg) {
-      height: 177px;
-      margin-right: 20px;
+    &-1 {
+      height: 100%;
+      width: 100%;
     }
   }
 
