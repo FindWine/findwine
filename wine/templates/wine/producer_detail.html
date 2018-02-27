@@ -139,7 +139,7 @@
               <div class="findwine_producer-wines-outer">
                 <!--Box colour to be updated dynamically-->
                 <div class="findwine_producer-rating--box findwine_rating-box-gold">
-                  {{ wine.avg_rating }}
+                  {{ wine.rating_display }}
                 </div>
                 <div class="findwine_producer-vintage-image">
                   {% if wine.image_pack_shot %}
@@ -174,7 +174,7 @@
             <div class="findwine_producer-wines-outer">
               <!--Box colour to be updated dynamically-->
               <div class="findwine_producer-rating--box findwine_rating-box-gold">
-                {{ wine.avg_rating }}
+                {{ wine.rating_display }}
               </div>
               <div class="findwine_producer-vintage-image">
                 {% if wine.image_pack_shot %}
@@ -423,7 +423,6 @@
       }
     }
   }
-
   addLoadEvent(showWineButton);
   addLoadEvent(readMoreButton);
 

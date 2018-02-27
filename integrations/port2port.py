@@ -44,17 +44,29 @@ def update_all(debug=False):
     Updates all data based on the results of the port2port feed.
     """
     results = {}
+    found = set()
     skipped = []
     not_found = []
+    # first pass - update everything in the feed
     for wine_data in get_port2port_data(get_raw_feed()):
         wine, work_done = apply_update(wine_data)
         if wine is not None:
+            found.add(wine.pk)
             if work_done:
                 results[wine] = work_done
             else:
                 skipped.append(wine)
         else:
             not_found.append(wine_data)
+
+    # second pass - update all available wines that no longer show up in the feed
+    for existing_wine in MerchantWine.objects.filter(merchant=get_port2port_merchant(), available=True):
+        if existing_wine.pk not in found:
+            existing_wine.available = False
+            results[existing_wine] = ['Set available to False because it was missing from the feed.']
+            if not debug:
+                existing_wine.save()
+
     subject, pretty_results = _get_printed_results(results, skipped, not_found)
     if debug:
         print(subject)
