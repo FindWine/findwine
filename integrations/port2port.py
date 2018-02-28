@@ -102,12 +102,10 @@ def apply_update(wine_data, debug=False):
     if wine:
         if wine.external_id != wine_data.id:
             if wine.external_id:
-                raise FeedUpdateError("Prevented change of external ID for {} from {} to {}.".format(
-                    wine, wine.external_id, wine_data.id
-                ))
+                work_done.append('Changed external ID from {} to {}'.format(wine.external_id, wine_data.id))
+            else:
+                work_done.append('Added external ID {}'.format(wine_data.id))
             wine.external_id = wine_data.id
-            work_done.append('Added external ID {}'.format(wine_data.id))
-
         if wine_data.product_url and wine.url != wine_data.product_url:
             work_done.append('Changed URL from {} to {}'.format(wine.url, wine_data.product_url))
             wine.url = wine_data.product_url

@@ -89,13 +89,11 @@ class Port2PortFeedDbTest(TestCase):
         self.assertNotEqual((wine, []), apply_update(WineData(id=id, product_url=update_url)))
         self.assertEqual(update_url, MerchantWine.objects.get(pk=wine.pk).url)
 
-    def test_disallow_changing_external_id(self):
-        id = 'test_disallow_changing_external_id'
-        original_id = self.merchant_wine.external_id
-        with self.assertRaises(FeedUpdateError):
-            apply_update(WineData(id=id, product_url=self.merchant_wine.url))
+    def test_allow_changing_external_id(self):
+        id = 'test_allow_changing_external_id'
+        apply_update(WineData(id=id, product_url=self.merchant_wine.url))
         wine = MerchantWine.objects.get(pk=self.merchant_wine.pk)
-        self.assertEqual(original_id, wine.external_id)
+        self.assertEqual(id, wine.external_id)
 
     def test_set_available(self):
         id = 'test_set_available'
