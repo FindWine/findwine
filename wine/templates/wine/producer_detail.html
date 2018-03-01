@@ -126,44 +126,8 @@
 
 <div class="findwine_producer-detail-holder">
   <div class="container findwine_producer-wines-container">
-    <!--Carousel - mobile-->
-    <div class="findwine_producer-top-wines hidden-lg-up">
-      <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
-      {% if producer.get_top_wines.exists %}
-      <div class="findwine_producer-image-box">
-        <div class="findwine_producer-images-holder" id="swipe">
-          {% for wine in producer.get_top_wines %}
-          <div class="findwine_producer-wines-images">
-            <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self">
-              <div class="findwine_producer-wines-outer">
-                <!--Box colour to be updated dynamically-->
-                <div class="findwine_producer-rating--box findwine_rating-box-{{ wine.rating_category }}">
-                  {{ wine.rating_display }}
-                </div>
-                <div class="findwine_producer-vintage-image">
-                  {% if wine.image_pack_shot %}
-                  <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
-                       class="img-fluid rounded findwine_producer-wine">
-                  {% endif %}
-                </div>
-              </div>
-              <div class="findwine_producer-wines-price">
-                R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
-              </div>
-              <div class="findwine_producer-wines-vintage">
-                {{ wine }}
-              </div>
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      {% else %}
-      <h5 class="findwine_producer-header" style="padding-bottom: 7px">No wines available.</h5>
-      {% endif %}
-    </div>
-    <!--Grid with top wines - expand - desktop-->
-    <div class="findwine_producer-top-wines hidden-md-down">
+    <!--Grid with top wines - expand: desktop; carousel: mobile-->
+    <div class="findwine_producer-top-wines">
       <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
       {% if producer.get_top_wines.exists %}
       <div class="findwine_producer-image-box" id="topWine">
@@ -171,7 +135,6 @@
           {% for wine in producer.get_top_wines %}
           <div class="findwine_producer-wines-images">
             <div class="findwine_producer-wines-outer">
-              <!--Box colour to be updated dynamically-->
               <div class="findwine_producer-rating--box findwine_rating-box-{{ wine.rating_category }}">
                 {{ wine.rating_display }}
               </div>
