@@ -1,13 +1,7 @@
 {% extends 'wine/base.html' %}
 {% load static %}
-{% block page_head %}
-<!-- Hammer JS swipe library CDN - will add library if we are happy with the functionality-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
-<script src="/scripts/tap-gesture.js"></script>
 
-{% endblock %}
 {% block content %}
-
 <!-- Nav -->
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content" id="top">
   <div class="container findwine_nav--menu">
@@ -110,7 +104,6 @@
       <div class="findwine_producer-place-name">{% if producer.appellation_primary %} {{ producer.appellation_primary.name }}, {% endif %} {{ producer.get_country_display }}
       </div>
     </div>
-    {% if producer.description %}
     <div class="findwine_producer-description" id="detail">
       {{ producer.description }}
     </div>
@@ -119,60 +112,20 @@
         Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
       </button>
     </div>
-    {% endif %}
   </div>
 </div>
 <div class="findwine_detail-heading hidden-lg-up"></div>
-
 <div class="findwine_producer-detail-holder">
   <div class="container findwine_producer-wines-container">
-    <!--Carousel - mobile-->
-    <div class="findwine_producer-top-wines hidden-lg-up">
+    <!--Grid with top wines - expand: desktop; carousel: mobile-->
+    <div class="findwine_producer-top-wines">
       <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
-      {% if producer.get_top_wines.exists %}
-      <div class="findwine_producer-image-box">
-        <div class="findwine_producer-images-holder" id="swipe">
-          {% for wine in producer.get_top_wines %}
-          <div class="findwine_producer-wines-images">
-            <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self">
-              <div class="findwine_producer-wines-outer">
-                <!--Box colour to be updated dynamically-->
-                <div class="findwine_producer-rating--box findwine_rating-box-gold">
-                  {{ wine.rating_display }}
-                </div>
-                <div class="findwine_producer-vintage-image">
-                  {% if wine.image_pack_shot %}
-                  <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
-                       class="img-fluid rounded findwine_producer-wine">
-                  {% endif %}
-                </div>
-              </div>
-              <div class="findwine_producer-wines-price">
-                R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
-              </div>
-              <div class="findwine_producer-wines-vintage">
-                {{ wine }}
-              </div>
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      {% else %}
-      <h5 class="findwine_producer-header" style="padding-bottom: 7px">No wines available.</h5>
-      {% endif %}
-    </div>
-    <!--Grid with top wines - expand - desktop-->
-    <div class="findwine_producer-top-wines hidden-md-down">
-      <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
-      {% if producer.get_top_wines.exists %}
       <div class="findwine_producer-image-box" id="topWine">
         <div class="findwine_producer-images-holder" id="topWineCounter">
           {% for wine in producer.get_top_wines %}
           <div class="findwine_producer-wines-images">
             <div class="findwine_producer-wines-outer">
-              <!--Box colour to be updated dynamically-->
-              <div class="findwine_producer-rating--box findwine_rating-box-gold">
+              <div class="findwine_producer-rating--box findwine_rating-box-{{ wine.rating_category }}">
                 {{ wine.rating_display }}
               </div>
               <div class="findwine_producer-vintage-image">
@@ -189,12 +142,11 @@
               <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self"> {{ wine }} </a>
             </div>
           </div>
+          {% empty %}
+          <div class="findwine_producer-details-content findwine_producer-details-content-noWine">No wines available</div>
           {% endfor %}
         </div>
       </div>
-      {% else %}
-      <h5 class="findwine_producer-header" style="padding-bottom: 20px">No wines available.</h5>
-      {% endif %}
     </div>
     <div class="findwine_detail-expand findwine_detail-expand-topwines hidden-md-down" id="topWineButtonBar">
       <button class="btn findwine_detail-expand-button" type="button" id="topWineButton" onclick="moreWine()">
@@ -398,12 +350,17 @@
 
   function readMoreButton() {
     // Show Read More button if text is more than 4 lines
+
     if ($(window).width() > 992 && detailHeight > 113) {
       detail.style.height = "113px";
       detailBar.style.display = "flex";
     } else if ($(window).width() < 992 && detailHeight > 90) {
       detail.style.height = "90px";
       detailBar.style.display = "flex";
+    }
+    else if (detailHeight === 0) {
+      detailBar.style.display = "none";
+      detail.style.display = "none";
     } else {
       detail.style.height = "auto";
     }
@@ -469,51 +426,6 @@
     }
 
   }
-
-  //  Mobile swipe
-
-  var gallery = document.querySelector('#swipe');
-  var slideCount = gallery.childElementCount;
-  var activeSlide = 0;
-  var sliderManager = new Hammer.Manager(gallery);
-
-  // Create manager to allow multiple events to be tied together
-  sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
-  sliderManager.on('pan', function (e) {
-    var percentage = 100 / slideCount * e.deltaX / window.innerWidth;
-    var transformPercentage = percentage - 100 / slideCount * activeSlide;
-
-    // Set percentage to CSS transform for slide action
-    gallery.style.transform = 'translateX( ' + transformPercentage + '% )';
-    if (e.isFinal) {
-      if (percentage < 0) {
-        goToSlide(activeSlide + 1);
-      }
-      else if (percentage > 0) {
-        goToSlide(activeSlide - 1);
-      }
-      else {
-        goToSlide(activeSlide);
-      }
-    }
-  });
-
-  // Function that changes slide
-  // activeSlide variable to ensure current slide snaps into place
-  var goToSlide = function (number) {
-    if (number < 0) {
-      activeSlide = 0;
-    }
-    else if (number > slideCount - 1) {
-      activeSlide = slideCount - 1;
-    }
-    else {
-      activeSlide = number;
-    }
-
-    var percentage = -(100 / slideCount) * activeSlide;
-    gallery.style.transform = 'translateX(' + percentage + '%)';
-  };
 
 </script>
 {% endblock %}
