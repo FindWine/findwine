@@ -3200,6 +3200,15 @@ button:focus, button:hover {
       line-height: 1.67;
     }
 
+    &-noWine {
+      padding-bottom: 20px;
+      padding-left: 15px;
+
+      @include breakpoint(lg) {
+        padding-left: 0px;
+      }
+    }
+
     &-pb {
       padding-bottom: 20px;
 

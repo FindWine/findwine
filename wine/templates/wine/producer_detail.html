@@ -1,13 +1,7 @@
 {% extends 'wine/base.html' %}
 {% load static %}
-{% block page_head %}
-<!-- Hammer JS swipe library CDN - will add library if we are happy with the functionality-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
-<script src="/scripts/tap-gesture.js"></script>
 
-{% endblock %}
 {% block content %}
-
 <!-- Nav -->
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content" id="top">
   <div class="container findwine_nav--menu">
@@ -123,13 +117,11 @@
   </div>
 </div>
 <div class="findwine_detail-heading hidden-lg-up"></div>
-
 <div class="findwine_producer-detail-holder">
   <div class="container findwine_producer-wines-container">
     <!--Grid with top wines - expand: desktop; carousel: mobile-->
     <div class="findwine_producer-top-wines">
       <h5 class="findwine_producer-header--2 findwine_producer-header--2-mobile ">Top wines</h5>
-      {% if producer.get_top_wines.exists %}
       <div class="findwine_producer-image-box" id="topWine">
         <div class="findwine_producer-images-holder" id="topWineCounter">
           {% for wine in producer.get_top_wines %}
@@ -152,12 +144,11 @@
               <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self"> {{ wine }} </a>
             </div>
           </div>
+          {% empty %}
+          <div class="findwine_producer-details-content findwine_producer-details-content-noWine">No wines available</div>
           {% endfor %}
         </div>
       </div>
-      {% else %}
-      <h5 class="findwine_producer-header" style="padding-bottom: 20px">No wines available.</h5>
-      {% endif %}
     </div>
     <div class="findwine_detail-expand findwine_detail-expand-topwines hidden-md-down" id="topWineButtonBar">
       <button class="btn findwine_detail-expand-button" type="button" id="topWineButton" onclick="moreWine()">
