@@ -470,50 +470,5 @@
 
   }
 
-  //  Mobile swipe
-
-  var gallery = document.querySelector('#swipe');
-  var slideCount = gallery.childElementCount;
-  var activeSlide = 0;
-  var sliderManager = new Hammer.Manager(gallery);
-
-  // Create manager to allow multiple events to be tied together
-  sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
-  sliderManager.on('pan', function (e) {
-    var percentage = 100 / slideCount * e.deltaX / window.innerWidth;
-    var transformPercentage = percentage - 100 / slideCount * activeSlide;
-
-    // Set percentage to CSS transform for slide action
-    gallery.style.transform = 'translateX( ' + transformPercentage + '% )';
-    if (e.isFinal) {
-      if (percentage < 0) {
-        goToSlide(activeSlide + 1);
-      }
-      else if (percentage > 0) {
-        goToSlide(activeSlide - 1);
-      }
-      else {
-        goToSlide(activeSlide);
-      }
-    }
-  });
-
-  // Function that changes slide
-  // activeSlide variable to ensure current slide snaps into place
-  var goToSlide = function (number) {
-    if (number < 0) {
-      activeSlide = 0;
-    }
-    else if (number > slideCount - 1) {
-      activeSlide = slideCount - 1;
-    }
-    else {
-      activeSlide = number;
-    }
-
-    var percentage = -(100 / slideCount) * activeSlide;
-    gallery.style.transform = 'translateX(' + percentage + '%)';
-  };
-
 </script>
 {% endblock %}

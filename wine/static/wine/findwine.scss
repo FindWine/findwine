@@ -2970,12 +2970,11 @@ button:focus, button:hover {
 
   &_producer-image-box {
     width: 100%;
-    padding: 0px 0px 20px 30px;
+    padding: 0px 0px 20px 0px;
     overflow: hidden;
 
     @include breakpoint(lg) {
       padding: 0px;
-      //height: 330px;
     }
   }
 
@@ -2983,9 +2982,11 @@ button:focus, button:hover {
     width: auto;
     display: flex;
     align-content: flex-start;
+    overflow: scroll;
 
     @include breakpoint(lg) {
       flex-wrap: wrap;
+      justify-content: space-between;
     }
   }
 
@@ -2994,9 +2995,31 @@ button:focus, button:hover {
     display: flex;
     flex-flow: column;
 
+    &:first-of-type {
+      margin-left: 30px;
+    }
+
+    &:last-of-type {
+      padding-right: 30px;
+    }
+
     @include breakpoint(lg) {
       margin: 0px;
-      padding-bottom: 30px;
+      padding: 0px 0px 30px 0px;
+
+      &:first-of-type {
+        margin-left: 0px;
+      }
+
+      &:last-of-type {
+        padding-right: 0px;
+      }
+
+      &:nth-of-type(1n+5) {
+        .findwine_producer-wines-outer {
+          margin-right: 0px;
+        }
+      }
     }
 
     &-hide {
@@ -3031,19 +3054,20 @@ button:focus, button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: relative;
 
     @include breakpoint(lg) {
       font-size: 16px;
       height: 40px;
       width: 40px;
+      position: absolute;
     }
   }
 
   &_producer-vintage-image {
     width: 70px;
     height: 130px;
-    margin: auto;
+    margin: 3px;
 
     @include breakpoint(lg) {
       display: inline-block;
