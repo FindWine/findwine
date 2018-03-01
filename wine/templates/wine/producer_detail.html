@@ -104,7 +104,6 @@
       <div class="findwine_producer-place-name">{% if producer.appellation_primary %} {{ producer.appellation_primary.name }}, {% endif %} {{ producer.get_country_display }}
       </div>
     </div>
-    {% if producer.description %}
     <div class="findwine_producer-description" id="detail">
       {{ producer.description }}
     </div>
@@ -113,7 +112,6 @@
         Read More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
       </button>
     </div>
-    {% endif %}
   </div>
 </div>
 <div class="findwine_detail-heading hidden-lg-up"></div>
@@ -352,14 +350,17 @@
 
   function readMoreButton() {
     // Show Read More button if text is more than 4 lines
+
     if ($(window).width() > 992 && detailHeight > 113) {
       detail.style.height = "113px";
       detailBar.style.display = "flex";
     } else if ($(window).width() < 992 && detailHeight > 90) {
       detail.style.height = "90px";
       detailBar.style.display = "flex";
-    } else {
-      detail.style.height = "auto";
+    }
+    else if (detailHeight === 0) {
+      detailBar.style.display = "none";
+      detail.style.display = "none";
     }
   }
 
