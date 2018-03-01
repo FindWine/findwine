@@ -137,7 +137,7 @@
             <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self">
               <div class="findwine_producer-wines-outer">
                 <!--Box colour to be updated dynamically-->
-                <div class="findwine_producer-rating--box findwine_rating-box-gold">
+                <div class="findwine_producer-rating--box findwine_rating-box-{{ wine.rating_category }}">
                   {{ wine.rating_display }}
                 </div>
                 <div class="findwine_producer-vintage-image">
@@ -172,7 +172,7 @@
           <div class="findwine_producer-wines-images">
             <div class="findwine_producer-wines-outer">
               <!--Box colour to be updated dynamically-->
-              <div class="findwine_producer-rating--box findwine_rating-box-gold">
+              <div class="findwine_producer-rating--box findwine_rating-box-{{ wine.rating_category }}">
                 {{ wine.rating_display }}
               </div>
               <div class="findwine_producer-vintage-image">
