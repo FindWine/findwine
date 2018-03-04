@@ -123,25 +123,29 @@
       <div class="findwine_producer-image-box" id="topWine">
         <div class="findwine_producer-images-holder" id="topWineCounter">
           {% for wine in producer.get_top_wines %}
-          <div class="findwine_producer-wines-images">
-            <div class="findwine_producer-wines-outer">
-              <div class="findwine_producer-rating--box findwine_rating-box-{{ wine.rating_category }}">
-                {{ wine.rating_display }}
-              </div>
-              <div class="findwine_producer-vintage-image">
-                {% if wine.image_pack_shot %}
-                <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
-                     class="img-fluid rounded findwine_producer-wine">
-                {% endif %}
-              </div>
+            <div class="findwine_producer-wines-images">
+              <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self">
+                <div class="findwine_producer-wines-outer">
+                  <div class="findwine_producer-rating--box findwine_rating-box-{{ wine.rating_category }}">
+                    {{ wine.rating_display }}
+                  </div>
+                  <div class="findwine_producer-vintage-image">
+                    {% if wine.image_pack_shot %}
+                    <img src="{{ wine.image_pack_shot.url }}" alt="{{ wine.wine.name }}"
+                         class="img-fluid rounded findwine_producer-wine">
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+              <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self">
+                <div class="findwine_producer-wines-price">
+                  R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
+                </div>
+                <div class="findwine_producer-wines-vintage findwine_producer-link">
+                   {{ wine }}
+                </div>
+              </a>
             </div>
-            <div class="findwine_producer-wines-price">
-              R {{ wine.get_price|floatformat:"0"|default:"N/A" }}
-            </div>
-            <div class="findwine_producer-wines-vintage findwine_producer-link">
-              <a href="{% url 'wine:wine_detail_by_slug' wine.slug %}" target="_self"> {{ wine }} </a>
-            </div>
-          </div>
           {% empty %}
           <div class="findwine_producer-details-content findwine_producer-details-content-noWine">No wines available</div>
           {% endfor %}
@@ -178,17 +182,17 @@
         <!-- Location DESKTOP -->
         <div class="findwine_producer-details-container hidden-md-down">
           <h5 class="findwine_producer-header--2">Location</h5>
-          <div class="findwine_producer-details-content findwine_producer-details-content-pb">
+          <div class="findwine_producer-details-content">
             {{ producer.address }}
           </div>
-          <div class="findwine_detail-expand findwine_producer-button">
-            <button class="btn findwine_detail-expand-button" type="button">
-              <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}"
-                 target="_blank">
-                Get Directions
-              </a>
-            </button>
-          </div>
+        </div>
+        <div class="findwine_detail-expand findwine_detail-expand-topwines hidden-md-down">
+          <button class="btn findwine_detail-expand-button" type="button">
+            <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}"
+               target="_blank">
+              Get Directions
+            </a>
+          </button>
         </div>
       </div>
     </div>
@@ -272,16 +276,16 @@
     <!-- Location MOBILE -->
     <div class="findwine_producer-details-container hidden-lg-up">
       <h5 class="findwine_producer-header--2">Location</h5>
-      <div class="findwine_producer-details-content findwine_producer-details-content-pb">
+      <div class="findwine_producer-details-content">
         {{ producer.address }}
       </div>
-      <div class="findwine_detail-expand findwine_producer-button">
-        <button class="btn findwine_detail-expand-button" type="button">
-          <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank">
-            Get Directions
-          </a>
-        </button>
-      </div>
+    </div>
+    <div class="findwine_detail-expand findwine_detail-expand-topwines hidden-lg-up">
+      <button class="btn findwine_detail-expand-button" type="button">
+        <a class="nav-link-home" href="https://maps.google.com/?q={{producer.coordinates_google}}" target="_blank">
+          Get Directions
+        </a>
+      </button>
     </div>
     <div class="findwine_detail-heading hidden-lg-up">
     </div>
@@ -342,9 +346,10 @@
 
   function showWineButton() {
     // Show View all Wines button if more than 5 wines
-    if (topWineCount > 5) {
+    if (topWineCount > 5 && $(window).width() > 992) {
       $(showImages).addClass('findwine_producer-wines-images-hide');
-      topWineButtonBar.style.display = "flex";
+    } else if (topWineCount <= 5 && $(window).width() > 992) {
+      topWineButtonBar.style.display = "none";
     }
   }
 
