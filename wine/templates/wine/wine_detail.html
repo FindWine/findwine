@@ -259,7 +259,7 @@
     {% endif %}
 
     <!-- Wine details -->
-    <div class="findwine_detail-rowHeight hidden-lg-up" id="detail">
+    <div class="findwine_detail-rowHeight hidden-lg-up" id="wineDetail">
       <div class="findwine_detail-info">
         <h5 class="findwine_detail-header--2">Details</h5>
         <p class="findwine_detail-content" id="detailContent"> Read more about this wine.</p>
@@ -289,8 +289,9 @@
                 {% for winegrape in winevintage.winegrape_set.all %}
                 <li class="findwine_list-item">
                   {{ winegrape.grape }}
-                  {{ winegrape.percentage|floatformat:0 }}
-                  {% if winegrape.percentage %}% {% endif %}
+                  {% if winegrape.percentage %}
+                    {{ winegrape.percentage|floatformat:0 }}%
+                  {% endif %}
                 </li>
                 {% endfor %}
               </ul>
@@ -360,7 +361,7 @@
       </div>
     </div>
     <div class="findwine_detail-expand hidden-lg-up">
-      <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">
+      <button class="btn findwine_detail-expand-button" type="button" id="wineDetailButton" onclick="expandDetail()">
         More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
       </button>
     </div>
@@ -392,8 +393,9 @@
                 {% for winegrape in winevintage.winegrape_set.all %}
                 <li class="findwine_list-item findwine_detail-list-inline-item">
                   {{ winegrape.grape }}
-                  {{ winegrape.percentage|floatformat:0 }}
-                  {% if winegrape.percentage %}% {% endif %}
+                  {% if winegrape.percentage %}
+                  {{ winegrape.percentage|floatformat:0 }}%
+                  {% endif %}
                 </li>
                 {% endfor %}
               </ul>
@@ -603,8 +605,8 @@
 
   function expandDetail() {
 
-    let detail = document.getElementById('detail');
-    let detailButton = document.getElementById('detailButton');
+    let detail = document.getElementById('wineDetail');
+    let detailButton = document.getElementById('wineDetailButton');
 
     if (detail.style.height !== "auto") {
       detail.style.height = "auto";

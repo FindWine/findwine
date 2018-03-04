@@ -188,6 +188,15 @@ a:focus, a:hover {
   text-decoration: none;
 }
 
+a {
+  .findwine_producer-link {
+    color: $light-grey-text;
+    &:hover{
+      color: $hover-green;
+    }
+  }
+}
+
 .btn.focus, .btn:focus {
   box-shadow: none;
 }
@@ -1483,12 +1492,12 @@ button:focus, button:hover {
   }
 
   &_detail-expand {
-    display: none;
     align-items: center;
     justify-content: flex-end;
     height: 47px;
     border-top: 1px solid $lightest-grey-border;
     padding: 6px 16px;
+    text-align: right;
 
     @include breakpoint(lg) {
       margin-top: 30px;
@@ -1497,13 +1506,16 @@ button:focus, button:hover {
 
     &-topwines {
       background-color: $white;
-      border: 1px solid $lightest-grey-border;
-      border-top: none;
-      height: 74px;
+      border-top: 1px solid $lightest-grey-border;
+      height: 52px;
+      display: flex;
 
       @include breakpoint(lg) {
         margin-top: 0px;
         padding: 0px;
+        height: 74px;
+        border: 1px solid $lightest-grey-border;
+        border-top: none;
       }
     }
   }
@@ -2904,7 +2916,7 @@ button:focus, button:hover {
   &_producer-detail-holder {
     @include breakpoint(lg) {
       background-color: $lightest-grey;;
-      padding-bottom: 20px;
+      padding-bottom: 50px;
       border-top: 1px solid $lightest-grey-border;
     }
   }
@@ -2986,6 +2998,7 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       flex-wrap: wrap;
+      overflow: auto;
     }
   }
 
@@ -3014,7 +3027,7 @@ button:focus, button:hover {
         padding-right: 0px;
       }
 
-      &:nth-of-type(1n+5) {
+      &:nth-of-type(5n) {
         .findwine_producer-wines-outer {
           margin-right: 0px;
         }
@@ -3120,15 +3133,6 @@ button:focus, button:hover {
     }
   }
 
-  &_producer-link {
-    a {
-      color: $light-grey-text;
-      &:hover{
-        color: $hover-green;
-      }
-    }
-  }
-
   &_producer-details {
     @include breakpoint(lg) {
       display: flex;
@@ -3145,7 +3149,6 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       padding: 30px;
-      margin-bottom: 30px;
       border: 1px solid $lightest-grey-border;
       max-width: 380px;
       height: fit-content;
@@ -3162,6 +3165,7 @@ button:focus, button:hover {
 
       @include breakpoint(lg) {
         display: block;
+        margin-bottom: 30px;
       }
     }
   }
@@ -3206,14 +3210,6 @@ button:focus, button:hover {
 
       @include breakpoint(lg) {
         padding-left: 0px;
-      }
-    }
-
-    &-pb {
-      padding-bottom: 20px;
-
-      @include breakpoint(lg) {
-        padding-bottom: 30px;
       }
     }
   }
