@@ -346,9 +346,10 @@
 
   function showWineButton() {
     // Show View all Wines button if more than 5 wines
-    if ($(window).width() > 992 && topWineCount > 5) {
+    if (topWineCount > 5 && $(window).width() > 992) {
       $(showImages).addClass('findwine_producer-wines-images-hide');
-      topWineButtonBar.style.display = "flex";
+    } else if (topWineCount <= 5 && $(window).width() > 992) {
+      topWineButtonBar.style.display = "none";
     }
   }
 
