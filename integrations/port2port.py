@@ -79,7 +79,7 @@ def get_raw_feed():
     FEED_URL = 'https://www.port2port.wine/findwine.xml'
     r = requests.get(FEED_URL)
     r.encoding = 'utf-8'
-    return requests.get(FEED_URL).text
+    return requests.get(FEED_URL).content
 
 
 def get_port2port_data(raw_feed):
@@ -149,7 +149,10 @@ def _get_printed_results(results, skipped, not_found):
             len(results),
             '\n'.join([_update_to_result(wine, work_done) for wine, work_done in results.items()])
         ),
-        skipped='\nNo updates applied to {} wines'.format(len(skipped)),
+        skipped='\nNo updates applied to {} wines:\n{}'.format(
+            len(skipped),
+            '\n'.join(['\t{}'.format(w) for w in skipped])
+        ),
         missing='\n{} wines were not found in FindWine database:\n{}'.format(
             len(not_found),
             '\n'.join(['\t{}'.format(w) for w in not_found])

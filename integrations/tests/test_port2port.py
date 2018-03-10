@@ -2,7 +2,6 @@ import os
 from unittest import skip
 from decimal import Decimal
 from django.test import SimpleTestCase, TestCase
-from integrations.exceptions import FeedUpdateError
 from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, get_wine_for_data, WineData, \
     apply_update, update_all
 from wine.models import MerchantWine, Merchant
@@ -16,7 +15,7 @@ class Port2PortFeedTest(SimpleTestCase):
             raw_feed = f.read()
 
         data = list(get_port2port_data(raw_feed))
-        self.assertEqual(2, len(data))
+        self.assertEqual(3, len(data))
         wine_info = data[0]
         self.assertEqual('Wine', wine_info.category)
         self.assertEqual('2261', wine_info.id)
@@ -31,6 +30,8 @@ class Port2PortFeedTest(SimpleTestCase):
         self.assertEqual('150.00', wine_info.price)
         self.assertEqual('120', wine_info.deliverycost)
         self.assertEqual('ZAR', wine_info.currency)
+        # test unicode
+        self.assertEqual('https://www.port2port.wine/buy-wine/môreson/cabernet-franc-2015', data[2].product_url)
 
 
 class Port2PortFeedDbTest(TestCase):
