@@ -190,7 +190,7 @@ a:focus, a:hover {
 
 a {
   .findwine_producer-link {
-    color: $light-grey-text;
+    color: $primary-green;
     &:hover{
       color: $hover-green;
     }
@@ -1273,14 +1273,22 @@ button:focus, button:hover {
   &_producer-vintage {
     font-family: $primary-font;
     color: $primary-text;
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 500;
-    margin-top: 9px;
+    margin-top: 5px;
     margin-bottom: 12px;
+    padding: 15px 15px 0px 15px;
 
     @include breakpoint(lg) {
       font-size: 26px;
-      margin-bottom: 15px;
+      margin: 0px 0px 15px 0px;
+      padding: 0px;
+    }
+
+    &-detail {
+      margin-top: 9px;
+      font-size: 14px;
+      padding-left: 0px;
     }
   }
 
@@ -2857,17 +2865,6 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       padding: 60px 0px 30px 0px;
-    }
-  }
-
-  &_producer-vintage {
-    margin-top: 5px;
-    font-size: 22px;
-    padding: 15px 15px 0px 15px;
-
-    @include breakpoint(lg) {
-      margin: 0px 0px 15px 0px;
-      padding: 0px;
     }
   }
 
