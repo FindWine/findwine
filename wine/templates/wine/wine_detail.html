@@ -84,12 +84,12 @@
 <div class="container findwine_detail-padding">
 
   <!--image - MOBILE-->
+  {% if winevintage.image_pack_shot %}
   <div class="hidden-lg-up">
-    {% if winevintage.image_pack_shot %}
     <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
          class="img-fluid rounded float-left findwine_detail-image">
-    {% endif %}
   </div>
+  {% endif %}
 
   {% if winevintage.image_pack_shot %}
   <div class="hidden-md-down findwine_detail-images-desktop">
@@ -109,9 +109,17 @@
     </div>
 
     {% if winevintage.image_pack_shot %}
-    <div class="findwine_detail-image-main--holder">
+    <div class="findwine_detail-image-main--holder findwine_easter-holder">
       <img id='main-wine-image' src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
            class="img-fluid rounded float-left findwine_detail-image-main">
+
+      <!-- Easter Competition -->
+
+      <div class="findwine_easter-button-holder" id="easterComp">
+        <a class="btn findwine_easter-button" href="http://eepurl.com/dm-2AH" target="_blank"
+           role="button"> I FOUND THE EASTER EGGS! </a>
+      </div>
+
     </div>
     {% endif %}
   </div>
@@ -127,7 +135,7 @@
         {{ winevintage.wine.producer }}
       </div>
     </a>
-    <h4 class="findwine_producer-vintagefindwine_producer-vintage-detail ">
+    <h4 class="findwine_producer-vintagefindwine_producer-vintage-detail" id="wine">
       {{ winevintage.wine.name }} {{ winevintage.year }}
     </h4>
 
@@ -207,6 +215,13 @@
     </div>
   </div>
 </div>
+
+<!-- Easter Competition -->
+<div class="hidden-lg-up findwine_easter-button-holder" id="easterCompMob">
+  <a class="btn findwine_easter-button" href="http://eepurl.com/dm-2AH" target="_blank"
+     role="button"> I FOUND THE EASTER EGGS! </a>
+</div>
+
 <!-- Purchase options - Mobile -->
 <div class="hidden-lg-up">
   <div class="findwine_detail-purchase">
@@ -586,8 +601,8 @@
 {% block page_scripts %}
 <script>
   function expandInfo() {
-    let info = document.getElementById('info');
-    let infoButton = document.getElementById('infoButton');
+    var info = document.getElementById('info');
+    var infoButton = document.getElementById('infoButton');
 
     if (info.style.height !== "auto") {
       info.style.height = "auto";
@@ -597,7 +612,7 @@
       infoButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
 
-    let infoContent = document.getElementById('infoContent');
+    var infoContent = document.getElementById('infoContent');
 
     if (infoContent.style.height !== "auto") {
       infoContent.style.height = "auto";
@@ -609,8 +624,8 @@
 
   function expandDetail() {
 
-    let detail = document.getElementById('wineDetail');
-    let detailButton = document.getElementById('wineDetailButton');
+    var detail = document.getElementById('wineDetail');
+    var detailButton = document.getElementById('wineDetailButton');
 
     if (detail.style.height !== "auto") {
       detail.style.height = "auto";
@@ -620,7 +635,7 @@
       detailButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
 
-    let detailContent = document.getElementById('detailContent');
+    var detailContent = document.getElementById('detailContent');
 
     if (detailContent.style.height !== "auto") {
       detailContent.style.height = "auto";
@@ -632,8 +647,8 @@
 
   function expandServe() {
 
-    let serve = document.getElementById('serve');
-    let serveButton = document.getElementById('serveButton');
+    var serve = document.getElementById('serve');
+    var serveButton = document.getElementById('serveButton');
 
     if (serve.style.height !== "auto") {
       serve.style.height = "auto";
@@ -665,6 +680,19 @@
       $('#main-wine-image')[0].src = imgSrc;
     });
   });
+
+  //  Easter Competition
+  window.onload = function showEasterButton() {
+    var mobileButton = document.getElementById('easterCompMob');
+    var deskButton = document.getElementById('easterComp');
+    var wine = document.getElementById('wine')
+
+    if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() > 992) {
+      deskButton.style.display = 'flex';
+    } else if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() < 992) {
+      mobileButton.style.display = 'flex';
+    }
+  }
 
 </script>
 {% endblock %}
