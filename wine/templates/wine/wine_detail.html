@@ -135,7 +135,7 @@
         {{ winevintage.wine.producer }}
       </div>
     </a>
-    <h4 class="findwine_producer-vintagefindwine_producer-vintage-detail" id="wine">
+    <h4 class="findwine_producer-vintage findwine_producer-vintage-detail" id="wine">
       {{ winevintage.wine.name }} {{ winevintage.year }}
     </h4>
 
@@ -687,9 +687,9 @@
     var deskButton = document.getElementById('easterComp');
     var wine = document.getElementById('wine')
 
-    if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() > 992) {
+    if (wine.innerText === 'Reserve Collection Chardonnay 2014' && $(window).width() > 992) {
       deskButton.style.display = 'flex';
-    } else if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() < 992) {
+    } else if (wine.innerText === 'Reserve Collection Chardonnay 2014' && $(window).width() < 992) {
       mobileButton.style.display = 'flex';
     }
   }
