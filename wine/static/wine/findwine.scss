@@ -1286,9 +1286,14 @@ button:focus, button:hover {
     }
 
     &-detail {
-      margin-top: 9px;
-      font-size: 14px;
+      margin-top: 0px;
       padding-left: 0px;
+      font-size: 20px;
+
+      @include breakpoint(lg) {
+        margin-top: 9px;
+        font-size: 22px;
+      }
     }
   }
 
@@ -1769,6 +1774,7 @@ button:focus, button:hover {
   &_merchant-pricing {
     display: flex;
     flex-flow: column;
+    align-items: flex-end;
 
     @include breakpoint(lg) {
       width: auto;
