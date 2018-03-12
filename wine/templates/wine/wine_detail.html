@@ -193,7 +193,10 @@
         <li class="list-group-item findwine_detail-list">
           <div class="findwine_merchant-holder">
             <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
-            <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml (minimum {{ merchantwine.minimum_purchase_unit }})
+            <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml
+              {% if merchantwine.minimum_purchase_unit > 1 %}
+                (minimum {{ merchantwine.minimum_purchase_unit }})
+              {% endif %}
             </div>
             <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
           </div>
@@ -234,7 +237,10 @@
       <li class="list-group-item findwine_detail-list">
         <div class="findwine_merchant-holder">
           <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
-          <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml (minimum {{ merchantwine.minimum_purchase_unit }})
+          <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml
+            {% if merchantwine.minimum_purchase_unit > 1 %}
+              (minimum {{ merchantwine.minimum_purchase_unit }})
+            {% endif %}
           </div>
           <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
         </div>
