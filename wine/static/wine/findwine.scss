@@ -216,6 +216,13 @@ a {
       color: $hover-green;
     }
   }
+
+  .findwine_producer-page-link {
+    color: $primary-green;
+    &:hover{
+      color: $hover-green;
+    }
+  }
 }
 
 .btn.focus, .btn:focus {
@@ -3049,6 +3056,21 @@ button:focus, button:hover {
 
       &:last-of-type {
         padding-right: 0px;
+      }
+
+      &:nth-of-type(4n) {
+        .findwine_producer-wines-outer {
+          margin-right: 0px;
+        }
+      }
+    }
+
+    @include breakpoint(xl) {
+
+      &:nth-of-type(4n) {
+        .findwine_producer-wines-outer {
+          margin-right: 20px;
+        }
       }
 
       &:nth-of-type(5n) {

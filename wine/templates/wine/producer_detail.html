@@ -342,14 +342,23 @@
   var topWineCounter = document.getElementById('topWineCounter');
   var topWineCount = topWineCounter.childElementCount;
   var image = document.getElementsByClassName('findwine_producer-wines-images');
-  var showImages = $('.findwine_producer-wines-images:nth-of-type(1n+6)');
+  var showImagesBig = $('.findwine_producer-wines-images:nth-of-type(1n+6)');
+  var showImagesSmall = $('.findwine_producer-wines-images:nth-of-type(1n+5)');
 
   function showWineButton() {
-    // Show View all Wines button if more than 5 wines
-    if (topWineCount > 5 && $(window).width() > 992) {
-      $(showImages).addClass('findwine_producer-wines-images-hide');
-    } else if (topWineCount <= 5 && $(window).width() > 992) {
-      topWineButtonBar.style.display = "none";
+    // Show View all Wines button if more than 5 wines on xl more than 4 on lg
+    if ($(window).width() > 991 && $(window).width() < 1280) {
+      if (topWineCount > 4) {
+        $(showImagesSmall).addClass('findwine_producer-wines-images-hide');
+      } else if (topWineCount <= 4) {
+        topWineButtonBar.style.display = "none";
+      }
+    } else if ($(window).width() > 1279) {
+      if (topWineCount > 5) {
+        $(showImagesBig).addClass('findwine_producer-wines-images-hide');
+      } else if (topWineCount <= 5) {
+        topWineButtonBar.style.display = "none";
+      }
     }
   }
 
@@ -362,12 +371,12 @@
     } else if ($(window).width() < 992 && detailHeight > 90) {
       detail.style.height = "90px";
       detailBar.style.display = "flex";
-    }
-    else if (detailHeight === 0) {
+    } else if (detailHeight === 0) {
       detailBar.style.display = "none";
       detail.style.display = "none";
     } else {
       detail.style.height = "auto";
+      detailBar.style.display = "none";
     }
   }
 
@@ -409,27 +418,47 @@
 
   var panelHeight = highestHeight + 30 + 'px';
 
-  // Display max 5 wines on load with option to expand holder if more than 5 wines
+  // Display max 5 wines on load with option to expand holder if more than 5 wines (4 on screen size < 1280)
   function moreWine() {
 
     var topWine = document.getElementById('topWine');
     var topWineButton = document.getElementById('topWineButton');
 
-    // Expand function - use highest height
-    if (topWine.style.height !== "auto") {
-      topWine.style.height = "auto";
-      topWineButton.innerHTML = "View less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
-      if (topWineCount > 5) {
-        $(showImages).removeClass('findwine_producer-wines-images-hide')
-      }
-    } else {
-      topWine.style.height = panelHeight;
-      topWineButton.innerHTML = "View all wines <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
-      if (topWineCount > 5) {
-        $(showImages).addClass('findwine_producer-wines-images-hide')
+    // Function on lg screen (992px - 1279px)
+    if ($(window).width() > 991 && $(window).width() < 1280) {
+      // Expand function - use highest height
+      if (topWine.style.height !== "auto") {
+        topWine.style.height = "auto";
+        topWineButton.innerHTML = "View less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+        if (topWineCount > 4) {
+          $(showImagesSmall).removeClass('findwine_producer-wines-images-hide')
+        }
+      } else {
+        topWine.style.height = panelHeight;
+        topWineButton.innerHTML = "View all wines <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+        if (topWineCount > 4) {
+          $(showImagesSmall).addClass('findwine_producer-wines-images-hide')
+        }
       }
     }
 
+    // Function on xl screen (>1280px)
+    else if ($(window).width() > 1279) {
+      // Expand function - use highest height
+      if (topWine.style.height !== "auto") {
+        topWine.style.height = "auto";
+        topWineButton.innerHTML = "View less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+        if (topWineCount > 5) {
+          $(showImagesBig).removeClass('findwine_producer-wines-images-hide')
+        }
+      } else {
+        topWine.style.height = panelHeight;
+        topWineButton.innerHTML = "View all wines <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+        if (topWineCount > 5) {
+          $(showImagesBig).addClass('findwine_producer-wines-images-hide')
+        }
+      }
+    }
   }
 
 </script>
