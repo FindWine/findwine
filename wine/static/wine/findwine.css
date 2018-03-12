@@ -17,6 +17,24 @@ body {
   .container {
     padding-left: 0px;
     padding-right: 0px; } }
+@media (min-width: 576px) {
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%; } }
+@media (min-width: 992px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    max-width: 100%; } }
+@media (min-width: 1280px) {
+  .container {
+    width: 1140px; } }
 
 .navbar {
   position: absolute;
@@ -94,7 +112,7 @@ a:focus, a:hover {
   text-decoration: none; }
 
 a .findwine_producer-link {
-  color: #00ad68; }
+  color: #86929a; }
   a .findwine_producer-link:hover {
     color: #0a9761; }
 
@@ -1329,7 +1347,6 @@ button:focus, button:hover {
   font-size: 12px;
   line-height: 22px;
   text-align: center;
-  display: inline-block;
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -1337,9 +1354,10 @@ button:focus, button:hover {
     .findwine_vintage-rating--box {
       font-size: 16px;
       border-radius: 3px;
-      margin-top: 5px;
+      margin-top: -17px;
       height: 40px;
-      width: 40px; } }
+      width: 40px;
+      align-self: center; } }
 .findwine_vintage--image {
   width: 50px;
   height: 98px;

@@ -664,7 +664,7 @@
       serveButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
 
-    let serveContent = document.getElementById('serveContent');
+    var serveContent = document.getElementById('serveContent');
 
     if (serveContent.style.height !== "auto") {
       serveContent.style.height = "auto";
