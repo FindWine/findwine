@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="findwine_nav-logo search-page-content">
-    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-beta-dark.svg' %}"
+    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}"
                                            class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
   </div>
 </nav>
@@ -113,12 +113,8 @@
       <img id='main-wine-image' src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
            class="img-fluid rounded float-left findwine_detail-image-main">
 
-      <!-- Easter Competition -->
+      <!-- Easter Competition DESKTOP-->
 
-      <div class="findwine_easter-button-holder" id="easterComp">
-        <a class="btn findwine_easter-button" href="http://eepurl.com/dm-2AH" target="_blank"
-           role="button"> I FOUND THE EASTER EGGS! </a>
-      </div>
 
     </div>
     {% endif %}
@@ -219,11 +215,7 @@
   </div>
 </div>
 
-<!-- Easter Competition -->
-<div class="hidden-lg-up findwine_easter-button-holder" id="easterCompMob">
-  <a class="btn findwine_easter-button" href="http://eepurl.com/dm-2AH" target="_blank"
-     role="button"> I FOUND THE EASTER EGGS! </a>
-</div>
+<!-- Easter Competition MOBILE -->
 
 <!-- Purchase options - Mobile -->
 <div class="hidden-lg-up">
@@ -686,19 +678,6 @@
       $('#main-wine-image')[0].src = imgSrc;
     });
   });
-
-  //  Easter Competition
-  window.onload = function showEasterButton() {
-    var mobileButton = document.getElementById('easterCompMob');
-    var deskButton = document.getElementById('easterComp');
-    var wine = document.getElementById('wine')
-
-    if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() > 992) {
-      deskButton.style.display = 'flex';
-    } else if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() < 992) {
-      mobileButton.style.display = 'flex';
-    }
-  }
 
 </script>
 {% endblock %}
