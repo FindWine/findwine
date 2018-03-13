@@ -121,15 +121,26 @@ class Port2PortFeedDbTest(TestCase):
         id = 'test_change_price_id'
         wine = MerchantWine.objects.create(
             merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
-            external_id=id, price=Decimal(100.0), available=False,
+            external_id=id, price=Decimal(150.0), available=False,
         )
-        self.assertEqual((wine, []), apply_update(WineData(id=id, price='100')))
+        self.assertEqual((wine, []), apply_update(WineData(id=id, price='150')))
 
         updated_price = '200'
         self.assertNotEqual((wine, []), apply_update(WineData(id=id, price=updated_price)))
         self.assertEqual(Decimal(updated_price), MerchantWine.objects.get(pk=wine.pk).price)
 
-
+    def test_minimum_purchase_unit(self):
+        id = 'test_minimum_purchase_unit_id'
+        wine = MerchantWine.objects.create(
+            merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
+            external_id=id, price=Decimal(200.0), available=False,
+        )
+        wine, work_done = apply_update(WineData(id=id, price='100'))
+        self.assertTrue('Set minimum purchase unit from 1 to 6' in work_done)
+        self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
+        wine, work_done = apply_update(WineData(id=id, price='180'))
+        self.assertTrue('Set minimum purchase unit from 6 to 1' in work_done)
+        self.assertEqual(1, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
 
     @skip('Comment out the decorator to run this test.')
     def test_print_results(self):
