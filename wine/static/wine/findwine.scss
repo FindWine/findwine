@@ -84,6 +84,27 @@ body {
     padding-left: 0px;
     padding-right: 0px;
   }
+
+  @include breakpoint(sm) {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+  }
+
+  @include breakpoint(lg) {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    max-width: 100%;
+  }
+
+  @include breakpoint(xl) {
+    width: 1140px;
+  }
 }
 
 .navbar {
@@ -191,6 +212,13 @@ a:focus, a:hover {
 a {
   .findwine_producer-link {
     color: $light-grey-text;
+    &:hover{
+      color: $hover-green;
+    }
+  }
+
+  .findwine_producer-page-link {
+    color: $primary-green;
     &:hover{
       color: $hover-green;
     }
@@ -1227,6 +1255,7 @@ button:focus, button:hover {
 
     @include breakpoint(lg) {
       height: 450px;
+      width: 320px;
     }
 
     @media(min-width: 1260px) {
@@ -1273,14 +1302,27 @@ button:focus, button:hover {
   &_producer-vintage {
     font-family: $primary-font;
     color: $primary-text;
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 500;
-    margin-top: 9px;
+    margin-top: 5px;
     margin-bottom: 12px;
+    padding: 15px 15px 0px 15px;
 
     @include breakpoint(lg) {
       font-size: 26px;
-      margin-bottom: 15px;
+      margin: 0px 0px 15px 0px;
+      padding: 0px;
+    }
+
+    &-detail {
+      margin-top: 0px;
+      padding-left: 0px;
+      font-size: 20px;
+
+      @include breakpoint(lg) {
+        margin-top: 9px;
+        font-size: 22px;
+      }
     }
   }
 
@@ -1761,11 +1803,13 @@ button:focus, button:hover {
   &_merchant-pricing {
     display: flex;
     flex-flow: column;
+    align-items: flex-end;
 
     @include breakpoint(lg) {
       width: auto;
       flex-flow: row;
       align-items: center;
+      align-self: center;
     }
   }
 
@@ -1901,7 +1945,6 @@ button:focus, button:hover {
     font-size: 12px;
     line-height: 22px;
     text-align: center;
-    display: inline-block;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1909,9 +1952,10 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       font-size: 16px;
       border-radius: 3px;
-      margin-top: 5px;
+      margin-top: -17px;
       height: 40px;
       width: 40px;
+      align-self: center;
     }
   }
 
@@ -2860,17 +2904,6 @@ button:focus, button:hover {
     }
   }
 
-  &_producer-vintage {
-    margin-top: 5px;
-    font-size: 22px;
-    padding: 15px 15px 0px 15px;
-
-    @include breakpoint(lg) {
-      margin: 0px 0px 15px 0px;
-      padding: 0px;
-    }
-  }
-
   &_producer-place {
     padding: 0px 15px 20px 15px;
     display: flex;
@@ -3025,6 +3058,21 @@ button:focus, button:hover {
 
       &:last-of-type {
         padding-right: 0px;
+      }
+
+      &:nth-of-type(4n) {
+        .findwine_producer-wines-outer {
+          margin-right: 0px;
+        }
+      }
+    }
+
+    @include breakpoint(xl) {
+
+      &:nth-of-type(4n) {
+        .findwine_producer-wines-outer {
+          margin-right: 20px;
+        }
       }
 
       &:nth-of-type(5n) {
@@ -3274,5 +3322,41 @@ button:focus, button:hover {
 
   &_producer-email {
     word-wrap: break-word;
+  }
+
+  &_easter-button-holder {
+    background-color: $primary-green;
+    border: none;
+    border-radius: 4px;
+    margin: auto;
+    color: $white;
+    width: fit-content;
+    margin-bottom: 10px;
+    display: none;
+
+    &:hover {
+      background-color: $hover-green !important;
+      border-color: $hover-green !important;
+      color: $white;
+    }
+
+    &:active, &:focus {
+      background-color: $focus-green !important;
+      border-color: $focus-green !important;
+      color: $white;
+    }
+
+    @include breakpoint(lg) {
+      margin: 10px 0px;
+    }
+  }
+
+  &_easter-button {
+    color: $white;
+  }
+
+  &_easter-holder {
+    flex-direction: column;
+    height: auto;
   }
 }

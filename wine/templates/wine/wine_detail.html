@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="findwine_nav-logo search-page-content">
-    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-beta-dark.svg' %}"
+    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}"
                                            class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
   </div>
 </nav>
@@ -84,12 +84,12 @@
 <div class="container findwine_detail-padding">
 
   <!--image - MOBILE-->
+  {% if winevintage.image_pack_shot %}
   <div class="hidden-lg-up">
-    {% if winevintage.image_pack_shot %}
     <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
          class="img-fluid rounded float-left findwine_detail-image">
-    {% endif %}
   </div>
+  {% endif %}
 
   {% if winevintage.image_pack_shot %}
   <div class="hidden-md-down findwine_detail-images-desktop">
@@ -109,9 +109,13 @@
     </div>
 
     {% if winevintage.image_pack_shot %}
-    <div class="findwine_detail-image-main--holder">
+    <div class="findwine_detail-image-main--holder findwine_easter-holder">
       <img id='main-wine-image' src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
            class="img-fluid rounded float-left findwine_detail-image-main">
+
+      <!-- Easter Competition DESKTOP-->
+
+
     </div>
     {% endif %}
   </div>
@@ -122,10 +126,14 @@
   <!-- Wine detail -->
   <div class="findwine_producer">
     <!-- Wine name & vintage year-->
-    <div class="findwine_producer-main">
-      {{ winevintage.wine.producer }}
-    </div>
-    <h4 class="findwine_producer-vintage"> {{ winevintage.wine.name }} {{ winevintage.year }} </h4>
+    <a href="{% url 'wine:producer_detail_by_slug' winevintage.wine.producer.slug %}" target="_self">
+      <div class="findwine_producer-main findwine_producer-page-link">
+        {{ winevintage.wine.producer }}
+      </div>
+    </a>
+    <h4 class="findwine_producer-vintage findwine_producer-vintage-detail" id="wine">
+      {{ winevintage.wine.name }} {{ winevintage.year }}
+    </h4>
 
     <!-- Wine category & origin -->
     <p class="findwine_category">
@@ -181,7 +189,10 @@
         <li class="list-group-item findwine_detail-list">
           <div class="findwine_merchant-holder">
             <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
-            <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml (minimum {{ merchantwine.minimum_purchase_unit }})
+            <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml
+              {% if merchantwine.minimum_purchase_unit > 1 %}
+                (minimum {{ merchantwine.minimum_purchase_unit }})
+              {% endif %}
             </div>
             <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
           </div>
@@ -203,6 +214,9 @@
     </div>
   </div>
 </div>
+
+<!-- Easter Competition MOBILE -->
+
 <!-- Purchase options - Mobile -->
 <div class="hidden-lg-up">
   <div class="findwine_detail-purchase">
@@ -215,7 +229,10 @@
       <li class="list-group-item findwine_detail-list">
         <div class="findwine_merchant-holder">
           <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
-          <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml (minimum {{ merchantwine.minimum_purchase_unit }})
+          <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml
+            {% if merchantwine.minimum_purchase_unit > 1 %}
+              (minimum {{ merchantwine.minimum_purchase_unit }})
+            {% endif %}
           </div>
           <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
         </div>
@@ -582,8 +599,8 @@
 {% block page_scripts %}
 <script>
   function expandInfo() {
-    let info = document.getElementById('info');
-    let infoButton = document.getElementById('infoButton');
+    var info = document.getElementById('info');
+    var infoButton = document.getElementById('infoButton');
 
     if (info.style.height !== "auto") {
       info.style.height = "auto";
@@ -593,7 +610,7 @@
       infoButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
 
-    let infoContent = document.getElementById('infoContent');
+    var infoContent = document.getElementById('infoContent');
 
     if (infoContent.style.height !== "auto") {
       infoContent.style.height = "auto";
@@ -605,8 +622,8 @@
 
   function expandDetail() {
 
-    let detail = document.getElementById('wineDetail');
-    let detailButton = document.getElementById('wineDetailButton');
+    var detail = document.getElementById('wineDetail');
+    var detailButton = document.getElementById('wineDetailButton');
 
     if (detail.style.height !== "auto") {
       detail.style.height = "auto";
@@ -616,7 +633,7 @@
       detailButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
 
-    let detailContent = document.getElementById('detailContent');
+    var detailContent = document.getElementById('detailContent');
 
     if (detailContent.style.height !== "auto") {
       detailContent.style.height = "auto";
@@ -628,8 +645,8 @@
 
   function expandServe() {
 
-    let serve = document.getElementById('serve');
-    let serveButton = document.getElementById('serveButton');
+    var serve = document.getElementById('serve');
+    var serveButton = document.getElementById('serveButton');
 
     if (serve.style.height !== "auto") {
       serve.style.height = "auto";
@@ -639,7 +656,7 @@
       serveButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
 
-    let serveContent = document.getElementById('serveContent');
+    var serveContent = document.getElementById('serveContent');
 
     if (serveContent.style.height !== "auto") {
       serveContent.style.height = "auto";
