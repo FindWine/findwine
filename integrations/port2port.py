@@ -121,7 +121,7 @@ def apply_update(wine_data, debug=False):
             wine.price = price
         if price:
             purchase_unit = 6 if price < 150 else 1
-            if wine.minimum_purchase_unit != purchase_unit:
+            if wine.minimum_purchase_unit != purchase_unit and purchase_unit == 6:
                 work_done.append('Set minimum purchase unit from {} to {}'.format(wine.minimum_purchase_unit, purchase_unit))
                 wine.minimum_purchase_unit = purchase_unit
 

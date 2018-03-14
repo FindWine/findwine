@@ -138,9 +138,11 @@ class Port2PortFeedDbTest(TestCase):
         wine, work_done = apply_update(WineData(id=id, price='100'))
         self.assertTrue('Set minimum purchase unit from 1 to 6' in work_done)
         self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
+
+        # changing it back shoule explicitly not update it
         wine, work_done = apply_update(WineData(id=id, price='180'))
-        self.assertTrue('Set minimum purchase unit from 6 to 1' in work_done)
-        self.assertEqual(1, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
+        self.assertTrue('Set minimum purchase unit from 6 to 1' not in work_done)
+        self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
 
     @skip('Comment out the decorator to run this test.')
     def test_print_results(self):
