@@ -796,9 +796,9 @@ button:focus, button:hover {
   justify-content: flex-end;
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
-  margin-right: 38px; }
-  .findwine_detail-images-desktop-none {
-    flex: 0; }
+  margin-right: 38px;
+  flex: 1 .findwine_detail-images-desktop -none;
+    flex-flex: 0; }
 .findwine_detail-images-small {
   display: inline-block;
   margin-right: 20px; }

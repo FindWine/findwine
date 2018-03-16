@@ -1178,6 +1178,7 @@ button:focus, button:hover {
     -webkit-justify-content: flex-end;
     -ms-flex-pack: end;
     margin-right: 38px;
+    flex: 1;
 
     &-none {
       flex: 0;
