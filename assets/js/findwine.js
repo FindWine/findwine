@@ -639,7 +639,7 @@ class SearchPage extends React.Component {
 
     componentDidMount() {
         let queryParams = queryString.parse(location.search);
-        if (Object.keys(queryParams).length) {
+        if (Object.keys(queryParams).length && queryParams['selectedCategory']) {
             queryParams['firstSearchMade'] = true;
             this._updateLandingPage(true);
             this.setState(queryParams, this._updateSearchResults);
