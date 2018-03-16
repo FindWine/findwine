@@ -129,6 +129,7 @@ class Port2PortFeedDbTest(TestCase):
         self.assertNotEqual((wine, []), apply_update(WineData(id=id, price=updated_price)))
         self.assertEqual(Decimal(updated_price), MerchantWine.objects.get(pk=wine.pk).price)
 
+    @skip('This logic has been temporarily disabled.')
     def test_minimum_purchase_unit(self):
         id = 'test_minimum_purchase_unit_id'
         wine = MerchantWine.objects.create(
@@ -139,7 +140,7 @@ class Port2PortFeedDbTest(TestCase):
         self.assertTrue('Set minimum purchase unit from 1 to 6' in work_done)
         self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
 
-        # changing it back shoule explicitly not update it
+        # changing it back should explicitly not update it
         wine, work_done = apply_update(WineData(id=id, price='180'))
         self.assertTrue('Set minimum purchase unit from 6 to 1' not in work_done)
         self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
