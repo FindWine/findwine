@@ -696,6 +696,9 @@
 
   // Easter popUp
   function showEasterPopUp() {
+    var body = document.getElementsByTagName('body')[0];
+    body.style.height = 'auto';
+
     require(["mojo/signup-forms/Loader"],
       function(L) {
       L.start({"baseUrl":"mc.us15.list-manage.com","uuid":"403cbba831c3782b855b034c6","lid":"f76ec957a5"})
