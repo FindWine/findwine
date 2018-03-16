@@ -2,11 +2,11 @@ from collections import namedtuple
 import xml.etree.ElementTree as ET
 from decimal import Decimal
 import requests
-from integrations.exceptions import FeedUpdateError
 from integrations.util import notify_data_team
 from wine.models import MerchantWine, Merchant
 
 
+FEED_URL = 'https://www.port2port.wine/findwine.xml'
 PORT2PORT_MERCHANT_NAME = 'Port2Port'
 XML_NAMES_TO_ATTRIBUTES = {
     "Category": "category",
@@ -49,7 +49,7 @@ def update_all(debug=False):
     not_found = []
     # first pass - update everything in the feed
     for wine_data in get_port2port_data(get_raw_feed()):
-        wine, work_done = apply_update(wine_data)
+        wine, work_done = apply_update(wine_data, debug)
         if wine is not None:
             found.add(wine.pk)
             if work_done:
@@ -76,7 +76,6 @@ def update_all(debug=False):
 
 
 def get_raw_feed():
-    FEED_URL = 'https://www.port2port.wine/findwine.xml'
     r = requests.get(FEED_URL)
     r.encoding = 'utf-8'
     return requests.get(FEED_URL).content
@@ -121,7 +120,8 @@ def apply_update(wine_data, debug=False):
             wine.price = price
         if price:
             purchase_unit = 6 if price < 150 else 1
-            if wine.minimum_purchase_unit != purchase_unit and purchase_unit == 6:
+            # temporarily disable purchase unit logic
+            if wine.minimum_purchase_unit != purchase_unit and purchase_unit == 6 and False:
                 work_done.append('Set minimum purchase unit from {} to {}'.format(wine.minimum_purchase_unit, purchase_unit))
                 wine.minimum_purchase_unit = purchase_unit
 
