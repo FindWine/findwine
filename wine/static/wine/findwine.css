@@ -787,7 +787,7 @@ button:focus, button:hover {
 .findwine_select-collapse .Select-control {
   max-width: 220px; }
 .findwine_detail-image {
-  height: 200px;
+  max-height: 200px;
   max-width: 68px;
   margin: 0px 34px 28px 25px; }
 .findwine_detail-images-desktop {
@@ -2329,7 +2329,8 @@ button:focus, button:hover {
   margin: auto;
   color: #ffffff;
   width: fit-content;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: none; }
   .findwine_easter-button-holder:hover {
     background-color: #0a9761 !important;

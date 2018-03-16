@@ -1166,7 +1166,7 @@ button:focus, button:hover {
   // Wine detail page styling
 
   &_detail-image {
-    height: 200px;
+    max-height: 200px;
     max-width: 68px;
     margin: 0px 34px 28px 25px;
   }
@@ -1178,12 +1178,7 @@ button:focus, button:hover {
     -webkit-justify-content: flex-end;
     -ms-flex-pack: end;
     margin-right: 38px;
-    //margin-left: 50px;
     flex: 1;
-
-    @include breakpoint(lg) {
-      //margin-left: 100px;
-    }
 
     &-none {
       flex: 0;
@@ -3331,7 +3326,8 @@ button:focus, button:hover {
     margin: auto;
     color: $white;
     width: fit-content;
-    margin: 10px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: none;
 
     &:hover {
