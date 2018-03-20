@@ -1,11 +1,14 @@
 from collections import namedtuple
 
+from wine.models import Merchant
+
 WINE_DATA_ATTRIBUTES = (
     "id",
     "name",
     "url",
     "price",
     "stock_amount",
+    "merchant_name",
 )
 
 
@@ -22,3 +25,10 @@ class WineData(namedtuple('WineData', WINE_DATA_ATTRIBUTES)):
 
     def __str__(self):
         return '{} ({}, {})'.format(self.name, self.id, self.url)
+
+    @property
+    def merchant(self):
+        try:
+            return Merchant.objects.get(name=self.merchant_name)
+        except Merchant.DoesNotExist:
+            return None

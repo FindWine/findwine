@@ -71,6 +71,7 @@ def _element_to_data(feed_item):
         elem_id: feed_item.find(elem_name).text
         for elem_name, elem_id in XML_NAMES_TO_ATTRIBUTES.items()
     }
+    vals['merchant_name'] = PORT2PORT_MERCHANT_NAME
     return WineData(**vals)
 
 
@@ -114,12 +115,12 @@ def get_port2port_merchant():
 
 
 def get_wine_for_data(wine_data):
-    merchant = get_port2port_merchant()
+    assert wine_data.merchant is not None
     try:
-        return MerchantWine.objects.get(merchant=merchant, external_id=wine_data.id)
+        return MerchantWine.objects.get(merchant=wine_data.merchant, external_id=wine_data.id)
     except MerchantWine.DoesNotExist:
         try:
-            return MerchantWine.objects.get(merchant=merchant, url=wine_data.url)
+            return MerchantWine.objects.get(merchant=wine_data.merchant, url=wine_data.url)
         except MerchantWine.DoesNotExist:
             return None
 

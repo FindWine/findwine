@@ -42,14 +42,14 @@ class Port2PortFeedDbTest(TestCase):
         )
 
     def test_get_no_match(self):
-        self.assertEqual(None, get_wine_for_data(WineData()))
-        self.assertEqual(None, get_wine_for_data(WineData(url='missing', id='missing')))
+        self.assertEqual(None, get_wine_for_data(_make_wine_data()))
+        self.assertEqual(None, get_wine_for_data(_make_wine_data(url='missing', id='missing')))
 
     def test_get_by_id(self):
-        self.assertEqual(self.merchant_wine, get_wine_for_data(WineData(id=self.merchant_wine.external_id)))
+        self.assertEqual(self.merchant_wine, get_wine_for_data(_make_wine_data(id=self.merchant_wine.external_id)))
 
     def test_get_by_url(self):
-        self.assertEqual(self.merchant_wine, get_wine_for_data(WineData(url=self.merchant_wine.url)))
+        self.assertEqual(self.merchant_wine, get_wine_for_data(_make_wine_data(url=self.merchant_wine.url)))
 
     def test_get_wrong_merchant(self):
         bogus_merchant_wine = MerchantWine.objects.create(
@@ -58,8 +58,8 @@ class Port2PortFeedDbTest(TestCase):
             external_id='bogus_id', url='http://test.com/bogus-wine-url'
         )
         self.addCleanup(bogus_merchant_wine.delete)
-        self.assertEqual(None, get_wine_for_data(WineData(id=bogus_merchant_wine.external_id,
-                                                          url=bogus_merchant_wine.url)))
+        self.assertEqual(None, get_wine_for_data(_make_wine_data(id=bogus_merchant_wine.external_id,
+                                                                 url=bogus_merchant_wine.url)))
 
     def test_set_external_id_if_null(self):
         url = 'test_set_external_id_if_null_url'
@@ -68,7 +68,7 @@ class Port2PortFeedDbTest(TestCase):
             merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
             url=url,
         )
-        apply_update(WineData(id=id, url=url))
+        apply_update(_make_wine_data(id=id, url=url))
         wine = MerchantWine.objects.get(pk=wine.pk)
         self.assertEqual(id, wine.external_id)
 
@@ -79,15 +79,15 @@ class Port2PortFeedDbTest(TestCase):
             merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
             external_id=id, url=url, available=False,
         )
-        self.assertEqual((wine, []), apply_update(WineData(id=id, url=url)))
+        self.assertEqual((wine, []), apply_update(_make_wine_data(id=id, url=url)))
 
         update_url = 'url_changed'
-        self.assertNotEqual((wine, []), apply_update(WineData(id=id, url=update_url)))
+        self.assertNotEqual((wine, []), apply_update(_make_wine_data(id=id, url=update_url)))
         self.assertEqual(update_url, MerchantWine.objects.get(pk=wine.pk).url)
 
     def test_allow_changing_external_id(self):
         id = 'test_allow_changing_external_id'
-        apply_update(WineData(id=id, url=self.merchant_wine.url))
+        apply_update(_make_wine_data(id=id, url=self.merchant_wine.url))
         wine = MerchantWine.objects.get(pk=self.merchant_wine.pk)
         self.assertEqual(id, wine.external_id)
 
@@ -97,19 +97,19 @@ class Port2PortFeedDbTest(TestCase):
             merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
             available=False, external_id=id,
         )
-        self.assertEqual((wine, []), apply_update(WineData(id=id)))
+        self.assertEqual((wine, []), apply_update(_make_wine_data(id=id)))
         self.assertFalse(MerchantWine.objects.get(pk=wine.pk).available)
-        self.assertEqual((wine, []), apply_update(WineData(id=id, stock_amount='0')))
+        self.assertEqual((wine, []), apply_update(_make_wine_data(id=id, stock_amount='0')))
         self.assertFalse(MerchantWine.objects.get(pk=wine.pk).available)
 
         # set some stock and confirm changed
-        self.assertNotEqual((wine, []), apply_update(WineData(id=id, stock_amount='10')))
+        self.assertNotEqual((wine, []), apply_update(_make_wine_data(id=id, stock_amount='10')))
         self.assertTrue(MerchantWine.objects.get(pk=wine.pk).available)
-        self.assertEqual((wine, []), apply_update(WineData(id=id, stock_amount='20')))
+        self.assertEqual((wine, []), apply_update(_make_wine_data(id=id, stock_amount='20')))
         self.assertTrue(MerchantWine.objects.get(pk=wine.pk).available)
 
         # set back and confirm changed again
-        self.assertNotEqual((wine, []), apply_update(WineData(id=id, stock_amount='0')))
+        self.assertNotEqual((wine, []), apply_update(_make_wine_data(id=id, stock_amount='0')))
         self.assertFalse(MerchantWine.objects.get(pk=wine.pk).available)
 
     def test_change_price(self):
@@ -118,10 +118,10 @@ class Port2PortFeedDbTest(TestCase):
             merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
             external_id=id, price=Decimal(150.0), available=False,
         )
-        self.assertEqual((wine, []), apply_update(WineData(id=id, price='150')))
+        self.assertEqual((wine, []), apply_update(_make_wine_data(id=id, price='150')))
 
         updated_price = '200'
-        self.assertNotEqual((wine, []), apply_update(WineData(id=id, price=updated_price)))
+        self.assertNotEqual((wine, []), apply_update(_make_wine_data(id=id, price=updated_price)))
         self.assertEqual(Decimal(updated_price), MerchantWine.objects.get(pk=wine.pk).price)
 
     @skip('This logic has been temporarily disabled.')
@@ -131,15 +131,20 @@ class Port2PortFeedDbTest(TestCase):
             merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
             external_id=id, price=Decimal(200.0), available=False,
         )
-        wine, work_done = apply_update(WineData(id=id, price='100'))
+        wine, work_done = apply_update(_make_wine_data(id=id, price='100'))
         self.assertTrue('Set minimum purchase unit from 1 to 6' in work_done)
         self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
 
         # changing it back should explicitly not update it
-        wine, work_done = apply_update(WineData(id=id, price='180'))
+        wine, work_done = apply_update(_make_wine_data(id=id, price='180'))
         self.assertTrue('Set minimum purchase unit from 6 to 1' not in work_done)
         self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
 
     @skip('Comment out the decorator to run this test.')
     def test_print_results(self):
         update_all(debug=True)
+
+
+def _make_wine_data(*args, **kwargs):
+    kwargs['merchant_name'] = PORT2PORT_MERCHANT_NAME
+    return WineData(*args, **kwargs)
