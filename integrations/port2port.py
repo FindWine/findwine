@@ -1,7 +1,8 @@
-from collections import namedtuple
 import xml.etree.ElementTree as ET
 from decimal import Decimal
 import requests
+
+from integrations.data_feed import WineData
 from integrations.util import notify_data_team
 from wine.models import MerchantWine, Merchant
 
@@ -9,34 +10,12 @@ from wine.models import MerchantWine, Merchant
 FEED_URL = 'https://www.port2port.wine/findwine.xml'
 PORT2PORT_MERCHANT_NAME = 'Port2Port'
 XML_NAMES_TO_ATTRIBUTES = {
-    "Category": "category",
     "Id": "id",
-    "Manufacturer": "manufacturer",
-    "Wine": "wine",
-    "Vintage": "vintage",
-    "ProductName": "productname",
-    "Volume": "volume",
-    "ProductURL": "product_url",
-    "StockAvailability": "stock_availability",
+    "ProductName": "name",
+    "ProductURL": "url",
+    "StockAvailability": "stock_amount",
     "Price": "price",
-    "DeliveryCost": "deliverycost",
-    "Currency": "currency",
 }
-
-
-class WineData(namedtuple('WineData', sorted(XML_NAMES_TO_ATTRIBUTES.values()))):
-    # https://stackoverflow.com/a/16721002/8207
-    __slots__ = ()
-
-    def __new__(cls, **kwargs):
-        new_kwargs = {
-            v: None for v in XML_NAMES_TO_ATTRIBUTES.values()
-        }
-        new_kwargs.update(kwargs)
-        return super(WineData, cls).__new__(cls, **new_kwargs)
-
-    def __str__(self):
-        return '{} ({}, {})'.format(self.wine, self.id, self.product_url)
 
 
 def update_all(debug=False):
@@ -105,15 +84,15 @@ def apply_update(wine_data, debug=False):
             else:
                 work_done.append('Added external ID {}'.format(wine_data.id))
             wine.external_id = wine_data.id
-        if wine_data.product_url and wine.url != wine_data.product_url:
-            work_done.append('Changed URL from {} to {}'.format(wine.url, wine_data.product_url))
-            wine.url = wine_data.product_url
+        if wine_data.url and wine.url != wine_data.url:
+            work_done.append('Changed URL from {} to {}'.format(wine.url, wine_data.url))
+            wine.url = wine_data.url
 
-        is_available = bool(wine_data.stock_availability and wine_data.stock_availability != '0')
+        is_available = bool(wine_data.stock_amount and wine_data.stock_amount != '0')
         if wine.available != is_available:
             wine.available = is_available
             work_done.append('Set available to {} based on a stock of {}'.format(is_available,
-                                                                                 wine_data.stock_availability))
+                                                                                 wine_data.stock_amount))
         price = Decimal(wine_data.price) if wine_data.price else None
         if price and wine.price != price:
             work_done.append('Changed price from {} to {}'.format(wine.price, price))
@@ -140,7 +119,7 @@ def get_wine_for_data(wine_data):
         return MerchantWine.objects.get(merchant=merchant, external_id=wine_data.id)
     except MerchantWine.DoesNotExist:
         try:
-            return MerchantWine.objects.get(merchant=merchant, url=wine_data.product_url)
+            return MerchantWine.objects.get(merchant=merchant, url=wine_data.url)
         except MerchantWine.DoesNotExist:
             return None
 
