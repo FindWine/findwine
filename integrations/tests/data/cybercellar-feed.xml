@@ -1,0 +1,84 @@
+<products>
+    <product>
+        <id>11588</id>
+        <name>
+            <![CDATA[ Billecart Salmon Brut Reserve ]]>
+        </name>
+        <url>
+            <![CDATA[
+https://www.cybercellar.com/billecart-salmon-brut-reserve
+]]>
+        </url>
+        <image>
+            <![CDATA[
+https://www.cybercellar.com/media/catalog/product/cache/1/small_image/400x/9df78eab33525d08d6e5fb8d27136e95/1/2/1291_billecart_salmon_brut_reserve.jpg
+]]>
+        </image>
+        <price>746.00</price>
+        <old_price/>
+        <case_bottle_count/>
+        <case_price/>
+        <case_old_price/>
+        <stock_availability>In Stock</stock_availability>
+        <stock_level>5</stock_level>
+        <volume>750 ml</volume>
+        <price-discounted-until/>
+        <producer>
+            <![CDATA[ Billecart Salmon ]]>
+        </producer>
+    </product>
+    <product>
+        <id>19040</id>
+        <name>
+            <![CDATA[ Armand De Brignac Blanc De Blanc ]]>
+        </name>
+        <url>
+            <![CDATA[
+https://www.cybercellar.com/armand-de-brignac-blanc-de-blanc
+]]>
+        </url>
+        <image>
+            <![CDATA[
+https://www.cybercellar.com/media/catalog/product/cache/1/small_image/400x/9df78eab33525d08d6e5fb8d27136e95/1/2/1228_armand_de_brignac_blanc_de_blanc.jpg
+]]>
+        </image>
+        <price>10159.00</price>
+        <old_price/>
+        <case_bottle_count/>
+        <case_price/>
+        <case_old_price/>
+        <stock_availability>In Stock</stock_availability>
+        <stock_level>0</stock_level>
+        <volume>750 ml</volume>
+        <price-discounted-until/>
+        <producer>
+            <![CDATA[ Armand De Brignac ]]>
+        </producer>
+    </product>
+    <product>
+        <id>7511</id>
+        <name>
+            <![CDATA[ Veuve Clicquot Brut ]]>
+        </name>
+        <url>
+            <![CDATA[ https://www.cybercellar.com/veuve-clicquot-brut ]]>
+        </url>
+        <image>
+            <![CDATA[
+https://www.cybercellar.com/media/catalog/product/cache/1/small_image/400x/9df78eab33525d08d6e5fb8d27136e95/7/4/7414_veuve_clicquot_brut.jpg
+]]>
+        </image>
+        <price>728.00</price>
+        <old_price/>
+        <case_bottle_count/>
+        <case_price/>
+        <case_old_price/>
+        <stock_availability>In Stock</stock_availability>
+        <stock_level>1</stock_level>
+        <volume>750 ml</volume>
+        <price-discounted-until/>
+        <producer>
+            <![CDATA[ Veuve Clicquot ]]>
+        </producer>
+    </product>
+</products>

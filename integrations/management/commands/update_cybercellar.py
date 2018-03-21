@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand
-from integrations.port2port import update_all
+from integrations.cybercellar import update_all
 
 
 class Command(BaseCommand):
