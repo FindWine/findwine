@@ -4,7 +4,8 @@ from decimal import Decimal
 from django.test import SimpleTestCase, TestCase
 
 from integrations.data_feed import WineData, apply_update, get_wine_for_data
-from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, update_all
+from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, update_all, \
+    update_minimum_purchase_unit
 
 from wine.models import MerchantWine, Merchant
 from wine.tests.test_util import get_a_new_wine_vintage
@@ -124,19 +125,20 @@ class Port2PortFeedDbTest(TestCase):
         self.assertNotEqual((wine, []), apply_update(_make_wine_data(id=id, price=updated_price)))
         self.assertEqual(Decimal(updated_price), MerchantWine.objects.get(pk=wine.pk).price)
 
-    @skip('This logic has been temporarily disabled.')
     def test_minimum_purchase_unit(self):
         id = 'test_minimum_purchase_unit_id'
         wine = MerchantWine.objects.create(
             merchant=self.merchant, wine_vintage=self.wine_vintage, minimum_purchase_unit=1,
             external_id=id, price=Decimal(200.0), available=False,
         )
-        wine, work_done = apply_update(_make_wine_data(id=id, price='100'))
+        wine, work_done = apply_update(_make_wine_data(id=id, price='100'),
+                                       custom_processor=update_minimum_purchase_unit)
         self.assertTrue('Set minimum purchase unit from 1 to 6' in work_done)
         self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
 
         # changing it back should explicitly not update it
-        wine, work_done = apply_update(_make_wine_data(id=id, price='180'))
+        wine, work_done = apply_update(_make_wine_data(id=id, price='180'),
+                                       custom_processor=update_minimum_purchase_unit)
         self.assertTrue('Set minimum purchase unit from 6 to 1' not in work_done)
         self.assertEqual(6, MerchantWine.objects.get(pk=wine.pk).minimum_purchase_unit)
 
