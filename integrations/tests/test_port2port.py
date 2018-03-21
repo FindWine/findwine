@@ -3,9 +3,9 @@ from unittest import skip
 from decimal import Decimal
 from django.test import SimpleTestCase, TestCase
 
-from integrations.data_feed import WineData
-from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, get_wine_for_data, \
-    apply_update, update_all
+from integrations.data_feed import WineData, apply_update, get_wine_for_data
+from integrations.port2port import get_port2port_data, PORT2PORT_MERCHANT_NAME, update_all
+
 from wine.models import MerchantWine, Merchant
 from wine.tests.test_util import get_a_new_wine_vintage
 
