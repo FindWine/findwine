@@ -37,14 +37,14 @@ class WineData(namedtuple('WineData', WINE_DATA_ATTRIBUTES)):
             return None
 
 
-def process_wine_feed(merchant, all_wine_datas, debug=False):
+def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=False):
     results = {}
     found = set()
     skipped = []
     not_found = []
     # first pass - update everything in the feed
     for wine_data in all_wine_datas:
-        wine, work_done = apply_update(wine_data, debug)
+        wine, work_done = apply_update(wine_data, custom_processor, debug)
         if wine is not None:
             found.add(wine.pk)
             if work_done:
@@ -62,7 +62,7 @@ def process_wine_feed(merchant, all_wine_datas, debug=False):
             if not debug:
                 existing_wine.save()
 
-    subject, pretty_results = _get_printed_results(results, skipped, not_found)
+    subject, pretty_results = _get_printed_results(merchant, results, skipped, not_found)
     if debug:
         print(subject)
         print(pretty_results)
@@ -70,7 +70,7 @@ def process_wine_feed(merchant, all_wine_datas, debug=False):
         notify_data_team(subject, pretty_results)
 
 
-def apply_update(wine_data, debug=False):
+def apply_update(wine_data, custom_processor=None, debug=False):
     wine = get_wine_for_data(wine_data)
     work_done = []
     if wine:
@@ -93,12 +93,9 @@ def apply_update(wine_data, debug=False):
         if price and wine.price != price:
             work_done.append('Changed price from {} to {}'.format(wine.price, price))
             wine.price = price
-        if price:
-            purchase_unit = 6 if price < 150 else 1
-            # temporarily disable purchase unit logic
-            if wine.minimum_purchase_unit != purchase_unit and purchase_unit == 6 and False:
-                work_done.append('Set minimum purchase unit from {} to {}'.format(wine.minimum_purchase_unit, purchase_unit))
-                wine.minimum_purchase_unit = purchase_unit
+
+        if custom_processor is not None:
+            custom_processor(wine_data, wine, work_done)
 
         if work_done and not debug:
             wine.save()
@@ -116,10 +113,11 @@ def get_wine_for_data(wine_data):
             return None
 
 
-def _get_printed_results(results, skipped, not_found):
+def _get_printed_results(merchant, results, skipped, not_found):
     total_number_processed = len(results) + len(skipped) + len(not_found)
-    subject = 'Successfully processed {}/{} results from Port2Port Feed'.format(len(results),
-                                                                                total_number_processed)
+    subject = 'Successfully processed {}/{} results from {} Feed'.format(len(results),
+                                                                         total_number_processed,
+                                                                         merchant.name)
     body = '{updated}\n{skipped}\n{missing}'.format(
         updated='\nApplied the following {} updates: \n{}'.format(
             len(results),

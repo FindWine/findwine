@@ -1,9 +1,9 @@
 import xml.etree.ElementTree as ET
 import requests
+from decimal import Decimal
 
-from integrations.data_feed import WineData, apply_update, process_wine_feed
-from integrations.util import notify_data_team
-from wine.models import MerchantWine, Merchant
+from integrations.data_feed import WineData, process_wine_feed
+from wine.models import Merchant
 
 
 FEED_URL = 'https://www.port2port.wine/findwine.xml'
@@ -22,7 +22,9 @@ def update_all(debug=False):
     Updates all data based on the results of the port2port feed.
     """
     all_wine_datas = get_port2port_data(get_raw_feed())
-    return process_wine_feed(get_port2port_merchant(), all_wine_datas, debug=debug)
+    return process_wine_feed(get_port2port_merchant(), all_wine_datas,
+                             # custom_processor=update_minimum_purchase_unit,
+                             debug=debug)
 
 
 def get_raw_feed():
@@ -48,3 +50,13 @@ def _element_to_data(feed_item):
 
 def get_port2port_merchant():
     return Merchant.objects.get(name=PORT2PORT_MERCHANT_NAME)
+
+
+def update_minimum_purchase_unit(wine_data, wine, work_done):
+    price = Decimal(wine_data.price) if wine_data.price else None
+    if price:
+        purchase_unit = 6 if price < 150 else 1
+        # temporarily disable purchase unit logic
+        if wine.minimum_purchase_unit != purchase_unit and purchase_unit == 6:
+            work_done.append('Set minimum purchase unit from {} to {}'.format(wine.minimum_purchase_unit, purchase_unit))
+            wine.minimum_purchase_unit = purchase_unit
