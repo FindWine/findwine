@@ -1,5 +1,4 @@
 from django.core.management import BaseCommand
-from integrations.data_cleanup import clean_invalid_urls_and_notify
 from integrations.port2port import update_all
 
 
