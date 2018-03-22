@@ -17,7 +17,8 @@ def setup_periodic_tasks(sender, **kwargs):
     seconds_in_a_day = 60 * 60 * 24
     sender.add_periodic_task(seconds_in_a_day, cleanup_dead_links_task_wrapper.s(),
                              name='De-activate wines pointing at dead links.')
-    port2port_schedule = crontab(hour='2,13,21', minute=15, day_of_week='*')
+    # should run just after 11:00, 19:00, and 0:00 SAST (which is those numbers UTC)
+    port2port_schedule = crontab(hour='9,17,22', minute=15, day_of_week='*')
     sender.add_periodic_task(port2port_schedule, port2port_update_task_wrapper.s(),
                              name='Update data based on port2port feed.')
 
