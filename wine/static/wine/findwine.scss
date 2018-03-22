@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham SSm A', 'Gotham SSm B';
-//$primary-font: 'Gotham SSm A', sans-serif;
+//$primary-font: 'Gotham SSm A', 'Gotham SSm B';
+$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
 
@@ -1761,10 +1761,10 @@ button:focus, button:hover {
     margin-bottom: 5px;
 
     @include breakpoint(lg) {
-
+      line-height: 18px;
       display: inline-block;
       margin-right: 25px;
-
+      margin-bottom: 10px;
     }
   }
 
@@ -1778,6 +1778,7 @@ button:focus, button:hover {
       display: inline-block;
       font-size: 16px;
       margin-bottom: 0px;
+      line-height: 16px;
     }
   }
 
@@ -1790,7 +1791,7 @@ button:focus, button:hover {
     padding-right: 5px;
 
     @include breakpoint(lg) {
-      line-height: 1.5;
+      line-height: 18px;
       font-style: normal;
     }
   }
@@ -2067,6 +2068,11 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       border: none !important;
       justify-content: center;
+    }
+
+    &-search {
+      align-self: center;
+      margin-top: -17px;
     }
   }
 

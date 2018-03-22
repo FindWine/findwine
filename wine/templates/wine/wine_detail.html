@@ -576,19 +576,25 @@
                 <p class="findwine_vintage-category">
                   {{ other_vintage.sub_category }}
                 </p>
-                <div class="findwine_vintage-table--display">
+                <div class="findwine_vintage-table--display hidden-md-up">
                   <div class="findwine_vintage-currency"> R</div>
                   <div class="findwine_vintage-price">
                     {{ other_vintage.preferred_merchant.price|floatformat:0 }}
                   </div>
-                  <button class="btn findwine_view-button hidden-md-down"
-                          target="_self" role="button" href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}">
-                    View
-                    <img src="{% static 'wine/images/SVGs/arrow-right-white.svg' %}"
-                         class="findwine_view-button-arrow">
-                  </button>
                 </div>
               </div>
+            </div>
+            <div class="findwine_vintage-table--display findwine_vintage-table--display-search hidden-md-down">
+              <div class="findwine_vintage-currency"> R</div>
+              <div class="findwine_vintage-price">
+                {{ other_vintage.preferred_merchant.price|floatformat:0 }}
+              </div>
+              <button class="btn findwine_view-button"
+                      target="_self" role="button" href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}">
+                View
+                <img src="{% static 'wine/images/SVGs/arrow-right-white.svg' %}"
+                     class="findwine_view-button-arrow">
+              </button>
             </div>
           </div>
         </div>

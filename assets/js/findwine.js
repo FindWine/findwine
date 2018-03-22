@@ -541,20 +541,21 @@ class WineList extends React.Component {
                         <p className="findwine_vintage-category">
                           { winevintage.sub_category }
                         </p>
-                        <div className="findwine_vintage-table--display">
+                        <div className="findwine_vintage-table--display hidden-sm-up">
                           <div className="findwine_vintage-currency"> R </div>
-                          <div className="findwine_vintage-price">
-                            {winevintage.price}
-                          </div>
-                          <button className="btn findwine_view-button hidden-sm-down"
-                                  href={winevintage.details_url} target="_self"
-                                  role="button">
-                            View
-                            <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
-                                 className="findwine_view-button-arrow"></img>
-                          </button>
+                          <div className="findwine_vintage-price"> {winevintage.price} </div>
                         </div>
                       </div>
+                    </div>
+                    <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
+                      <div className="findwine_vintage-currency"> R </div>
+                      <div className="findwine_vintage-price"> {winevintage.price} </div>
+                      <button className="btn findwine_view-button"
+                              href={winevintage.details_url} target="_self"
+                              role="button"> View
+                        <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
+                             className="findwine_view-button-arrow"></img>
+                      </button>
                     </div>
                   </div>
                 </div>
