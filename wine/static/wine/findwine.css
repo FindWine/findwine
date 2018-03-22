@@ -306,6 +306,9 @@ button:focus, button:hover {
   max-height: inherit !important;
   height: auto !important; }
 
+.Select-arrow {
+  border-color: #333e48 transparent transparent !important; }
+
 .modal.left .modal-dialog {
   position: fixed; }
 
@@ -1432,6 +1435,9 @@ button:focus, button:hover {
   color: #333e48;
   display: inline-block;
   margin-right: 2px; }
+  @media (min-width: 992px) {
+    .findwine_vintage-currency {
+      padding-top: 7px; } }
 .findwine_vintage-price {
   font-family: "Gotham SSm A", sans-serif;
   font-size: 30px;

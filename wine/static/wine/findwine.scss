@@ -466,6 +466,10 @@ button:focus, button:hover {
   height: auto !important;
 }
 
+.Select-arrow {
+ border-color: $primary-text transparent transparent !important;
+}
+
 // Modal
 .modal.left .modal-dialog {
   position: fixed;
@@ -2041,6 +2045,10 @@ button:focus, button:hover {
     color: $primary-text;
     display: inline-block;
     margin-right: 2px;
+
+    @include breakpoint(lg) {
+      padding-top: 7px;
+    }
   }
 
   &_vintage-price {
