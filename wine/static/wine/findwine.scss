@@ -1986,6 +1986,13 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       max-height: 130px;
     }
+
+    &-easter {
+      height: 100%;
+      width: 50px;
+      object-fit: cover;
+      padding: 0px 5px;
+    }
   }
 
   &_vintage-producer {

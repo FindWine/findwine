@@ -528,13 +528,13 @@ class WineList extends React.Component {
                   <div className="findwine_search-result--table">
                     <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.rating_display} </div>
                     <div className="findwine_vintage--image">
-                      <img src={ imageUrl } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img"/>
+                      <img src={ imageUrl } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img" id="image"/>
                     </div>
                     <div className="findwine_vintage-details">
                       <div className="findwine_vintage-producer">
                         {winevintage.wine.producer}
                       </div>
-                      <h4 className="findwine_vintage-vintage">
+                      <h4 className="findwine_vintage-vintage" id="wine">
                         {winevintage.wine.name } { winevintage.year }
                       </h4>
                       <div className="findwine_vintage-row">
@@ -879,6 +879,15 @@ function hide() {
 function isMobile() {
   return window.innerWidth < 992;
 }
+
+window.onload = function easterImage() {
+  var wine = document.getElementById('wine');
+  var image = document.getElementById('image');
+
+  if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() < 992) {
+    $(image).addClass('findwine_vintage--image-img-easter')
+  }
+};
 
 ReactDOM.render(
     <SearchPage/>,
