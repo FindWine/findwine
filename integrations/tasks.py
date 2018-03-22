@@ -2,7 +2,7 @@ import traceback
 from celery import shared_task
 import celery
 from django.core.mail import mail_admins
-from integrations.port2port import update_all
+from integrations import port2port, cybercellar
 
 
 class NotifyFailTask(celery.Task):
@@ -20,7 +20,12 @@ def cleanup_dead_links_task():
 
 @shared_task(base=NotifyFailTask)
 def port2port_update_task():
-    update_all()
+    port2port.update_all()
+
+
+@shared_task(base=NotifyFailTask)
+def cybercellar_update_task():
+    cybercellar.update_all()
 
 
 @shared_task(base=NotifyFailTask)

@@ -21,6 +21,10 @@ def setup_periodic_tasks(sender, **kwargs):
     port2port_schedule = crontab(hour='9,17,22', minute=15, day_of_week='*')
     sender.add_periodic_task(port2port_schedule, port2port_update_task_wrapper.s(),
                              name='Update data based on port2port feed.')
+    cybercellar_schedule = crontab(hour='22', minute=20, day_of_week='*')
+    sender.add_periodic_task(cybercellar_schedule, cybercellar_update_task_wrapper.s(),
+                             name='Update data based on cybercellar feed.')
+
 
 @app.task
 def cleanup_dead_links_task_wrapper():
@@ -37,6 +41,12 @@ def cleanup_dead_links_task_wrapper():
 @app.task
 def port2port_update_task_wrapper():
     from integrations.tasks import port2port_update_task
+    port2port_update_task()
+
+
+@app.task
+def cybercellar_update_task_wrapper():
+    from integrations.tasks import cybercellar_update_task
     port2port_update_task()
 
 
