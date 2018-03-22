@@ -378,7 +378,7 @@ class Merchant(models.Model):
     delivery_threshold = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     logo = models.ImageField(upload_to='images/merchant_logos/', null=True, blank=True, max_length=500)
     url = models.URLField(null=True, blank=True, max_length=256)
-    affiliate_params = JSONField(default={})
+    affiliate_params = JSONField(default={}, blank=True)
 
     def __str__(self):
         return self.name + ' ' + self.country

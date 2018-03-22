@@ -20,7 +20,10 @@ def clean_invalid_urls_and_notify(debug=False):
 
 def clean_invalid_urls(debug=False):
     updated_merchants = []
-    for merchant_wine in MerchantWine.objects.filter(available=True):
+    # short term hack: don't check caroline's because they have added an age check
+    merchant_whitelist = ["Caroline's Fine Wine Cellar"]
+    wines_to_check = MerchantWine.objects.filter(available=True).exclude(merchant__name__in=merchant_whitelist)
+    for merchant_wine in wines_to_check:
         if not url_is_valid(merchant_wine.url):
             if not debug:
                 merchant_wine.available = False
