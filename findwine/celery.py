@@ -47,7 +47,7 @@ def port2port_update_task_wrapper():
 @app.task
 def cybercellar_update_task_wrapper():
     from integrations.tasks import cybercellar_update_task
-    port2port_update_task()
+    cybercellar_update_task()
 
 
 # Using a string here means the worker doesn't have to serialize
