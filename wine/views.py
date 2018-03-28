@@ -4,10 +4,12 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.templatetags.static import static
+from django.urls import reverse
 from django.utils.text import slugify
 from django.views import generic
 from django.views.decorators.http import require_GET
 
+from wine.context_processors import absolute_url
 from .models import WineVintage, Producer, Category
 from integrations.tasks import fail_task
 
@@ -90,3 +92,13 @@ def error(request):
 def celery_error(request):
     fail_task.delay()
     return HttpResponse('Triggered a celery task that should fail.')
+
+
+@require_GET
+def sitemap(request):
+    lines = []
+    for producer in Producer.objects.all():
+        lines.append(absolute_url(reverse('wine:producer_detail_by_slug', args=[producer.slug])))
+    for wine_vintage in WineVintage.objects.all():
+        lines.append(absolute_url(reverse('wine:wine_detail_by_slug', args=[wine_vintage.slug])))
+    return HttpResponse('\n'.join(lines), content_type='text/plain')

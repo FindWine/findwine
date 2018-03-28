@@ -18,4 +18,5 @@ urlpatterns = [
         name='producer_detail_by_slug'),
     url(r'^500/$', views.error, name='simulate_error'),
     url(r'^celery_500/$', views.celery_error, name='simulate_celery_error'),
+    url(r'^sitemap.txt$', views.sitemap, name='sitemap'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # NOT SUITABLE FOR PRODCUTION
