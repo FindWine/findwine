@@ -1390,11 +1390,6 @@ button:focus, button:hover {
   @media (min-width: 992px) {
     .findwine_vintage--image-img {
       max-height: 130px; } }
-  .findwine_vintage--image-img-easter {
-    height: 100%;
-    width: 50px;
-    object-fit: cover;
-    padding: 0px 5px; }
 .findwine_vintage-producer {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 18px;
