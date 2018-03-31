@@ -3339,37 +3339,4 @@ button:focus, button:hover {
   &_producer-email {
     word-wrap: break-word;
   }
-
-  &_easter-button-holder {
-    background-color: $primary-green;
-    border: none;
-    border-radius: 4px;
-    margin: auto;
-    color: $white;
-    width: fit-content;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: none;
-
-    &:hover {
-      background-color: $hover-green !important;
-      border-color: $hover-green !important;
-      color: $white;
-    }
-
-    &:active, &:focus {
-      background-color: $focus-green !important;
-      border-color: $focus-green !important;
-      color: $white;
-    }
-  }
-
-  &_easter-button {
-    color: $white;
-  }
-
-  &_easter-holder {
-    flex-direction: column;
-    height: auto;
-  }
 }

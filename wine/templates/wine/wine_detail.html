@@ -109,15 +109,9 @@
     </div>
 
     {% if winevintage.image_pack_shot %}
-    <div class="findwine_detail-image-main--holder findwine_easter-holder">
+    <div class="findwine_detail-image-main--holder">
       <img id='main-wine-image' src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
            class="img-fluid rounded float-left findwine_detail-image-main">
-
-      <!-- Easter Competition DESKTOP-->
-      <div class="findwine_easter-button-holder" id="easterComp">
-        <a class="btn findwine_easter-button" role="button"> I FOUND THE EASTER EGGS! </a>
-      </div>
-
     </div>
     {% endif %}
   </div>
@@ -215,11 +209,6 @@
       </ul>
     </div>
   </div>
-</div>
-
-<!-- Easter Competition MOBILE -->
-<div class="hidden-lg-up findwine_easter-button-holder" id="easterCompMob">
-  <a class="btn findwine_easter-button" role="button"> I FOUND THE EASTER EGGS! </a>
 </div>
 
 <!-- Purchase options - Mobile -->
@@ -686,36 +675,5 @@
       $('#main-wine-image')[0].src = imgSrc;
     });
   });
-
-  //  Easter Competition Button display
-  window.onload = function showEasterButton() {
-      var mobileButton = document.getElementById('easterCompMob');
-      var deskButton = document.getElementById('easterComp');
-      var wine = document.getElementById('wine');
-
-      if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() > 992) {
-          deskButton.style.display = 'flex';
-      } else if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() < 992) {
-          mobileButton.style.display = 'flex';
-      }
-  };
-
-  // Easter popUp
-  function showEasterPopUp() {
-      var body = document.getElementsByTagName('body')[0];
-      body.style.height = 'auto';
-
-      require(["mojo/signup-forms/Loader"],
-          function(L) {
-              L.start({"baseUrl":"mc.us15.list-manage.com","uuid":"403cbba831c3782b855b034c6","lid":"f76ec957a5"})
-          });
-
-      document.cookie = 'MCPopupClosed=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-      document.cookie = 'MCPopupSubscribed=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-  };
-
-  document.getElementById('easterCompMob').onclick = function() {showEasterPopUp()};
-  document.getElementById('easterComp').onclick = function() {showEasterPopUp()};
-
 </script>
 {% endblock %}
