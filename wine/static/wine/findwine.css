@@ -1390,11 +1390,6 @@ button:focus, button:hover {
   @media (min-width: 992px) {
     .findwine_vintage--image-img {
       max-height: 130px; } }
-  .findwine_vintage--image-img-easter {
-    height: 100%;
-    width: 50px;
-    object-fit: cover;
-    padding: 0px 5px; }
 .findwine_vintage-producer {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 18px;
@@ -2339,28 +2334,5 @@ button:focus, button:hover {
       margin-bottom: 10px; } }
 .findwine_producer-email {
   word-wrap: break-word; }
-.findwine_easter-button-holder {
-  background-color: #00ad68;
-  border: none;
-  border-radius: 4px;
-  margin: auto;
-  color: #ffffff;
-  width: fit-content;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: none; }
-  .findwine_easter-button-holder:hover {
-    background-color: #0a9761 !important;
-    border-color: #0a9761 !important;
-    color: #ffffff; }
-  .findwine_easter-button-holder:active, .findwine_easter-button-holder:focus {
-    background-color: #14815b !important;
-    border-color: #14815b !important;
-    color: #ffffff; }
-.findwine_easter-button {
-  color: #ffffff; }
-.findwine_easter-holder {
-  flex-direction: column;
-  height: auto; }
 
 /*# sourceMappingURL=findwine.css.map */
