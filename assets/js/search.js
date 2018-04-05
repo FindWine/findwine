@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
-import {constructImagePath, WineList} from "./shared";
+import {WineList, Paginator} from "./shared";
 
 const queryString = require('query-string');
 
@@ -53,6 +53,14 @@ class SearchByNamePage extends React.Component {
     }
 
     render() {
+        let showPaginator = (this.state.wines.length);
+        let paginator = showPaginator ? <Paginator
+            nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
+            prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
+            count={this.state.resultCount} page={this.state.resultPage}
+            start={this.state.resultStart} end={this.state.resultEnd}
+        /> : '';
+
         return (
             <div className="container">
                 <SearchByNameControl searchText={this.state.searchText}
@@ -60,6 +68,7 @@ class SearchByNamePage extends React.Component {
                                      doSearch={() => this.doSearch()}
                 />
                 <WineList wines={this.state.wines} isLoading={this.state.isLoading}/>
+                {paginator}
             </div>
         )
     }
@@ -92,6 +101,19 @@ class SearchByNamePage extends React.Component {
             });
         }
     }
+
+    nextPage() {
+        if (this.state['nextPageUrl']) {
+            fetch(this.state['nextPageUrl']).then((response) => this._updateResultsFromResponse(response));
+        }
+    }
+
+    prevPage() {
+        if (this.state['prevPageUrl']) {
+            fetch(this.state['prevPageUrl']).then((response) => this._updateResultsFromResponse(response));
+        }
+    }
+
 }
 
 ReactDOM.render(
