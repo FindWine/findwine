@@ -70,6 +70,43 @@ export class WineList extends React.Component {
   }
 }
 
+export class Paginator extends React.Component {
+    render() {
+        // let nextButton = this.props.showNext ? `<a onClick=${(event) => this.props.nextPage()}>Next</a>` : '';
+        let nextButton = this.props.showNext ?
+            <a className="btn findwine_search-next--button" href="#top" onClick={(event) => this.props.nextPage()}>
+              <p className="findwine_search-next--button-text hidden-sm-down">Next</p>
+              <img src={constructImagePath('wine/images/SVGs/arrow-right.svg')} alt="Next" className="findwine_search-next--button-arrow-right"></img>
+            </a> : <a className="btn findwine_search-next--button-inactive" onClick={(event) => this.props.nextPage()}>
+            <p className="findwine_search-next--button-text-inactive hidden-sm-down">Next</p>
+            <img src={constructImagePath('wine/images/SVGs/arrow-right-greyLight.svg')} alt="Next" className="hidden-md-up"></img>
+            <img src={constructImagePath('wine/images/SVGs/arrow-left-green.svg')} alt="Next" className="hidden-sm-down findwine_search-next--button-green-arrow-right"></img>
+          </a>;
+        let prevButton = this.props.showPrevious ?
+            <a className="btn findwine_search-next--button findwine_search-next--button-left" href="#top" onClick={(event) => this.props.prevPage()}>
+              <img src={constructImagePath('wine/images/SVGs/arrow-right.svg')} alt="Previous" className="findwine_search-next--button-arrow"></img>
+              <p className="findwine_search-next--button-text hidden-sm-down">Previous</p>
+            </a> : <a className="btn findwine_search-next--button-inactive findwine_search-next--button-left" onClick={(event) => this.props.nextPage()}>
+            <img src={constructImagePath('wine/images/SVGs/arrow-left-grey.svg')} alt="Previous" className="hidden-md-up"></img>
+            <img src={constructImagePath('wine/images/SVGs/arrow-left-green.svg')} alt="Previous" className="hidden-sm-down findwine_search-next--button-green-arrow"></img>
+            <p className="findwine_search-next--button-text-inactive hidden-sm-down">Previous</p>
+          </a>;
+
+            return (
+            <div className="findwine_search-page--container">
+              <div className="findwine_search-page--inner">
+                <div className="findwine_search-page"> Page {this.props.page} </div>
+                <div className="findwine_search-winesTotal"> {this.props.start} - {this.props.end} of {this.props.count} wines </div>
+              </div>
+              <div className="findwine_search-button--container">
+                {prevButton}
+                {nextButton}
+              </div>
+            </div>
+        )
+    }
+}
+
 
 export function constructImagePath(path) {
   // assumes defined on the page.
