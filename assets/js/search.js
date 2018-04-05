@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
+import {constructImagePath, WineList} from "./shared";
 
 const queryString = require('query-string');
 
@@ -38,6 +39,16 @@ class SearchByNamePage extends React.Component {
         super();
         this.state = {
             searchText: '',
+            // results / pagination
+            wines: [],
+            resultCount: 0,
+            resultPage: 1,
+            resultStart: 1,
+            resultEnd: 10,
+            nextPageUrl: null,
+            prevPageUrl: null,
+            firstSearchMade: false,
+            isLoading: false,
         }
     }
 
@@ -48,7 +59,7 @@ class SearchByNamePage extends React.Component {
                                      searchTextChanged={(text) => this.searchTextChanged(text)}
                                      doSearch={() => this.doSearch()}
                 />
-                <SearchResults />
+                <WineList wines={this.state.wines} isLoading={this.state.isLoading}/>
             </div>
         )
     }
@@ -60,16 +71,24 @@ class SearchByNamePage extends React.Component {
     }
 
     doSearch() {
-        let params = queryString.stringify({q: this.state.text});
-        console.log(params)
+        let params = queryString.stringify({q: this.state.searchText});
         fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
-        console.log('search!', this.state.searchText);
     }
 
     _updateResultsFromResponse(response) {
         if (response.ok) {
             response.json().then((responseJson) => {
                 console.log(responseJson);
+                this.setState({
+                    wines: responseJson.results,
+                    nextPageUrl: responseJson.next,
+                    prevPageUrl: responseJson.previous,
+                    resultCount: responseJson.count,
+                    resultPage: responseJson.page,
+                    resultStart: responseJson.start,
+                    resultEnd: responseJson.end,
+                    isLoading: false,
+                });
             });
         }
     }
