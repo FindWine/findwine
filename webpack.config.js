@@ -1,9 +1,12 @@
 const path = require('path');
 module.exports = {
-  entry: './assets/js/findwine.js',
+  entry: {
+    findwine: './assets/js/findwine.js',
+    search: './assets/js/search.js',
+  },
   output: {
     path: path.resolve('static', 'js'),
-    filename: 'findwine-bundle.js'
+    filename: '[name]-bundle.js'
   },
   module: {
     loaders: [

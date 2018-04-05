@@ -24,6 +24,12 @@ def search(request):
     })
 
 
+@require_GET
+def search_by_name(request):
+    return render(request, 'wine/search_by_name.html', {
+    })
+
+
 def _build_category_metadata():
     """
     Creates a data structure mapping categories to all subcategories they contain.
