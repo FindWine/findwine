@@ -880,14 +880,6 @@ function isMobile() {
   return window.innerWidth < 992;
 }
 
-window.onload = function easterImage() {
-  var wine = document.getElementById('wine');
-  var image = document.getElementById('image');
-
-  if (wine.innerText === 'Vineyard Selection Cabernet Sauvignon 2015' && $(window).width() < 992) {
-    $(image).addClass('findwine_vintage--image-img-easter')
-  }
-};
 
 ReactDOM.render(
     <SearchPage/>,
