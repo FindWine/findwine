@@ -1,4 +1,4 @@
-from django.db.models import Min, Avg
+from django.db.models import Min, Avg, Q
 from rest_framework import viewsets
 from api.serializers import WineVintageSerializer
 from api.util import coerce_to_decimal
@@ -47,14 +47,29 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
         # 7 Restrict MerchantWines to lowest price version(s) of same wine_vintage
         wines = WineVintage.objects.distinct().filter(merchantwine__in=results_list)
         # 8 Only show lowest price and add average rating
-        wines = wines.annotate(
-            price=Round(Min('merchantwine__price')),
-            avg_rating=Round(Avg('wineaward__award__tier__normalised_rating')),
-
-        )
+        wines = _add_computed_columns(wines)
         wines = wines.order_by(*sort_by)
         # todo: if necessary
         # #9 Restrict MerchantWines to lowest minimum_purchase_unit of same wine_vintage, price and merchant
         # # NOT WORKING min_units = results_list.values('wine_vintage').annotate(smallest_unit=Min('minimum_purchase_unit'))
         # # NOT WORKING results_list = results_list.filter(minimum_purchase_unit__in=min_units.values('smallest_unit'))
         return wines
+
+
+class WineVintageSearchViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = WineVintage.objects.all()
+    serializer_class = WineVintageSerializer
+
+    def get_queryset(self):
+        queryText = self.request.GET.get('q', '')
+        query = Q(wine__name__icontains=queryText) | Q(wine__producer__name__icontains=queryText)
+        wines = WineVintage.objects.filter(query)
+        return _add_computed_columns(wines)
+
+
+def _add_computed_columns(wines):
+    return wines.annotate(
+        price=Round(Min('merchantwine__price')),
+        avg_rating=Round(Avg('wineaward__award__tier__normalised_rating')),
+
+    )

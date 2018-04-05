@@ -3,14 +3,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from . import views
-from rest_framework import routers
 
 
 app_name = 'wine'
 urlpatterns = [
-    # ex: /
     url(r'^$', views.search, name='search'),
     url(r'^search/$', views.search, name='search_explicit'),
+    url(r'^search-by-name/$', views.search_by_name, name='search_by_name'),
     # ex: /wine/paul-cluver-noble-late-harvest-2014/
     url(r'^wine/(?P<slug>[A-Za-z0-9_-]+)/$', views.WineDetailView.as_view(), name='wine_detail_by_slug'),
     # ex: /producer/warwick/
