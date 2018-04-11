@@ -73,6 +73,15 @@ class SearchByNamePage extends React.Component {
         )
     }
 
+    componentDidMount() {
+        let queryParams = queryString.parse(location.search);
+        if (Object.keys(queryParams).length && queryParams['q']) {
+            this.setState({
+                searchText: queryParams['q']
+            }, this.doSearch);
+        }
+    }
+
     searchTextChanged(text) {
         this.setState({
             searchText: text
