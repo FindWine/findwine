@@ -12,6 +12,16 @@ export class WineList extends React.Component {
       );
     }
     else if (this.props.wines.length > 0) {
+      var getPriceElement = function(winevintage) {
+          var currencyDisplay = winevintage.available ? 'R' : 'N/A';
+          return (
+              <div>
+                  <div className="findwine_vintage-currency"> {currencyDisplay} </div>
+                  <div className="findwine_vintage-price"> {winevintage.price} </div>
+              </div>
+          );
+      };
+
       return (
         <div className="findwine_vintage-table">
           {this.props.wines.map((winevintage, index) => {
@@ -36,14 +46,12 @@ export class WineList extends React.Component {
                           { winevintage.sub_category }
                         </p>
                         <div className="findwine_vintage-table--display hidden-sm-up">
-                          <div className="findwine_vintage-currency"> R </div>
-                          <div className="findwine_vintage-price"> {winevintage.price} </div>
+                            {getPriceElement(winevintage)}
                         </div>
                       </div>
                     </div>
                     <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
-                      <div className="findwine_vintage-currency"> R </div>
-                      <div className="findwine_vintage-price"> {winevintage.price} </div>
+                      {getPriceElement(winevintage)}
                       <button className="btn findwine_view-button"
                               href={winevintage.details_url} target="_self"
                               role="button"> View

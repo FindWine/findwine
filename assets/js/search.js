@@ -15,24 +15,23 @@ class SearchByNameControl extends React.Component {
             <div>
                 <label htmlFor="search">Search: </label>
                 <input type="text" id="search" placeholder="Warwick" value={this.props.searchText}
-                       onChange={(e) => this.props.searchTextChanged(e.target.value)}/>
+                       onChange={(e) => this.props.searchTextChanged(e.target.value)}
+                       onKeyPress={(e) => this.handleKeyPress(e.key)}
+                />
                 <button onClick={() => this.props.doSearch()}>Search</button>
             </div>
         );
     }
-}
 
-class SearchResults extends React.Component {
-    render () {
-        return (
-            <ul>
-                <li>todo</li>
-                <li>todo</li>
-                <li>todo</li>
-            </ul>
-        )
+    handleKeyPress(key) {
+        if (key === 'Enter') {
+            this.props.doSearch();
+        } else {
+            console.log('not enter', key);
+        }
     }
 }
+
 
 class SearchByNamePage extends React.Component {
     constructor() {
@@ -73,6 +72,15 @@ class SearchByNamePage extends React.Component {
         )
     }
 
+    componentDidMount() {
+        let queryParams = queryString.parse(location.search);
+        if (Object.keys(queryParams).length && queryParams['q']) {
+            this.setState({
+                searchText: queryParams['q']
+            }, this.doSearch);
+        }
+    }
+
     searchTextChanged(text) {
         this.setState({
             searchText: text
@@ -82,6 +90,7 @@ class SearchByNamePage extends React.Component {
     doSearch() {
         let params = queryString.stringify({q: this.state.searchText});
         fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
+        window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`)
     }
 
     _updateResultsFromResponse(response) {
