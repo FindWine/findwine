@@ -1,4 +1,4 @@
-from django.db.models import Min, Avg, Q
+from django.db.models import Min, Avg, Q, Exists, OuterRef
 from rest_framework import viewsets
 from api.serializers import WineVintageSerializer
 from api.util import coerce_to_decimal
@@ -7,6 +7,7 @@ from wine.models import WineVintage, MerchantWine, Round
 
 MAX_PRICE = '9999999'
 
+DEFAULT_SORT = ['-avg_rating', 'price']
 
 class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = WineVintage.objects.all()
@@ -18,14 +19,13 @@ class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
         min_price = coerce_to_decimal(self.request.GET.get('min_price', None)) or '0'
         max_price = coerce_to_decimal(self.request.GET.get('max_price', None)) or MAX_PRICE
 
-
         sort_by = self.request.GET.get('sort_by', None)
 
         if sort_by is None:
-            sort_by = ['-avg_rating', 'price']
+            sort_by = DEFAULT_SORT
         elif sort_by == '-avg_rating':
             # add second layer of sorting
-            sort_by = ['-avg_rating', 'price']
+            sort_by = DEFAULT_SORT
         else:
             sort_by = sort_by.split(',')
         #1 todo: Add country
@@ -64,11 +64,13 @@ class WineVintageSearchViewSet(viewsets.ReadOnlyModelViewSet):
         queryText = self.request.GET.get('q', '')
         query = Q(wine__name__icontains=queryText) | Q(wine__producer__name__icontains=queryText)
         wines = WineVintage.objects.filter(query)
-        return _add_computed_columns(wines)
+        wines = _add_computed_columns(wines)
+        return wines.order_by('-available', *DEFAULT_SORT)
 
 
 def _add_computed_columns(wines):
     return wines.annotate(
+        available=Exists(MerchantWine.objects.filter(wine_vintage=OuterRef('pk'))),
         price=Round(Min('merchantwine__price')),
         avg_rating=Round(Avg('wineaward__award__tier__normalised_rating')),
 

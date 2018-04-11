@@ -14,6 +14,7 @@ class WineSerializer(serializers.ModelSerializer):
 class WineVintageSerializer(serializers.ModelSerializer):
     price = serializers.IntegerField(read_only=True)
     avg_rating = serializers.DecimalField(read_only=True, max_digits=3, decimal_places=1)
+    available = serializers.BooleanField(read_only=True)
     details_url = serializers.SerializerMethodField()
     wine = WineSerializer(read_only=True)
     preferred_merchant_url = serializers.CharField(source='preferred_merchant.url', read_only=True)
@@ -22,7 +23,7 @@ class WineVintageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WineVintage
-        fields = ('url', 'slug', 'wine', 'avg_rating', 'rating_display',
+        fields = ('url', 'slug', 'wine', 'avg_rating', 'rating_display', 'available',
                   'rating_category', 'details_url', 'category',
                   'sub_category', 'price', 'year', 'preferred_merchant_url', 'image_url')
 
