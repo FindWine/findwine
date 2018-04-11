@@ -2,6 +2,9 @@
 {% load staticfiles %}
 
 {% block content %}
+{% include 'wine/partials/mobile_nav.html' %}
+{% include 'wine/partials/search_nav.html' %}
+
     <div id="react-home" >
     </div>
 {% endblock %}
@@ -10,6 +13,10 @@
         // var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
         // var CATEGORY_MAP = {{ category_mapping|safe }};
         var STATIC_BASE_PATH = "{% static '' %}";
+        $(function () {
+            // show nav
+            $('#top').show();
+        });
     </script>
     <script src="{% static 'js/search-bundle.js' %}"></script>
 {% endblock %}
