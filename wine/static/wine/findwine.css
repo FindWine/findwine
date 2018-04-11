@@ -154,7 +154,8 @@ button:focus, button:hover {
   margin-top: 0px; }
 
 .rc-slider {
-  width: 92% !important; }
+  width: 95% !important;
+  margin: auto; }
   @media (min-width: 992px) {
     .rc-slider {
       width: 96% !important; } }
@@ -459,7 +460,7 @@ button:focus, button:hover {
       padding: 0px;
       margin-bottom: 31px; } }
 .findwine_banner-main {
-  height: 170px;
+  height: 145px;
   width: 100%;
   background: url("images/background/home-mob.png");
   -webkit-background-size: cover;
@@ -469,6 +470,9 @@ button:focus, button:hover {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem; }
+  @media (min-width: 576px) {
+    .findwine_banner-main {
+      height: 170px; } }
   @media (min-width: 678px) {
     .findwine_banner-main {
       background: url("images/background/home-tab.png") no-repeat;
@@ -632,7 +636,7 @@ button:focus, button:hover {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     border-radius: 2px; }
     @media (min-width: 576px) {
       .findwine_button-category {
@@ -690,7 +694,12 @@ button:focus, button:hover {
       float: right; } }
   .findwine_subscribe--flex {
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    margin-bottom: 16px; }
+    @media (min-width: 576px) {
+      .findwine_subscribe--flex {
+        width: 80%;
+        margin: 0px auto 16px auto; } }
 .findwine_newsletter-heading {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 16px;
@@ -703,7 +712,8 @@ button:focus, button:hover {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-size: 14px;
   text-align: left;
-  color: #86929a; }
+  color: #86929a;
+  margin-bottom: 0px; }
 .findwine_newsletter-subscribe {
   color: #333e48;
   margin-right: 0px !important;
@@ -733,6 +743,8 @@ button:focus, button:hover {
     background-color: #14815b !important;
     border-color: #14815b !important;
     color: #ffffff; }
+.findwine_newsletter-content {
+  align-self: center; }
 .findwine_mailchimp-holder {
   width: 100%;
   display: flex;

@@ -212,14 +212,14 @@ a:focus, a:hover {
 a {
   .findwine_producer-link {
     color: $light-grey-text;
-    &:hover{
+    &:hover {
       color: $hover-green;
     }
   }
 
   .findwine_producer-page-link {
     color: $primary-green;
-    &:hover{
+    &:hover {
       color: $hover-green;
     }
   }
@@ -269,7 +269,8 @@ button:focus, button:hover {
 
 // Slider styles
 .rc-slider {
-  width: 92% !important;
+  width: 95% !important;
+  margin: auto;
 
   @include breakpoint(lg) {
     width: 96% !important;
@@ -467,7 +468,7 @@ button:focus, button:hover {
 }
 
 .Select-arrow {
- border-color: $primary-text transparent transparent !important;
+  border-color: $primary-text transparent transparent !important;
 }
 
 // Modal
@@ -691,7 +692,7 @@ button:focus, button:hover {
   }
 
   &_banner-main {
-    height: 170px;
+    height: 145px;
     width: 100%;
     background: url("images/background/home-mob.png");
     -webkit-background-size: cover;
@@ -701,6 +702,10 @@ button:focus, button:hover {
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
+
+    @include breakpoint(sm) {
+      height: 170px;
+    }
 
     @include breakpoint(md) {
       background: url("images/background/home-tab.png") no-repeat;
@@ -923,7 +928,7 @@ button:focus, button:hover {
       word-wrap: break-word;
       overflow-wrap: break-word;
       white-space: normal;
-      margin-bottom: 15px;
+      margin-bottom: 0px;
       border-radius: 2px;
 
       @include breakpoint(sm) {
@@ -1023,6 +1028,12 @@ button:focus, button:hover {
     &--flex {
       display: flex;
       justify-content: center;
+      margin-bottom: 16px;
+
+      @include breakpoint(sm) {
+        width: 80%;
+        margin: 0px auto 16px auto;
+      }
     }
   }
 
@@ -1041,6 +1052,7 @@ button:focus, button:hover {
     font-size: 14px;
     text-align: left;
     color: #86929a;
+    margin-bottom: 0px;
   }
 
   &_newsletter-subscribe {
@@ -1078,6 +1090,10 @@ button:focus, button:hover {
       border-color: $focus-green !important;
       color: $white;
     }
+  }
+
+  &_newsletter-content {
+    align-self: center;
   }
 
   &_mailchimp-holder {
