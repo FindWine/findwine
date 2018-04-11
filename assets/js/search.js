@@ -32,17 +32,6 @@ class SearchByNameControl extends React.Component {
     }
 }
 
-class SearchResults extends React.Component {
-    render () {
-        return (
-            <ul>
-                <li>todo</li>
-                <li>todo</li>
-                <li>todo</li>
-            </ul>
-        )
-    }
-}
 
 class SearchByNamePage extends React.Component {
     constructor() {
