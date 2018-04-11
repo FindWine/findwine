@@ -15,10 +15,20 @@ class SearchByNameControl extends React.Component {
             <div>
                 <label htmlFor="search">Search: </label>
                 <input type="text" id="search" placeholder="Warwick" value={this.props.searchText}
-                       onChange={(e) => this.props.searchTextChanged(e.target.value)}/>
+                       onChange={(e) => this.props.searchTextChanged(e.target.value)}
+                       onKeyPress={(e) => this.handleKeyPress(e.key)}
+                />
                 <button onClick={() => this.props.doSearch()}>Search</button>
             </div>
         );
+    }
+
+    handleKeyPress(key) {
+        if (key === 'Enter') {
+            this.props.doSearch();
+        } else {
+            console.log('not enter', key);
+        }
     }
 }
 
