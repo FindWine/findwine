@@ -91,6 +91,7 @@ class SearchByNamePage extends React.Component {
     doSearch() {
         let params = queryString.stringify({q: this.state.searchText});
         fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
+        window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`)
     }
 
     _updateResultsFromResponse(response) {
