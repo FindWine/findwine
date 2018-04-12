@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham SSm A', 'Gotham SSm B';
-//$primary-font: 'Gotham SSm A', sans-serif;
+//$primary-font: 'Gotham SSm A', 'Gotham SSm B';
+$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
 
@@ -277,7 +277,7 @@ button:focus, button:hover {
   }
 
   @include breakpoint(lg) {
-    margin-top: 20px;
+    margin-top: 18px;
     margin-left: 10px;
   }
 }
@@ -331,14 +331,14 @@ button:focus, button:hover {
 
 .category {
   @include breakpoint(lg) {
-    margin-top: 6px;
+    margin-top: 0px;
     margin-right: 20px;
   }
 }
 
 .sub_category {
   @include breakpoint(lg) {
-    margin-top: 6px;
+    margin-top: 0px;
   }
 
   &-collapse {
@@ -465,9 +465,10 @@ button:focus, button:hover {
   overflow: visible !important;
   max-height: inherit !important;
   height: auto !important;
+  box-shadow: 0px 1px 15px $primary-text !important;
 }
 
-.Select-arrow {
+.category-arrow {
   border-color: $primary-text transparent transparent !important;
 }
 
@@ -734,6 +735,7 @@ button:focus, button:hover {
 
   &_search-form {
     @include breakpoint(lg) {
+      box-shadow: 1px 1px 10px $primary-text;
       margin-top: -305px;
       padding: 32px 30px;
       background-color: white;
@@ -784,7 +786,7 @@ button:focus, button:hover {
     }
   }
 
-  &_select-svg {
+  &_category-svg {
     max-width: 13px;
     max-height: 29px;
     margin-right: 20px;
@@ -879,13 +881,9 @@ button:focus, button:hover {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
 
     @include breakpoint(lg) {
-      width: auto;
-    }
-
-    @include breakpoint(lg) {
       margin-top: 38px;
       height: 45px;
-      width: 163px;
+      width: auto;
       letter-spacing: 0.7px;
     }
 
