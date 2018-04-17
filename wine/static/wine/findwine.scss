@@ -277,7 +277,7 @@ button:focus, button:hover {
   }
 
   @include breakpoint(lg) {
-    margin-top: 18px;
+    margin-top: 12px;
     margin-left: 10px;
   }
 }
@@ -312,6 +312,7 @@ button:focus, button:hover {
   input {
     width: 75px;
     margin-left: 15px;
+    height: 43px;
   }
 }
 
@@ -325,6 +326,7 @@ button:focus, button:hover {
   input {
     width: 75px;
     margin-left: 15px;
+    height: 43px;
     outline: none !important;
   }
 }
@@ -466,6 +468,10 @@ button:focus, button:hover {
   max-height: inherit !important;
   height: auto !important;
   box-shadow: 0px 1px 15px $primary-text !important;
+}
+
+.Select-arrow {
+  border-color: $primary-text transparent transparent !important;
 }
 
 .category-arrow {
@@ -885,6 +891,7 @@ button:focus, button:hover {
       height: 45px;
       width: auto;
       letter-spacing: 0.7px;
+      cursor: pointer;
     }
 
     &:hover {
@@ -2150,8 +2157,9 @@ button:focus, button:hover {
 
   &_filter-collapse-category {
     .Select-control {
-      max-width: 220px;
+      max-width: 100%;
     }
+
     margin-right: 20px;
     margin-top: 0px;
 
@@ -2537,11 +2545,10 @@ button:focus, button:hover {
   }
 
   &_modal-button {
-    background-color: $white;
+    background-color: $primary-green;
     font-family: $primary-font;
-    color: $primary-green;
+    color: $white;
     font-size: 14px;
-    font-weight: bold;
     text-align: center;
     border: 2px solid $primary-green;
     cursor: pointer;
