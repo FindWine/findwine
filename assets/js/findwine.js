@@ -227,7 +227,7 @@ class SearchControls extends React.Component {
           <button type="submit" className="btn btn-primary btn-block findwine_button" href="#modal"
                   onClick={(event) => this.props.searchClicked(event)}>
             SEARCH WINES
-            <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
+            <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="findwine_button-image"></img>
           </button>
         </div>
       );
