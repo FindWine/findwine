@@ -111,6 +111,12 @@ def get_wine_for_data(wine_data):
             return MerchantWine.objects.get(merchant=wine_data.merchant, url=wine_data.url)
         except MerchantWine.DoesNotExist:
             return None
+    except MerchantWine.MultipleObjectsReturned:
+        message = "Failed to update wine {} because it had multiple matches for merchant {} and external ID {}".format(
+            wine_data.name, wine_data.merchant, wine_data.id
+        )
+        notify_data_team("Skipping wine update for invalid data", message)
+        return None
 
 
 def _get_printed_results(merchant, results, skipped, not_found):
