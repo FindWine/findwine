@@ -1,0 +1,36 @@
+{% if not debug %}
+<script>
+    // conversion tracking - copied from Gavin
+    var goog_snippet_vars = function () {
+        var w = window;
+        w.google_conversion_id = 836487255;
+        w.google_conversion_label = "G9NICK2JvoEBENeQ744D";
+        w.google_remarketing_only = false;
+    };
+    // DO NOT CHANGE THE CODE BELOW.
+    var goog_report_conversion = function (url) {
+        goog_snippet_vars();
+        window.google_conversion_format = "3";
+        var opt = new Object();
+        opt.onload_callback = function () {
+            // the original version of this code changes the URL, but don't bother doing that.
+            return false;
+        }
+        var conv_handler = window['google_trackConversion'];
+        if (typeof(conv_handler) == 'function') {
+            conv_handler(opt);
+        }
+    };
+    document.addEventListener("DOMContentLoaded", function (event) {
+        // track any annotated links appropriately
+        $('.buy-link').click(function () {
+            var url = $(this).attr('href');
+            goog_report_conversion(url);
+            return true;
+        });
+    });
+</script>
+<script type="text/javascript"
+        src="//www.googleadservices.com/pagead/conversion_async.js">
+</script>
+{% endif %}

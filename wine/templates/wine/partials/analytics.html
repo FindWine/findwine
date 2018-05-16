@@ -10,28 +10,6 @@
     ga('send', 'pageview');
 
 
-    // conversion tracking - copied from Gavin
-    var goog_snippet_vars = function () {
-        var w = window;
-        w.google_conversion_id = 836487255;
-        w.google_conversion_label = "G9NICK2JvoEBENeQ744D";
-        w.google_remarketing_only = false;
-    };
-    // DO NOT CHANGE THE CODE BELOW.
-    var goog_report_conversion = function (url) {
-        goog_snippet_vars();
-        window.google_conversion_format = "3";
-        var opt = new Object();
-        opt.onload_callback = function () {
-            // the original version of this code changes the URL, but don't bother doing that.
-            return false;
-        }
-        var conv_handler = window['google_trackConversion'];
-        if (typeof(conv_handler) == 'function') {
-            conv_handler(opt);
-        }
-    };
-
    /**
     * Function that tracks a click on an outbound link in Analytics.
     * modified from: https://support.google.com/analytics/answer/1136920?hl=en
@@ -41,7 +19,6 @@
             'dimension1': merchant,
             'dimension2': wine,
         });
-        goog_report_conversion(url);
     };
 
     document.addEventListener("DOMContentLoaded", function (event) {
@@ -82,9 +59,6 @@
         ';path=/;expires='+new Date(0).toUTCString();i=d.indexOf('.');if(i<0)break;d=d.slice(i+1)}}};
     })(window,document,window['_fs_namespace'],'script','user');
 
-</script>
-<script type="text/javascript"
-  src="//www.googleadservices.com/pagead/conversion_async.js">
 </script>
 <!-- Facebook Pixel Code -->
 <script>
