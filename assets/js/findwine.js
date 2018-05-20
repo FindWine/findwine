@@ -6,7 +6,7 @@ import Select from 'react-select';
 require('rc-slider/assets/index.css');
 import 'react-select/dist/react-select.css';
 import Slider, {Range} from 'rc-slider';
-import {foo, constructImagePath, WineList, Paginator} from "./shared";
+import {constructImagePath, WineList, Paginator} from "./shared";
 
 const queryString = require('query-string');
 
@@ -110,7 +110,6 @@ class CategorySelectMobile extends React.Component {
   }
 }
 
-
 class SubCategoryOption extends React.Component {
   // also adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
   handleMouseDown (event) {
@@ -184,6 +183,7 @@ class SubCategorySelect extends React.Component {
     )
   }
 }
+
 class SortSelect extends React.Component {
   render() {
     let choices = getSortChoices().map((sortChoice, index) => {
@@ -235,18 +235,18 @@ class SearchControls extends React.Component {
   }
 
   _getSearchButtonFilter() {
-  if (this.props.firstSearchMade) {
-    return (
-      <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0 findwine_button-outer">
-        <button type="button" className="btn btn-primary btn-block findwine_button"
-                onClick={(e) => this._doMobileSearch()}>
-          SEARCH WINES
-          <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
-        </button>
-      </div>
-    );
+    if (this.props.firstSearchMade) {
+      return (
+        <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0 findwine_button-outer">
+          <button type="button" className="btn btn-primary btn-block findwine_button"
+                  onClick={(e) => this._doMobileSearch()}>
+            SEARCH WINES
+            <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
+          </button>
+        </div>
+      );
+    }
   }
-}
 
   _doMobileSearch() {
       this.props.setExpanded(false);
@@ -450,7 +450,6 @@ class SearchControls extends React.Component {
     return !this.props.firstSearchMade || this.props.isExpanded;
   }
 
-
   render() {
     if (this.showSearchControls()) {
       return this.renderControls();
@@ -509,53 +508,52 @@ class RatingsModal extends React.Component {
   }
 }
 
-
 class SearchPage extends React.Component {
-    constructor() {
-        super();
-        // initialize with first category / subcategory selected
-        const category = getCategoryChoices()[0];
-        this.state = {
-            selectedCategory: category,
-            selectedSubcategory: '',
-            minPrice: 0,
-            maxPrice: DEFAULT_MAX_PRICE,
-            selectedSort: getSortChoices()[0][1],
-            // results / pagination
-            wines: [],
-            resultCount: 0,
-            resultPage: 1,
-            resultStart: 1,
-            resultEnd: 10,
-            nextPageUrl: null,
-            prevPageUrl: null,
-            firstSearchMade: false,
-            searchControlsExpanded: false,
-            isLoading: false,
-        }
+  constructor() {
+    super();
+    // initialize with first category / subcategory selected
+    const category = getCategoryChoices()[0];
+    this.state = {
+        selectedCategory: category,
+        selectedSubcategory: '',
+        minPrice: 0,
+        maxPrice: DEFAULT_MAX_PRICE,
+        selectedSort: getSortChoices()[0][1],
+        // results / pagination
+        wines: [],
+        resultCount: 0,
+        resultPage: 1,
+        resultStart: 1,
+        resultEnd: 10,
+        nextPageUrl: null,
+        prevPageUrl: null,
+        firstSearchMade: false,
+        searchControlsExpanded: false,
+        isLoading: false,
     }
+  }
 
     componentDidMount() {
-        let queryParams = queryString.parse(location.search);
-        if (Object.keys(queryParams).length && queryParams['selectedCategory']) {
-            queryParams['firstSearchMade'] = true;
-            this._updateLandingPage(true);
-            this.setState(queryParams, this._updateSearchResults);
+      let queryParams = queryString.parse(location.search);
+      if (Object.keys(queryParams).length && queryParams['selectedCategory']) {
+          queryParams['firstSearchMade'] = true;
+          this._updateLandingPage(true);
+          this.setState(queryParams, this._updateSearchResults);
+      }
+      // there might be a better way to do this
+      // clear search results on back button press back to home page
+      var self = this;
+      let showLandingPageContent = () => this._updateLandingPage(false);
+      $(window).on('popstate', function (e) {
+        if (location.pathname === '/') {
+            self.setState(
+              {
+                'firstSearchMade': false
+              },
+              showLandingPageContent,
+            );
         }
-        // there might be a better way to do this
-        // clear search results on back button press back to home page
-        var self = this;
-        let showLandingPageContent = () => this._updateLandingPage(false);
-        $(window).on('popstate', function (e) {
-            if (location.pathname === '/') {
-                self.setState(
-                  {
-                    'firstSearchMade': false
-                  },
-                  showLandingPageContent,
-                );
-            }
-        });
+      });
     }
 
     _updateLandingPage(searchMade) {

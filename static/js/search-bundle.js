@@ -78,7 +78,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-var m=__webpack_require__(22),n=__webpack_require__(39),p=__webpack_require__(14),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
+var m=__webpack_require__(23),n=__webpack_require__(39),p=__webpack_require__(14),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var z={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function A(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}A.prototype.isReactComponent={};A.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?y("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};A.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function B(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}function C(){}C.prototype=A.prototype;var D=B.prototype=new C;D.constructor=B;m(D,A.prototype);D.isPureReactComponent=!0;function E(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}var F=E.prototype=new C;F.constructor=E;m(F,A.prototype);F.unstable_isAsyncReactComponent=!0;F.render=function(){return this.props.children};var G={current:null},H=Object.prototype.hasOwnProperty,I={key:!0,ref:!0,__self:!0,__source:!0};
@@ -115,7 +115,7 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var _assign = __webpack_require__(22);
+var _assign = __webpack_require__(23);
 var emptyObject = __webpack_require__(39);
 var invariant = __webpack_require__(40);
 var warning = __webpack_require__(43);
@@ -1476,7 +1476,7 @@ module.exports = react;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(4),l=__webpack_require__(74),B=__webpack_require__(22),C=__webpack_require__(14),ba=__webpack_require__(75),da=__webpack_require__(76),ea=__webpack_require__(77),fa=__webpack_require__(78),ia=__webpack_require__(79),D=__webpack_require__(39);
+var aa=__webpack_require__(4),l=__webpack_require__(74),B=__webpack_require__(23),C=__webpack_require__(14),ba=__webpack_require__(75),da=__webpack_require__(76),ea=__webpack_require__(77),fa=__webpack_require__(78),ia=__webpack_require__(79),D=__webpack_require__(39);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -1780,7 +1780,7 @@ var React = __webpack_require__(4);
 var invariant = __webpack_require__(40);
 var warning = __webpack_require__(43);
 var ExecutionEnvironment = __webpack_require__(74);
-var _assign = __webpack_require__(22);
+var _assign = __webpack_require__(23);
 var emptyFunction = __webpack_require__(14);
 var EventListener = __webpack_require__(75);
 var getActiveElement = __webpack_require__(76);
@@ -17848,6 +17848,10 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = __webpack_require__(18);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18115,7 +18119,7 @@ function constructImagePath(path) {
 "use strict";
 
 var strictUriEncode = __webpack_require__(161);
-var objectAssign = __webpack_require__(22);
+var objectAssign = __webpack_require__(23);
 var decodeComponent = __webpack_require__(162);
 
 function encoderForArrayFormat(opts) {
@@ -18457,7 +18461,54 @@ module.exports = function (encodedURI) {
 
 /***/ }),
 
-/***/ 22:
+/***/ 18:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
+  ) {
+    return;
+  }
+  if (process.env.NODE_ENV !== 'production') {
+    // This branch is unreachable because this function is only called
+    // in production, but the condition is true only in development.
+    // Therefore if the branch is still here, dead code elimination wasn't
+    // properly applied.
+    // Don't change the message. React DevTools relies on it. Also make sure
+    // this message doesn't occur elsewhere in this function, or it will cause
+    // a false positive.
+    throw new Error('^_^');
+  }
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (process.env.NODE_ENV === 'production') {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(134);
+} else {
+  module.exports = __webpack_require__(137);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ }),
+
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18552,53 +18603,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-
-/***/ }),
-
-/***/ 27:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
-  ) {
-    return;
-  }
-  if (process.env.NODE_ENV !== 'production') {
-    // This branch is unreachable because this function is only called
-    // in production, but the condition is true only in development.
-    // Therefore if the branch is still here, dead code elimination wasn't
-    // properly applied.
-    // Don't change the message. React DevTools relies on it. Also make sure
-    // this message doesn't occur elsewhere in this function, or it will cause
-    // a false positive.
-    throw new Error('^_^');
-  }
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (process.env.NODE_ENV === 'production') {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(134);
-} else {
-  module.exports = __webpack_require__(137);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
 
@@ -18786,7 +18790,7 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(27);
+var _reactDom = __webpack_require__(18);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -18808,191 +18812,267 @@ var queryString = __webpack_require__(160);
 var SEARCH_API_URL = '/api/search/';
 
 var SearchByNameControl = function (_React$Component) {
-    _inherits(SearchByNameControl, _React$Component);
+  _inherits(SearchByNameControl, _React$Component);
 
-    function SearchByNameControl() {
-        _classCallCheck(this, SearchByNameControl);
+  function SearchByNameControl() {
+    _classCallCheck(this, SearchByNameControl);
 
-        return _possibleConstructorReturn(this, (SearchByNameControl.__proto__ || Object.getPrototypeOf(SearchByNameControl)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (SearchByNameControl.__proto__ || Object.getPrototypeOf(SearchByNameControl)).apply(this, arguments));
+  }
+
+  _createClass(SearchByNameControl, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'findwine_search-name' },
+        _react2.default.createElement('input', { type: 'text', id: 'search', placeholder: 'Search wine or winery', className: 'form-control mr-sm-2 findwine_search-field',
+          value: this.props.searchText,
+          onChange: function onChange(e) {
+            return _this2.props.searchTextChanged(e.target.value);
+          },
+          onKeyPress: function onKeyPress(e) {
+            return _this2.handleKeyPress(e.key);
+          }
+        }),
+        _react2.default.createElement(
+          'button',
+          { className: 'btn btn-outline-success my-2 my-sm-0 findwine_search-button',
+            onClick: function onClick() {
+              return _this2.props.doSearch();
+            } },
+          ' ',
+          _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/search.svg'), alt: 'search' })
+        )
+      );
     }
+  }, {
+    key: 'handleKeyPress',
+    value: function handleKeyPress(key) {
+      if (key === 'Enter') {
+        this.props.doSearch();
+      } else {
+        // console.log('not enter', key);
+      }
+    }
+  }]);
 
-    _createClass(SearchByNameControl, [{
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'label',
-                    { htmlFor: 'search' },
-                    'Search: '
-                ),
-                _react2.default.createElement('input', { type: 'text', id: 'search', placeholder: 'Warwick', value: this.props.searchText,
-                    onChange: function onChange(e) {
-                        return _this2.props.searchTextChanged(e.target.value);
-                    },
-                    onKeyPress: function onKeyPress(e) {
-                        return _this2.handleKeyPress(e.key);
-                    }
-                }),
-                _react2.default.createElement(
-                    'button',
-                    { onClick: function onClick() {
-                            return _this2.props.doSearch();
-                        } },
-                    'Search'
-                )
-            );
-        }
-    }, {
-        key: 'handleKeyPress',
-        value: function handleKeyPress(key) {
-            if (key === 'Enter') {
-                this.props.doSearch();
-            } else {
-                console.log('not enter', key);
-            }
-        }
-    }]);
-
-    return SearchByNameControl;
+  return SearchByNameControl;
 }(_react2.default.Component);
 
 var SearchByNamePage = function (_React$Component2) {
-    _inherits(SearchByNamePage, _React$Component2);
+  _inherits(SearchByNamePage, _React$Component2);
 
-    function SearchByNamePage() {
-        _classCallCheck(this, SearchByNamePage);
+  function SearchByNamePage() {
+    _classCallCheck(this, SearchByNamePage);
 
-        var _this3 = _possibleConstructorReturn(this, (SearchByNamePage.__proto__ || Object.getPrototypeOf(SearchByNamePage)).call(this));
+    var _this3 = _possibleConstructorReturn(this, (SearchByNamePage.__proto__ || Object.getPrototypeOf(SearchByNamePage)).call(this));
 
-        _this3.state = {
-            searchText: '',
-            // results / pagination
-            wines: [],
-            resultCount: 0,
-            resultPage: 1,
-            resultStart: 1,
-            resultEnd: 10,
-            nextPageUrl: null,
-            prevPageUrl: null,
-            firstSearchMade: false,
-            isLoading: false
-        };
-        return _this3;
-    }
+    _this3.state = {
+      searchText: '',
+      // results / pagination
+      wines: [],
+      resultCount: 0,
+      resultPage: 1,
+      resultStart: 1,
+      resultEnd: 10,
+      nextPageUrl: null,
+      prevPageUrl: null,
+      firstSearchMade: false,
+      isLoading: false
+    };
+    return _this3;
+  }
 
-    _createClass(SearchByNamePage, [{
-        key: 'render',
-        value: function render() {
-            var _this4 = this;
+  _createClass(SearchByNamePage, [{
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
 
-            var showPaginator = this.state.wines.length;
-            var paginator = showPaginator ? _react2.default.createElement(_shared.Paginator, {
-                nextPage: function nextPage() {
-                    return _this4.nextPage();
-                }, showNext: Boolean(this.state.nextPageUrl),
-                prevPage: function prevPage() {
-                    return _this4.prevPage();
-                }, showPrevious: Boolean(this.state.prevPageUrl),
-                count: this.state.resultCount, page: this.state.resultPage,
-                start: this.state.resultStart, end: this.state.resultEnd
-            }) : '';
+      var showPaginator = this.state.wines.length;
+      var paginator = showPaginator ? _react2.default.createElement(_shared.Paginator, {
+        nextPage: function nextPage() {
+          return _this4.nextPage();
+        }, showNext: Boolean(this.state.nextPageUrl),
+        prevPage: function prevPage() {
+          return _this4.prevPage();
+        }, showPrevious: Boolean(this.state.prevPageUrl),
+        count: this.state.resultCount, page: this.state.resultPage,
+        start: this.state.resultStart, end: this.state.resultEnd
+      }) : '';
 
-            return _react2.default.createElement(
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'nav',
+          { className: 'navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content',
+            style: { display: 'none' }, id: 'top' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container findwine_nav--menu' },
+            _react2.default.createElement(
+              'button',
+              { className: 'navbar-toggler', type: 'button', 'data-toggle': 'modal', 'data-target': '#exampleModalLong' },
+              _react2.default.createElement(
+                'span',
+                null,
+                _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/menu-black.svg'), className: 'findwine_menu-button' })
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'collapse navbar-collapse', id: 'navbarSupportedContent' },
+              _react2.default.createElement(
+                'ul',
+                { className: 'navbar-nav mr-auto' },
+                _react2.default.createElement(
+                  'li',
+                  { className: 'nav-item active nav-item-new' },
+                  _react2.default.createElement(
+                    'a',
+                    { className: 'nav-link nav-link-new', href: '/search' },
+                    'Home ',
+                    _react2.default.createElement(
+                      'span',
+                      {
+                        className: 'sr-only' },
+                      '(current)'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'nav-item nav-item-new' },
+                  _react2.default.createElement(
+                    'a',
+                    { className: 'nav-link nav-link-new', href: '/about' },
+                    'About'
+                  )
+                )
+              ),
+              _react2.default.createElement(
                 'div',
-                { className: 'container' },
+                { className: 'findwine_search-field-holder' },
                 _react2.default.createElement(SearchByNameControl, { searchText: this.state.searchText,
-                    searchTextChanged: function searchTextChanged(text) {
-                        return _this4.searchTextChanged(text);
-                    },
-                    doSearch: function doSearch() {
-                        return _this4.doSearch();
-                    }
-                }),
-                _react2.default.createElement(_shared.WineList, { wines: this.state.wines, isLoading: this.state.isLoading }),
-                paginator
-            );
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var queryParams = queryString.parse(location.search);
-            if (Object.keys(queryParams).length && queryParams['q']) {
-                this.setState({
-                    searchText: queryParams['q']
-                }, this.doSearch);
-            }
-        }
-    }, {
-        key: 'searchTextChanged',
-        value: function searchTextChanged(text) {
-            this.setState({
-                searchText: text
-            });
-        }
-    }, {
-        key: 'doSearch',
-        value: function doSearch() {
-            var _this5 = this;
+                  searchTextChanged: function searchTextChanged(text) {
+                    return _this4.searchTextChanged(text);
+                  },
+                  doSearch: function doSearch() {
+                    return _this4.doSearch();
+                  }
+                })
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'findwine_nav-logo search-page-content' },
+            _react2.default.createElement(
+              'a',
+              { href: '/search' },
+              _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/logo-black.svg'),
+                className: 'd-inline-block align-top findwine_nav-logo-icon', alt: 'FindWine' })
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'findwine_search-results-holder' },
+            _react2.default.createElement(_shared.WineList, { wines: this.state.wines, isLoading: this.state.isLoading }),
+            paginator
+          )
+        )
+      );
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var queryParams = queryString.parse(location.search);
+      if (Object.keys(queryParams).length && queryParams['q']) {
+        this.setState({
+          searchText: queryParams['q']
+        }, this.doSearch);
+      }
+    }
+  }, {
+    key: 'searchTextChanged',
+    value: function searchTextChanged(text) {
+      this.setState({
+        searchText: text
+      });
+    }
+  }, {
+    key: 'doSearch',
+    value: function doSearch() {
+      var _this5 = this;
 
-            var params = queryString.stringify({ q: this.state.searchText });
-            fetch(SEARCH_API_URL + '?' + params).then(function (response) {
-                return _this5._updateResultsFromResponse(response);
-            });
-            window.history.replaceState(params, 'Search Results', '/search-by-name/?' + params);
-        }
-    }, {
-        key: '_updateResultsFromResponse',
-        value: function _updateResultsFromResponse(response) {
-            var _this6 = this;
+      var params = queryString.stringify({ q: this.state.searchText });
+      fetch(SEARCH_API_URL + '?' + params).then(function (response) {
+        return _this5._updateResultsFromResponse(response);
+      });
+      window.history.replaceState(params, 'Search Results', '/search-by-name/?' + params);
 
-            if (response.ok) {
-                response.json().then(function (responseJson) {
-                    console.log(responseJson);
-                    _this6.setState({
-                        wines: responseJson.results,
-                        nextPageUrl: responseJson.next,
-                        prevPageUrl: responseJson.previous,
-                        resultCount: responseJson.count,
-                        resultPage: responseJson.page,
-                        resultStart: responseJson.start,
-                        resultEnd: responseJson.end,
-                        isLoading: false
-                    });
-                });
-            }
-        }
-    }, {
-        key: 'nextPage',
-        value: function nextPage() {
-            var _this7 = this;
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(_shared.WineList, { wines: this.state.wines, isLoading: this.state.isLoading })
+      );
+    }
+  }, {
+    key: '_updateResultsFromResponse',
+    value: function _updateResultsFromResponse(response) {
+      var _this6 = this;
 
-            if (this.state['nextPageUrl']) {
-                fetch(this.state['nextPageUrl']).then(function (response) {
-                    return _this7._updateResultsFromResponse(response);
-                });
-            }
-        }
-    }, {
-        key: 'prevPage',
-        value: function prevPage() {
-            var _this8 = this;
+      if (response.ok) {
+        response.json().then(function (responseJson) {
+          // console.log(responseJson.results);
+          _this6.setState({
+            wines: responseJson.results,
+            nextPageUrl: responseJson.next,
+            prevPageUrl: responseJson.previous,
+            resultCount: responseJson.count,
+            resultPage: responseJson.page,
+            resultStart: responseJson.start,
+            resultEnd: responseJson.end,
+            isLoading: false
+          });
+        });
+      }
+    }
+  }, {
+    key: 'nextPage',
+    value: function nextPage() {
+      var _this7 = this;
 
-            if (this.state['prevPageUrl']) {
-                fetch(this.state['prevPageUrl']).then(function (response) {
-                    return _this8._updateResultsFromResponse(response);
-                });
-            }
-        }
-    }]);
+      if (this.state['nextPageUrl']) {
+        fetch(this.state['nextPageUrl']).then(function (response) {
+          return _this7._updateResultsFromResponse(response);
+        });
+      }
+    }
+  }, {
+    key: 'prevPage',
+    value: function prevPage() {
+      var _this8 = this;
 
-    return SearchByNamePage;
+      if (this.state['prevPageUrl']) {
+        fetch(this.state['prevPageUrl']).then(function (response) {
+          return _this8._updateResultsFromResponse(response);
+        });
+      }
+    }
+  }]);
+
+  return SearchByNamePage;
 }(_react2.default.Component);
 
-_reactDom2.default.render(_react2.default.createElement(SearchByNamePage, null), document.getElementById('react-home'));
+_reactDom2.default.render(_react2.default.createElement(SearchByNamePage, null), document.getElementById('search-bar'));
 
 /***/ }),
 

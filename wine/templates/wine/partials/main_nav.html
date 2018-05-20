@@ -15,16 +15,20 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'content:about' %}">About</a>
         </li>
-        <!--<li class="nav-item nav-item-new">-->
-        <!--<a class="nav-link nav-link-new hidden-sm-up" href="{% url 'wine:search' %}">Search</a>-->
-        <!--</li>-->
+        <li class="nav-item nav-item-new">
+        <a class="nav-link nav-link-new hidden-sm-up" href="{% url 'wine:search' %}">Search</a>
+        </li>
       </ul>
-      <!-- This will be added at a later stage -->
-      <!--<form class="form-inline my-2 my-lg-0 hidden-sm-down">-->
-      <!--<input class="form-control mr-sm-2 findwine_search-field" type="text" placeholder="Search wine or winery">-->
-      <!--<button class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"><img-->
-      <!--src="{% static 'wine/images/SVGs/search.svg' %}" class="findwine_search-icon"></button>-->
-      <!--</form>-->
+      <!--Search-->
+      <!--<div id="search-bar" style="float: right;">-->
+      <!--</div>-->
     </div>
   </div>
 </nav>
+
+{% block page_scripts %}
+<script>
+  var STATIC_BASE_PATH = "{% static '' %}";
+</script>
+<script src="{% static 'js/search-bundle.js' %}"></script>
+{% endblock %}

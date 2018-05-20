@@ -29,8 +29,8 @@ $bronze: #b5664a;
 // Fonts
 
 // TOP is for PRODUCTION
-$primary-font: 'Gotham SSm A', 'Gotham SSm B';
-//$primary-font: 'Gotham SSm A', sans-serif;
+//$primary-font: 'Gotham SSm A', 'Gotham SSm B';
+$primary-font: 'Gotham SSm A', sans-serif;
 
 // Mixins
 
@@ -474,6 +474,10 @@ button:focus, button:hover {
   border-color: $primary-text transparent transparent !important;
 }
 
+.Select.is-open > .Select-control .Select-arrow {
+  border-color: transparent transparent $primary-text !important;
+}
+
 .category-arrow {
   border-color: $primary-text transparent transparent !important;
 }
@@ -662,11 +666,30 @@ button:focus, button:hover {
     width: auto !important;
   }
 
+  &_search-field-holder{
+    @include breakpoint(lg){
+      height: 36px;
+      margin-right: -20%;
+    }
+  }
+
+  ::placeholder {
+    color: $light-grey;
+  }
+
+  &_search-name {
+    display: flex;
+    float: right;
+    border: 1px solid $light-grey;
+    border-radius: 4px;
+  }
+
   &_search-button {
     background-color: $primary-green;
     border: none;
     border-radius: 0px 4px 4px 1px;
     color: $white;
+    cursor: pointer;
 
     &:hover {
       background-color: $hover-green !important;
@@ -683,6 +706,10 @@ button:focus, button:hover {
   &_search-icon {
     height: 18px;
     width: 18px;
+  }
+
+  &_select-svg {
+    margin-right: 20px;
   }
 
   &_logo-standard {
@@ -1086,6 +1113,7 @@ button:focus, button:hover {
     height: 40px;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
+    cursor: pointer;
 
     &:hover {
       background-color: $hover-green !important;
@@ -1712,7 +1740,7 @@ button:focus, button:hover {
     color: $light-grey-text;
     margin-left: 15px;
     margin-right: 15px;
-    width: 40%;
+    width: 60%;
 
     @include breakpoint(lg) {
       padding: 0px !important;
@@ -2196,6 +2224,10 @@ button:focus, button:hover {
       padding: 0px 50px;
       border: 1px solid $lightest-grey-border;
       cursor: default;
+    }
+
+    &-holder {
+      margin-top: 50px;
     }
   }
 
