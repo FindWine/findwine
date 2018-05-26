@@ -26,8 +26,7 @@ class SearchByNameControl extends React.Component {
   handleKeyPress(key) {
     if (key === 'Enter') {
       this.props.doSearch();
-    } else {
-      // console.log('not enter', key);
+  } else {
     }
   }
 }
@@ -61,8 +60,8 @@ class SearchByNamePage extends React.Component {
 
     return (
       <div>
-        <nav className="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content"
-             style={{display: 'none'}} id="top">
+        <nav className="navbar navbar-toggleable-md navbar-light bg-faded navbar-new"
+             id="top">
           <div className="container findwine_nav--menu">
             <button className="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
           <span>
@@ -73,8 +72,9 @@ class SearchByNamePage extends React.Component {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active nav-item-new">
-                  <a className="nav-link nav-link-new" href="/search">Home <span
-                    className="sr-only">(current)</span></a>
+                  <a className="nav-link nav-link-new nav-link-home" href="/">Home
+                    <span className="sr-only">(current)</span>
+                  </a>
                 </li>
                 <li className="nav-item nav-item-new">
                   <a className="nav-link nav-link-new" href="/about">About</a>
@@ -89,13 +89,79 @@ class SearchByNamePage extends React.Component {
             </div>
           </div>
           <div className="findwine_nav-logo search-page-content">
-            <a href="/search">
+            <a href="/">
               <img src={ constructImagePath('wine/images/SVGs/logo-black.svg') }
                    className="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></img>
             </a>
           </div>
+          <div className="modal left fade" id="exampleModalLong" tabIndex="-1" role="dialog"
+               aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div className="modal-dialog findwine_modal-nav" role="document">
+              <div className="modal-content findwine_modal-nav-content">
+                <div className="modal-header findwine_modal-nav-header">
+                  <button type="button" className="close findwine_modal-nav-close" data-dismiss="modal"
+                          aria-label="Close">
+                    <span aria-hidden="true">
+                      <img src={ constructImagePath('wine/images/SVGs/close.svg') }
+                           className="findwine_menu-button"></img></span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                      <a className="nav-link findwine_modal-nav-link nav-link-home" href="/">Home
+                        <span className="sr-only" id="home">(current)</span>
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link findwine_modal-nav-link" href="/about">About</a>
+                    </li>
+                    <li className="nav-item">
+                      <div className="findwine_search-field-holder">
+                        <SearchByNameControl searchText={this.state.searchText}
+                                             searchTextChanged={(text) => this.searchTextChanged(text)}
+                                             doSearch={() => this.doSearch()}
+                        />
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div className="modal-footer findwine_modal-nav-footer">
+                  <div className="findwine_modal-nav-footer-links">
+                    <ul className="findwine_modal-nav-footer-links-ul">
+                      <li className="findwine_modal-nav-footer-links-li">
+                        <a className="findwine_modal-nav-footer-link" href="/contact">Contact
+                          Us <span className="sr-only">(current)</span></a>
+                      </li>
+                      <li className="findwine_modal-nav-footer-links-li">
+                        <a className="findwine_modal-nav-footer-link" href="/terms">Privacy &
+                          Terms</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="findwine_modal-nav-footer-social">
+                    <a href="https://www.instagram.com/findwinesa/" target="_blank"
+                       className="findwine_footer--flex-right">
+
+                      <img src={ constructImagePath('wine/images/SVGs/instagram-dark.svg') }
+                           className="findwine_modal-nav-footer-icon"></img>
+                    </a>
+                    <a href="https://twitter.com/FindWineSA" target="_blank" className="findwine_footer--flex-right">
+                      <img src={ constructImagePath('wine/images/SVGs/twitter-dark.svg') }
+                           className="findwine_modal-nav-footer-icon"></img>
+                    </a>
+                    <a href="https://www.facebook.com/FindWineSA/" target="_blank"
+                       className="findwine_footer--flex-right">
+                      <img src={ constructImagePath('wine/images/SVGs/facebook-dark.svg') }
+                           className="findwine_modal-nav-footer-icon"></img>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </nav>
-        <div className="container">
+        <div className="container findwine_search-main">
            <div className="findwine_search-results-holder">
              <WineList wines={this.state.wines} isLoading={this.state.isLoading}/>
             {paginator}
@@ -123,7 +189,9 @@ class SearchByNamePage extends React.Component {
   doSearch() {
     let params = queryString.stringify({q: this.state.searchText});
     fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
-    window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`)
+    window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`);
+    $('.findwine_search-main').css("display", "block");
+    $('.findwine_search-made').css("display", "none");
 
     return(
       <div className="container">
@@ -135,7 +203,6 @@ class SearchByNamePage extends React.Component {
   _updateResultsFromResponse(response) {
     if (response.ok) {
       response.json().then((responseJson) => {
-        // console.log(responseJson.results);
         this.setState({
           wines: responseJson.results,
           nextPageUrl: responseJson.next,

@@ -3,180 +3,143 @@
 
 {% block content %}
 
+<div id="search-bar"></div>
 
-<!-- Nav -->
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content" id="top">
-  <div class="container findwine_nav--menu">
-    <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
-        <span>
-          <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
-        </span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active nav-item-new">
-          <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span
-            class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item nav-item-new">
-          <a class="nav-link nav-link-new" href="{% url 'content:about' %}">About</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="findwine_nav-logo search-page-content">
-    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}"
-                                           class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
-  </div>
-</nav>
-
-<!-- Modal - Mobile Nav -->
-<div class="modal left fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-     aria-hidden="true">
-  <div class="modal-dialog findwine_modal-nav" role="document">
-    <div class="modal-content findwine_modal-nav-content">
-      <div class="modal-header findwine_modal-nav-header">
-        <button type="button" class="close findwine_modal-nav-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="{% static 'wine/images/SVGs/close.svg' %}"
-                                        class="findwine_menu-button"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link findwine_modal-nav-link" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link findwine_modal-nav-link" href="{% url 'content:about' %}">About</a>
-          </li>
-        </ul>
-      </div>
-      <div class="modal-footer findwine_modal-nav-footer">
-        <div class="findwine_modal-nav-footer-links">
-          <ul class="findwine_modal-nav-footer-links-ul">
-            <li class="findwine_modal-nav-footer-links-li">
-              <a class="findwine_modal-nav-footer-link" href="{% url 'content:contact' %}">Contact Us<span
-                class="sr-only">(current)</span></a>
-            </li>
-            <li class="findwine_modal-nav-footer-links-li">
-              <a class="findwine_modal-nav-footer-link" href="{% url 'content:terms' %}">Privacy & Terms</a>
-            </li>
-          </ul>
-        </div>
-        <div class="findwine_modal-nav-footer-social">
-          <a href="https://www.instagram.com/findwinesa/" target="_blank" class="findwine_footer--flex-right">
-            <!-- This is a placeholder image - remember to replace -->
-            <img src="{% static 'wine/images/SVGs/instagram-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-          <a href="https://twitter.com/FindWineSA" target="_blank" class="findwine_footer--flex-right">
-            <img src="{% static 'wine/images/SVGs/twitter-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-          <a href="https://www.facebook.com/FindWineSA/" target="_blank" class="findwine_footer--flex-right">
-            <img src="{% static 'wine/images/SVGs/facebook-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<div class="findwine_search-made">
 <!--Insert all of the page specific content here-->
-<div class="container findwine_detail-padding">
+  <div class="container findwine_detail-padding">
 
-  <!--image - MOBILE-->
-  {% if winevintage.image_pack_shot %}
-  <div class="hidden-lg-up">
-    <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
-         class="img-fluid rounded float-left findwine_detail-image">
-  </div>
-  {% endif %}
-
-  {% if winevintage.image_pack_shot %}
-  <div class="hidden-md-down findwine_detail-images-desktop">
-    <div class="findwine_detail-images-small">
-      {% if winevintage.image_pack_shot %}
-      <div class="wine-thumbnail findwine_detail-image-1 findwine_detail-image-border-green">
-        <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
-             class="img-fluid rounded float-left">
-      </div>
-      {% endif %}
-      {% if winevintage.image_label_vertical %}
-      <div class="wine-thumbnail findwine_detail-image-2">
-        <img src="{{ winevintage.image_label_vertical.url }}" alt="{{ winevintage.wine.name }}"
-             class="img-fluid rounded float-left">
-      </div>
-      {% endif %}
+    <!--image - MOBILE-->
+    {% if winevintage.image_pack_shot %}
+    <div class="hidden-lg-up">
+      <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+           class="img-fluid rounded float-left findwine_detail-image">
     </div>
+    {% endif %}
 
     {% if winevintage.image_pack_shot %}
-    <div class="findwine_detail-image-main--holder">
-      <img id='main-wine-image' src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
-           class="img-fluid rounded float-left findwine_detail-image-main">
-    </div>
-    {% endif %}
-  </div>
-  {% else %}
-  <div class="hidden-md-down findwine_detail-images-desktop findwine_detail-images-desktop-none"></div>
-  {% endif %}
-
-  <!-- Wine detail -->
-  <div class="findwine_producer">
-    <!-- Wine name & vintage year-->
-    <a href="{% url 'wine:producer_detail_by_slug' winevintage.wine.producer.slug %}" target="_self">
-      <div class="findwine_producer-main findwine_producer-page-link">
-        {{ winevintage.wine.producer }}
-      </div>
-    </a>
-    <h4 class="findwine_producer-vintage findwine_producer-vintage-detail" id="wine">
-      {{ winevintage.wine.name }} {{ winevintage.year }}
-    </h4>
-
-    <!-- Wine category & origin -->
-    <p class="findwine_category">
-      {{ winevintage.category }}
-      {% if winevintage.blend %}
-      {{ winevintage.blend }}
-      {% endif %}
-      {{ winevintage.sub_category.name }}
-    </p>
-
-    {% if winevintage.appellation %}
-
-    <p class="findwine_place">
-      <img src="{% static 'wine/images/SVGs/pinpoint.svg' %}" class="hidden-lg-up findwine_place-image">
-      <img src="{% static 'wine/images/SVGs/pinpoint-grey.svg' %}" class="hidden-md-down">
-      {{winevintage.appellation.name}},
-      {{ winevintage.appellation.get_country_display }}</p>
-    {% endif %}
-
-    <div class="findwine_awards-holder">
-      <!-- Rating -->
-      <div class="findwine_rating-box findwine_rating-box-{{ winevintage.rating_category }}">
-        <p class="findwine_rating">{{ winevintage.rating_display }}</p>
-      </div>
-
-      <!-- Awards -->
-      <div class="findwine_awards-container">
-        {% if winevintage.wineaward_set.all %}
-        <table style="width:100%">
-          <tr>
-            <th class="findwine_award-heading hidden-md-down">AWARDS</th>
-          </tr>
-          <tr>
-            {% for wineaward in winevintage.wineaward_set.all %}
-            <td class="findwine_award-list">{{ wineaward.award }}</td>
-            {% endfor %}
-          </tr>
-        </table>
-        {% else %}
-        <p>No awards captured.</p>
+    <div class="hidden-md-down findwine_detail-images-desktop">
+      <div class="findwine_detail-images-small">
+        {% if winevintage.image_pack_shot %}
+        <div class="wine-thumbnail findwine_detail-image-1 findwine_detail-image-border-green">
+          <img src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+               class="img-fluid rounded float-left">
+        </div>
+        {% endif %}
+        {% if winevintage.image_label_vertical %}
+        <div class="wine-thumbnail findwine_detail-image-2">
+          <img src="{{ winevintage.image_label_vertical.url }}" alt="{{ winevintage.wine.name }}"
+               class="img-fluid rounded float-left">
+        </div>
         {% endif %}
       </div>
-    </div>
 
-    <!-- Purchase options - Desktop -->
-    <div class="hidden-md-down">
+      {% if winevintage.image_pack_shot %}
+      <div class="findwine_detail-image-main--holder">
+        <img id='main-wine-image' src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
+             class="img-fluid rounded float-left findwine_detail-image-main">
+      </div>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="hidden-md-down findwine_detail-images-desktop findwine_detail-images-desktop-none"></div>
+    {% endif %}
+
+    <!-- Wine detail -->
+    <div class="findwine_producer">
+      <!-- Wine name & vintage year-->
+      <a href="{% url 'wine:producer_detail_by_slug' winevintage.wine.producer.slug %}" target="_self">
+        <div class="findwine_producer-main findwine_producer-page-link">
+          {{ winevintage.wine.producer }}
+        </div>
+      </a>
+      <h4 class="findwine_producer-vintage findwine_producer-vintage-detail" id="wine">
+        {{ winevintage.wine.name }} {{ winevintage.year }}
+      </h4>
+
+      <!-- Wine category & origin -->
+      <p class="findwine_category">
+        {{ winevintage.category }}
+        {% if winevintage.blend %}
+        {{ winevintage.blend }}
+        {% endif %}
+        {{ winevintage.sub_category.name }}
+      </p>
+
+      {% if winevintage.appellation %}
+
+      <p class="findwine_place">
+        <img src="{% static 'wine/images/SVGs/pinpoint.svg' %}" class="hidden-lg-up findwine_place-image">
+        <img src="{% static 'wine/images/SVGs/pinpoint-grey.svg' %}" class="hidden-md-down">
+        {{winevintage.appellation.name}},
+        {{ winevintage.appellation.get_country_display }}</p>
+      {% endif %}
+
+      <div class="findwine_awards-holder">
+        <!-- Rating -->
+        <div class="findwine_rating-box findwine_rating-box-{{ winevintage.rating_category }}">
+          <p class="findwine_rating">{{ winevintage.rating_display }}</p>
+        </div>
+
+        <!-- Awards -->
+        <div class="findwine_awards-container">
+          {% if winevintage.wineaward_set.all %}
+          <table style="width:100%">
+            <tr>
+              <th class="findwine_award-heading hidden-md-down">AWARDS</th>
+            </tr>
+            <tr>
+              {% for wineaward in winevintage.wineaward_set.all %}
+              <td class="findwine_award-list">{{ wineaward.award }}</td>
+              {% endfor %}
+            </tr>
+          </table>
+          {% else %}
+          <p>No awards captured.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Purchase options - Desktop -->
+      <div class="hidden-md-down">
+        <div class="findwine_detail-heading">
+          <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
+        </div>
+        {% if winevintage.merchantwine_set.exists %}
+        <ul class="list-group list-group-flush">
+          {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
+          <li class="list-group-item findwine_detail-list">
+            <div class="findwine_merchant-holder">
+              <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
+              <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml
+                {% if merchantwine.minimum_purchase_unit > 1 %}
+                  (minimum {{ merchantwine.minimum_purchase_unit }})
+                {% endif %}
+              </div>
+              <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
+            </div>
+            <div class="findwine_merchant-pricing">
+              <div class="findwine_merchant-price-holder">
+                <div class="findwine_merchant-currency"> R</div>
+                <div class="findwine_vintage-price"> {{ merchantwine.rounded_price }}</div>
+              </div>
+              <a class="btn findwine_buy-button buy-link" data-merchant="{{ merchantwine.merchant.name }}"
+                 data-wine-vintage="{{ winevintage.long_name }}" href="{{ merchantwine.get_url }}" target="_blank"
+                 role="button"> BUY</a>
+            </div>
+          </li>
+          {% endfor %}
+          {% else %}
+          <p>No merchant availability.</p>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purchase options - Mobile -->
+  <div class="hidden-lg-up">
+    <div class="findwine_detail-purchase">
       <div class="findwine_detail-heading">
         <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
       </div>
@@ -196,11 +159,9 @@
           <div class="findwine_merchant-pricing">
             <div class="findwine_merchant-price-holder">
               <div class="findwine_merchant-currency"> R</div>
-              <div class="findwine_vintage-price"> {{ merchantwine.rounded_price }}</div>
+              <div class="findwine_merchant-price"> {{ merchantwine.rounded_price }}</div>
             </div>
-            <a class="btn findwine_buy-button buy-link" data-merchant="{{ merchantwine.merchant.name }}"
-               data-wine-vintage="{{ winevintage.long_name }}" href="{{ merchantwine.get_url }}" target="_blank"
-               role="button"> BUY</a>
+            <a class="btn findwine_buy-button" href="{{ merchantwine.get_url }}" target="_blank" role="button"> BUY</a>
           </div>
         </li>
         {% endfor %}
@@ -210,45 +171,9 @@
       </ul>
     </div>
   </div>
-</div>
 
-<!-- Purchase options - Mobile -->
-<div class="hidden-lg-up">
-  <div class="findwine_detail-purchase">
-    <div class="findwine_detail-heading">
-      <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
-    </div>
-    {% if winevintage.merchantwine_set.exists %}
-    <ul class="list-group list-group-flush">
-      {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
-      <li class="list-group-item findwine_detail-list">
-        <div class="findwine_merchant-holder">
-          <div class="findwine_merchant-name"> {{ merchantwine.merchant.name }}</div>
-          <div class="findwine_merchant-unit"> {{ merchantwine.purchase_unit }} ml
-            {% if merchantwine.minimum_purchase_unit > 1 %}
-              (minimum {{ merchantwine.minimum_purchase_unit }})
-            {% endif %}
-          </div>
-          <div class="findwine_merchant-delivery"> Delivery: {{ merchantwine.merchant.delivery_fees }}</div>
-        </div>
-        <div class="findwine_merchant-pricing">
-          <div class="findwine_merchant-price-holder">
-            <div class="findwine_merchant-currency"> R</div>
-            <div class="findwine_merchant-price"> {{ merchantwine.rounded_price }}</div>
-          </div>
-          <a class="btn findwine_buy-button" href="{{ merchantwine.get_url }}" target="_blank" role="button"> BUY</a>
-        </div>
-      </li>
-      {% endfor %}
-      {% else %}
-      <p>No merchant availability.</p>
-      {% endif %}
-    </ul>
-  </div>
-</div>
-
-<!-- Wine info -->
-<div class="findwine_detail-holder">
+  <!-- Wine info -->
+  <div class="findwine_detail-holder">
   <div class="container">
     <div class="findwine_detail-heading">
       <h5 class="findwine_detail-header findwine_detail-header--desktop">WINE INFO</h5>
@@ -596,10 +521,19 @@
     {% endif %}
   </div>
 </div>
+</div>
 {% endblock %}
 {% block page_scripts %}
-<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false">
+<script>
+  // var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
+  // var CATEGORY_MAP = {{ category_mapping|safe }};
+  var STATIC_BASE_PATH = "{% static '' %}";
+  $(function () {
+    // show nav
+    $('#top').show();
+  });
 </script>
+<script src="{% static 'js/search-bundle.js' %}"></script>
 <script>
   function expandInfo() {
     var info = document.getElementById('info');

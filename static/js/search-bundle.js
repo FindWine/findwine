@@ -18853,9 +18853,7 @@ var SearchByNameControl = function (_React$Component) {
     value: function handleKeyPress(key) {
       if (key === 'Enter') {
         this.props.doSearch();
-      } else {
-        // console.log('not enter', key);
-      }
+      } else {}
     }
   }]);
 
@@ -18908,8 +18906,8 @@ var SearchByNamePage = function (_React$Component2) {
         null,
         _react2.default.createElement(
           'nav',
-          { className: 'navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content',
-            style: { display: 'none' }, id: 'top' },
+          { className: 'navbar navbar-toggleable-md navbar-light bg-faded navbar-new',
+            id: 'top' },
           _react2.default.createElement(
             'div',
             { className: 'container findwine_nav--menu' },
@@ -18933,12 +18931,11 @@ var SearchByNamePage = function (_React$Component2) {
                   { className: 'nav-item active nav-item-new' },
                   _react2.default.createElement(
                     'a',
-                    { className: 'nav-link nav-link-new', href: '/search' },
-                    'Home ',
+                    { className: 'nav-link nav-link-new nav-link-home', href: '/' },
+                    'Home',
                     _react2.default.createElement(
                       'span',
-                      {
-                        className: 'sr-only' },
+                      { className: 'sr-only' },
                       '(current)'
                     )
                   )
@@ -18972,15 +18969,149 @@ var SearchByNamePage = function (_React$Component2) {
             { className: 'findwine_nav-logo search-page-content' },
             _react2.default.createElement(
               'a',
-              { href: '/search' },
+              { href: '/' },
               _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/logo-black.svg'),
                 className: 'd-inline-block align-top findwine_nav-logo-icon', alt: 'FindWine' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'modal left fade', id: 'exampleModalLong', tabIndex: '-1', role: 'dialog',
+              'aria-labelledby': 'exampleModalLongTitle', 'aria-hidden': 'true' },
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-dialog findwine_modal-nav', role: 'document' },
+              _react2.default.createElement(
+                'div',
+                { className: 'modal-content findwine_modal-nav-content' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'modal-header findwine_modal-nav-header' },
+                  _react2.default.createElement(
+                    'button',
+                    { type: 'button', className: 'close findwine_modal-nav-close', 'data-dismiss': 'modal',
+                      'aria-label': 'Close' },
+                    _react2.default.createElement(
+                      'span',
+                      { 'aria-hidden': 'true' },
+                      _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/close.svg'),
+                        className: 'findwine_menu-button' })
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'modal-body' },
+                  _react2.default.createElement(
+                    'ul',
+                    { className: 'navbar-nav mr-auto' },
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'nav-item' },
+                      _react2.default.createElement(
+                        'a',
+                        { className: 'nav-link findwine_modal-nav-link nav-link-home', href: '/' },
+                        'Home',
+                        _react2.default.createElement(
+                          'span',
+                          { className: 'sr-only', id: 'home' },
+                          '(current)'
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'nav-item' },
+                      _react2.default.createElement(
+                        'a',
+                        { className: 'nav-link findwine_modal-nav-link', href: '/about' },
+                        'About'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'nav-item' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'findwine_search-field-holder' },
+                        _react2.default.createElement(SearchByNameControl, { searchText: this.state.searchText,
+                          searchTextChanged: function searchTextChanged(text) {
+                            return _this4.searchTextChanged(text);
+                          },
+                          doSearch: function doSearch() {
+                            return _this4.doSearch();
+                          }
+                        })
+                      )
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'modal-footer findwine_modal-nav-footer' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'findwine_modal-nav-footer-links' },
+                    _react2.default.createElement(
+                      'ul',
+                      { className: 'findwine_modal-nav-footer-links-ul' },
+                      _react2.default.createElement(
+                        'li',
+                        { className: 'findwine_modal-nav-footer-links-li' },
+                        _react2.default.createElement(
+                          'a',
+                          { className: 'findwine_modal-nav-footer-link', href: '/contact' },
+                          'Contact Us ',
+                          _react2.default.createElement(
+                            'span',
+                            { className: 'sr-only' },
+                            '(current)'
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'li',
+                        { className: 'findwine_modal-nav-footer-links-li' },
+                        _react2.default.createElement(
+                          'a',
+                          { className: 'findwine_modal-nav-footer-link', href: '/terms' },
+                          'Privacy & Terms'
+                        )
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'findwine_modal-nav-footer-social' },
+                    _react2.default.createElement(
+                      'a',
+                      { href: 'https://www.instagram.com/findwinesa/', target: '_blank',
+                        className: 'findwine_footer--flex-right' },
+                      _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/instagram-dark.svg'),
+                        className: 'findwine_modal-nav-footer-icon' })
+                    ),
+                    _react2.default.createElement(
+                      'a',
+                      { href: 'https://twitter.com/FindWineSA', target: '_blank', className: 'findwine_footer--flex-right' },
+                      _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/twitter-dark.svg'),
+                        className: 'findwine_modal-nav-footer-icon' })
+                    ),
+                    _react2.default.createElement(
+                      'a',
+                      { href: 'https://www.facebook.com/FindWineSA/', target: '_blank',
+                        className: 'findwine_footer--flex-right' },
+                      _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/facebook-dark.svg'),
+                        className: 'findwine_modal-nav-footer-icon' })
+                    )
+                  )
+                )
+              )
             )
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'container' },
+          { className: 'container findwine_search-main' },
           _react2.default.createElement(
             'div',
             { className: 'findwine_search-results-holder' },
@@ -19017,6 +19148,8 @@ var SearchByNamePage = function (_React$Component2) {
         return _this5._updateResultsFromResponse(response);
       });
       window.history.replaceState(params, 'Search Results', '/search-by-name/?' + params);
+      $('.findwine_search-main').css("display", "block");
+      $('.findwine_search-made').css("display", "none");
 
       return _react2.default.createElement(
         'div',
@@ -19031,7 +19164,6 @@ var SearchByNamePage = function (_React$Component2) {
 
       if (response.ok) {
         response.json().then(function (responseJson) {
-          // console.log(responseJson.results);
           _this6.setState({
             wines: responseJson.results,
             nextPageUrl: responseJson.next,

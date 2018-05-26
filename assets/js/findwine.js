@@ -6,7 +6,7 @@ import Select from 'react-select';
 require('rc-slider/assets/index.css');
 import 'react-select/dist/react-select.css';
 import Slider, {Range} from 'rc-slider';
-import {constructImagePath, WineList, Paginator} from "./shared";
+import {constructImagePath, WineList, Paginator, SearchByNameControl} from "./shared";
 
 const queryString = require('query-string');
 
@@ -562,10 +562,12 @@ class SearchPage extends React.Component {
             $('.landing-page-content').hide();
             $('.search-page-content').show();
             $('.findwine_filter-holder').addClass('findwine_filter-holder-search-result');
+            $('#search-bar').removeClass('findwine_home');
         } else {
             $('.landing-page-content').show();
             $('.search-page-content').hide();
             $('.findwine_filter-holder').removeClass('findwine_filter-holder-search-result');
+            $('#search-bar').addClass('findwine_home');
         }
     }
 
@@ -661,59 +663,59 @@ class SearchPage extends React.Component {
     }
 
     _updateResultsFromResponse(response, addToHistory) {
-        if (response.ok) {
-            response.json().then((responseJson) => {
-                this.setState({
-                    wines: responseJson.results,
-                    nextPageUrl: responseJson.next,
-                    prevPageUrl: responseJson.previous,
-                    resultCount: responseJson.count,
-                    resultPage: responseJson.page,
-                    resultStart: responseJson.start,
-                    resultEnd: responseJson.end,
-                    isLoading: false,
-                }, () => this._updateUrl(addToHistory));
-            });
-        }
+      if (response.ok) {
+        response.json().then((responseJson) => {
+          this.setState({
+            wines: responseJson.results,
+            nextPageUrl: responseJson.next,
+            prevPageUrl: responseJson.previous,
+            resultCount: responseJson.count,
+            resultPage: responseJson.page,
+            resultStart: responseJson.start,
+            resultEnd: responseJson.end,
+            isLoading: false,
+          }, () => this._updateUrl(addToHistory));
+        });
+      }
     }
 
     render() {
-        const mobileFiltersOpen = isMobile() && this.state.searchControlsExpanded
-        const showWineList = this.state.firstSearchMade && !mobileFiltersOpen;
-        let ratingsExplained = showWineList ? <RatingsExplanationBar /> : '';
-        let wineList = showWineList ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
-        let showPaginator = (showWineList && this.state.wines.length);
-        let paginator = showPaginator ? <Paginator
-            nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
-            prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
-            count={this.state.resultCount} page={this.state.resultPage}
-            start={this.state.resultStart} end={this.state.resultEnd}
-        /> : '';
-        return (
-            <div className="container">
-                <SearchControls
-                    firstSearchMade={this.state.firstSearchMade}
-                    selectedCategory={this.state.selectedCategory}
-                    categoryChanged={(category) => this.updateCategory(category)}
-                    selectedSubcategory={this.state.selectedSubcategory}
-                    subcategoryChanged={(subcategory) => this.updateSubcategory(subcategory)}
-                    minPrice={this.state.minPrice}
-                    minPriceChanged={(price, updateResults) => this.updateMinPrice(price, updateResults)}
-                    maxPrice={this.state.maxPrice}
-                    maxPriceChanged={(price, updateResults) => this.updateMaxPrice(price, updateResults)}
-                    selectedSort={this.state.selectedSort}
-                    sortChanged={(sort) => this.updateSort(sort)}
-                    searchClicked={(event) => this.searchClicked(event)}
-                    updateSearchResults={() => this.updateSearchResults()}
-                    isExpanded={this.state.searchControlsExpanded}
-                    setExpanded={(expanded) => this.setState({'searchControlsExpanded': expanded})}
-                />
-                {ratingsExplained}
-                {wineList}
-                {paginator}
-                <RatingsModal />
-            </div>
-        )
+      const mobileFiltersOpen = isMobile() && this.state.searchControlsExpanded
+      const showWineList = this.state.firstSearchMade && !mobileFiltersOpen;
+      let ratingsExplained = showWineList ? <RatingsExplanationBar /> : '';
+      let wineList = showWineList ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
+      let showPaginator = (showWineList && this.state.wines.length);
+      let paginator = showPaginator ? <Paginator
+          nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
+          prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
+          count={this.state.resultCount} page={this.state.resultPage}
+          start={this.state.resultStart} end={this.state.resultEnd}
+      /> : '';
+      return (
+        <div className="container">
+          <SearchControls
+            firstSearchMade={this.state.firstSearchMade}
+            selectedCategory={this.state.selectedCategory}
+            categoryChanged={(category) => this.updateCategory(category)}
+            selectedSubcategory={this.state.selectedSubcategory}
+            subcategoryChanged={(subcategory) => this.updateSubcategory(subcategory)}
+            minPrice={this.state.minPrice}
+            minPriceChanged={(price, updateResults) => this.updateMinPrice(price, updateResults)}
+            maxPrice={this.state.maxPrice}
+            maxPriceChanged={(price, updateResults) => this.updateMaxPrice(price, updateResults)}
+            selectedSort={this.state.selectedSort}
+            sortChanged={(sort) => this.updateSort(sort)}
+            searchClicked={(event) => this.searchClicked(event)}
+            updateSearchResults={() => this.updateSearchResults()}
+            isExpanded={this.state.searchControlsExpanded}
+            setExpanded={(expanded) => this.setState({'searchControlsExpanded': expanded})}
+          />
+          {ratingsExplained}
+          {wineList}
+          {paginator}
+          <RatingsModal />
+        </div>
+      )
     }
 }
 

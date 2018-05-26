@@ -26909,10 +26909,12 @@ var SearchPage = function (_React$Component11) {
         $('.landing-page-content').hide();
         $('.search-page-content').show();
         $('.findwine_filter-holder').addClass('findwine_filter-holder-search-result');
+        $('#search-bar').removeClass('findwine_home');
       } else {
         $('.landing-page-content').show();
         $('.search-page-content').hide();
         $('.findwine_filter-holder').removeClass('findwine_filter-holder-search-result');
+        $('#search-bar').addClass('findwine_home');
       }
     }
   }, {

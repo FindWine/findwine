@@ -56,18 +56,44 @@ body {
     @media (min-width: 992px) {
       .navbar-new {
         height: 100px; } }
-  .navbar .form-control::-webkit-input-placeholder {
+
+.findwine_home {
+  background: transparent;
+  position: absolute;
+  width: 100%; }
+  .findwine_home .findwine_nav--menu {
+    margin-left: 0px; }
+    @media (min-width: 992px) {
+      .findwine_home .findwine_nav--menu {
+        margin-left: 100px;
+        margin-right: 100px;
+        width: 100%; } }
+  .findwine_home .navbar-new {
+    border: none; }
+  .findwine_home .nav-link-new {
+    color: #ffffff !important; }
+  .findwine_home .nav-link-home {
+    color: #00ad68 !important; }
+    .findwine_home .nav-link-home:hover {
+      color: #0a9761 !important; }
+  .findwine_home .nav-item-new {
+    background: transparent; }
+  .findwine_home .findwine_nav-logo {
+    display: none; }
+  .findwine_home .findwine_search-field-holder {
+    margin-right: 0px; }
+  .findwine_home .form-control::-webkit-input-placeholder {
     color: #ffffff;
     opacity: 1; }
-  .navbar .form-control:-moz-placeholder {
+  .findwine_home .form-control:-moz-placeholder {
     /* Firefox 18- */
     color: #ffffff;
     opacity: 1; }
-  .navbar .form-control::-moz-placeholder {
+  .findwine_home .form-control::-moz-placeholder {
     /* Firefox 19+ */
     color: #ffffff;
     opacity: 1; }
-  .navbar .form-control:-ms-input-placeholder {
+  .findwine_home .form-control:-ms-input-placeholder {
     color: #ffffff;
     opacity: 1; }
 
@@ -93,11 +119,6 @@ body {
     cursor: pointer; }
     .nav-link-new:hover {
       color: #00ad68 !important; }
-
-.nav-link-home {
-  color: #00ad68 !important; }
-  .nav-link-home:hover {
-    color: #0a9761 !important; }
 
 .nav-item-new {
   z-index: 1000;
@@ -352,13 +373,6 @@ button:focus, button:hover {
   @media (min-width: 992px) {
     .findwine_nav--menu {
       margin-left: 260px; } }
-.findwine_nav--menu-home {
-  margin-left: 0px; }
-  @media (min-width: 992px) {
-    .findwine_nav--menu-home {
-      margin-left: 100px;
-      margin-right: 100px;
-      width: 100%; } }
 .findwine_nav-logo {
   width: auto;
   text-align: center;
@@ -449,8 +463,6 @@ button:focus, button:hover {
   .findwine_search-field-holder {
     height: 36px;
     margin-right: -20%; } }
-.findwine ::placeholder {
-  color: #c8ced2; }
 .findwine_search-name {
   display: flex;
   float: right;
@@ -461,7 +473,8 @@ button:focus, button:hover {
   border: none;
   border-radius: 0px 4px 4px 1px;
   color: #ffffff;
-  cursor: pointer; }
+  cursor: pointer;
+  margin: 0px !important; }
   .findwine_search-button:hover {
     background-color: #0a9761 !important;
     border-color: #0a9761 !important; }
@@ -1560,8 +1573,9 @@ button:focus, button:hover {
       padding: 0px 50px;
       border: 1px solid #dbe0e4;
       cursor: default; } }
-  .findwine_search-results-holder {
-    margin-top: 50px; }
+  @media (min-width: 678px) {
+    .findwine_search-results-holder {
+      margin-top: 50px; } }
 .findwine_search-result--table {
   padding: 17px 0px 0px 0px !important;
   display: flex;
@@ -1606,6 +1620,8 @@ button:focus, button:hover {
   @media (min-width: 992px) {
     .findwine_search-page {
       display: inline-block; } }
+.findwine_search-main {
+  display: none; }
 .findwine_search-winesTotal {
   font-family: "Gotham SSm A", sans-serif;
   font-size: 12px;

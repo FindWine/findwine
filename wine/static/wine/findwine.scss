@@ -134,6 +134,52 @@ body {
     }
   }
 
+}
+
+// NAV CHANGES
+.findwine_home {
+  background: transparent;
+  position: absolute;
+  width: 100%;
+
+  .findwine_nav--menu {
+    margin-left: 0px;
+
+    @include breakpoint(lg) {
+      margin-left: 100px;
+      margin-right: 100px;
+      width: 100%;
+    }
+  }
+
+  .navbar-new {
+    border: none;
+  }
+
+  .nav-link-new {
+    color: $white !important;
+  }
+
+  .nav-link-home {
+    color: $primary-green !important;
+
+    &:hover {
+      color: $hover-green !important;
+    }
+  }
+
+  .nav-item-new {
+    background: transparent;
+  }
+
+  .findwine_nav-logo {
+    display: none;
+  }
+
+  .findwine_search-field-holder {
+    margin-right: 0px;
+  }
+
   .form-control::-webkit-input-placeholder {
     color: $white;
     opacity: 1;
@@ -183,14 +229,6 @@ body {
     &:hover {
       color: $primary-green !important;
     }
-  }
-}
-
-.nav-link-home {
-  color: $primary-green !important;
-
-  &:hover {
-    color: $hover-green !important;
   }
 }
 
@@ -529,15 +567,15 @@ button:focus, button:hover {
     }
   }
 
-  &_nav--menu-home {
-    margin-left: 0px;
-
-    @include breakpoint(lg) {
-      margin-left: 100px;
-      margin-right: 100px;
-      width: 100%;
-    }
-  }
+  //&_nav--menu-home {
+  //  margin-left: 0px;
+  //
+  //  @include breakpoint(lg) {
+  //    margin-left: 100px;
+  //    margin-right: 100px;
+  //    width: 100%;
+  //  }
+  //}
 
   &_nav-logo {
     width: auto;
@@ -673,10 +711,6 @@ button:focus, button:hover {
     }
   }
 
-  ::placeholder {
-    color: $light-grey;
-  }
-
   &_search-name {
     display: flex;
     float: right;
@@ -690,6 +724,7 @@ button:focus, button:hover {
     border-radius: 0px 4px 4px 1px;
     color: $white;
     cursor: pointer;
+    margin: 0px !important;
 
     &:hover {
       background-color: $hover-green !important;
@@ -701,6 +736,7 @@ button:focus, button:hover {
       border-color: $focus-green !important;
       color: $white;
     }
+
   }
 
   &_search-icon {
@@ -2227,7 +2263,9 @@ button:focus, button:hover {
     }
 
     &-holder {
-      margin-top: 50px;
+      @include breakpoint(md) {
+        margin-top: 50px;
+      }
     }
   }
 
@@ -2289,6 +2327,10 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       display: inline-block;
     }
+  }
+
+  &_search-main {
+    display: none;
   }
 
   &_search-winesTotal {
