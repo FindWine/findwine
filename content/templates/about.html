@@ -3,9 +3,9 @@
 
 {% block content %}
 
-<div id="search-bar"></div>
+{% include 'wine/partials/about_nav.html' %}
+{% include 'wine/partials/mobile_nav.html' %}
 
-<div class="findwine_search-made">
 <!--Banner-->
 <div class="findwine_about-banner">
   <div class="findwine_about-heading-1">About Us</div>
@@ -73,7 +73,7 @@
   </div>
 </div>
 <div class="findwine_detail-heading hidden-lg-up"></div>
-</div>
+
 {% endblock %}
 {% block page_scripts %}
 <script>

@@ -6,7 +6,7 @@ import Select from 'react-select';
 require('rc-slider/assets/index.css');
 import 'react-select/dist/react-select.css';
 import Slider, {Range} from 'rc-slider';
-import {constructImagePath, WineList, Paginator, SearchByNameControl} from "./shared";
+import {constructImagePath, WineList, Paginator} from "./shared";
 
 const queryString = require('query-string');
 
@@ -48,7 +48,6 @@ class CategoryOption extends React.Component {
 
 class CategoryValue  extends React.Component {
   render () {
-    // console.log('value.props', this.props);
     const image = getSelectedImagePath(this.props.value.value);
 		return (
       <div className="Select-value" title={this.props.value.title}>
@@ -771,7 +770,6 @@ function hide() {
 function isMobile() {
   return window.innerWidth < 992;
 }
-
 
 ReactDOM.render(
     <SearchPage/>,

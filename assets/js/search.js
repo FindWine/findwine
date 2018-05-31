@@ -72,8 +72,7 @@ class SearchByNamePage extends React.Component {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active nav-item-new">
-                  <a className="nav-link nav-link-new nav-link-home" href="/">Home
-                    <span className="sr-only">(current)</span>
+                  <a className="nav-link nav-link-new" href="/search">Home
                   </a>
                 </li>
                 <li className="nav-item nav-item-new">
@@ -88,7 +87,7 @@ class SearchByNamePage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="findwine_nav-logo search-page-content">
+          <div className="findwine_nav-logo">
             <a href="/">
               <img src={ constructImagePath('wine/images/SVGs/logo-black.svg') }
                    className="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></img>
@@ -109,7 +108,7 @@ class SearchByNamePage extends React.Component {
                 <div className="modal-body">
                   <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                      <a className="nav-link findwine_modal-nav-link nav-link-home" href="/">Home
+                      <a className="nav-link findwine_modal-nav-link nav-link-home" href="/search">Home
                         <span className="sr-only" id="home">(current)</span>
                       </a>
                     </li>
@@ -130,19 +129,16 @@ class SearchByNamePage extends React.Component {
                   <div className="findwine_modal-nav-footer-links">
                     <ul className="findwine_modal-nav-footer-links-ul">
                       <li className="findwine_modal-nav-footer-links-li">
-                        <a className="findwine_modal-nav-footer-link" href="/contact">Contact
-                          Us <span className="sr-only">(current)</span></a>
+                        <a className="findwine_modal-nav-footer-link" href="/contact">Contact Us</a>
                       </li>
                       <li className="findwine_modal-nav-footer-links-li">
-                        <a className="findwine_modal-nav-footer-link" href="/terms">Privacy &
-                          Terms</a>
+                        <a className="findwine_modal-nav-footer-link" href="/terms">Privacy & Terms</a>
                       </li>
                     </ul>
                   </div>
                   <div className="findwine_modal-nav-footer-social">
                     <a href="https://www.instagram.com/findwinesa/" target="_blank"
                        className="findwine_footer--flex-right">
-
                       <img src={ constructImagePath('wine/images/SVGs/instagram-dark.svg') }
                            className="findwine_modal-nav-footer-icon"></img>
                     </a>
@@ -161,7 +157,7 @@ class SearchByNamePage extends React.Component {
             </div>
           </div>
         </nav>
-        <div className="container findwine_search-main">
+        <div className="container">
            <div className="findwine_search-results-holder">
              <WineList wines={this.state.wines} isLoading={this.state.isLoading}/>
             {paginator}
@@ -190,8 +186,6 @@ class SearchByNamePage extends React.Component {
     let params = queryString.stringify({q: this.state.searchText});
     fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
     window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`);
-    $('.findwine_search-main').css("display", "block");
-    $('.findwine_search-made').css("display", "none");
 
     return(
       <div className="container">

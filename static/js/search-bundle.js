@@ -18931,13 +18931,8 @@ var SearchByNamePage = function (_React$Component2) {
                   { className: 'nav-item active nav-item-new' },
                   _react2.default.createElement(
                     'a',
-                    { className: 'nav-link nav-link-new nav-link-home', href: '/' },
-                    'Home',
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'sr-only' },
-                      '(current)'
-                    )
+                    { className: 'nav-link nav-link-new', href: '/search' },
+                    'Home'
                   )
                 ),
                 _react2.default.createElement(
@@ -18966,7 +18961,7 @@ var SearchByNamePage = function (_React$Component2) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'findwine_nav-logo search-page-content' },
+            { className: 'findwine_nav-logo' },
             _react2.default.createElement(
               'a',
               { href: '/' },
@@ -19010,7 +19005,7 @@ var SearchByNamePage = function (_React$Component2) {
                       { className: 'nav-item' },
                       _react2.default.createElement(
                         'a',
-                        { className: 'nav-link findwine_modal-nav-link nav-link-home', href: '/' },
+                        { className: 'nav-link findwine_modal-nav-link nav-link-home', href: '/search' },
                         'Home',
                         _react2.default.createElement(
                           'span',
@@ -19061,12 +19056,7 @@ var SearchByNamePage = function (_React$Component2) {
                         _react2.default.createElement(
                           'a',
                           { className: 'findwine_modal-nav-footer-link', href: '/contact' },
-                          'Contact Us ',
-                          _react2.default.createElement(
-                            'span',
-                            { className: 'sr-only' },
-                            '(current)'
-                          )
+                          'Contact Us'
                         )
                       ),
                       _react2.default.createElement(
@@ -19111,7 +19101,7 @@ var SearchByNamePage = function (_React$Component2) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'container findwine_search-main' },
+          { className: 'container' },
           _react2.default.createElement(
             'div',
             { className: 'findwine_search-results-holder' },
@@ -19148,8 +19138,6 @@ var SearchByNamePage = function (_React$Component2) {
         return _this5._updateResultsFromResponse(response);
       });
       window.history.replaceState(params, 'Search Results', '/search-by-name/?' + params);
-      $('.findwine_search-main').css("display", "block");
-      $('.findwine_search-made').css("display", "none");
 
       return _react2.default.createElement(
         'div',

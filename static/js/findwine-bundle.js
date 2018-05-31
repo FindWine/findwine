@@ -26051,7 +26051,6 @@ var CategoryValue = function (_React$Component2) {
   _createClass(CategoryValue, [{
     key: 'render',
     value: function render() {
-      // console.log('value.props', this.props);
       var image = getSelectedImagePath(this.props.value.value);
       return _react2.default.createElement(
         'div',

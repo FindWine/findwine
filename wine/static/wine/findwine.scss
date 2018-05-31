@@ -136,69 +136,17 @@ body {
 
 }
 
-// NAV CHANGES
-.findwine_home {
-  background: transparent;
-  position: absolute;
-  width: 100%;
-
-  .findwine_nav--menu {
-    margin-left: 0px;
-
-    @include breakpoint(lg) {
-      margin-left: 100px;
-      margin-right: 100px;
-      width: 100%;
-    }
-  }
-
-  .navbar-new {
-    border: none;
-  }
-
-  .nav-link-new {
-    color: $white !important;
-  }
-
-  .nav-link-home {
-    color: $primary-green !important;
-
-    &:hover {
-      color: $hover-green !important;
-    }
-  }
-
-  .nav-item-new {
-    background: transparent;
-  }
-
-  .findwine_nav-logo {
-    display: none;
-  }
-
-  .findwine_search-field-holder {
-    margin-right: 0px;
-  }
-
-  .form-control::-webkit-input-placeholder {
-    color: $white;
-    opacity: 1;
-  }
-
-  .form-control:-moz-placeholder { /* Firefox 18- */
-    color: $white;
-    opacity: 1;
-  }
-
-  .form-control::-moz-placeholder { /* Firefox 19+ */
-    color: $white;
-    opacity: 1;
-  }
-
-  .form-control:-ms-input-placeholder {
-    color: $white;
-    opacity: 1;
-  }
+// Set image on submit
+form input[type=submit] {
+  background-image: url('images/SVGs/search.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 36px;
+  height: 36px;
+  border: 0px;
+  background-color: $primary-green;
+  cursor: pointer;
+  outline: 0;
 }
 
 .nav-link {
@@ -228,6 +176,14 @@ body {
 
     &:hover {
       color: $primary-green !important;
+    }
+  }
+
+  &-home {
+    color: $primary-green !important;
+
+    &:hover {
+      color: $hover-green !important;
     }
   }
 }
@@ -567,15 +523,15 @@ button:focus, button:hover {
     }
   }
 
-  //&_nav--menu-home {
-  //  margin-left: 0px;
-  //
-  //  @include breakpoint(lg) {
-  //    margin-left: 100px;
-  //    margin-right: 100px;
-  //    width: 100%;
-  //  }
-  //}
+  &_nav--menu-home {
+    margin-left: 0px;
+
+    @include breakpoint(lg) {
+      margin-left: 100px;
+      margin-right: 100px;
+      width: 100%;
+    }
+  }
 
   &_nav-logo {
     width: auto;
@@ -695,6 +651,10 @@ button:focus, button:hover {
     background-size: 100% 100%;
   }
 
+  &_form {
+    display: flex;
+  }
+
   &_search-field {
     background-color: rgba(255, 255, 255, 0.3);
     color: $primary-text;
@@ -705,9 +665,36 @@ button:focus, button:hover {
   }
 
   &_search-field-holder{
+    float: left;
+
     @include breakpoint(lg){
+      clear: both;
       height: 36px;
       margin-right: -20%;
+    }
+
+    &-home {
+      margin-right: 0px;
+
+      .form-control::-webkit-input-placeholder {
+        color: $white;
+        opacity: 1;
+      }
+
+      .form-control:-moz-placeholder { /* Firefox 18- */
+        color: $white;
+        opacity: 1;
+      }
+
+      .form-control::-moz-placeholder { /* Firefox 19+ */
+        color: $white;
+        opacity: 1;
+      }
+
+      .form-control:-ms-input-placeholder {
+        color: $white;
+        opacity: 1;
+      }
     }
   }
 
