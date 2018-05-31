@@ -134,25 +134,6 @@ body {
     }
   }
 
-  .form-control::-webkit-input-placeholder {
-    color: $white;
-    opacity: 1;
-  }
-
-  .form-control:-moz-placeholder { /* Firefox 18- */
-    color: $white;
-    opacity: 1;
-  }
-
-  .form-control::-moz-placeholder { /* Firefox 19+ */
-    color: $white;
-    opacity: 1;
-  }
-
-  .form-control:-ms-input-placeholder {
-    color: $white;
-    opacity: 1;
-  }
 }
 
 .nav-link {
@@ -184,13 +165,13 @@ body {
       color: $primary-green !important;
     }
   }
-}
 
-.nav-link-home {
-  color: $primary-green !important;
+  &-home {
+    color: $primary-green !important;
 
-  &:hover {
-    color: $hover-green !important;
+    &:hover {
+      color: $hover-green !important;
+    }
   }
 }
 
@@ -474,6 +455,10 @@ button:focus, button:hover {
   border-color: $primary-text transparent transparent !important;
 }
 
+.Select.is-open > .Select-control .Select-arrow {
+  border-color: transparent transparent $primary-text !important;
+}
+
 .category-arrow {
   border-color: $primary-text transparent transparent !important;
 }
@@ -653,6 +638,10 @@ button:focus, button:hover {
     background-size: 100% 100%;
   }
 
+  &_form {
+    display: flex;
+  }
+
   &_search-field {
     background-color: rgba(255, 255, 255, 0.3);
     color: $primary-text;
@@ -662,11 +651,67 @@ button:focus, button:hover {
     width: auto !important;
   }
 
+  &_search-field-holder{
+    float: left;
+
+    @include breakpoint(lg){
+      clear: both;
+      height: 36px;
+      margin-right: -20%;
+    }
+
+    &-home {
+      margin-right: 0px;
+
+      .form-control::-webkit-input-placeholder {
+        color: $white;
+        opacity: 1;
+      }
+
+      .form-control:-moz-placeholder { /* Firefox 18- */
+        color: $white;
+        opacity: 1;
+      }
+
+      .form-control::-moz-placeholder { /* Firefox 19+ */
+        color: $white;
+        opacity: 1;
+      }
+
+      .form-control:-ms-input-placeholder {
+        color: $white;
+        opacity: 1;
+      }
+    }
+  }
+
+  &_search-name {
+    display: flex;
+    float: right;
+    border: 1px solid $light-grey;
+    border-radius: 4px;
+
+    // Set image on submit
+    form input[type=submit] {
+      background-image: url('images/SVGs/search.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 36px;
+      height: 36px;
+      border: 0px;
+      background-color: $primary-green;
+      cursor: pointer;
+      outline: 0;
+    }
+  }
+
   &_search-button {
     background-color: $primary-green;
     border: none;
     border-radius: 0px 4px 4px 1px;
     color: $white;
+    cursor: pointer;
+    margin: 0px !important;
 
     &:hover {
       background-color: $hover-green !important;
@@ -678,11 +723,16 @@ button:focus, button:hover {
       border-color: $focus-green !important;
       color: $white;
     }
+
   }
 
   &_search-icon {
     height: 18px;
     width: 18px;
+  }
+
+  &_select-svg {
+    margin-right: 20px;
   }
 
   &_logo-standard {
@@ -1086,6 +1136,7 @@ button:focus, button:hover {
     height: 40px;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
+    cursor: pointer;
 
     &:hover {
       background-color: $hover-green !important;
@@ -1712,7 +1763,7 @@ button:focus, button:hover {
     color: $light-grey-text;
     margin-left: 15px;
     margin-right: 15px;
-    width: 40%;
+    width: 60%;
 
     @include breakpoint(lg) {
       padding: 0px !important;
@@ -2197,6 +2248,12 @@ button:focus, button:hover {
       border: 1px solid $lightest-grey-border;
       cursor: default;
     }
+
+    &-holder {
+      @include breakpoint(md) {
+        margin-top: 50px;
+      }
+    }
   }
 
   &_search-result--table {
@@ -2257,6 +2314,10 @@ button:focus, button:hover {
     @include breakpoint(lg) {
       display: inline-block;
     }
+  }
+
+  &_search-main {
+    display: none;
   }
 
   &_search-winesTotal {

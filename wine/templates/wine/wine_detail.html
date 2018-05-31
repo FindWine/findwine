@@ -3,82 +3,8 @@
 
 {% block content %}
 
-<!-- Nav -->
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content" id="top">
-  <div class="container findwine_nav--menu">
-    <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
-        <span>
-          <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
-        </span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active nav-item-new">
-          <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span
-            class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item nav-item-new">
-          <a class="nav-link nav-link-new" href="{% url 'content:about' %}">About</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="findwine_nav-logo search-page-content">
-    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}"
-                                           class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
-  </div>
-</nav>
-
-<!-- Modal - Mobile Nav -->
-<div class="modal left fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-     aria-hidden="true">
-  <div class="modal-dialog findwine_modal-nav" role="document">
-    <div class="modal-content findwine_modal-nav-content">
-      <div class="modal-header findwine_modal-nav-header">
-        <button type="button" class="close findwine_modal-nav-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="{% static 'wine/images/SVGs/close.svg' %}"
-                                        class="findwine_menu-button"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link findwine_modal-nav-link" href="{% url 'wine:search' %}">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link findwine_modal-nav-link" href="{% url 'content:about' %}">About</a>
-          </li>
-        </ul>
-      </div>
-      <div class="modal-footer findwine_modal-nav-footer">
-        <div class="findwine_modal-nav-footer-links">
-          <ul class="findwine_modal-nav-footer-links-ul">
-            <li class="findwine_modal-nav-footer-links-li">
-              <a class="findwine_modal-nav-footer-link" href="{% url 'content:contact' %}">Contact Us<span
-                class="sr-only">(current)</span></a>
-            </li>
-            <li class="findwine_modal-nav-footer-links-li">
-              <a class="findwine_modal-nav-footer-link" href="{% url 'content:terms' %}">Privacy & Terms</a>
-            </li>
-          </ul>
-        </div>
-        <div class="findwine_modal-nav-footer-social">
-          <a href="https://www.instagram.com/findwinesa/" target="_blank" class="findwine_footer--flex-right">
-            <!-- This is a placeholder image - remember to replace -->
-            <img src="{% static 'wine/images/SVGs/instagram-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-          <a href="https://twitter.com/FindWineSA" target="_blank" class="findwine_footer--flex-right">
-            <img src="{% static 'wine/images/SVGs/twitter-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-          <a href="https://www.facebook.com/FindWineSA/" target="_blank" class="findwine_footer--flex-right">
-            <img src="{% static 'wine/images/SVGs/facebook-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'wine/partials/search_nav.html' %}
+{% include 'wine/partials/mobile_nav.html' %}
 
 <!--Insert all of the page specific content here-->
 <div class="container findwine_detail-padding">
@@ -248,89 +174,194 @@
 
 <!-- Wine info -->
 <div class="findwine_detail-holder">
-  <div class="container">
-    <div class="findwine_detail-heading">
-      <h5 class="findwine_detail-header findwine_detail-header--desktop">WINE INFO</h5>
-    </div>
+<div class="container">
+  <div class="findwine_detail-heading">
+    <h5 class="findwine_detail-header findwine_detail-header--desktop">WINE INFO</h5>
+  </div>
 
-    {% if winevintage.description %}
-    <div class="findwine_detail-rowHeight" id="info">
-      <div class="findwine_detail-info">
-        <h5 class="findwine_detail-header--2">Description</h5>
-        <p class="findwine_detail-content" id="infoContent">{{ winevintage.description }}</p>
-        <!-- Include Read more button -->
+  {% if winevintage.description %}
+  <div class="findwine_detail-rowHeight" id="info">
+    <div class="findwine_detail-info">
+      <h5 class="findwine_detail-header--2">Description</h5>
+      <p class="findwine_detail-content" id="infoContent">{{ winevintage.description }}</p>
+      <!-- Include Read more button -->
+    </div>
+  </div>
+  <div class="findwine_detail-expand hidden-lg-up">
+    <button class="btn findwine_detail-expand-button" type="button" id="infoButton" onclick="expandInfo()">
+      More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+    </button>
+  </div>
+  <div class="findwine_detail-heading hidden-lg-up"></div>
+  {% endif %}
+
+  <!-- Wine details -->
+  <div class="findwine_detail-rowHeight hidden-lg-up" id="wineDetail">
+    <div class="findwine_detail-info">
+      <h5 class="findwine_detail-header--2">Details</h5>
+      <p class="findwine_detail-content" id="detailContent"> Read more about this wine.</p>
+      <div class="table table-responsive table-md">
+        {% if winevintage.winemakers.count %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Winemaker:</div>
+          <div class="findwine_detail-content-right">
+            {% for winemaker in winevintage.winemakers.all %}
+            {% if not forloop.first %} &amp; {% endif %}
+            {{ winemaker }}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        {% if winevintage.alcohol_percentage %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Alcohol percentage:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.alcohol_percentage|floatformat:1 }}%</div>
+        </div>
+        {% endif %}
+        {% if winevintage.winegrape_set.all %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Blend:</div>
+          <div class="findwine_detail-content-right">
+            <ul class="findwine_list" style="margin-bottom: 0px">
+              {% for winegrape in winevintage.winegrape_set.all %}
+              <li class="findwine_list-item">
+                {{ winegrape.grape }}
+                {% if winegrape.percentage %}
+                  {{ winegrape.percentage|floatformat:0 }}%
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+        {% if winevintage.sweetness %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Sweetness:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.sweetness }}</div>
+        </div>
+        {% endif %}
+        {% if winevintage.wooded %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Wooded:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Yes,No,Unknown" }}</div>
+        </div>
+        {% endif %}
+        {% if winevintage.organic %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Organic:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.organic|yesno:"Yes,No,Unknown" }}</div>
+        </div>
+        {% endif %}
+        {% if winevintage.contains_sulphites %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Contains sulphites:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.contains_sulphites|yesno:"Yes,No,Unknown" }}</div>
+        </div>
+        {% endif %}
+        {% if winevintage.vegetarian %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Vegetarian:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.vegetarian|yesno:"Yes,No,Unknown" }}</div>
+        </div>
+        {% endif %}
+        {% if winevintage.residual_sugar %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Residual sugar:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.residual_sugar|floatformat:1 }} g/l</div>
+        </div>
+        {% endif %}
+        {% if winevintage.ph %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">pH:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.ph }}</div>
+        </div>
+        {% endif %}
+        {% if winevintage.total_acidity %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Total acidity:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_acidity|floatformat:1 }} g/l</div>
+        </div>
+        {% endif %}
+        {% if winevintage.total_sulphur %}
+        <div class="findwine_detail-table-content">
+          <div class="findwine_detail-content-left">Total sulphur:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:0 }} mg/l</div>
+        </div>
+        {% endif %}
       </div>
+      <!-- Will add back later -->
+      <!--{% if winevintage.tasting_notes %}-->
+      <!--<a class="text-primary" style="margin-left:15px"-->
+      <!--href="{{ winevintage.tasting_notes.url|default_if_none:'#' }}">Download tasting notes</a>-->
+      <!--{% endif %}-->
     </div>
-    <div class="findwine_detail-expand hidden-lg-up">
-      <button class="btn findwine_detail-expand-button" type="button" id="infoButton" onclick="expandInfo()">
-        More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
-      </button>
-    </div>
-    <div class="findwine_detail-heading hidden-lg-up"></div>
-    {% endif %}
+  </div>
+  <div class="findwine_detail-expand hidden-lg-up">
+    <button class="btn findwine_detail-expand-button" type="button" id="wineDetailButton" onclick="expandDetail()">
+      More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+    </button>
+  </div>
+  <div class="findwine_detail-heading hidden-lg-up"></div>
 
-    <!-- Wine details -->
-    <div class="findwine_detail-rowHeight hidden-lg-up" id="wineDetail">
+  <!-- Wine details and specs - Desktop -->
+  <div class="findwine_details-specs">
+    <div class="findwine_detail-rowHeight findwine_details-margin hidden-md-down">
       <div class="findwine_detail-info">
         <h5 class="findwine_detail-header--2">Details</h5>
-        <p class="findwine_detail-content" id="detailContent"> Read more about this wine.</p>
         <div class="table table-responsive table-md">
           {% if winevintage.winemakers.count %}
-          <div class="findwine_detail-table-content">
-            <div class="findwine_detail-content-left">Winemaker:</div>
-            <div class="findwine_detail-content-right">
-              {% for winemaker in winevintage.winemakers.all %}
-              {% if not forloop.first %} &amp; {% endif %}
-              {{ winemaker }}
-              {% endfor %}
-            </div>
+          <div class="findwine_detail-content-left">Winemaker:</div>
+          <div class="findwine_detail-content-right">
+            {% for winemaker in winevintage.winemakers.all %}
+            {% if not forloop.first %} &amp; {% endif %}
+            {{ winemaker }}
+            {% endfor %}
           </div>
           {% endif %}
           {% if winevintage.alcohol_percentage %}
-          <div class="findwine_detail-table-content">
-            <div class="findwine_detail-content-left">Alcohol percentage:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.alcohol_percentage|floatformat:1 }}%</div>
-          </div>
+          <div class="findwine_detail-content-left">Alcohol percentage:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.alcohol_percentage|floatformat:1 }}%</div>
           {% endif %}
           {% if winevintage.winegrape_set.all %}
-          <div class="findwine_detail-table-content">
-            <div class="findwine_detail-content-left">Blend:</div>
-            <div class="findwine_detail-content-right">
-              <ul class="findwine_list" style="margin-bottom: 0px">
-                {% for winegrape in winevintage.winegrape_set.all %}
-                <li class="findwine_list-item">
-                  {{ winegrape.grape }}
-                  {% if winegrape.percentage %}
-                    {{ winegrape.percentage|floatformat:0 }}%
-                  {% endif %}
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
+          <div class="findwine_detail-content-left">Blend:</div>
+          <div class="findwine_detail-content-right">
+            <ul class="findwine_list findwine_detail-list-inline-item">
+              {% for winegrape in winevintage.winegrape_set.all %}
+              <li class="findwine_list-item findwine_detail-list-inline-item">
+                {{ winegrape.grape }}
+                {% if winegrape.percentage %}
+                {{ winegrape.percentage|floatformat:0 }}%
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
           </div>
           {% endif %}
           {% if winevintage.sweetness %}
-          <div class="findwine_detail-table-content">
-            <div class="findwine_detail-content-left">Sweetness:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.sweetness }}</div>
-          </div>
+          <div class="findwine_detail-content-left">Sweetness:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.sweetness }}</div>
           {% endif %}
           {% if winevintage.wooded %}
-          <div class="findwine_detail-table-content">
-            <div class="findwine_detail-content-left">Wooded:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Yes,No,Unknown" }}</div>
-          </div>
+          <div class="findwine_detail-content-left">Wooded:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Yes,No,Unknown" }}</div>
           {% endif %}
           {% if winevintage.organic %}
-          <div class="findwine_detail-table-content">
-            <div class="findwine_detail-content-left">Organic:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.organic|yesno:"Yes,No,Unknown" }}</div>
-          </div>
+          <div class="findwine_detail-content-left">Organic:</div>
+          <div class="findwine_detail-content-right">{{ winevintage.organic|yesno:"Yes,No,Unknown" }}</div>
           {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="findwine_detail-rowHeight hidden-md-down findwine_details-margin">
+      <div class="findwine_detail-info">
+        <h5 class="findwine_detail-header--2">Specs</h5>
+        <div class="table table-responsive table-md">
           {% if winevintage.contains_sulphites %}
           <div class="findwine_detail-table-content">
-            <div class="findwine_detail-content-left">Contains sulphites:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.contains_sulphites|yesno:"Yes,No,Unknown" }}</div>
+            <div class="findwine_detail-content-left">Contains Sulphites:</div>
+            <div class="findwine_detail-content-right">{{ winevintage.contains_sulphites|yesno:"Yes,No,Unknown" }}
+            </div>
           </div>
           {% endif %}
           {% if winevintage.vegetarian %}
@@ -364,241 +395,144 @@
           </div>
           {% endif %}
         </div>
-        <!-- Will add back later -->
-        <!--{% if winevintage.tasting_notes %}-->
-        <!--<a class="text-primary" style="margin-left:15px"-->
-        <!--href="{{ winevintage.tasting_notes.url|default_if_none:'#' }}">Download tasting notes</a>-->
-        <!--{% endif %}-->
       </div>
     </div>
-    <div class="findwine_detail-expand hidden-lg-up">
-      <button class="btn findwine_detail-expand-button" type="button" id="wineDetailButton" onclick="expandDetail()">
-        More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
-      </button>
-    </div>
-    <div class="findwine_detail-heading hidden-lg-up"></div>
 
-    <!-- Wine details and specs - Desktop -->
-    <div class="findwine_details-specs">
-      <div class="findwine_detail-rowHeight findwine_details-margin hidden-md-down">
-        <div class="findwine_detail-info">
-          <h5 class="findwine_detail-header--2">Details</h5>
-          <div class="table table-responsive table-md">
-            {% if winevintage.winemakers.count %}
-            <div class="findwine_detail-content-left">Winemaker:</div>
+    <!-- Serving suggestions -->
+    <div class="findwine_detail-rowHeight" id="serve">
+      <div class="findwine_detail-info">
+        <h5 class="findwine_detail-header--2">Serving suggestion</h5>
+        <p class="findwine_detail-content hidden-lg-up" id="serveContent"> Food pairings, serving temperatures and
+          best years to
+          drink. </p>
+        <div class="table table-responsive table-md">
+          <div class="findwine_detail-table-content">
+            <div class="findwine_detail-content-left">Food pairing:</div>
             <div class="findwine_detail-content-right">
-              {% for winemaker in winevintage.winemakers.all %}
-              {% if not forloop.first %} &amp; {% endif %}
-              {{ winemaker }}
-              {% endfor %}
-            </div>
-            {% endif %}
-            {% if winevintage.alcohol_percentage %}
-            <div class="findwine_detail-content-left">Alcohol percentage:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.alcohol_percentage|floatformat:1 }}%</div>
-            {% endif %}
-            {% if winevintage.winegrape_set.all %}
-            <div class="findwine_detail-content-left">Blend:</div>
-            <div class="findwine_detail-content-right">
-              <ul class="findwine_list findwine_detail-list-inline-item">
-                {% for winegrape in winevintage.winegrape_set.all %}
+              {% if winevintage.winefoodpairing_set.all %}
+              <ul class="findwine_list findwine_detail-list-inline-item hidden-lg-up">
+                {% for winefoodpairing in winevintage.winefoodpairing_set.all %}
                 <li class="findwine_list-item findwine_detail-list-inline-item">
-                  {{ winegrape.grape }}
-                  {% if winegrape.percentage %}
-                  {{ winegrape.percentage|floatformat:0 }}%
-                  {% endif %}
+                  {{ winefoodpairing.food_pairing.name }}
                 </li>
                 {% endfor %}
               </ul>
-            </div>
-            {% endif %}
-            {% if winevintage.sweetness %}
-            <div class="findwine_detail-content-left">Sweetness:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.sweetness }}</div>
-            {% endif %}
-            {% if winevintage.wooded %}
-            <div class="findwine_detail-content-left">Wooded:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.wooded|yesno:"Yes,No,Unknown" }}</div>
-            {% endif %}
-            {% if winevintage.organic %}
-            <div class="findwine_detail-content-left">Organic:</div>
-            <div class="findwine_detail-content-right">{{ winevintage.organic|yesno:"Yes,No,Unknown" }}</div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div class="findwine_detail-rowHeight hidden-md-down findwine_details-margin">
-        <div class="findwine_detail-info">
-          <h5 class="findwine_detail-header--2">Specs</h5>
-          <div class="table table-responsive table-md">
-            {% if winevintage.contains_sulphites %}
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">Contains Sulphites:</div>
-              <div class="findwine_detail-content-right">{{ winevintage.contains_sulphites|yesno:"Yes,No,Unknown" }}
-              </div>
-            </div>
-            {% endif %}
-            {% if winevintage.vegetarian %}
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">Vegetarian:</div>
-              <div class="findwine_detail-content-right">{{ winevintage.vegetarian|yesno:"Yes,No,Unknown" }}</div>
-            </div>
-            {% endif %}
-            {% if winevintage.residual_sugar %}
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">Residual sugar:</div>
-              <div class="findwine_detail-content-right">{{ winevintage.residual_sugar|floatformat:1 }} g/l</div>
-            </div>
-            {% endif %}
-            {% if winevintage.ph %}
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">pH:</div>
-              <div class="findwine_detail-content-right">{{ winevintage.ph }}</div>
-            </div>
-            {% endif %}
-            {% if winevintage.total_acidity %}
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">Total acidity:</div>
-              <div class="findwine_detail-content-right">{{ winevintage.total_acidity|floatformat:1 }} g/l</div>
-            </div>
-            {% endif %}
-            {% if winevintage.total_sulphur %}
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">Total sulphur:</div>
-              <div class="findwine_detail-content-right">{{ winevintage.total_sulphur|floatformat:0 }} mg/l</div>
-            </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-
-      <!-- Serving suggestions -->
-      <div class="findwine_detail-rowHeight" id="serve">
-        <div class="findwine_detail-info">
-          <h5 class="findwine_detail-header--2">Serving suggestion</h5>
-          <p class="findwine_detail-content hidden-lg-up" id="serveContent"> Food pairings, serving temperatures and
-            best years to
-            drink. </p>
-          <div class="table table-responsive table-md">
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">Food pairing:</div>
-              <div class="findwine_detail-content-right">
-                {% if winevintage.winefoodpairing_set.all %}
-                <ul class="findwine_list findwine_detail-list-inline-item hidden-lg-up">
-                  {% for winefoodpairing in winevintage.winefoodpairing_set.all %}
-                  <li class="findwine_list-item findwine_detail-list-inline-item">
-                    {{ winefoodpairing.food_pairing.name }}
-                  </li>
-                  {% endfor %}
-                </ul>
-                <ul class="findwine_list findwine_detail-list-inline-item hidden-md-down">
-                  {% for winefoodpairing in winevintage.winefoodpairing_set.all %}
-                  <li class="findwine_list-item findwine_detail-list-inline-item">
-                    {{ winefoodpairing.food_pairing.name }}
-                  </li>
-                  {% endfor %}
-                </ul>
-                {% else %}
-                <p>No food pairings available.</p>
-                {% endif %}
-              </div>
-            </div>
-            {% if winevintage.optimal_year_start %}
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">Peak years:</div>
-              <div class="findwine_detail-content-right">{{ winevintage.optimal_year_start }} -
-                {{winevintage.optimal_year_end }}
-              </div>
-            </div>
-            {% endif %}
-            {% if winevintage.temp_min %}
-            <div class="findwine_detail-table-content">
-              <div class="findwine_detail-content-left">Serve at:</div>
-              <!-- Include deg C symbol at some point? &#8451; -->
-              <div class="findwine_detail-content-right">{{ winevintage.temp_min }} - {{ winevintage.temp_max }} degrees
-                C
-              </div>
-            </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div class="findwine_detail-expand hidden-lg-up">
-        <button class="btn findwine_detail-expand-button" type="button" id="serveButton" onclick="expandServe()">
-          More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
-        </button>
-      </div>
-      <div
-        class="{% if winevintage.other_vintages %} findwine_detail-heading-none {% else %} findwine_detail-heading {% endif %} hidden-lg-up">
-      </div>
-    </div>
-
-    <!-- Other vintages -->
-    {% if winevintage.other_vintages %}
-    <div class="findwine_detail-heading">
-      <h5 class="findwine_detail-header findwine_detail-header--desktop">OTHER VINTAGES</h5>
-    </div>
-    {% for other_vintage in winevintage.other_vintages %}
-    {% if other_vintage.preferred_merchant %}
-    <a href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}" class="findwine_vintage-producer">
-      <div class="findwine_vintage-table">
-        <div class="findwine_search-results">
-          <div class="findwine_search-result--table">
-            <div
-              class="findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-{{ winevintage.rating_category }}">
-              {{ other_vintage.rating_display }}
-            </div>
-            <div class="findwine_vintage--image">
-              {% if other_vintage.image_pack_shot %}
-              <img src="{{ other_vintage.image_pack_shot.url }}" alt="{{ other_vintage.wine.name }}"
-                   class="img-fluid rounded findwine_vintage--image-img"/>
+              <ul class="findwine_list findwine_detail-list-inline-item hidden-md-down">
+                {% for winefoodpairing in winevintage.winefoodpairing_set.all %}
+                <li class="findwine_list-item findwine_detail-list-inline-item">
+                  {{ winefoodpairing.food_pairing.name }}
+                </li>
+                {% endfor %}
+              </ul>
+              {% else %}
+              <p>No food pairings available.</p>
               {% endif %}
             </div>
-            <div class="findwine_vintage-details">
-              <div class="findwine_vintage-producer-main">
-                {{ other_vintage.wine.producer.name }}
-              </div>
-              <h4 class="findwine_vintage-vintage">
-                {{ other_vintage.wine.name }} {{ other_vintage.year }}
-              </h4>
-              <div class="findwine_vintage-row">
-                <p class="findwine_vintage-category">
-                  {{ other_vintage.sub_category }}
-                </p>
-                <div class="findwine_vintage-table--display hidden-md-up">
-                  <div class="findwine_vintage-currency"> R</div>
-                  <div class="findwine_vintage-price">
-                    {{ other_vintage.preferred_merchant.price|floatformat:0 }}
-                  </div>
+          </div>
+          {% if winevintage.optimal_year_start %}
+          <div class="findwine_detail-table-content">
+            <div class="findwine_detail-content-left">Peak years:</div>
+            <div class="findwine_detail-content-right">{{ winevintage.optimal_year_start }} -
+              {{winevintage.optimal_year_end }}
+            </div>
+          </div>
+          {% endif %}
+          {% if winevintage.temp_min %}
+          <div class="findwine_detail-table-content">
+            <div class="findwine_detail-content-left">Serve at:</div>
+            <!-- Include deg C symbol at some point? &#8451; -->
+            <div class="findwine_detail-content-right">{{ winevintage.temp_min }} - {{ winevintage.temp_max }} degrees
+              C
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="findwine_detail-expand hidden-lg-up">
+      <button class="btn findwine_detail-expand-button" type="button" id="serveButton" onclick="expandServe()">
+        More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+      </button>
+    </div>
+    <div
+      class="{% if winevintage.other_vintages %} findwine_detail-heading-none {% else %} findwine_detail-heading {% endif %} hidden-lg-up">
+    </div>
+  </div>
+
+  <!-- Other vintages -->
+  {% if winevintage.other_vintages %}
+  <div class="findwine_detail-heading">
+    <h5 class="findwine_detail-header findwine_detail-header--desktop">OTHER VINTAGES</h5>
+  </div>
+  {% for other_vintage in winevintage.other_vintages %}
+  {% if other_vintage.preferred_merchant %}
+  <a href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}" class="findwine_vintage-producer">
+    <div class="findwine_vintage-table">
+      <div class="findwine_search-results">
+        <div class="findwine_search-result--table">
+          <div
+            class="findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-{{ winevintage.rating_category }}">
+            {{ other_vintage.rating_display }}
+          </div>
+          <div class="findwine_vintage--image">
+            {% if other_vintage.image_pack_shot %}
+            <img src="{{ other_vintage.image_pack_shot.url }}" alt="{{ other_vintage.wine.name }}"
+                 class="img-fluid rounded findwine_vintage--image-img"/>
+            {% endif %}
+          </div>
+          <div class="findwine_vintage-details">
+            <div class="findwine_vintage-producer-main">
+              {{ other_vintage.wine.producer.name }}
+            </div>
+            <h4 class="findwine_vintage-vintage">
+              {{ other_vintage.wine.name }} {{ other_vintage.year }}
+            </h4>
+            <div class="findwine_vintage-row">
+              <p class="findwine_vintage-category">
+                {{ other_vintage.sub_category }}
+              </p>
+              <div class="findwine_vintage-table--display hidden-md-up">
+                <div class="findwine_vintage-currency"> R</div>
+                <div class="findwine_vintage-price">
+                  {{ other_vintage.preferred_merchant.price|floatformat:0 }}
                 </div>
               </div>
             </div>
-            <div class="findwine_vintage-table--display findwine_vintage-table--display-search hidden-md-down">
-              <div class="findwine_vintage-currency"> R</div>
-              <div class="findwine_vintage-price">
-                {{ other_vintage.preferred_merchant.price|floatformat:0 }}
-              </div>
-              <button class="btn findwine_view-button"
-                      target="_self" role="button" href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}">
-                View
-                <img src="{% static 'wine/images/SVGs/arrow-right-white.svg' %}"
-                     class="findwine_view-button-arrow">
-              </button>
+          </div>
+          <div class="findwine_vintage-table--display findwine_vintage-table--display-search hidden-md-down">
+            <div class="findwine_vintage-currency"> R</div>
+            <div class="findwine_vintage-price">
+              {{ other_vintage.preferred_merchant.price|floatformat:0 }}
             </div>
+            <button class="btn findwine_view-button"
+                    target="_self" role="button" href="{% url 'wine:wine_detail_by_slug' other_vintage.slug %}">
+              View
+              <img src="{% static 'wine/images/SVGs/arrow-right-white.svg' %}"
+                   class="findwine_view-button-arrow">
+            </button>
           </div>
         </div>
       </div>
-    </a>
-    {% endif %}
-    {% endfor %}
-    <div class="findwine_detail-heading hidden-lg-up"></div>
-    {% endif %}
-  </div>
+    </div>
+  </a>
+  {% endif %}
+  {% endfor %}
+  <div class="findwine_detail-heading hidden-lg-up"></div>
+  {% endif %}
+</div>
 </div>
 {% endblock %}
 {% block page_scripts %}
-<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false">
+<script>
+  // var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
+  // var CATEGORY_MAP = {{ category_mapping|safe }};
+  var STATIC_BASE_PATH = "{% static '' %}";
+  $(function () {
+    // show nav
+    $('#top').show();
+  });
 </script>
+<script src="{% static 'js/search-bundle.js' %}"></script>
 <script>
   function expandInfo() {
     var info = document.getElementById('info');

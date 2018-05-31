@@ -6,7 +6,7 @@ import Select from 'react-select';
 require('rc-slider/assets/index.css');
 import 'react-select/dist/react-select.css';
 import Slider, {Range} from 'rc-slider';
-import {foo, constructImagePath, WineList, Paginator} from "./shared";
+import {constructImagePath, WineList, Paginator} from "./shared";
 
 const queryString = require('query-string');
 
@@ -48,7 +48,6 @@ class CategoryOption extends React.Component {
 
 class CategoryValue  extends React.Component {
   render () {
-    // console.log('value.props', this.props);
     const image = getSelectedImagePath(this.props.value.value);
 		return (
       <div className="Select-value" title={this.props.value.title}>
@@ -109,7 +108,6 @@ class CategorySelectMobile extends React.Component {
     );
   }
 }
-
 
 class SubCategoryOption extends React.Component {
   // also adapted from https://github.com/JedWatson/react-select/blob/master/examples/src/components/CustomComponents.js
@@ -184,6 +182,7 @@ class SubCategorySelect extends React.Component {
     )
   }
 }
+
 class SortSelect extends React.Component {
   render() {
     let choices = getSortChoices().map((sortChoice, index) => {
@@ -235,18 +234,18 @@ class SearchControls extends React.Component {
   }
 
   _getSearchButtonFilter() {
-  if (this.props.firstSearchMade) {
-    return (
-      <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0 findwine_button-outer">
-        <button type="button" className="btn btn-primary btn-block findwine_button"
-                onClick={(e) => this._doMobileSearch()}>
-          SEARCH WINES
-          <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
-        </button>
-      </div>
-    );
+    if (this.props.firstSearchMade) {
+      return (
+        <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0 findwine_button-outer">
+          <button type="button" className="btn btn-primary btn-block findwine_button"
+                  onClick={(e) => this._doMobileSearch()}>
+            SEARCH WINES
+            <img src={constructImagePath('wine/images/SVGs/arrow.svg')} alt="search" className="hidden-lg-up findwine_button-image"></img>
+          </button>
+        </div>
+      );
+    }
   }
-}
 
   _doMobileSearch() {
       this.props.setExpanded(false);
@@ -450,7 +449,6 @@ class SearchControls extends React.Component {
     return !this.props.firstSearchMade || this.props.isExpanded;
   }
 
-
   render() {
     if (this.showSearchControls()) {
       return this.renderControls();
@@ -509,53 +507,52 @@ class RatingsModal extends React.Component {
   }
 }
 
-
 class SearchPage extends React.Component {
-    constructor() {
-        super();
-        // initialize with first category / subcategory selected
-        const category = getCategoryChoices()[0];
-        this.state = {
-            selectedCategory: category,
-            selectedSubcategory: '',
-            minPrice: 0,
-            maxPrice: DEFAULT_MAX_PRICE,
-            selectedSort: getSortChoices()[0][1],
-            // results / pagination
-            wines: [],
-            resultCount: 0,
-            resultPage: 1,
-            resultStart: 1,
-            resultEnd: 10,
-            nextPageUrl: null,
-            prevPageUrl: null,
-            firstSearchMade: false,
-            searchControlsExpanded: false,
-            isLoading: false,
-        }
+  constructor() {
+    super();
+    // initialize with first category / subcategory selected
+    const category = getCategoryChoices()[0];
+    this.state = {
+        selectedCategory: category,
+        selectedSubcategory: '',
+        minPrice: 0,
+        maxPrice: DEFAULT_MAX_PRICE,
+        selectedSort: getSortChoices()[0][1],
+        // results / pagination
+        wines: [],
+        resultCount: 0,
+        resultPage: 1,
+        resultStart: 1,
+        resultEnd: 10,
+        nextPageUrl: null,
+        prevPageUrl: null,
+        firstSearchMade: false,
+        searchControlsExpanded: false,
+        isLoading: false,
     }
+  }
 
     componentDidMount() {
-        let queryParams = queryString.parse(location.search);
-        if (Object.keys(queryParams).length && queryParams['selectedCategory']) {
-            queryParams['firstSearchMade'] = true;
-            this._updateLandingPage(true);
-            this.setState(queryParams, this._updateSearchResults);
+      let queryParams = queryString.parse(location.search);
+      if (Object.keys(queryParams).length && queryParams['selectedCategory']) {
+          queryParams['firstSearchMade'] = true;
+          this._updateLandingPage(true);
+          this.setState(queryParams, this._updateSearchResults);
+      }
+      // there might be a better way to do this
+      // clear search results on back button press back to home page
+      var self = this;
+      let showLandingPageContent = () => this._updateLandingPage(false);
+      $(window).on('popstate', function (e) {
+        if (location.pathname === '/') {
+            self.setState(
+              {
+                'firstSearchMade': false
+              },
+              showLandingPageContent,
+            );
         }
-        // there might be a better way to do this
-        // clear search results on back button press back to home page
-        var self = this;
-        let showLandingPageContent = () => this._updateLandingPage(false);
-        $(window).on('popstate', function (e) {
-            if (location.pathname === '/') {
-                self.setState(
-                  {
-                    'firstSearchMade': false
-                  },
-                  showLandingPageContent,
-                );
-            }
-        });
+      });
     }
 
     _updateLandingPage(searchMade) {
@@ -564,10 +561,12 @@ class SearchPage extends React.Component {
             $('.landing-page-content').hide();
             $('.search-page-content').show();
             $('.findwine_filter-holder').addClass('findwine_filter-holder-search-result');
+            $('#search-bar').removeClass('findwine_home');
         } else {
             $('.landing-page-content').show();
             $('.search-page-content').hide();
             $('.findwine_filter-holder').removeClass('findwine_filter-holder-search-result');
+            $('#search-bar').addClass('findwine_home');
         }
     }
 
@@ -663,59 +662,59 @@ class SearchPage extends React.Component {
     }
 
     _updateResultsFromResponse(response, addToHistory) {
-        if (response.ok) {
-            response.json().then((responseJson) => {
-                this.setState({
-                    wines: responseJson.results,
-                    nextPageUrl: responseJson.next,
-                    prevPageUrl: responseJson.previous,
-                    resultCount: responseJson.count,
-                    resultPage: responseJson.page,
-                    resultStart: responseJson.start,
-                    resultEnd: responseJson.end,
-                    isLoading: false,
-                }, () => this._updateUrl(addToHistory));
-            });
-        }
+      if (response.ok) {
+        response.json().then((responseJson) => {
+          this.setState({
+            wines: responseJson.results,
+            nextPageUrl: responseJson.next,
+            prevPageUrl: responseJson.previous,
+            resultCount: responseJson.count,
+            resultPage: responseJson.page,
+            resultStart: responseJson.start,
+            resultEnd: responseJson.end,
+            isLoading: false,
+          }, () => this._updateUrl(addToHistory));
+        });
+      }
     }
 
     render() {
-        const mobileFiltersOpen = isMobile() && this.state.searchControlsExpanded
-        const showWineList = this.state.firstSearchMade && !mobileFiltersOpen;
-        let ratingsExplained = showWineList ? <RatingsExplanationBar /> : '';
-        let wineList = showWineList ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
-        let showPaginator = (showWineList && this.state.wines.length);
-        let paginator = showPaginator ? <Paginator
-            nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
-            prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
-            count={this.state.resultCount} page={this.state.resultPage}
-            start={this.state.resultStart} end={this.state.resultEnd}
-        /> : '';
-        return (
-            <div className="container">
-                <SearchControls
-                    firstSearchMade={this.state.firstSearchMade}
-                    selectedCategory={this.state.selectedCategory}
-                    categoryChanged={(category) => this.updateCategory(category)}
-                    selectedSubcategory={this.state.selectedSubcategory}
-                    subcategoryChanged={(subcategory) => this.updateSubcategory(subcategory)}
-                    minPrice={this.state.minPrice}
-                    minPriceChanged={(price, updateResults) => this.updateMinPrice(price, updateResults)}
-                    maxPrice={this.state.maxPrice}
-                    maxPriceChanged={(price, updateResults) => this.updateMaxPrice(price, updateResults)}
-                    selectedSort={this.state.selectedSort}
-                    sortChanged={(sort) => this.updateSort(sort)}
-                    searchClicked={(event) => this.searchClicked(event)}
-                    updateSearchResults={() => this.updateSearchResults()}
-                    isExpanded={this.state.searchControlsExpanded}
-                    setExpanded={(expanded) => this.setState({'searchControlsExpanded': expanded})}
-                />
-                {ratingsExplained}
-                {wineList}
-                {paginator}
-                <RatingsModal />
-            </div>
-        )
+      const mobileFiltersOpen = isMobile() && this.state.searchControlsExpanded
+      const showWineList = this.state.firstSearchMade && !mobileFiltersOpen;
+      let ratingsExplained = showWineList ? <RatingsExplanationBar /> : '';
+      let wineList = showWineList ? <WineList wines={this.state.wines} isLoading={this.state.isLoading}/> : '';
+      let showPaginator = (showWineList && this.state.wines.length);
+      let paginator = showPaginator ? <Paginator
+          nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
+          prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
+          count={this.state.resultCount} page={this.state.resultPage}
+          start={this.state.resultStart} end={this.state.resultEnd}
+      /> : '';
+      return (
+        <div className="container">
+          <SearchControls
+            firstSearchMade={this.state.firstSearchMade}
+            selectedCategory={this.state.selectedCategory}
+            categoryChanged={(category) => this.updateCategory(category)}
+            selectedSubcategory={this.state.selectedSubcategory}
+            subcategoryChanged={(subcategory) => this.updateSubcategory(subcategory)}
+            minPrice={this.state.minPrice}
+            minPriceChanged={(price, updateResults) => this.updateMinPrice(price, updateResults)}
+            maxPrice={this.state.maxPrice}
+            maxPriceChanged={(price, updateResults) => this.updateMaxPrice(price, updateResults)}
+            selectedSort={this.state.selectedSort}
+            sortChanged={(sort) => this.updateSort(sort)}
+            searchClicked={(event) => this.searchClicked(event)}
+            updateSearchResults={() => this.updateSearchResults()}
+            isExpanded={this.state.searchControlsExpanded}
+            setExpanded={(expanded) => this.setState({'searchControlsExpanded': expanded})}
+          />
+          {ratingsExplained}
+          {wineList}
+          {paginator}
+          <RatingsModal />
+        </div>
+      )
     }
 }
 
@@ -771,7 +770,6 @@ function hide() {
 function isMobile() {
   return window.innerWidth < 992;
 }
-
 
 ReactDOM.render(
     <SearchPage/>,

@@ -3,81 +3,9 @@
 
 {% block content %}
 
-<!-- Nav -->
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content" id="top">
-  <div class="container findwine_nav--menu">
-    <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
-        <span>
-          <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
-        </span>
-    </button>
+{% include 'wine/partials/about_nav.html' %}
+{% include 'wine/partials/mobile_nav.html' %}
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active nav-item-new">
-          <a class="nav-link nav-link-new" href="{% url 'wine:search' %}">Home <span
-            class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item nav-item-new">
-          <a class="nav-link nav-link-new nav-link-home" href="{% url 'content:about' %}">About</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="findwine_nav-logo search-page-content">
-    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}"
-                                           class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
-  </div>
-</nav>
-<!-- Modal - Mobile Nav -->
-<div class="modal left fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-     aria-hidden="true">
-  <div class="modal-dialog findwine_modal-nav" role="document">
-    <div class="modal-content findwine_modal-nav-content">
-      <div class="modal-header findwine_modal-nav-header">
-        <button type="button" class="close findwine_modal-nav-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="{% static 'wine/images/SVGs/close.svg' %}"
-                                        class="findwine_menu-button"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link findwine_modal-nav-link" href="{% url 'wine:search' %}">Home<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link findwine_modal-nav-link" href="{% url 'content:about' %}">About</a>
-          </li>
-        </ul>
-      </div>
-      <div class="modal-footer findwine_modal-nav-footer">
-        <div class="findwine_modal-nav-footer-links">
-          <ul class="findwine_modal-nav-footer-links-ul">
-            <li class="findwine_modal-nav-footer-links-li">
-              <a class="findwine_modal-nav-footer-link" href="{% url 'content:contact' %}">Contact Us <span
-                class="sr-only">(current)</span></a>
-            </li>
-            <li class="findwine_modal-nav-footer-links-li">
-              <a class="findwine_modal-nav-footer-link" href="{% url 'content:terms' %}">Privacy & Terms</a>
-            </li>
-          </ul>
-        </div>
-        <div class="findwine_modal-nav-footer-social">
-          <a href="https://www.instagram.com/findwinesa/" target="_blank" class="findwine_footer--flex-right">
-            <!-- This is a placeholder image - remember to replace -->
-            <img src="{% static 'wine/images/SVGs/instagram-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-          <a href="https://twitter.com/FindWineSA" target="_blank" class="findwine_footer--flex-right">
-            <img src="{% static 'wine/images/SVGs/twitter-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-          <a href="https://www.facebook.com/FindWineSA/" target="_blank" class="findwine_footer--flex-right">
-            <img src="{% static 'wine/images/SVGs/facebook-dark.svg' %}" class="findwine_modal-nav-footer-icon">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <!--Banner-->
 <div class="findwine_about-banner">
   <div class="findwine_about-heading-1">About Us</div>
@@ -102,10 +30,6 @@
     <div class="findwine_about-paragraph">With us, finding great wine is as easy as search, compare, buy… enjoy!</div>
   </div>
   <div class="findwine_about-content-1-right">
-    <!--<img class="findwine_about-content-icon" src="{% static 'wine/images/SVGs/about-search.svg' %}">-->
-    <!--<img class="findwine_about-content-icon" src="{% static 'wine/images/SVGs/about-compare.svg' %}">-->
-    <!--<img class="findwine_about-content-icon" src="{% static 'wine/images/SVGs/about-buy.svg' %}">-->
-    <!--<img class="findwine_about-content-icon" src="{% static 'wine/images/SVGs/about-enjoy.svg' %}">-->
     <img class="findwine_about-content-icon-1" src="{% static 'wine/images/SVGs/about.svg' %}">
   </div>
 </div>
@@ -149,4 +73,17 @@
   </div>
 </div>
 <div class="findwine_detail-heading hidden-lg-up"></div>
+
+{% endblock %}
+{% block page_scripts %}
+<script>
+  // var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
+  // var CATEGORY_MAP = {{ category_mapping|safe }};
+  var STATIC_BASE_PATH = "{% static '' %}";
+  $(function () {
+    // show nav
+    $('#top').show();
+  });
+</script>
+<script src="{% static 'js/search-bundle.js' %}"></script>
 {% endblock %}

@@ -4,9 +4,10 @@
 {% block content %}
 
 {% include 'wine/partials/main_nav.html' %}
-{% include 'wine/partials/mobile_nav.html' %}
 {% include 'wine/partials/search_nav.html' %}
+{% include 'wine/partials/mobile_nav.html' %}
 
+<div class="findwine_search-made">
 <div class="findwine_banner-main landing-page-content">
   <img src="{% static 'wine/images/SVGs/logo.svg' %}" class="d-inline-block align-top findwine_logo-standard"
        alt="FindWine">
@@ -55,12 +56,21 @@
     </div>
   </div>
 </div>
+</div>
 {% endblock %}
 {% block page_scripts %}
 <script>
-   var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
-   var CATEGORY_MAP = {{ category_mapping|safe }};
-   var STATIC_BASE_PATH = "{% static '' %}";
+    var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
+    var CATEGORY_MAP = {{ category_mapping|safe }};
+    var STATIC_BASE_PATH = "{% static '' %}";
 </script>
 <script src="{% static 'js/findwine-bundle.js' %}"></script>
+<script src="{% static 'js/search-bundle.js' %}"></script>
+<script>
+
+  // if ($("#react-home").hasClass("findwine_filter-holder-search-result")){
+  //   $("#search-bar").removeClass("findwine_home")
+  // }
+
+</script>
 {% endblock %}
