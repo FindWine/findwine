@@ -136,19 +136,6 @@ body {
 
 }
 
-// Set image on submit
-form input[type=submit] {
-  background-image: url('images/SVGs/search.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 36px;
-  height: 36px;
-  border: 0px;
-  background-color: $primary-green;
-  cursor: pointer;
-  outline: 0;
-}
-
 .nav-link {
   font-family: $primary-font;
   font-size: 14px;
@@ -703,6 +690,19 @@ button:focus, button:hover {
     float: right;
     border: 1px solid $light-grey;
     border-radius: 4px;
+
+    // Set image on submit
+    form input[type=submit] {
+      background-image: url('images/SVGs/search.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 36px;
+      height: 36px;
+      border: 0px;
+      background-color: $primary-green;
+      cursor: pointer;
+      outline: 0;
+    }
   }
 
   &_search-button {
