@@ -18841,7 +18841,7 @@ var SearchByNameControl = function (_React$Component) {
           'button',
           { className: 'btn btn-outline-success my-2 my-sm-0 findwine_search-button', id: 'closeModal',
             onClick: function onClick() {
-              return _this2.props.doSearch();
+              _this2.props.doSearch(), _this2.closeModal();
             } },
           _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/search.svg'), alt: 'search' })
         )
@@ -18853,6 +18853,13 @@ var SearchByNameControl = function (_React$Component) {
       if (key === 'Enter') {
         this.props.doSearch();
       } else {}
+    }
+  }, {
+    key: 'closeModal',
+    value: function closeModal() {
+      $('#exampleModalLong').hide();
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').removeClass('modal-backdrop');
     }
   }]);
 
