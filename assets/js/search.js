@@ -17,8 +17,10 @@ class SearchByNameControl extends React.Component {
                onChange={(e) => this.props.searchTextChanged(e.target.value)}
                onKeyPress={(e) => this.handleKeyPress(e.key)}
         />
-        <button className="btn btn-outline-success my-2 my-sm-0 findwine_search-button"
-                onClick={() => this.props.doSearch()}> <img src={constructImagePath('wine/images/SVGs/search.svg')} alt="search"></img></button>
+        <button className="btn btn-outline-success my-2 my-sm-0 findwine_search-button" id="closeModal"
+                onClick={() => {this.props.doSearch(), this.closeModal()}}>
+          <img src={constructImagePath('wine/images/SVGs/search.svg')} alt="search"></img>
+        </button>
       </div>
     );
   }
@@ -28,6 +30,12 @@ class SearchByNameControl extends React.Component {
       this.props.doSearch();
   } else {
     }
+  }
+
+  closeModal() {
+    $('#exampleModalLong').hide()
+    $('body').removeClass('modal-open')
+    $('.modal-backdrop').removeClass('modal-backdrop')
   }
 }
 

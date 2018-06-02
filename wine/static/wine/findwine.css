@@ -211,6 +211,11 @@ button:focus, button:hover {
     display: inline-block;
     margin: 0px 10px; }
 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: #ffffff !important; }
+
 .mc-field-group {
   display: flex;
   justify-content: center;
@@ -424,19 +429,25 @@ button:focus, button:hover {
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%; }
 .findwine_form {
-  display: flex; }
+  display: flex;
+  width: 100%; }
 .findwine_search-field {
   background-color: rgba(255, 255, 255, 0.3);
   color: #333e48;
   margin-right: 0px !important;
   border: transparent;
   border-radius: 4px 0px 0px 4px;
-  width: auto !important; }
+  width: 100% !important; }
+  @media (min-width: 992px) {
+    .findwine_search-field {
+      width: auto !important; } }
 .findwine_search-field-holder {
-  float: left; }
+  float: left;
+  width: 100%; }
   @media (min-width: 992px) {
     .findwine_search-field-holder {
       clear: both;
+      width: auto;
       height: 36px;
       margin-right: -20%; } }
   .findwine_search-field-holder-home {
@@ -459,7 +470,9 @@ button:focus, button:hover {
   display: flex;
   float: right;
   border: 1px solid #c8ced2;
-  border-radius: 4px; }
+  border-radius: 4px;
+  width: 100%;
+  justify-content: center; }
   .findwine_search-name form input[type=submit] {
     background-image: url("images/SVGs/search.svg");
     background-position: center;
