@@ -17,8 +17,10 @@ class SearchByNameControl extends React.Component {
                onChange={(e) => this.props.searchTextChanged(e.target.value)}
                onKeyPress={(e) => this.handleKeyPress(e.key)}
         />
-        <button className="btn btn-outline-success my-2 my-sm-0 findwine_search-button"
-                onClick={() => this.props.doSearch()}> <img src={constructImagePath('wine/images/SVGs/search.svg')} alt="search"></img></button>
+        <button className="btn btn-outline-success my-2 my-sm-0 findwine_search-button" id="closeModal"
+                onClick={() => this.props.doSearch()}>
+          <img src={constructImagePath('wine/images/SVGs/search.svg')} alt="search"></img>
+        </button>
       </div>
     );
   }
@@ -186,6 +188,12 @@ class SearchByNamePage extends React.Component {
     let params = queryString.stringify({q: this.state.searchText});
     fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
     window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`);
+
+    // alert ('watch me!')
+    // document.querySelector('body').classList.remove('modal-open');
+    // document.querySelector('#closeModal').classList.remove('in');
+    // document.querySelector('.modal-backdrop').classList.remove('in');
+    // alert ('this worked')
 
     return(
       <div className="container">

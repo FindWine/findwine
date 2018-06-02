@@ -18839,11 +18839,10 @@ var SearchByNameControl = function (_React$Component) {
         }),
         _react2.default.createElement(
           'button',
-          { className: 'btn btn-outline-success my-2 my-sm-0 findwine_search-button',
+          { className: 'btn btn-outline-success my-2 my-sm-0 findwine_search-button', id: 'closeModal',
             onClick: function onClick() {
               return _this2.props.doSearch();
             } },
-          ' ',
           _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/search.svg'), alt: 'search' })
         )
       );
@@ -19138,6 +19137,12 @@ var SearchByNamePage = function (_React$Component2) {
         return _this5._updateResultsFromResponse(response);
       });
       window.history.replaceState(params, 'Search Results', '/search-by-name/?' + params);
+
+      // alert ('watch me!')
+      // document.querySelector('body').classList.remove('modal-open');
+      // document.querySelector('#closeModal').classList.remove('in');
+      // document.querySelector('.modal-backdrop').classList.remove('in');
+      // alert ('this worked')
 
       return _react2.default.createElement(
         'div',

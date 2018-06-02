@@ -345,6 +345,12 @@ button:focus, button:hover {
   }
 }
 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: $white !important;
+}
+
 // Subscribe
 
 .mc-field-group {
@@ -640,6 +646,7 @@ button:focus, button:hover {
 
   &_form {
     display: flex;
+    width: 100%;
   }
 
   &_search-field {
@@ -648,14 +655,20 @@ button:focus, button:hover {
     margin-right: 0px !important;
     border: transparent;
     border-radius: 4px 0px 0px 4px;
-    width: auto !important;
+    width: 100% !important;
+
+    @include breakpoint(lg) {
+      width: auto !important;
+    }
   }
 
   &_search-field-holder{
     float: left;
+    width: 100%;
 
     @include breakpoint(lg){
       clear: both;
+      width: auto;
       height: 36px;
       margin-right: -20%;
     }
@@ -690,6 +703,8 @@ button:focus, button:hover {
     float: right;
     border: 1px solid $light-grey;
     border-radius: 4px;
+    width: 100%;
+    justify-content: center;
 
     // Set image on submit
     form input[type=submit] {
