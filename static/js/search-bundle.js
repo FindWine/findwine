@@ -19138,12 +19138,6 @@ var SearchByNamePage = function (_React$Component2) {
       });
       window.history.replaceState(params, 'Search Results', '/search-by-name/?' + params);
 
-      // alert ('watch me!')
-      // document.querySelector('body').classList.remove('modal-open');
-      // document.querySelector('#closeModal').classList.remove('in');
-      // document.querySelector('.modal-backdrop').classList.remove('in');
-      // alert ('this worked')
-
       return _react2.default.createElement(
         'div',
         { className: 'container' },
