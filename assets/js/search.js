@@ -189,12 +189,6 @@ class SearchByNamePage extends React.Component {
     fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
     window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`);
 
-    // alert ('watch me!')
-    // document.querySelector('body').classList.remove('modal-open');
-    // document.querySelector('#closeModal').classList.remove('in');
-    // document.querySelector('.modal-backdrop').classList.remove('in');
-    // alert ('this worked')
-
     return(
       <div className="container">
         <WineList wines={this.state.wines} isLoading={this.state.isLoading}/>
