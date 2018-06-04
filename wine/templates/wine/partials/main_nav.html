@@ -6,15 +6,14 @@
           <img src="{% static 'wine/images/SVGs/menu.svg' %}" class="findwine_menu-button">
         </span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link nav-link-home" href="{% url 'wine:search' %}">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'content:about' %}">About</a>
-        </li>
+        <a class="nav-link" href="{% url 'content:about' %}">About</a>
+      </li>
       </ul>
       <!-- Search -->
       <div class="findwine_search-field-holder findwine_search-field-holder-home">
@@ -22,7 +21,8 @@
           <form action="{% url 'wine:search_by_name' %}" method="get" class="findwine_form">
             <input type="text" id="search" placeholder="Search wine or winery"
                    class="form-control mr-sm-2 findwine_search-field" name="q"/>
-            <input class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit" value=" "/>
+            <input class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"
+                   value=" "/>
           </form>
         </div>
       </div>

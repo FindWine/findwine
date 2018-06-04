@@ -1,12 +1,15 @@
 {% load staticfiles %}
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-new search-page-content" style="display: none" id="top">
-  <div class="container findwine_nav--menu">
+  <div class="container findwine_nav--menu-home">
     <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
         <span>
           <img src="{% static 'wine/images/SVGs/menu-black.svg' %}" class="findwine_menu-button">
         </span>
     </button>
 
+    <div class="findwine_nav-logo search-page-content">
+      <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active nav-item-new">
@@ -32,8 +35,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="findwine_nav-logo search-page-content">
-    <a href="{% url 'wine:search' %}"><img src="{% static 'wine/images/SVGs/logo-black.svg' %}" class="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></a>
   </div>
 </nav>

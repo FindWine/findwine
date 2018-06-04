@@ -542,7 +542,6 @@ select:-webkit-autofill {
       width: 185px;
       height: 40px;
       margin-top: 0px;
-      right: 85%;
     }
   }
 
@@ -670,11 +669,10 @@ select:-webkit-autofill {
       clear: both;
       width: auto;
       height: 36px;
-      margin-right: -20%;
+      margin-right: 0px;
     }
 
     &-home {
-      margin-right: 0px;
 
       .form-control::-webkit-input-placeholder {
         color: $white;
