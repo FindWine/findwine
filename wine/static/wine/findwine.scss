@@ -117,6 +117,8 @@ body {
   }
 
   &-toggler {
+    position: absolute;
+    z-index: 1000;
     border: none;
     outline: none !important;
     padding-left: 0px;
@@ -518,11 +520,11 @@ select:-webkit-autofill {
 
   &_nav--menu-home {
     margin-left: 0px;
+    width: 100%;
 
     @include breakpoint(lg) {
       margin-left: 100px;
-      margin-right: 100px;
-      width: 100%;
+      margin-right: 100px; 
     }
   }
 
@@ -530,8 +532,7 @@ select:-webkit-autofill {
     width: auto;
     text-align: center;
     position: relative;
-    margin-top: -25px;
-    z-index: 1000;
+    margin-top: 0px;
 
     &-none {
       display: none;
