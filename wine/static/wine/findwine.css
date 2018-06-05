@@ -362,8 +362,7 @@ select:-webkit-autofill {
       text-align: left;
       width: 185px;
       height: 40px;
-      margin-top: 0px;
-      right: 85%; } }
+      margin-top: 0px; } }
 .findwine_nav-logo-icon {
   width: 146px;
   height: 33px; }
@@ -449,23 +448,21 @@ select:-webkit-autofill {
       clear: both;
       width: auto;
       height: 36px;
-      margin-right: -20%; } }
-  .findwine_search-field-holder-home {
-    margin-right: 0px; }
-    .findwine_search-field-holder-home .form-control::-webkit-input-placeholder {
-      color: #ffffff;
-      opacity: 1; }
-    .findwine_search-field-holder-home .form-control:-moz-placeholder {
-      /* Firefox 18- */
-      color: #ffffff;
-      opacity: 1; }
-    .findwine_search-field-holder-home .form-control::-moz-placeholder {
-      /* Firefox 19+ */
-      color: #ffffff;
-      opacity: 1; }
-    .findwine_search-field-holder-home .form-control:-ms-input-placeholder {
-      color: #ffffff;
-      opacity: 1; }
+      margin-right: 0px; } }
+  .findwine_search-field-holder-home .form-control::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1; }
+  .findwine_search-field-holder-home .form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: #ffffff;
+    opacity: 1; }
+  .findwine_search-field-holder-home .form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ffffff;
+    opacity: 1; }
+  .findwine_search-field-holder-home .form-control:-ms-input-placeholder {
+    color: #ffffff;
+    opacity: 1; }
 .findwine_search-name {
   display: flex;
   float: right;
