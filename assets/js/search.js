@@ -72,11 +72,17 @@ class SearchByNamePage extends React.Component {
              id="top">
           <div className="container findwine_nav--menu">
             <button className="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
-          <span>
-            <img src={ constructImagePath('wine/images/SVGs/menu-black.svg') } className="findwine_menu-button"></img>
-          </span>
+              <span>
+                <img src={ constructImagePath('wine/images/SVGs/menu-black.svg') } className="findwine_menu-button"></img>
+              </span>
             </button>
 
+            <div className="findwine_nav-logo">
+              <a href="/">
+                <img src={ constructImagePath('wine/images/SVGs/logo-black.svg') }
+                     className="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></img>
+              </a>
+            </div>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active nav-item-new">
@@ -95,12 +101,7 @@ class SearchByNamePage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="findwine_nav-logo">
-            <a href="/">
-              <img src={ constructImagePath('wine/images/SVGs/logo-black.svg') }
-                   className="d-inline-block align-top findwine_nav-logo-icon" alt="FindWine"></img>
-            </a>
-          </div>
+
           <div className="modal left fade" id="exampleModalLong" tabIndex="-1" role="dialog"
                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div className="modal-dialog findwine_modal-nav" role="document">
