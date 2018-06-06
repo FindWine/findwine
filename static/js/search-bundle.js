@@ -18928,6 +18928,16 @@ var SearchByNamePage = function (_React$Component2) {
             ),
             _react2.default.createElement(
               'div',
+              { className: 'findwine_nav-logo' },
+              _react2.default.createElement(
+                'a',
+                { href: '/' },
+                _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/logo-black.svg'),
+                  className: 'd-inline-block align-top findwine_nav-logo-icon', alt: 'FindWine' })
+              )
+            ),
+            _react2.default.createElement(
+              'div',
               { className: 'collapse navbar-collapse', id: 'navbarSupportedContent' },
               _react2.default.createElement(
                 'ul',
@@ -18963,16 +18973,6 @@ var SearchByNamePage = function (_React$Component2) {
                   }
                 })
               )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'findwine_nav-logo' },
-            _react2.default.createElement(
-              'a',
-              { href: '/' },
-              _react2.default.createElement('img', { src: (0, _shared.constructImagePath)('wine/images/SVGs/logo-black.svg'),
-                className: 'd-inline-block align-top findwine_nav-logo-icon', alt: 'FindWine' })
             )
           ),
           _react2.default.createElement(
