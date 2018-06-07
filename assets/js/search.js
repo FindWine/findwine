@@ -70,7 +70,7 @@ class SearchByNamePage extends React.Component {
       <div>
         <nav className="navbar navbar-toggleable-md navbar-light bg-faded navbar-new"
              id="top">
-          <div className="container findwine_nav--menu">
+          <div className="container findwine_nav--menu-home">
             <button className="navbar-toggler" type="button" data-toggle="modal" data-target="#exampleModalLong">
               <span>
                 <img src={ constructImagePath('wine/images/SVGs/menu-black.svg') } className="findwine_menu-button"></img>
