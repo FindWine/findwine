@@ -1,5 +1,5 @@
 import os
-from django.test import SimpleTestCase, TestCase
+from django.test import SimpleTestCase
 
 from integrations.cybercellar import get_cybercellar_data
 
