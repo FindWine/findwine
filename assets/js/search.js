@@ -180,7 +180,7 @@ class SearchByNamePage extends React.Component {
     let queryParams = queryString.parse(location.search);
     if (Object.keys(queryParams).length && queryParams['q']) {
       this.setState({
-        searchText: queryParams['q']
+          searchText: queryParams['q']
       }, this.doSearch);
     }
   }
@@ -192,6 +192,11 @@ class SearchByNamePage extends React.Component {
   }
 
   doSearch() {
+
+    this.setState({
+        isLoading: true
+    });
+
     let params = queryString.stringify({q: this.state.searchText});
     fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
     window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`);
