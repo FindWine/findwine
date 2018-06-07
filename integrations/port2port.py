@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 import requests
 from decimal import Decimal
 
-from integrations.data_feed import WineData, process_wine_feed, shared_element_to_data
+from integrations.data_feed import WineData, process_wine_feed, shared_element_to_data, get_raw_feed
 from wine.models import Merchant
 
 
@@ -21,16 +21,10 @@ def update_all(debug=False):
     """
     Updates all data based on the results of the port2port feed.
     """
-    all_wine_datas = get_port2port_data(get_raw_feed())
+    all_wine_datas = get_port2port_data(get_raw_feed(FEED_URL))
     return process_wine_feed(get_port2port_merchant(), all_wine_datas,
                              # custom_processor=update_minimum_purchase_unit,
                              debug=debug)
-
-
-def get_raw_feed():
-    r = requests.get(FEED_URL)
-    r.encoding = 'utf-8'
-    return requests.get(FEED_URL).content
 
 
 def get_port2port_data(raw_feed):

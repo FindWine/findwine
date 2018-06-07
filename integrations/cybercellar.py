@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 
 import requests
 
-from integrations.data_feed import process_wine_feed
+from integrations.data_feed import process_wine_feed, get_raw_feed
 from integrations.port2port import WineData
 from wine.models import Merchant
 
@@ -21,7 +21,7 @@ def update_all(debug=False):
     """
     Updates all data based on the results of the port2port feed.
     """
-    all_wine_datas = get_cybercellar_data(get_raw_feed())
+    all_wine_datas = get_cybercellar_data(get_raw_feed(FEED_URL))
     merchant = Merchant.objects.get(name=CYBERCELLAR_MERCHANT_NAME)
     return process_wine_feed(merchant, all_wine_datas, debug=debug)
 
@@ -39,10 +39,3 @@ def _element_to_data(feed_item):
     }
     vals['merchant_name'] = CYBERCELLAR_MERCHANT_NAME
     return WineData(**vals)
-
-
-def get_raw_feed():
-    r = requests.get(FEED_URL)
-    r.encoding = 'utf-8'
-    return requests.get(FEED_URL).content
-

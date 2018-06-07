@@ -2,6 +2,8 @@ from collections import namedtuple
 
 from decimal import Decimal
 
+import requests
+
 from integrations.util import notify_data_team
 from wine.models import Merchant, MerchantWine
 
@@ -35,6 +37,12 @@ class WineData(namedtuple('WineData', WINE_DATA_ATTRIBUTES)):
             return Merchant.objects.get(name=self.merchant_name)
         except Merchant.DoesNotExist:
             return None
+
+
+def get_raw_feed(feed_url):
+    r = requests.get(feed_url)
+    r.encoding = 'utf-8'
+    return requests.get(feed_url).content
 
 
 def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=False):
