@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Offers>
+    <Offer>
+        <Id>2752</Id>
+        <Manufacturer><![CDATA[Boplaas]]></Manufacturer>
+        <Wine><![CDATA[Cape Tawny ]]></Wine>
+        <Vintage>NV</Vintage>
+        <ProductName><![CDATA[Boplaas Cape Tawny ]]></ProductName>
+        <Volume>750ml</Volume>
+        <ProductURL>http://www.winecellar.co.za/boplaas-cape-tawny-nv.html</ProductURL>
+        <StockAvailability>1</StockAvailability>
+        <Price>140.00</Price>
+    </Offer>
+    <Offer>
+        <Id>2758</Id>
+        <Manufacturer><![CDATA[Bouchard Finlayson]]></Manufacturer>
+        <Wine><![CDATA[Hannibal]]></Wine>
+        <Vintage>2015</Vintage>
+        <ProductName><![CDATA[Bouchard Finlayson Hannibal]]></ProductName>
+        <Volume>750ml</Volume>
+        <ProductURL>http://www.winecellar.co.za/bouchard-finlayson-hannibal-2015.html</ProductURL>
+        <StockAvailability>2</StockAvailability>
+        <Price>375.00</Price>
+    </Offer>
+    <Offer>
+        <Id>2822</Id>
+        <Manufacturer><![CDATA[Chapoutier]]></Manufacturer>
+        <Wine><![CDATA[Bila Haut Occultum Lapidem]]></Wine>
+        <Vintage>2009</Vintage>
+        <ProductName><![CDATA[Chapoutier Bila Haut Occultum Lapidem]]></ProductName>
+        <Volume>750ml</Volume>
+        <ProductURL>http://www.winecellar.co.za/chapoutier-bila-haut-occultum-lapidem-2009.html</ProductURL>
+        <StockAvailability>2</StockAvailability>
+        <Price>255.00</Price>
+    </Offer>
+</Offers>
