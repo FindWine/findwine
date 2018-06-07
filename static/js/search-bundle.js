@@ -18916,7 +18916,7 @@ var SearchByNamePage = function (_React$Component2) {
             id: 'top' },
           _react2.default.createElement(
             'div',
-            { className: 'container findwine_nav--menu' },
+            { className: 'container findwine_nav--menu-home' },
             _react2.default.createElement(
               'button',
               { className: 'navbar-toggler', type: 'button', 'data-toggle': 'modal', 'data-target': '#exampleModalLong' },
