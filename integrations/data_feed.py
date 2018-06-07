@@ -147,7 +147,7 @@ def _update_to_result(wine, work_done):
 
 def shared_element_to_data(feed_item, attribute_map, merchant_name):
     vals = {
-        elem_id: feed_item.find(elem_name).text
+        elem_id: feed_item.find(elem_name).text.strip()
         for elem_name, elem_id in attribute_map.items()
     }
     vals['merchant_name'] = merchant_name
