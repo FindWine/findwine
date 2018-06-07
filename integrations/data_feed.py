@@ -143,3 +143,12 @@ def _get_printed_results(merchant, results, skipped, not_found):
 
 def _update_to_result(wine, work_done):
     return '\t{} ({})\n{}'.format(wine, wine.url, '\n'.join(['\t\t{}'.format(w) for w in work_done]))
+
+
+def shared_element_to_data(feed_item, attribute_map, merchant_name):
+    vals = {
+        elem_id: feed_item.find(elem_name).text
+        for elem_name, elem_id in attribute_map.items()
+    }
+    vals['merchant_name'] = merchant_name
+    return WineData(**vals)

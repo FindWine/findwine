@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 import requests
 from decimal import Decimal
 
-from integrations.data_feed import WineData, process_wine_feed
+from integrations.data_feed import WineData, process_wine_feed, shared_element_to_data
 from wine.models import Merchant
 
 
@@ -40,12 +40,7 @@ def get_port2port_data(raw_feed):
 
 
 def _element_to_data(feed_item):
-    vals = {
-        elem_id: feed_item.find(elem_name).text
-        for elem_name, elem_id in XML_NAMES_TO_ATTRIBUTES.items()
-    }
-    vals['merchant_name'] = PORT2PORT_MERCHANT_NAME
-    return WineData(**vals)
+    return shared_element_to_data(feed_item, XML_NAMES_TO_ATTRIBUTES, PORT2PORT_MERCHANT_NAME)
 
 
 def get_port2port_merchant():
