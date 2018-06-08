@@ -78,5 +78,4 @@ def _get_url(product):
 
 
 def _get_price(variant):
-    # todo: need to account for if it is a case of 6
     return str(round(Decimal(variant['price']) / variant['quantity'], 2))
