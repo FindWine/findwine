@@ -85,7 +85,7 @@ class VinotequeFeedTest(SimpleTestCase):
         }
         self.assertEqual(2, _get_variant_to_use([v_6_750, v_1_5])['id'])
 
-    def test_availabilityf_trumps_quantity(self):
+    def test_availability_trumps_quantity(self):
         v_1_750 = {
           "id": 1,
           "title": "6x750ml",
