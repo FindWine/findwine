@@ -6,7 +6,7 @@ from integrations.vinoteque import get_vinoteque_data, _get_quantity_and_size_fr
     _get_variant_to_use
 
 
-class WineCellarFeedTest(SimpleTestCase):
+class VinotequeFeedTest(SimpleTestCase):
 
     def test_parse_titles(self):
         test_cases = [
