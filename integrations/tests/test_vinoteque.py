@@ -25,7 +25,7 @@ class VinotequeFeedTest(SimpleTestCase):
         for test_case in test_cases:
             self.assertEqual((test_case[1], test_case[2]), _get_quantity_and_size_from_variant_title(test_case[0]))
 
-    def notest_get_variant_to_use_available_first(self):
+    def test_get_variant_to_use_available_first(self):
         v1 = {
           "id": 1,
           "title": "1x750ml",
