@@ -1,9 +1,11 @@
 import json
+from collections import Counter
 
 from integrations.data_feed import process_wine_feed, get_raw_feed, WineData
 from wine.models import Merchant
 
-FEED_URL = 'https://www.vinoteque.co.za/products.json?limit=250&page=1'
+FEED_URL = 'https://www.vinoteque.co.za/products.json'
+LIMIT = 250
 VINOTEQUE_MERCHANT_NAME = 'Vinoteque'
 
 
@@ -11,19 +13,26 @@ def update_all(debug=False):
     """
     Updates all data based on the results of the port2port feed.
     """
-    all_wine_datas = get_vinoteque_data(get_raw_feed(FEED_URL))
-    merchant = Merchant.objects.get(name=VINOTEQUE_MERCHANT_NAME)
-    return process_wine_feed(merchant, all_wine_datas, debug=debug)
+    page = 1
+    while True:
+        query_string = 'limit={}&page={}'.format(LIMIT, page)
+        url = '{}?{}'.format(FEED_URL, query_string)
+        feed_json = get_raw_feed(url, as_json=True)
+        all_wine_datas = list(get_vinoteque_data(feed_json))
+        if not all_wine_datas:
+            break
+        merchant = Merchant.objects.get(name=VINOTEQUE_MERCHANT_NAME)
+        process_wine_feed(merchant, all_wine_datas, debug=debug)
+        page += 1
 
 
-def get_vinoteque_data(raw_feed):
-    feed = json.loads(raw_feed)
+def get_vinoteque_data(feed):
     for product in feed['products']:
         yield vinoteque_product_to_data(product)
 
 
 def vinoteque_product_to_data(product):
-    variant_to_use = _get_variant_to_use(product)
+    variant_to_use = _get_variant_to_use(product['variants'])
     return WineData(
         id=product['id'],
         name=product['title'],
@@ -35,13 +44,31 @@ def vinoteque_product_to_data(product):
     )
 
 
-def _get_variant_to_use(product):
-    # todo: may need to be smarter to accommodate for different quantities
-    # currently assumes we should use the first available one
-    for variant in product['variants']:
-        if variant['available']:
-            return variant
-    return product['variants'][0]
+def _get_variant_to_use(variants):
+    for variant in variants:
+        quantity, size = _get_quantity_and_size_from_variant_title(variant['title'])
+        variant['quantity'] = quantity
+        variant['size'] = size
+
+    def _get_variant_sort_key(variant):
+        # available comes before unavailable
+        available_param = 0 if variant['available'] else 1
+        quantity_param = 0 if variant['quantity'] == 1 else 1 if variant['quantity'] == 6 else 2
+        size_param = 0 if variant['size'] == '750ml' else 1
+        return (available_param, quantity_param, size_param)
+
+    return sorted(variants, key=_get_variant_sort_key)[0]
+
+
+def _get_quantity_and_size_from_variant_title(title):
+    """
+    This takes data from the variant's title (e.g. '1x750ml' or '6x750ml || Mature') and
+    turns it into explicit params on the variant itself.
+    """
+    quantity, remainder = title.lower().split('x')
+    quantity = int(quantity)
+    size = remainder.split(' ')[0]
+    return quantity, size
 
 
 def _get_url(product):
