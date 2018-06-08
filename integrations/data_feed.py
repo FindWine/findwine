@@ -39,10 +39,13 @@ class WineData(namedtuple('WineData', WINE_DATA_ATTRIBUTES)):
             return None
 
 
-def get_raw_feed(feed_url):
+def get_raw_feed(feed_url, as_json=False):
     r = requests.get(feed_url)
     r.encoding = 'utf-8'
-    return requests.get(feed_url).content
+    if as_json:
+        return requests.get(feed_url).json()
+    else:
+        return requests.get(feed_url).content
 
 
 def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=False):
