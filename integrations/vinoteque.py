@@ -1,6 +1,8 @@
 import json
 from collections import Counter
 
+from decimal import Decimal
+
 from integrations.data_feed import process_wine_feed, get_raw_feed, WineData
 from wine.models import Merchant
 
@@ -77,4 +79,4 @@ def _get_url(product):
 
 def _get_price(variant):
     # todo: need to account for if it is a case of 6
-    return variant['price']
+    return str(round(Decimal(variant['price']) / variant['quantity'], 2))

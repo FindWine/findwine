@@ -111,3 +111,8 @@ class WineCellarFeedTest(SimpleTestCase):
                          wine_info.url)
         self.assertEqual(1, wine_info.stock_amount)
         self.assertEqual('135.01', wine_info.price)
+
+        # this implicitly tests some selection behavior as well as dividing the price
+        # by six when necessary
+        wine_info_by_six = data[1]
+        self.assertEqual('162.00', wine_info_by_six.price)
