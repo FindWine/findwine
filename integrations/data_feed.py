@@ -95,7 +95,7 @@ def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=Fal
     send_notifications(result, debug)
 
 
-def apply_updates_to_wines(result, all_wine_datas, custom_processor, debug):
+def apply_updates_to_wines(result, all_wine_datas, custom_processor=None, debug=False):
     """
     Applies updates to the DB based on `all_wine_datas`. Modifies the passed in `result` in place.
     :param result: a WineProcessingResult
