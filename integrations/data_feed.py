@@ -39,6 +39,38 @@ class WineData(namedtuple('WineData', WINE_DATA_ATTRIBUTES)):
             return None
 
 
+class WineProcessingResult(namedtuple('WineProcessingResult', 'merchant results found skipped not_found')):
+
+    @property
+    def total_number_processed(self):
+        return len(self.results) + len(self.skipped) + len(self.not_found)
+
+    @property
+    def subject(self):
+        return 'Successfully processed {}/{} results from {} Feed'.format(
+            len(self.results),
+            self.total_number_processed,
+            self.merchant.name
+        )
+
+    @property
+    def pretty_results(self):
+        return '{updated}\n{skipped}\n{missing}'.format(
+            updated='\nApplied the following {} updates: \n{}'.format(
+                len(self.results),
+                '\n'.join([_update_to_result(wine, work_done) for wine, work_done in self.results.items()])
+            ),
+            skipped='\nNo updates applied to {} wines:\n{}'.format(
+                len(self.skipped),
+                '\n'.join(['\t{}'.format(w) for w in self.skipped])
+            ),
+            missing='\n{} wines were not found in FindWine database:\n{}'.format(
+                len(self.not_found),
+                '\n'.join(['\t{}'.format(w) for w in self.not_found])
+            )
+        )
+
+
 def get_raw_feed(feed_url, as_json=False):
     r = requests.get(feed_url)
     r.encoding = 'utf-8'
@@ -49,11 +81,28 @@ def get_raw_feed(feed_url, as_json=False):
 
 
 def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=False):
+    # first pass - update everything in the feed
+    result = apply_updates_to_wines(merchant, all_wine_datas, custom_processor, debug)
+    # second pass - update all available wines that no longer show up in the feed
+    for existing_wine in MerchantWine.objects.filter(merchant=merchant, available=True):
+        if existing_wine.pk not in result.found:
+            existing_wine.available = False
+            result.results[existing_wine] = ['Set available to False because it was missing from the feed.']
+            if not debug:
+                existing_wine.save()
+
+    if debug:
+        print(result.subject)
+        print(result.pretty_results)
+    else:
+        notify_data_team(result.subject, result.pretty_results)
+
+
+def apply_updates_to_wines(merchant, all_wine_datas, custom_processor, debug):
     results = {}
     found = set()
     skipped = []
     not_found = []
-    # first pass - update everything in the feed
     for wine_data in all_wine_datas:
         wine, work_done = apply_update(wine_data, custom_processor, debug)
         if wine is not None:
@@ -65,20 +114,8 @@ def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=Fal
         else:
             not_found.append(wine_data)
 
-    # second pass - update all available wines that no longer show up in the feed
-    for existing_wine in MerchantWine.objects.filter(merchant=merchant, available=True):
-        if existing_wine.pk not in found:
-            existing_wine.available = False
-            results[existing_wine] = ['Set available to False because it was missing from the feed.']
-            if not debug:
-                existing_wine.save()
-
-    subject, pretty_results = _get_printed_results(merchant, results, skipped, not_found)
-    if debug:
-        print(subject)
-        print(pretty_results)
-    else:
-        notify_data_team(subject, pretty_results)
+    return WineProcessingResult(merchant=merchant, results=results, found=found, not_found=not_found,
+                                skipped=skipped)
 
 
 def apply_update(wine_data, custom_processor=None, debug=False):
@@ -128,28 +165,6 @@ def get_wine_for_data(wine_data):
         )
         notify_data_team("Skipping wine update for invalid data", message)
         return None
-
-
-def _get_printed_results(merchant, results, skipped, not_found):
-    total_number_processed = len(results) + len(skipped) + len(not_found)
-    subject = 'Successfully processed {}/{} results from {} Feed'.format(len(results),
-                                                                         total_number_processed,
-                                                                         merchant.name)
-    body = '{updated}\n{skipped}\n{missing}'.format(
-        updated='\nApplied the following {} updates: \n{}'.format(
-            len(results),
-            '\n'.join([_update_to_result(wine, work_done) for wine, work_done in results.items()])
-        ),
-        skipped='\nNo updates applied to {} wines:\n{}'.format(
-            len(skipped),
-            '\n'.join(['\t{}'.format(w) for w in skipped])
-        ),
-        missing='\n{} wines were not found in FindWine database:\n{}'.format(
-            len(not_found),
-            '\n'.join(['\t{}'.format(w) for w in not_found])
-        )
-    )
-    return subject, body
 
 
 def _update_to_result(wine, work_done):
