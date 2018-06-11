@@ -1,6 +1,3 @@
-import json
-from collections import Counter
-
 from decimal import Decimal
 
 from integrations.data_feed import process_wine_feed, get_raw_feed, WineData
