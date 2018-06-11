@@ -70,6 +70,12 @@ class WineProcessingResult(namedtuple('WineProcessingResult', 'merchant results 
             )
         )
 
+    @classmethod
+    def new(cls, merchant):
+        return WineProcessingResult(
+            merchant=merchant, results={}, found=set(), skipped=[], not_found=[]
+        )
+
 
 def get_raw_feed(feed_url, as_json=False):
     r = requests.get(feed_url)
@@ -82,7 +88,8 @@ def get_raw_feed(feed_url, as_json=False):
 
 def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=False):
     # first pass - update everything in the feed
-    result = apply_updates_to_wines(merchant, all_wine_datas, custom_processor, debug)
+    result = WineProcessingResult.new(merchant)
+    apply_updates_to_wines(result, all_wine_datas, custom_processor, debug)
     # second pass - update all available wines that no longer show up in the feed
     update_unavailable_wines(result, debug)
     if debug:
@@ -92,24 +99,25 @@ def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=Fal
         notify_data_team(result.subject, result.pretty_results)
 
 
-def apply_updates_to_wines(merchant, all_wine_datas, custom_processor, debug):
-    results = {}
-    found = set()
-    skipped = []
-    not_found = []
+def apply_updates_to_wines(result, all_wine_datas, custom_processor, debug):
+    """
+    Applies updates to the DB based on `all_wine_datas`. Modifies the passed in `result` in place.
+    :param result: a WineProcessingResult
+    :param all_wine_datas: a list of WineDatas
+    :param custom_processor:
+    :param debug: boolean debug flag
+    :return:
+    """
     for wine_data in all_wine_datas:
         wine, work_done = apply_update(wine_data, custom_processor, debug)
         if wine is not None:
-            found.add(wine.pk)
+            result.found.add(wine.pk)
             if work_done:
-                results[wine] = work_done
+                result.results[wine] = work_done
             else:
-                skipped.append(wine)
+                result.skipped.append(wine)
         else:
-            not_found.append(wine_data)
-
-    return WineProcessingResult(merchant=merchant, results=results, found=found, not_found=not_found,
-                                skipped=skipped)
+            result.not_found.append(wine_data)
 
 
 def update_unavailable_wines(result, debug):
