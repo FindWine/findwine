@@ -24,6 +24,9 @@ def setup_periodic_tasks(sender, **kwargs):
     cybercellar_schedule = crontab(hour='22', minute=20, day_of_week='*')
     sender.add_periodic_task(cybercellar_schedule, cybercellar_update_task_wrapper.s(),
                              name='Update data based on cybercellar feed.')
+    winecellar_schedule = crontab(hour='22', minute=30, day_of_week='*')
+    sender.add_periodic_task(winecellar_schedule, winecellar_update_task_wrapper.s(),
+                             name='Update data based on winecellar feed.')
 
 
 @app.task
@@ -48,6 +51,12 @@ def port2port_update_task_wrapper():
 def cybercellar_update_task_wrapper():
     from integrations.tasks import cybercellar_update_task
     cybercellar_update_task()
+
+
+@app.task
+def winecellar_update_task_wrapper():
+    from integrations.tasks import winecellar_update_task
+    winecellar_update_task()
 
 
 # Using a string here means the worker doesn't have to serialize
