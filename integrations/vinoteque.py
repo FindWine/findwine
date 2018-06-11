@@ -1,6 +1,7 @@
 from decimal import Decimal
 
-from integrations.data_feed import process_wine_feed, get_raw_feed, WineData
+from integrations.data_feed import process_wine_feed, get_raw_feed, WineData, WineProcessingResult, \
+    apply_updates_to_wines, update_unavailable_wines, send_notifications
 from wine.models import Merchant
 
 FEED_URL = 'https://www.vinoteque.co.za/products.json'
@@ -13,6 +14,8 @@ def update_all(debug=False):
     Updates all data based on the results of the port2port feed.
     """
     page = 1
+    merchant = Merchant.objects.get(name=VINOTEQUE_MERCHANT_NAME)
+    result = WineProcessingResult.new(merchant)
     while True:
         query_string = 'limit={}&page={}'.format(LIMIT, page)
         url = '{}?{}'.format(FEED_URL, query_string)
@@ -20,9 +23,12 @@ def update_all(debug=False):
         all_wine_datas = list(get_vinoteque_data(feed_json))
         if not all_wine_datas:
             break
-        merchant = Merchant.objects.get(name=VINOTEQUE_MERCHANT_NAME)
-        process_wine_feed(merchant, all_wine_datas, debug=debug)
+
+        apply_updates_to_wines(result, all_wine_datas, debug=debug)
         page += 1
+
+    update_unavailable_wines(result, debug)
+    send_notifications(result, debug)
 
 
 def get_vinoteque_data(feed):
@@ -33,7 +39,7 @@ def get_vinoteque_data(feed):
 def vinoteque_product_to_data(product):
     variant_to_use = _get_variant_to_use(product['variants'])
     return WineData(
-        id=product['id'],
+        id=str(product['id']),
         name=product['title'],
         url=_get_url(product),
         price=_get_price(variant_to_use),
