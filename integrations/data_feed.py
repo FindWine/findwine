@@ -92,11 +92,7 @@ def process_wine_feed(merchant, all_wine_datas, custom_processor=None, debug=Fal
     apply_updates_to_wines(result, all_wine_datas, custom_processor, debug)
     # second pass - update all available wines that no longer show up in the feed
     update_unavailable_wines(result, debug)
-    if debug:
-        print(result.subject)
-        print(result.pretty_results)
-    else:
-        notify_data_team(result.subject, result.pretty_results)
+    send_notifications(result, debug)
 
 
 def apply_updates_to_wines(result, all_wine_datas, custom_processor, debug):
@@ -127,6 +123,14 @@ def update_unavailable_wines(result, debug):
             result.results[existing_wine] = ['Set available to False because it was missing from the feed.']
             if not debug:
                 existing_wine.save()
+
+
+def send_notifications(result, debug):
+    if debug:
+        print(result.subject)
+        print(result.pretty_results)
+    else:
+        notify_data_team(result.subject, result.pretty_results)
 
 
 def apply_update(wine_data, custom_processor=None, debug=False):
