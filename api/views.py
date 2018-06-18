@@ -62,8 +62,8 @@ class WineVintageSearchViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         query_text = self.request.GET.get('q', '')
-        wines = WineVintage.objects.filter(
-            merchantwine__available=True,
+        wines = WineVintage.objects.exclude(
+            merchantwine__isnull=True,
         ).exclude(
             wineaward__isnull=True
         )
