@@ -78,6 +78,12 @@ body {
   }
 }
 
+pre {
+  white-space: pre-line;
+  text-align: left;
+  margin-bottom: 0px;
+}
+
 .container {
 
   @include breakpoint(xs) {
