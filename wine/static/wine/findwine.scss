@@ -1753,6 +1753,10 @@ select:-webkit-autofill {
       line-height: 1.75;
       height: auto;
     }
+
+    &-mobile {
+      margin-top: 20px;
+    }
   }
 
   &_detail-table-content {
