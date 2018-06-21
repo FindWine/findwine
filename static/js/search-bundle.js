@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 509);
+/******/ 	return __webpack_require__(__webpack_require__.s = 508);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 133:
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94,7 +94,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 /***/ }),
 
-/***/ 134:
+/***/ 133:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1460,7 +1460,7 @@ module.exports = react;
 
 /***/ }),
 
-/***/ 135:
+/***/ 134:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1476,7 +1476,7 @@ module.exports = react;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(5),l=__webpack_require__(75),B=__webpack_require__(23),C=__webpack_require__(14),ba=__webpack_require__(76),da=__webpack_require__(77),ea=__webpack_require__(78),fa=__webpack_require__(79),ia=__webpack_require__(80),D=__webpack_require__(39);
+var aa=__webpack_require__(4),l=__webpack_require__(74),B=__webpack_require__(23),C=__webpack_require__(14),ba=__webpack_require__(75),da=__webpack_require__(76),ea=__webpack_require__(77),fa=__webpack_require__(78),ia=__webpack_require__(79),D=__webpack_require__(39);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -1697,7 +1697,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 /***/ }),
 
-/***/ 136:
+/***/ 135:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1712,7 +1712,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(137);
+var isNode = __webpack_require__(136);
 
 /**
  * @param {*} object The object to check.
@@ -1726,7 +1726,7 @@ module.exports = isTextNode;
 
 /***/ }),
 
-/***/ 137:
+/***/ 136:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1755,7 +1755,7 @@ module.exports = isNode;
 
 /***/ }),
 
-/***/ 138:
+/***/ 137:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1776,21 +1776,21 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = __webpack_require__(5);
+var React = __webpack_require__(4);
 var invariant = __webpack_require__(40);
 var warning = __webpack_require__(43);
-var ExecutionEnvironment = __webpack_require__(75);
+var ExecutionEnvironment = __webpack_require__(74);
 var _assign = __webpack_require__(23);
 var emptyFunction = __webpack_require__(14);
-var EventListener = __webpack_require__(76);
-var getActiveElement = __webpack_require__(77);
-var shallowEqual = __webpack_require__(78);
-var containsNode = __webpack_require__(79);
-var focusNode = __webpack_require__(80);
+var EventListener = __webpack_require__(75);
+var getActiveElement = __webpack_require__(76);
+var shallowEqual = __webpack_require__(77);
+var containsNode = __webpack_require__(78);
+var focusNode = __webpack_require__(79);
 var emptyObject = __webpack_require__(39);
 var checkPropTypes = __webpack_require__(64);
-var hyphenateStyleName = __webpack_require__(139);
-var camelizeStyleName = __webpack_require__(141);
+var hyphenateStyleName = __webpack_require__(138);
+var camelizeStyleName = __webpack_require__(140);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -17158,7 +17158,7 @@ module.exports = reactDom;
 
 /***/ }),
 
-/***/ 139:
+/***/ 138:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17173,7 +17173,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(140);
+var hyphenate = __webpack_require__(139);
 
 var msPattern = /^ms-/;
 
@@ -17198,6 +17198,43 @@ function hyphenateStyleName(string) {
 }
 
 module.exports = hyphenateStyleName;
+
+/***/ }),
+
+/***/ 139:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @typechecks
+ */
+
+var _uppercasePattern = /([A-Z])/g;
+
+/**
+ * Hyphenates a camelcased string, for example:
+ *
+ *   > hyphenate('backgroundColor')
+ *   < "background-color"
+ *
+ * For CSS style names, use `hyphenateStyleName` instead which works properly
+ * with all vendor prefixes, including `ms`.
+ *
+ * @param {string} string
+ * @return {string}
+ */
+function hyphenate(string) {
+  return string.replace(_uppercasePattern, '-$1').toLowerCase();
+}
+
+module.exports = hyphenate;
 
 /***/ }),
 
@@ -17248,43 +17285,6 @@ module.exports = emptyFunction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @typechecks
- */
-
-var _uppercasePattern = /([A-Z])/g;
-
-/**
- * Hyphenates a camelcased string, for example:
- *
- *   > hyphenate('backgroundColor')
- *   < "background-color"
- *
- * For CSS style names, use `hyphenateStyleName` instead which works properly
- * with all vendor prefixes, including `ms`.
- *
- * @param {string} string
- * @return {string}
- */
-function hyphenate(string) {
-  return string.replace(_uppercasePattern, '-$1').toLowerCase();
-}
-
-module.exports = hyphenate;
-
-/***/ }),
-
-/***/ 141:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -17296,7 +17296,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(142);
+var camelize = __webpack_require__(141);
 
 var msPattern = /^-ms-/;
 
@@ -17325,7 +17325,7 @@ module.exports = camelizeStyleName;
 
 /***/ }),
 
-/***/ 142:
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17361,7 +17361,7 @@ module.exports = camelize;
 
 /***/ }),
 
-/***/ 143:
+/***/ 142:
 /***/ (function(module, exports) {
 
 (function(self) {
@@ -17829,7 +17829,7 @@ module.exports = camelize;
 
 /***/ }),
 
-/***/ 160:
+/***/ 159:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17844,7 +17844,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.constructImagePath = constructImagePath;
 
-var _react = __webpack_require__(5);
+var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -18113,14 +18113,14 @@ function constructImagePath(path) {
 
 /***/ }),
 
-/***/ 161:
+/***/ 160:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strictUriEncode = __webpack_require__(162);
+var strictUriEncode = __webpack_require__(161);
 var objectAssign = __webpack_require__(23);
-var decodeComponent = __webpack_require__(163);
+var decodeComponent = __webpack_require__(162);
 
 function encoderForArrayFormat(opts) {
 	switch (opts.arrayFormat) {
@@ -18345,7 +18345,7 @@ exports.parseUrl = function (str, opts) {
 
 /***/ }),
 
-/***/ 162:
+/***/ 161:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18359,7 +18359,7 @@ module.exports = function (str) {
 
 /***/ }),
 
-/***/ 163:
+/***/ 162:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18499,9 +18499,9 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(135);
+  module.exports = __webpack_require__(134);
 } else {
-  module.exports = __webpack_require__(138);
+  module.exports = __webpack_require__(137);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
@@ -18627,6 +18627,22 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = emptyObject;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(132);
+} else {
+  module.exports = __webpack_require__(133);
+}
+
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
@@ -18762,23 +18778,7 @@ module.exports = warning;
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(133);
-} else {
-  module.exports = __webpack_require__(134);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-
-/***/ 509:
+/***/ 508:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18786,7 +18786,7 @@ if (process.env.NODE_ENV === 'production') {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(5);
+var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -18794,9 +18794,9 @@ var _reactDom = __webpack_require__(18);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-__webpack_require__(143);
+__webpack_require__(142);
 
-var _shared = __webpack_require__(160);
+var _shared = __webpack_require__(159);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18806,7 +18806,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var queryString = __webpack_require__(161);
+var queryString = __webpack_require__(160);
 
 // todo: figure out how to django-ize these
 var SEARCH_API_URL = '/api/search/';
@@ -19222,7 +19222,7 @@ _reactDom2.default.render(_react2.default.createElement(SearchByNamePage, null),
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(40);
   var warning = __webpack_require__(43);
-  var ReactPropTypesSecret = __webpack_require__(74);
+  var ReactPropTypesSecret = __webpack_require__(73);
   var loggedTypeFailures = {};
 }
 
@@ -19465,7 +19465,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 74:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19485,7 +19485,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 75:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19525,7 +19525,7 @@ module.exports = ExecutionEnvironment;
 
 /***/ }),
 
-/***/ 76:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19607,7 +19607,7 @@ module.exports = EventListener;
 
 /***/ }),
 
-/***/ 77:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19650,7 +19650,7 @@ module.exports = getActiveElement;
 
 /***/ }),
 
-/***/ 78:
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19722,7 +19722,7 @@ module.exports = shallowEqual;
 
 /***/ }),
 
-/***/ 79:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19737,7 +19737,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(136);
+var isTextNode = __webpack_require__(135);
 
 /*eslint-disable no-bitwise */
 
@@ -19766,7 +19766,7 @@ module.exports = containsNode;
 
 /***/ }),
 
-/***/ 80:
+/***/ 79:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

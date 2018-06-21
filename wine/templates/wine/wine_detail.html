@@ -83,20 +83,26 @@
 
       <!-- Awards -->
       <div class="findwine_awards-container">
-        {% if winevintage.wineaward_set.all %}
-        <table style="width:100%">
-          <tr>
-            <th class="findwine_award-heading hidden-md-down">AWARDS</th>
-          </tr>
-          <tr>
-            {% for wineaward in winevintage.wineaward_set.all %}
-            <td class="findwine_award-list">{{ wineaward.award }}</td>
-            {% endfor %}
-          </tr>
-        </table>
-        {% else %}
-        <p>No awards captured.</p>
-        {% endif %}
+        <div class="row">
+          <div class="col-12">
+            <div class="findwine_award-heading hidden-md-down">AWARDS</div>
+          </div>
+          {% if winevintage.wineaward_set.all %}
+          {% for wineaward in winevintage.wineaward_set.all %}
+          <div class="col-12 col-md-6">
+            <div class="findwine_award-list">
+              {{ wineaward.award }}
+            </div>
+          </div>
+          {% endfor %}
+          {% else %}
+          <div class="col-12 col-md-6">
+            <div class="findwine_award-list">
+              No awards captured
+            </div>
+          </div>
+          {% endif %}
+        </div>
       </div>
     </div>
 
@@ -130,7 +136,7 @@
         </li>
         {% endfor %}
         {% else %}
-        <p>No merchant availability.</p>
+        <p class="findwine_detail-content">No merchant availability.</p>
         {% endif %}
       </ul>
     </div>
@@ -166,7 +172,7 @@
       </li>
       {% endfor %}
       {% else %}
-      <p>No merchant availability.</p>
+      <p class="findwine_detail-content findwine_detail-content-mobile">No merchant availability.</p>
       {% endif %}
     </ul>
   </div>
@@ -183,7 +189,9 @@
   <div class="findwine_detail-rowHeight" id="info">
     <div class="findwine_detail-info">
       <h5 class="findwine_detail-header--2">Description</h5>
-      <p class="findwine_detail-content" id="infoContent">{{ winevintage.description }}</p>
+      <pre>
+        <p class="findwine_detail-content" id="infoContent">{{ winevintage.description }}</p>
+      </pre>
       <!-- Include Read more button -->
     </div>
   </div>

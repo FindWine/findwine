@@ -78,6 +78,12 @@ body {
   }
 }
 
+pre {
+  white-space: pre-line;
+  text-align: left;
+  margin-bottom: 0px;
+}
+
 .container {
 
   @include breakpoint(xs) {
@@ -1505,7 +1511,10 @@ select:-webkit-autofill {
   }
 
   &_awards-container {
+    max-width: 350px;
+    width: 100%;
     margin-top: 10px;
+    margin-bottom: 10px;
 
     @include breakpoint(lg) {
       margin-top: 0px;
@@ -1518,13 +1527,9 @@ select:-webkit-autofill {
     font-family: $primary-font;
     font-weight: 300;
     font-size: 12px;
+    line-height: 20px;
     color: $light-grey-text;
     display: block;
-
-    @include breakpoint(lg) {
-      display: table-cell;
-      width: 194px;
-    }
   }
 
   &_award-list-bullet {
@@ -1747,6 +1752,10 @@ select:-webkit-autofill {
       font-size: 16px;
       line-height: 1.75;
       height: auto;
+    }
+
+    &-mobile {
+      margin-top: 20px;
     }
   }
 

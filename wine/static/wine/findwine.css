@@ -13,6 +13,11 @@ body {
     body {
       padding-bottom: 60px; } }
 
+pre {
+  white-space: pre-line;
+  text-align: left;
+  margin-bottom: 0px; }
+
 @media (max-width: 575px) {
   .container {
     padding-left: 0px;
@@ -1031,7 +1036,10 @@ select:-webkit-autofill {
 .findwine_rating-box-bronze {
   background-color: #b5664a; }
 .findwine_awards-container {
-  margin-top: 10px; }
+  max-width: 350px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px; }
   @media (min-width: 992px) {
     .findwine_awards-container {
       margin-top: 0px;
@@ -1041,12 +1049,9 @@ select:-webkit-autofill {
   font-family: "Gotham SSm A", "Gotham SSm B";
   font-weight: 300;
   font-size: 12px;
+  line-height: 20px;
   color: #86929a;
   display: block; }
-  @media (min-width: 992px) {
-    .findwine_award-list {
-      display: table-cell;
-      width: 194px; } }
 .findwine_award-list-bullet {
   width: 6px;
   height: 6px;
@@ -1213,6 +1218,8 @@ select:-webkit-autofill {
       font-size: 16px;
       line-height: 1.75;
       height: auto; } }
+  .findwine_detail-content-mobile {
+    margin-top: 20px; }
 .findwine_detail-table-content {
   display: flex;
   margin-bottom: 10px;
