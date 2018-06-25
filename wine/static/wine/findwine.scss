@@ -1786,7 +1786,7 @@ select:-webkit-autofill {
     color: $light-grey-text;
     margin-left: 15px;
     margin-right: 15px;
-    width: 60%;
+    width: 40%;
 
     @include breakpoint(lg) {
       padding: 0px !important;
@@ -1805,7 +1805,7 @@ select:-webkit-autofill {
     color: $light-grey-text;
     margin-left: 15px;
     margin-right: 15px;
-    width: 60%;
+    width: 50%;
 
     @include breakpoint(lg) {
       color: $primary-text;

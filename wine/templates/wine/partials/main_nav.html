@@ -22,10 +22,27 @@
             <input type="text" id="search" placeholder="Search wine or winery"
                    class="form-control mr-sm-2 findwine_search-field" name="q"/>
             <input class="btn btn-outline-success my-2 my-sm-0 findwine_search-button" type="submit"
-                   value=" "/>
+                   id="submitTerm" value=" "/>
           </form>
         </div>
       </div>
     </div>
   </div>
 </nav>
+
+{% block page_scripts %}
+<script>
+
+  var searchInput = document.querySelector("#search");
+  var button = document.querySelector('#submitTerm');
+
+  button.addEventListener('click', function(e) {
+    console.log(searchInput)
+
+    // e.preventDefault()
+    // localStorage.getItem('searchTerm', JSON.stringify(searchInput))
+
+  })
+
+</script>
+{% endblock %}

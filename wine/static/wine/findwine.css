@@ -1242,7 +1242,7 @@ select:-webkit-autofill {
   color: #86929a;
   margin-left: 15px;
   margin-right: 15px;
-  width: 60%; }
+  width: 40%; }
   @media (min-width: 992px) {
     .findwine_detail-content-left {
       padding: 0px !important;
@@ -1258,7 +1258,7 @@ select:-webkit-autofill {
   color: #86929a;
   margin-left: 15px;
   margin-right: 15px;
-  width: 60%; }
+  width: 50%; }
   @media (min-width: 992px) {
     .findwine_detail-content-right {
       color: #333e48;

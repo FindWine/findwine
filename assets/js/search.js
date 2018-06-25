@@ -37,6 +37,7 @@ class SearchByNameControl extends React.Component {
     $('body').removeClass('modal-open')
     $('.modal-backdrop').removeClass('modal-backdrop')
   }
+
 }
 
 class SearchByNamePage extends React.Component {
