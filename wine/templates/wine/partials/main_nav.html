@@ -29,20 +29,3 @@
     </div>
   </div>
 </nav>
-
-{% block page_scripts %}
-<script>
-
-  var searchInput = document.querySelector("#search");
-  var button = document.querySelector('#submitTerm');
-
-  button.addEventListener('click', function(e) {
-    console.log(searchInput)
-
-    // e.preventDefault()
-    // localStorage.getItem('searchTerm', JSON.stringify(searchInput))
-
-  })
-
-</script>
-{% endblock %}
