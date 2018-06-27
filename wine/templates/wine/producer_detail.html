@@ -27,7 +27,11 @@
       </div>
     </div>
     <div class="findwine_producer-description" id="detail">
-        {{ producer.description }}
+      <pre>
+        <p class="findwine_detail-content">
+          {{ producer.description }}
+        </p>
+      </pre>
     </div>
     <div class="findwine_detail-expand" id="detailBar">
       <button class="btn findwine_detail-expand-button" type="button" id="detailButton" onclick="expandDetail()">

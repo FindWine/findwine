@@ -17,7 +17,7 @@
   </div>
   {% endif %}
 
-  {% if winevintage.image_pack_shot %}
+  {% if winevintage.image_pack_shot or winevintage.image_label_vertical%}
   <div class="hidden-md-down findwine_detail-images-desktop">
     <div class="findwine_detail-images-small">
       {% if winevintage.image_pack_shot %}
@@ -27,7 +27,7 @@
       </div>
       {% endif %}
       {% if winevintage.image_label_vertical %}
-      <div class="wine-thumbnail findwine_detail-image-2">
+      <div class="wine-thumbnail findwine_detail-image-2  {% if not winevintage.image_pack_shot %} findwine_detail-image-border-green {% endif %}">
         <img src="{{ winevintage.image_label_vertical.url }}" alt="{{ winevintage.wine.name }}"
              class="img-fluid rounded float-left">
       </div>
@@ -71,7 +71,7 @@
     <p class="findwine_place">
       <img src="{% static 'wine/images/SVGs/pinpoint.svg' %}" class="hidden-lg-up findwine_place-image">
       <img src="{% static 'wine/images/SVGs/pinpoint-grey.svg' %}" class="hidden-md-down">
-      {{winevintage.appellation.name}},
+      {{ winevintage.appellation.name }},
       {{ winevintage.appellation.get_country_display }}</p>
     {% endif %}
 
@@ -135,10 +135,10 @@
           </div>
         </li>
         {% endfor %}
-        {% else %}
-        <p class="findwine_detail-content">No merchant availability.</p>
-        {% endif %}
       </ul>
+      {% else %}
+      <p class="findwine_detail-content">No merchant availability.</p>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -222,7 +222,7 @@
         {% endif %}
         {% if winevintage.alcohol_percentage %}
         <div class="findwine_detail-table-content">
-          <div class="findwine_detail-content-left">Alcohol percentage:</div>
+          <div class="findwine_detail-content-left">Alcohol:</div>
           <div class="findwine_detail-content-right">{{ winevintage.alcohol_percentage|floatformat:1 }}%</div>
         </div>
         {% endif %}
@@ -328,7 +328,7 @@
           </div>
           {% endif %}
           {% if winevintage.alcohol_percentage %}
-          <div class="findwine_detail-content-left">Alcohol percentage:</div>
+          <div class="findwine_detail-content-left">Alcohol:</div>
           <div class="findwine_detail-content-right">{{ winevintage.alcohol_percentage|floatformat:1 }}%</div>
           {% endif %}
           {% if winevintage.winegrape_set.all %}
