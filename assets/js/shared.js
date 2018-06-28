@@ -13,16 +13,16 @@ export class WineList extends React.Component {
       );
     }
     else if (this.props.wines.length > 0) {
-    var getPriceElement = function(winevintage) {
-      var currencyDisplay = winevintage.available ? 'R' : 'N/A';
-      return (
-        <div>
-          <div className="findwine_vintage-currency"> {currencyDisplay} </div>
-          <div className="findwine_vintage-price"> {winevintage.price} </div>
-        </div>
-      );
+      var getPriceElement = function(winevintage) {
+        var currencyDisplay = winevintage.available ? 'R' : 'Unavailable';
+        var priceDisplay = winevintage.available ? winevintage.price : '';
+        return (
+          <div>
+            <div className="findwine_vintage-currency"> {currencyDisplay} </div>
+            <div className="findwine_vintage-price"> {priceDisplay} </div>
+          </div>
+        );
       };
-
       return (
         <div className="findwine_vintage-table">
           {this.props.wines.map((winevintage, index) => {
