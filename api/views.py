@@ -76,7 +76,7 @@ class WineVintageSearchViewSet(viewsets.ReadOnlyModelViewSet):
 
 def _add_computed_columns(wines):
     return wines.annotate(
-        available=Exists(MerchantWine.objects.filter(wine_vintage=OuterRef('pk'))),
+        available=Exists(MerchantWine.objects.filter(available=True, wine_vintage=OuterRef('pk'))),
         price=Round(Min('merchantwine__price')),
         avg_rating=Round(Avg('wineaward__award__tier__normalised_rating')),
 
