@@ -39,6 +39,11 @@
       <img id='main-wine-image' src="{{ winevintage.image_pack_shot.url }}" alt="{{ winevintage.wine.name }}"
            class="img-fluid rounded float-left findwine_detail-image-main">
     </div>
+    {% else %}
+    <div class="findwine_detail-image-main--holder">
+      <img src="{{ winevintage.image_label_vertical.url }}" alt="{{ winevintage.wine.name }}"
+           class="img-fluid rounded float-left findwine_detail-image-main">
+    </div>
     {% endif %}
   </div>
   {% else %}
@@ -111,6 +116,7 @@
       <div class="findwine_detail-heading">
         <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
       </div>
+      {% if winevintage.merchantwine_set.exists %}
       <ul class="list-group list-group-flush">
         {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
         <li class="list-group-item findwine_detail-list">
@@ -137,6 +143,7 @@
         <p class="findwine_detail-content">No merchant availability.</p>
         {% endfor %}
       </ul>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -147,6 +154,7 @@
     <div class="findwine_detail-heading">
       <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
     </div>
+    {% if winevintage.merchantwine_set.exists %}
     <ul class="list-group list-group-flush">
       {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
       <li class="list-group-item findwine_detail-list">
@@ -171,6 +179,7 @@
       <p class="findwine_detail-content findwine_detail-content-mobile">No merchant availability.</p>
       {% endfor %}
     </ul>
+    {% endif %}
   </div>
 </div>
 
