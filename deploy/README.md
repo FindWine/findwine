@@ -246,7 +246,3 @@ Test using:
 ```bash
 $ ssh findwine@findwine.com
 ```
-
-# Todos
-
-- Static files
