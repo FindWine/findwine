@@ -99,7 +99,7 @@ curl localhost:8000
 
 Hopefully curl will return a real page and not an error page.
 If you have already setup `ALLOWED_HOSTS` you should also now be able to view the site in a browser at:
-http://ec2-54-229-166-59.eu-west-1.compute.amazonaws.com:8000/ (or whatever URL you have).
+http://www.findwine.com:8000/ (or whatever URL you have).
 
 ## Install gunicorn
 
@@ -173,9 +173,9 @@ Restart nginx
 sudo service nginx reload
 ```
 
-You should now be able to access the site on port 80 (no port specified): http://ec2-54-229-166-59.eu-west-1.compute.amazonaws.com/
+You should now be able to access the site on port 80 (no port specified): http://www.findwine.com/
 
-# Setup SSL (not completely vetted/done)
+# Setup SSL
 
 ## Setup cert
 
@@ -220,7 +220,7 @@ check sudo crontab -e and make sure renewals are setup
 
 # Taking Database dumps and restoring them locally for development
 
-Take mysql dump:
+From the findwine.com server, take mysql dump:
 
 ```bash
 mysqldump -h findwinemariadbinstance2.ctlfpxz1vplj.eu-west-1.rds.amazonaws.com -P 3306 -u lucienrawden -p findwinedb > ~/findwine.sql
@@ -229,10 +229,10 @@ mysqldump -h findwinemariadbinstance2.ctlfpxz1vplj.eu-west-1.rds.amazonaws.com -
 Get file locally:
 
 ```bash
-scp -i ~/.ssh/id_rsa.pem ubuntu@ec2-54-229-166-59.eu-west-1.compute.amazonaws.com:findwine.sql ./
+scp findwine@findwine.com:findwine.sql ./
 ```
 
-Restore:
+Restore locally:
 ```bash
 mysql -u root -p findwine < findwine.sql
 ```
@@ -244,9 +244,5 @@ Add your public key to `/home/findwine/.ssh/authorized_keys` to setup passwordle
 Test using:
 
 ```bash
-$ ssh findwine@ec2-54-229-166-59.eu-west-1.compute.amazonaws.com
+$ ssh findwine@findwine.com
 ```
-
-# Todos
-
-- Static files
