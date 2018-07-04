@@ -517,7 +517,7 @@ class WineGrape(models.Model):
         return str(self.wine_vintage) + ' -> ' + str(self.grape)
 
     class Meta:
-        ordering = ['percentage']
+        ordering = ['-percentage']
 
 
 class FoodPairing(models.Model):
