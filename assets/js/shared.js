@@ -28,7 +28,7 @@ export class WineList extends React.Component {
           {this.props.wines.map((winevintage, index) => {
             const imageUrl = winevintage.image_url ? winevintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
             return (
-              <a href={winevintage.details_url} key={index} >
+              <a href={winevintage.details_url} key={index} target="_blank">
                 <div className="findwine_search-results">
                   <div className="findwine_search-result--table">
                     <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.rating_display} </div>
@@ -54,7 +54,7 @@ export class WineList extends React.Component {
                     <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
                       {getPriceElement(winevintage)}
                       <button className="btn findwine_view-button"
-                              href={winevintage.details_url} target="_self"
+                              href={winevintage.details_url} target="_blank"
                               role="button"> View
                         <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
                              className="findwine_view-button-arrow"></img>

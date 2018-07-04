@@ -111,7 +111,6 @@
       <div class="findwine_detail-heading">
         <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
       </div>
-      {% if winevintage.merchantwine_set.exists %}
       <ul class="list-group list-group-flush">
         {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
         <li class="list-group-item findwine_detail-list">
@@ -134,11 +133,10 @@
                role="button"> BUY</a>
           </div>
         </li>
+        {% empty %}
+        <p class="findwine_detail-content">No merchant availability.</p>
         {% endfor %}
       </ul>
-      {% else %}
-      <p class="findwine_detail-content">No merchant availability.</p>
-      {% endif %}
     </div>
   </div>
 </div>
@@ -149,7 +147,6 @@
     <div class="findwine_detail-heading">
       <h5 class="findwine_detail-header">PURCHASE OPTIONS</h5>
     </div>
-    {% if winevintage.merchantwine_set.exists %}
     <ul class="list-group list-group-flush">
       {% for merchantwine in winevintage.get_prioritized_purchase_options.all %}
       <li class="list-group-item findwine_detail-list">
@@ -170,10 +167,9 @@
           <a class="btn findwine_buy-button buy-link" href="{{ merchantwine.get_url }}" target="_blank" role="button"> BUY</a>
         </div>
       </li>
-      {% endfor %}
-      {% else %}
+      {% empty %}
       <p class="findwine_detail-content findwine_detail-content-mobile">No merchant availability.</p>
-      {% endif %}
+      {% endfor %}
     </ul>
   </div>
 </div>
