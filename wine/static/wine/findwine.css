@@ -2094,7 +2094,9 @@ select:-webkit-autofill {
 .findwine_producer-banner {
   height: 130px;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  background-position: center;
+  background-size: cover; }
   @media (min-width: 678px) {
     .findwine_producer-banner {
       height: 250px; } }
