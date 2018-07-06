@@ -7,13 +7,11 @@
 {% include 'wine/partials/mobile_nav.html' %}
 
 <!--Banner image-->
-<div class="findwine_producer-banner">
-  {% if producer.image %}
-  <img src="{{ producer.image.url }}" alt="{{ producer.name }}" class="findwine_producer-banner-image">
-  {% else %}
-  <img src="{% static 'wine/images/background/producer.jpg' %}" class="findwine_producer-banner-image">
-  {% endif %}
-</div>
+{% if producer.image %}
+<div class="findwine_producer-banner" style="background-image: url({{ producer.image.url }})"></div>
+{% else %}
+<div class="findwine_producer-banner" style="background-image: url({% static 'wine/images/background/producer.jpg' %})" ></div>
+{% endif %}
 
 <!--Producer description-->
 <div class="container">

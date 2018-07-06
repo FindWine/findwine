@@ -2994,6 +2994,8 @@ select:-webkit-autofill {
     height: 130px;
     width: 100%;
     overflow: hidden;
+    background-position: center;
+    background-size: cover;
 
     @include breakpoint(md) {
       height: 250px;
