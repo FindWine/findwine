@@ -1757,6 +1757,10 @@ select:-webkit-autofill {
 
     &-height {
       height: 43px;
+
+      @include breakpoint(lg) {
+        height: auto;
+      }
     }
   }
 
@@ -3308,6 +3312,7 @@ select:-webkit-autofill {
       justify-content: space-between;
 
       &-holder {
+        width: 100%;
       }
     }
   }

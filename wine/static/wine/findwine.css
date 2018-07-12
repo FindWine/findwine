@@ -1222,6 +1222,9 @@ select:-webkit-autofill {
     margin-top: 20px; }
   .findwine_detail-content-height {
     height: 43px; }
+    @media (min-width: 992px) {
+      .findwine_detail-content-height {
+        height: auto; } }
 .findwine_detail-table-content {
   display: flex;
   margin-bottom: 10px;
@@ -2314,7 +2317,9 @@ select:-webkit-autofill {
 @media (min-width: 992px) {
   .findwine_producer-details {
     display: flex;
-    justify-content: space-between; } }
+    justify-content: space-between; }
+    .findwine_producer-details-holder {
+      width: 100%; } }
 .findwine_producer-details-container {
   background-color: #ffffff;
   padding: 20px; }
