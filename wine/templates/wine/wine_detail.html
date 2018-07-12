@@ -72,19 +72,21 @@
     </p>
 
     {% if winevintage.appellation %}
-
-    <p class="findwine_place">
-      <img src="{% static 'wine/images/SVGs/pinpoint.svg' %}" class="hidden-lg-up findwine_place-image">
-      <img src="{% static 'wine/images/SVGs/pinpoint-grey.svg' %}" class="hidden-md-down">
-      {{ winevintage.appellation.name }},
-      {{ winevintage.appellation.get_country_display }}</p>
+      <p class="findwine_place">
+        <img src="{% static 'wine/images/SVGs/pinpoint.svg' %}" class="hidden-lg-up findwine_place-image">
+        <img src="{% static 'wine/images/SVGs/pinpoint-grey.svg' %}" class="hidden-md-down">
+        {{ winevintage.appellation.name }},
+        {{ winevintage.appellation.get_country_display }}
+      </p>
     {% endif %}
 
     <div class="findwine_awards-holder">
       <!-- Rating -->
+      {% if winevintage.wineaward_set.all %}
       <div class="findwine_rating-box findwine_rating-box-{{ winevintage.rating_category }}">
         <p class="findwine_rating">{{ winevintage.rating_display }}</p>
       </div>
+      {% endif %}
 
       <!-- Awards -->
       <div class="findwine_awards-container">
