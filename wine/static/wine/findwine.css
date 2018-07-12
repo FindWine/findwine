@@ -1220,6 +1220,8 @@ select:-webkit-autofill {
       height: auto; } }
   .findwine_detail-content-mobile {
     margin-top: 20px; }
+  .findwine_detail-content-height {
+    height: 43px; }
 .findwine_detail-table-content {
   display: flex;
   margin-bottom: 10px;

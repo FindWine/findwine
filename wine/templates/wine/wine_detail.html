@@ -195,7 +195,7 @@
     <div class="findwine_detail-info">
       <h5 class="findwine_detail-header--2">Description</h5>
       <pre>
-        <p class="findwine_detail-content" id="infoContent">{{ winevintage.description }}</p>
+        <p class="findwine_detail-content findwine_detail-content-height" id="infoContent">{{ winevintage.description }}</p>
       </pre>
       <!-- Include Read more button -->
     </div>
@@ -212,7 +212,7 @@
   <div class="findwine_detail-rowHeight hidden-lg-up" id="wineDetail">
     <div class="findwine_detail-info">
       <h5 class="findwine_detail-header--2">Details</h5>
-      <p class="findwine_detail-content" id="detailContent"> Read more about this wine.</p>
+      <p class="findwine_detail-content findwine_detail-content-height" id="detailContent"> Read more about this wine.</p>
       <div class="table table-responsive table-md">
         {% if winevintage.winemakers.count %}
         <div class="findwine_detail-table-content">
@@ -415,9 +415,9 @@
     <div class="findwine_detail-rowHeight" id="serve">
       <div class="findwine_detail-info">
         <h5 class="findwine_detail-header--2">Serving suggestion</h5>
-        <p class="findwine_detail-content hidden-lg-up" id="serveContent"> Food pairings, serving temperatures and
-          best years to
-          drink. </p>
+        <p class="findwine_detail-content findwine_detail-content-height hidden-lg-up" id="serveContent"> Food pairings, serving temperatures and
+        best years to
+        drink. </p>
         <div class="table table-responsive table-md">
           <div class="findwine_detail-table-content">
             <div class="findwine_detail-content-left">Food pairing:</div>
@@ -547,9 +547,11 @@
 </script>
 <script src="{% static 'js/search-bundle.js' %}"></script>
 <script>
+
   function expandInfo() {
     var info = document.getElementById('info');
     var infoButton = document.getElementById('infoButton');
+    var infoContent = document.getElementById('infoContent');
 
     if (info.style.height !== "auto") {
       info.style.height = "auto";
@@ -558,8 +560,6 @@
       info.style.height = "113px";
       infoButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
-
-    var infoContent = document.getElementById('infoContent');
 
     if (infoContent.style.height !== "auto") {
       infoContent.style.height = "auto";
@@ -571,6 +571,7 @@
   function expandDetail() {
     var detail = document.getElementById('wineDetail');
     var detailButton = document.getElementById('wineDetailButton');
+    var detailContent = document.getElementById('detailContent');
 
     if (detail.style.height !== "auto") {
       detail.style.height = "auto";
@@ -579,8 +580,6 @@
       detail.style.height = "113px";
       detailButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
-
-    var detailContent = document.getElementById('detailContent');
 
     if (detailContent.style.height !== "auto") {
       detailContent.style.height = "auto";

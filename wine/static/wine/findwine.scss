@@ -1742,7 +1742,6 @@ select:-webkit-autofill {
     margin-left: 15px;
     margin-right: 15px;
     margin-bottom: 20px;
-    //height: 43px;
     overflow: hidden;
 
     @include breakpoint(lg) {
@@ -1754,6 +1753,10 @@ select:-webkit-autofill {
 
     &-mobile {
       margin-top: 20px;
+    }
+
+    &-height {
+      height: 43px;
     }
   }
 
