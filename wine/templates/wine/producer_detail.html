@@ -24,8 +24,8 @@
       <div class="findwine_producer-place-name">{% if producer.appellation_primary %} {{ producer.appellation_primary.name }}, {% endif %} {{ producer.get_country_display }}
       </div>
     </div>
-    <div class="findwine_producer-description" id="detail">
-      <pre>
+    <div class="findwine_producer-description">
+      <pre id="detail">
         <p class="findwine_detail-content">
           {{ producer.description }}
         </p>
@@ -85,6 +85,7 @@
   <!--Farm details-->
   <!--Mobile: Tastings, Hours, Location, Contact details-->
   <!--Desktop: Tastings, Location; Hours; Contact details-->
+  <!--Instead of duplicating code, work with flex order-->
   <div class="findwine_details-specs">
     <div class="findwine_producer-details findwine_producer-details-container-width">
       <div class="findwine_producer-details-holder">
@@ -278,6 +279,22 @@
   var showImagesBig = $('.findwine_producer-wines-images:nth-of-type(1n+6)');
   var showImagesSmall = $('.findwine_producer-wines-images:nth-of-type(1n+5)');
 
+  function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+      window.onload = func;
+    } else {
+      window.onload = function () {
+        if (oldonload) {
+          oldonload();
+        }
+        func();
+      }
+    }
+  }
+  addLoadEvent(showWineButton);
+  addLoadEvent(readMoreButton);
+
   function showWineButton() {
     // Show View all Wines button if more than 5 wines on xl more than 4 on lg
     if ($(window).width() > 991 && $(window).width() < 1280) {
@@ -297,7 +314,7 @@
 
   function readMoreButton() {
     // Show Read More button if text is more than 4 lines
-
+    console.log(detailHeight)
     if ($(window).width() > 992 && detailHeight > 113) {
       detail.style.height = "113px";
       detailBar.style.display = "flex";
@@ -313,24 +330,7 @@
     }
   }
 
-  function addLoadEvent(func) {
-    var oldonload = window.onload;
-    if (typeof window.onload != 'function') {
-      window.onload = func;
-    } else {
-      window.onload = function () {
-        if (oldonload) {
-          oldonload();
-        }
-        func();
-      }
-    }
-  }
-  addLoadEvent(showWineButton);
-  addLoadEvent(readMoreButton);
-
   function expandDetail() {
-
     if (detail.style.height !== "auto") {
       detail.style.height = "auto";
       detailButton.innerHTML = "Show Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
