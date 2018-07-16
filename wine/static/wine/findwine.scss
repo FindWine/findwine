@@ -1759,8 +1759,14 @@ select:-webkit-autofill {
       height: 43px;
 
       @include breakpoint(lg) {
-        height: auto;
+        height: 113px;
       }
+    }
+  }
+
+  &_detail-info {
+    @include breakpoint(lg) {
+      height: auto;
     }
   }
 

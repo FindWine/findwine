@@ -197,11 +197,11 @@
     <div class="findwine_detail-info">
       <h5 class="findwine_detail-header--2">Description</h5>
       <pre>
-        <p class="findwine_detail-content findwine_detail-content-height" id="infoContent">{{ winevintage.description }}</p>
+        <p class="findwine_detail-content findwine_detail-content-height findwine_detail-info" id="infoContent">{{ winevintage.description }}</p>
       </pre>
-      <!-- Include Read more button -->
     </div>
   </div>
+  <!-- Include Read more button -->
   <div class="findwine_detail-expand hidden-lg-up">
     <button class="btn findwine_detail-expand-button" type="button" id="infoButton" onclick="expandInfo()">
       More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
@@ -562,6 +562,10 @@
       info.style.height = "113px";
       infoButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
     }
+
+    // if ($(window).width() > 991) {
+    //   info.style.height = "auto";
+    // }
 
     if (infoContent.style.height !== "auto") {
       infoContent.style.height = "auto";

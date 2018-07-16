@@ -1224,7 +1224,10 @@ select:-webkit-autofill {
     height: 43px; }
     @media (min-width: 992px) {
       .findwine_detail-content-height {
-        height: auto; } }
+        height: 113px; } }
+@media (min-width: 992px) {
+  .findwine_detail-info {
+    height: auto; } }
 .findwine_detail-table-content {
   display: flex;
   margin-bottom: 10px;
