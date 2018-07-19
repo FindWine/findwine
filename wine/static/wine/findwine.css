@@ -17,7 +17,8 @@ pre {
   font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
   white-space: pre-line;
   text-align: left;
-  margin-bottom: 0px; }
+  margin-bottom: 0px;
+  overflow: hidden; }
 
 @media (max-width: 575px) {
   .container {
