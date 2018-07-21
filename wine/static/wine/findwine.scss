@@ -510,6 +510,16 @@ select:-webkit-autofill {
   transform: translate(0, 0);
 }
 
+
+.js-info {
+
+  @include breakpoint(lg) {
+    height: 120px;
+    overflow: hidden;
+  }
+
+}
+
 // Custom styling
 
 .findwine {
@@ -1651,6 +1661,11 @@ select:-webkit-autofill {
         border: 1px solid $lightest-grey-border;
         border-top: none;
       }
+    }
+
+    &-desk {
+      margin-left: -15px;
+      margin-right: -15px;
     }
   }
 

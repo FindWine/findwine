@@ -194,14 +194,20 @@
 
   {% if winevintage.description %}
   <div class="findwine_detail-rowHeight" id="info">
-    <div class="findwine_detail-info">
+    <div class="js-info" id="deskInfo">
       <h5 class="findwine_detail-header--2">Description</h5>
       <pre>
         <p class="findwine_detail-content findwine_detail-content-height findwine_detail-info" id="infoContent">{{ winevintage.description }}</p>
       </pre>
     </div>
+    <!--desktop button-->
+    <div class="findwine_detail-expand findwine_detail-expand-desk hidden-md-down js-infoBar">
+      <button class="btn findwine_detail-expand-button" type="button" id="infoButtonDesk" onclick="expandInfo()">
+        More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
+      </button>
+    </div>
   </div>
-  <!-- Include Read more button -->
+  <!-- mobile button-->
   <div class="findwine_detail-expand hidden-lg-up">
     <button class="btn findwine_detail-expand-button" type="button" id="infoButton" onclick="expandInfo()">
       More <img src="{% static 'wine/images/SVGs/arrow-down-green.svg' %}" class="findwine_detail-more-arrow">
@@ -552,25 +558,33 @@
 
   function expandInfo() {
     var info = document.getElementById('info');
+    var deskInfo = document.getElementById('deskInfo');
     var infoButton = document.getElementById('infoButton');
+    var infoButtonDesk = document.getElementById('infoButtonDesk');
     var infoContent = document.getElementById('infoContent');
 
-    if (info.style.height !== "auto") {
-      info.style.height = "auto";
-      infoButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
-    } else {
-      info.style.height = "113px";
-      infoButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
-    }
-
-    // if ($(window).width() > 991) {
-    //   info.style.height = "auto";
-    // }
-
-    if (infoContent.style.height !== "auto") {
-      infoContent.style.height = "auto";
-    } else {
-      infoContent.style.height = "43px";
+    if ($(window).width() < 992)  {
+      if (info.style.height !== "auto") {
+        info.style.height = "auto";
+        infoButton.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+      } else {
+        info.style.height = "113px";
+        infoButton.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+      }
+      if (infoContent.style.height !== "auto") {
+        infoContent.style.height = "auto";
+      } else {
+        infoContent.style.height = "43px";
+      }
+    } else if ($(window).width() > 992) {
+      if (deskInfo.style.height !== "auto") {
+        deskInfo.style.height = "auto";
+        infoButtonDesk.innerHTML = "Less <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-less-arrow\">"
+      } else {
+        deskInfo.style.height = "120px";
+        info.style.height = "auto";
+        infoButtonDesk.innerHTML = "More <img src=\"{% static 'wine/images/SVGs/arrow-down-green.svg' %}\" class=\"findwine_detail-more-arrow\">"
+      }
     }
   };
 

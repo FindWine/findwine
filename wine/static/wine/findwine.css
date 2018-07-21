@@ -345,6 +345,11 @@ select:-webkit-autofill {
   -o-transform: translate(0, 0);
   transform: translate(0, 0); }
 
+@media (min-width: 992px) {
+  .js-info {
+    height: 120px;
+    overflow: hidden; } }
+
 .findwine_nav--menu {
   margin-left: 0px;
   z-index: 1000; }
@@ -1143,6 +1148,9 @@ select:-webkit-autofill {
         height: 74px;
         border: 1px solid #dbe0e4;
         border-top: none; } }
+  .findwine_detail-expand-desk {
+    margin-left: -15px;
+    margin-right: -15px; }
 .findwine_detail-expand-button {
   color: #00ad68;
   font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
