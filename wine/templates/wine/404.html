@@ -1,0 +1,15 @@
+{% extends 'wine/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'wine/partials/search_nav.html' %}
+{% include 'wine/partials/mobile_nav.html' %}
+
+<div class="findwine_no-results-holder">
+  <img src="{% static 'wine/images/SVGs/no-results.svg' %}" class="findwine_no-results-holder-image"></img>
+  <p class="findwine_no-results-text-heading"> Page not found. </p>
+  <p> <a href="{% url 'wine:search' %}" class="nav-link-home"> Find some wine instead. </a>  </p>
+</div>
+
+{% endblock %}
