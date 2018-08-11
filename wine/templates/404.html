@@ -13,3 +13,13 @@
 </div>
 
 {% endblock %}
+
+{% block page_scripts %}
+<script>
+  var STATIC_BASE_PATH = "{% static '' %}";
+  $(function () {
+    // show nav
+    $('#top').show();
+  });
+</script>
+{% endblock %}
