@@ -25,6 +25,7 @@ olefile==0.44             # via pillow
 pillow==4.2.1
 python-dateutil==2.6.1    # via botocore
 pytz==2017.2              # via celery, django
+raven==6.9.0
 redis==2.10.6
 requests==2.18.4
 s3transfer==0.1.10        # via boto3

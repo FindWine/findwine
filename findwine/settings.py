@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'raven.contrib.django.raven_compat',
     'geoposition',
     'rest_framework',
     'storages',
@@ -186,6 +187,10 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 DATA_TEAM_EMAIL = 'data-notifications@findwine.com'
 
 SITE_URL = 'https://www.findwine.com'
+
+# overridden in localsettings
+RAVEN_CONFIG = {}
+
 try:
     from .localsettings import *
 except ImportError:
