@@ -33,8 +33,11 @@ def clean_invalid_urls(debug=False):
 
 
 def url_is_valid(url):
-    r = requests.get(url)
-    return r.status_code == 200
+    try:
+        r = requests.get(url)
+        return r.status_code == 200
+    except requests.ConnectionError:
+        return False
 
 
 def _get_admin_url(model_instance):
