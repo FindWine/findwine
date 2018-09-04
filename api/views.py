@@ -9,6 +9,7 @@ MAX_PRICE = '9999999'
 
 DEFAULT_SORT = ['-avg_rating', 'price']
 
+
 class WineVintageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = WineVintage.objects.all()
     serializer_class = WineVintageSerializer
