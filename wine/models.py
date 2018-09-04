@@ -238,6 +238,12 @@ class WineVintage(models.Model):
         return prices[0] if prices else None
 
     @property
+    def average_price(self):
+        return self.merchantwine_set.aggregate(
+            average_price=Avg('price')
+        ).get('average_price', None)
+
+    @property
     def rating_display(self):
         """Aggregate normalised rating from the wine awards."""
         rating = self.rating
