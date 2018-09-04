@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'catalog.apps.CatalogConfig',
     'wine.apps.WineConfig',
     'api.apps.APIConfig',
     'content.apps.ContentConfig',
