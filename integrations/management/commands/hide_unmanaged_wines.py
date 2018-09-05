@@ -2,7 +2,7 @@ from django.core.management import BaseCommand
 
 from integrations.cybercellar import CYBERCELLAR_MERCHANT_NAME
 from integrations.port2port import PORT2PORT_MERCHANT_NAME
-from integrations.vinoteque import update_all, VINOTEQUE_MERCHANT_NAME
+from integrations.vinoteque import VINOTEQUE_MERCHANT_NAME
 from integrations.winecellar import WINECELLAR_MERCHANT_NAME
 from wine.models import MerchantWine
 
