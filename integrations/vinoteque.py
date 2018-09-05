@@ -70,7 +70,11 @@ def _get_quantity_and_size_from_variant_title(title):
     This takes data from the variant's title (e.g. '1x750ml' or '6x750ml || Mature') and
     turns it into explicit params on the variant itself.
     """
-    quantity, remainder = title.lower().split('x')
+    if 'x' in title:
+        quantity, remainder = title.lower().split('x')
+    else:
+        quantity = 1
+        remainder = title
     quantity = int(quantity)
     size = remainder.split(' ')[0]
     return quantity, size
