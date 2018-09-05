@@ -62,12 +62,12 @@ class WinePriceSerializer(serializers.ModelSerializer):
 
 class AwardSerializer(serializers.ModelSerializer):
     body = serializers.CharField(source='award.body.short_name')
-    tier = serializers.CharField(source='award.tier.tier')
+    rank = serializers.CharField(source='award.rank')
     year = serializers.IntegerField(source='award.year')
 
     class Meta:
         model = WineAward
-        fields = ('body', 'tier', 'year',)
+        fields = ('body', 'rank', 'year',)
 
 
 class WineAwardSerializer(serializers.ModelSerializer):
@@ -76,7 +76,7 @@ class WineAwardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WineVintage
-        fields = ('average_rating', 'rating_category', 'awards')
+        fields = ('average_rating', 'awards')
 
 
 class WineVintageCatalogSerializer(serializers.ModelSerializer):
