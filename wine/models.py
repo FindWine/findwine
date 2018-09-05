@@ -89,6 +89,7 @@ class Producer(models.Model):
 class Wine(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    last_modified_by = models.CharField(blank=True, default="", max_length=100)
     producer = models.ForeignKey("Producer")
     name = models.CharField(max_length=256)
     wine_range = models.CharField(null=True, blank=True, max_length=256)
@@ -145,6 +146,7 @@ class Winemaker(models.Model):
 class WineVintage(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    last_modified_by = models.CharField(blank=True, default="", max_length=100)
     slug = models.CharField(max_length=MAX_UNIQUE_CHARFIELD, unique=True, editable=False)
     wine = models.ForeignKey("Wine")
     category = models.ForeignKey("Category")
@@ -430,6 +432,7 @@ class MerchantWine(models.Model):
     available = models.NullBooleanField()
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    last_modified_by = models.CharField(blank=True, default="", max_length=100)
     purchase_unit = models.CharField(choices=(
         ('750', "Bottle 750ml"),
         ('187', "Split 187ml"),

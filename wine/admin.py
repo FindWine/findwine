@@ -26,6 +26,14 @@ from .models import FoodPairing
 from .models import WineFoodPairing
 
 
+class ModelSaveRecordingMixIn(object):
+
+    def save_model(self, request, obj, form, change):
+        # hat tip: https://books.agiliq.com/projects/django-admin-cookbook/en/latest/current_user.html
+        obj.last_modified_by = request.user.username
+        super(ModelSaveRecordingMixIn, self).save_model(request, obj, form, change)
+
+
 class ProducerAdmin(admin.ModelAdmin):
 
     def view_on_site(self, obj):
@@ -52,9 +60,9 @@ class MerchantWineInline(admin.StackedInline):
     extra = 0
 
     
-class WineVintageAdmin(admin.ModelAdmin):
+class WineVintageAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     fieldsets = [
-        ('Name',        {'fields': ['wine', 'year']}),
+        ('Name',        {'fields': ['wine', 'year', 'last_modified_by']}),
         ('Category',    {'fields': ['category', 'sub_category', 'blend', 'appellation', 'winemakers']}),
         ('Attributes',  {'fields': ['sweetness', 'wooded', 'organic', 'contains_sulphites', 'vegetarian']}),
         ('Specs',       {'fields': ['optimal_year_start', 'optimal_year_end', 'temp_min', 'temp_max', 'alcohol_percentage', 'residual_sugar', 'ph', 'total_acidity', 'total_sulphur']}),
@@ -66,20 +74,23 @@ class WineVintageAdmin(admin.ModelAdmin):
     list_display = ('wine', 'year', 'category', 'sub_category', 'status', 'last_modified')
     list_filter = ('status', 'date_created', 'last_modified')
     search_fields = ['wine__name', 'wine__producer__name']
+    readonly_fields = ['last_modified_by']
 
     def view_on_site(self, obj):
         return reverse('wine:wine_detail_by_slug', kwargs={'slug': obj.slug})
 
 
-class WineAdmin(admin.ModelAdmin):
+class WineAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     list_display = ('producer', 'name', 'last_modified')
     list_filter = ('producer', 'date_created', 'last_modified')
+    readonly_fields = ['last_modified_by']
 
 
-class MerchantWineAdmin(admin.ModelAdmin):
+class MerchantWineAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     list_display = ('wine_vintage', 'merchant', 'available', 'last_modified')
     list_filter = ('available', 'merchant', 'last_modified')
     search_fields = ('wine_vintage__wine__name', 'wine_vintage__wine__producer__name', 'external_id')
+    readonly_fields = ['last_modified_by']
 
 
 admin.site.register(Appellation)
