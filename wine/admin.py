@@ -58,8 +58,9 @@ class WineAwardInline(admin.TabularInline):
 class MerchantWineInline(admin.StackedInline):
     model = MerchantWine
     extra = 0
+    readonly_fields = ['last_modified_by']
 
-    
+
 class WineVintageAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     fieldsets = [
         ('Name',        {'fields': ['wine', 'year', 'last_modified_by']}),
@@ -75,6 +76,19 @@ class WineVintageAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     list_filter = ('status', 'date_created', 'last_modified')
     search_fields = ['wine__name', 'wine__producer__name']
     readonly_fields = ['last_modified_by']
+
+    def save_formset(self, request, form, formset, change):
+        # hat tip: https://stackoverflow.com/a/1477428/8207
+        if formset.model == MerchantWine:
+            # updating formset
+            instances = formset.save(commit=False)
+            for instance in instances:
+                instance.last_modified_by = request.user.username
+                instance.save()
+            formset.save_m2m()
+            return instances
+        else:
+            return formset.save()
 
     def view_on_site(self, obj):
         return reverse('wine:wine_detail_by_slug', kwargs={'slug': obj.slug})
