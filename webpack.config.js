@@ -3,6 +3,7 @@ module.exports = {
   entry: {
     findwine: './assets/js/findwine.js',
     search: './assets/js/search.js',
+    'price-widget-v1': './assets/js/price-widget-v1.js',
   },
   output: {
     path: path.resolve('static', 'js'),
