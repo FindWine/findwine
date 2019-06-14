@@ -20,4 +20,10 @@
   });
 </script>
 <script src="{% static 'js/price-widget-v1-bundle.js' %}"></script>
+<script>
+    var findwineMerchantId = 'findwine-demo';
+    document.addEventListener('DOMContentLoaded', function() {
+        FindWine.init(findwineMerchantId);
+    }, false);
+</script>
 {% endblock %}

@@ -1,6 +1,5 @@
 
-
-var FindWine = (function() {
+window.FindWine = (function() {
     function addStyles() {
         let widgetCss = `li.findwine-buy-item {
             display: flex;
@@ -61,8 +60,8 @@ var FindWine = (function() {
     }
 
     function init(partnerId) {
-        // todo change in production
         addStyles();
+        // todo change in production
         let apiRoot = 'http://localhost:8000/api/wine-prices/';
         let widget = document.getElementById("findwine-price-widget");
         if (!widget) {
@@ -86,8 +85,3 @@ var FindWine = (function() {
         init: init
     }
 })();
-
-document.addEventListener('DOMContentLoaded', function() {
-    // todo: don't hard code this
-    FindWine.init(123);
-}, false);
