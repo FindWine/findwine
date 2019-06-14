@@ -1,23 +1,21 @@
 
+
+
 function renderWidget(widgetElement, partnerId, wineJson) {
     console.log(wineJson);
     function renderMerchantPrice(price) {
-        return `<li class="list-group-item findwine_detail-list">
-  <div class="findwine_merchant-holder">
-    <div class="findwine_merchant-name"> ${price.merchant.name}</div>
-  </div>
-  <div class="findwine_merchant-pricing">
-    <div class="findwine_merchant-price-holder">
-      <div class="findwine_merchant-currency"> R</div>
-      <div class="findwine_vintage-price"> ${price.price}</div>
-    </div>
-    <a class="btn findwine_buy-button buy-link" href="${wineJson.buy_url}?from=${partnerId}&merchant=${price.merchant.id}" target="_blank" role="button"> BUY</a>
+        return `<li class="findwine-buy-item">
+  <div class="findwine-merchant-name"> ${price.merchant.name}</div>
+  <div class="findwine-merchant-price">
+     <span class="findwine-merchant-price-currency"> R</span>
+     <span class="findwine-merchant-price-value"> ${price.price}</span>
+     <a class="findwine-buy-button" href="${wineJson.buy_url}?from=${partnerId}&merchant=${price.merchant.id}" target="_blank" role="button"> Buy</a>
   </div>
 </li>`;
     }
     let priceList = wineJson.price_data.listings.map(renderMerchantPrice);
     let priceHtml = priceList.join('');
-    widgetElement.innerHTML = `<ul class="list-group list-group-flush">${priceHtml}</ul>`;
+    widgetElement.innerHTML = `<ul class="findwine-buy-list">${priceHtml}</ul>`;
 }
 
 function init(partnerId) {
@@ -42,7 +40,44 @@ function init(partnerId) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    let widgetCss = `li.findwine-buy-item {
+        display: flex;
+        min-width: 200px;
+        max-width: 400px;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem;
+    }
+    .findwine-merchant-name {
+        font-size: 1.5rem;
+    }
+    .findwine-merchant-price-currency {
+        font-size: 1rem;
+        color: grey;
+    }
+    .findwine-merchant-price-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    a.findwine-buy-button {
+        font-size: 1rem;
+        color: #ffffff;
+        background-color: #00ad68;
+        padding: .5rem 1rem;
+        text-align: center;
+        outline: none;
+        border-radius: 4px;
+        margin: .5rem;
+    }
+    a.findwine-buy-button:hover {
+        background-color: #0a9761;
+        text-decoration: inherit;
+    }`;
+    // append style to page
+    // https://stackoverflow.com/a/524721/8207
+    let style = document.createElement('style');
+    document.head.appendChild(style);
+    style.appendChild(document.createTextNode(widgetCss));
     // todo: don't hard code this
     init(123);
 }, false);
-
