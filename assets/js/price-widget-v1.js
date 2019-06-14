@@ -5,19 +5,13 @@ function renderWidget(widgetElement, wineJson) {
         return `<li class="list-group-item findwine_detail-list">
   <div class="findwine_merchant-holder">
     <div class="findwine_merchant-name"> ${price.merchant}</div>
-    <div class="findwine_merchant-unit"> 750 ml
-
-        (minimum 6)
-
-    </div>
-    <div class="findwine_merchant-delivery"> Delivery: R50 Cape Town, R75 nation-wide, free for orders of R1000 or more.</div>
   </div>
   <div class="findwine_merchant-pricing">
     <div class="findwine_merchant-price-holder">
       <div class="findwine_merchant-currency"> R</div>
       <div class="findwine_vintage-price"> ${price.price}</div>
     </div>
-    <a class="btn findwine_buy-button buy-link" data-merchant="Cybercellar" data-wine-vintage="Flagstone Longitude 2015" href="https://www.cybercellar.com/flagstone-wines-flagstone-longitude-2015?utm_medium=affiliates&amp;utm_source=findwine" target="_blank" role="button"> BUY</a>
+    <a class="btn findwine_buy-button buy-link" href="${wineJson.buy_url}" target="_blank" role="button"> BUY</a>
   </div>
 </li>`;
     }
@@ -28,7 +22,7 @@ function renderWidget(widgetElement, wineJson) {
 
 document.addEventListener('DOMContentLoaded', function() {
     // todo change in production
-    let apiRoot = 'http://localhost:8000/catalog/api/wines/';
+    let apiRoot = 'http://localhost:8000/api/wine-prices/';
     let widget = document.getElementById("findwine-price-widget");
     if (!widget) {
         // todo: improve this message
