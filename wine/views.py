@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.templatetags.static import static
@@ -91,7 +90,6 @@ class ProducerDetailView(generic.DetailView):
 
 
 @require_GET
-@login_required
 def price_widget_test(request):
     return render(request, 'wine/price_widget_test.html')
 
