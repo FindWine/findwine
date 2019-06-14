@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from wine.models import WineVintage, Wine, Blend, WineGrape, MerchantWine, WineAward
+from wine.models import WineVintage, Wine, Blend, WineGrape, MerchantWine, WineAward, Merchant
 
 
 class BlendSerializer(serializers.ModelSerializer):
@@ -43,8 +43,16 @@ class WineImageSerializer(serializers.ModelSerializer):
         return obj.image_label_horizontal.url if obj.image_label_horizontal else ''
 
 
+
+class MerchantSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Merchant
+        fields = ('id', 'name')
+
+
 class MerchantWinePriceSerializer(serializers.ModelSerializer):
-    merchant = serializers.CharField(source='merchant.name')
+    merchant = MerchantSerializer(read_only=True)
 
     class Meta:
         model = MerchantWine

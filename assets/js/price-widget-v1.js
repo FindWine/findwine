@@ -1,17 +1,17 @@
 
-function renderWidget(widgetElement, wineJson) {
+function renderWidget(widgetElement, partnerId, wineJson) {
     console.log(wineJson);
     function renderMerchantPrice(price) {
         return `<li class="list-group-item findwine_detail-list">
   <div class="findwine_merchant-holder">
-    <div class="findwine_merchant-name"> ${price.merchant}</div>
+    <div class="findwine_merchant-name"> ${price.merchant.name}</div>
   </div>
   <div class="findwine_merchant-pricing">
     <div class="findwine_merchant-price-holder">
       <div class="findwine_merchant-currency"> R</div>
       <div class="findwine_vintage-price"> ${price.price}</div>
     </div>
-    <a class="btn findwine_buy-button buy-link" href="${wineJson.buy_url}" target="_blank" role="button"> BUY</a>
+    <a class="btn findwine_buy-button buy-link" href="${wineJson.buy_url}?from=${partnerId}&merchant=${price.merchant.id}" target="_blank" role="button"> BUY</a>
   </div>
 </li>`;
     }
@@ -20,7 +20,7 @@ function renderWidget(widgetElement, wineJson) {
     widgetElement.innerHTML = `<ul class="list-group list-group-flush">${priceHtml}</ul>`;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+function init(partnerId) {
     // todo change in production
     let apiRoot = 'http://localhost:8000/api/wine-prices/';
     let widget = document.getElementById("findwine-price-widget");
@@ -34,14 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(url).then((response) => {
             if (response.ok) {
                 response.json().then((responseJson) => {
-                    renderWidget(widget, responseJson);
+                    renderWidget(widget, partnerId, responseJson);
                 });
             }
         });
-
-
     }
+}
 
-
+document.addEventListener('DOMContentLoaded', function() {
+    // todo: don't hard code this
+    init(123);
 }, false);
 
