@@ -2,6 +2,7 @@ from django.urls import reverse
 from rest_framework import serializers
 
 from catalog.serializers import WinePriceSerializer
+from wine.context_processors import absolute_url
 from wine.models import WineVintage, Wine
 
 
@@ -48,4 +49,4 @@ class MerchantWineVintageSerializer(serializers.ModelSerializer):
         fields = ('slug', 'long_name', 'price_data', 'buy_url')
 
     def get_buy_url(self, obj):
-        return reverse('clickthrough:buy', args=[obj.slug])
+        return absolute_url(reverse('clickthrough:buy', args=[obj.slug]))
