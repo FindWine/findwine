@@ -1,6 +1,6 @@
 from django.db.models import Min, Avg, Q, Exists, OuterRef
 from rest_framework import viewsets
-from api.serializers import WineVintageSerializer
+from api.serializers import WineVintageSerializer, MerchantWineVintageSerializer
 from api.util import coerce_to_decimal
 from wine.models import WineVintage, MerchantWine, Round
 
@@ -82,3 +82,10 @@ def _add_computed_columns(wines):
         avg_rating=Round(Avg('wineaward__award__tier__normalised_rating')),
 
     )
+
+
+class MerchantWineAPIViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = WineVintage.objects.all()
+    serializer_class = MerchantWineVintageSerializer
+    lookup_field = 'slug'
+

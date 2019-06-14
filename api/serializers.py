@@ -1,5 +1,7 @@
 from django.urls import reverse
 from rest_framework import serializers
+
+from catalog.serializers import WinePriceSerializer
 from wine.models import WineVintage, Wine
 
 
@@ -32,3 +34,18 @@ class WineVintageSerializer(serializers.ModelSerializer):
 
     def get_image_url(self, obj):
         return obj.image_pack_shot.url if obj.image_pack_shot else ''
+
+
+class MerchantWineVintageSerializer(serializers.ModelSerializer):
+    """
+    Serializer used to provide details to merchants
+    """
+    price_data = WinePriceSerializer(read_only=True, source='*')
+    buy_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = WineVintage
+        fields = ('slug', 'long_name', 'price_data', 'buy_url')
+
+    def get_buy_url(self, obj):
+        return reverse('clickthrough:buy', args=[obj.slug])
