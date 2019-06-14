@@ -10,3 +10,4 @@ redis
 requests
 jsonfield
 raven
+django-cors-headers
