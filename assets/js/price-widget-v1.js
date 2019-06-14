@@ -61,8 +61,9 @@ window.FindWine = (function() {
 
     function init(partnerId) {
         addStyles();
-        // todo change in production
-        let apiRoot = 'http://localhost:8000/api/wine-prices/';
+        // swap these for development
+        // let apiRoot = 'http://localhost:8000/api/wine-prices/';
+        let apiRoot = 'https://www.findwine.com/api/wine-prices/';
         let widget = document.getElementById("findwine-price-widget");
         if (!widget) {
             // todo: improve this message
