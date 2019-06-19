@@ -1,0 +1,29 @@
+{% extends "wine/base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% include 'wine/partials/search_nav.html' %}
+{% include 'wine/partials/mobile_nav.html' %}
+<div class="container">
+    <h3>Price Widget Test</h3>
+    <p>
+        This is a very basic proof of concept demonstrating the ability to embed a pricing widget
+        inside a page.
+    </p>
+    <div id="findwine-price-widget" data-findwine-id="flagstone-longitude-2015" ></div>
+</div>
+{% endblock %}
+{% block page_scripts %}
+<script>
+  $(function () {
+    // show nav
+    $('#top').show();
+  });
+</script>
+<script src="{% static 'js/price-widget-v1-bundle.js' %}"></script>
+<script>
+    var findwineMerchantId = 'findwine-demo';
+    document.addEventListener('DOMContentLoaded', function() {
+        FindWine.init(findwineMerchantId);
+    }, false);
+</script>
+{% endblock %}

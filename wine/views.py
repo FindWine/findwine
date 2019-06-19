@@ -90,6 +90,11 @@ class ProducerDetailView(generic.DetailView):
 
 
 @require_GET
+def price_widget_test(request):
+    return render(request, 'wine/price_widget_test.html')
+
+
+@require_GET
 def error(request):
     raise Exception('Simulated Failure!')
 
