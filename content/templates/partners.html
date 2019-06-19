@@ -1,0 +1,64 @@
+{% extends "wine/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+{% include 'wine/partials/search_nav.html' %}
+{% include 'wine/partials/mobile_nav.html' %}
+
+<div class="findwine_contact-banner">
+  <div class="findwine_about-heading-1">Partners and APIs</div>
+</div>
+<div class="findwine_about-content-container-outer findwine_about-content-container-outer-contact">
+  <div class="container">
+      <div class="findwine_about-content-2 findwine_about-content-2-single findwine_terms-margin">
+          <h2>Pricing Widget</h2>
+          <p class="findwine_contact-paragraph">
+              Our pricing widget can be embedded on any page using the details below.
+          </p>
+          <h4>
+              1. Initialize JavaScript
+          </h4>
+          <p class="findwine_contact-paragraph">
+              Somewhere in your site's code - preferably in a shared file like a base template
+              add the follwing code snippet:
+          </p>
+          <pre class="findwine_contact-paragraph"><code>
+              &lt;script src=&quot;https://findwines3a.s3.amazonaws.com/js/price-widget-v1-bundle.js&quot;&gt;&lt;/script&gt;
+              &lt;script&gt;
+                  &nbsp;&nbsp;var findwineMerchantId = '{YOUR_MERCHANT_ID}';
+                  &nbsp;&nbsp;document.addEventListener('DOMContentLoaded', function() {
+                      &nbsp;&nbsp;&nbsp;&nbsp;FindWine.init(findwineMerchantId);
+                  &nbsp;&nbsp;}, false);
+              &lt;/script&gt;
+          </code></pre>
+          <br>
+          <h4>
+              2. Embed HTML
+          </h4>
+          <p class="findwine_contact-paragraph">
+              Now, wherever you want to display the wine price widget you can put the following HTML code:
+          </p>
+          <pre class="findwine_contact-paragraph"><code>
+              &lt;div id=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{wine-id}&quot; &gt;&lt;/div&gt;
+          </code></pre>
+          <p class="findwine_contact-paragraph">
+              The <code>wine-id</code> that should be used can be copied from the URL of the wine listing
+              on <a href="https://www.findwine.com/">findwine.com</a>.
+              For example, to list <a href="https://www.findwine.com/wine/tokara-cabernet-sauvignon-2014/">Tokara Cabernet Sauvignon 2014</a>
+              you would use the following code snippet:
+          </p>
+          <pre class="findwine_contact-paragraph"><code>
+              &lt;div id=&quot;findwine-price-widget&quot; data-findwine-id=&quot;<strong>tokara-cabernet-sauvignon-2014</strong>&quot; &gt;&lt;/div&gt;
+          </code></pre>
+      </div>
+  </div>
+</div>
+{% endblock %}
+{% block page_scripts %}
+<script>
+  $(function () {
+    // show nav
+    $('#top').show();
+  });
+</script>
+{% endblock %}

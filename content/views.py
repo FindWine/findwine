@@ -15,3 +15,7 @@ class ContactView(TemplateView):
 
 class TermsView(TemplateView):
     template_name = 'terms.html'
+
+
+class PartnersView(TemplateView):
+    template_name = 'partners.html'
