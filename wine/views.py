@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
+from django.db.models import Count
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.templatetags.static import static
@@ -91,7 +92,34 @@ class ProducerDetailView(generic.DetailView):
 
 @require_GET
 def price_widget_test(request):
-    return render(request, 'wine/price_widget_test.html')
+    wine_vintage_with_nothing = WineVintage.objects.annotate(
+        merchant_count=Count('merchantwine')
+    ).filter(merchant_count=0).first()
+    wine_vintage_with_many = WineVintage.objects.annotate(
+        merchant_count=Count(
+            'merchantwine',
+            # this only works in django 2.0
+            # filter=Q(merchantwine__available=True)
+        )
+    ).filter(merchant_count__gte=4)
+
+    # todo: this is probably a little slow / ineffecient but hard to do in the DB until django 2.0
+    wine_vintage_with_one = wine_vintage_with_two_or_more = None
+    for wv in wine_vintage_with_many.prefetch_related('merchantwine_set'):
+        if wine_vintage_with_two_or_more and wine_vintage_with_one:
+            break
+        if wine_vintage_with_two_or_more is None and wv.merchantwine_set.filter(available=True).count() > 1:
+            wine_vintage_with_two_or_more = wv
+        if wine_vintage_with_one is None and wv.merchantwine_set.filter(available=True).count() == 1:
+            wine_vintage_with_one = wv
+
+    assert wine_vintage_with_two_or_more, 'no wine with 2 or more available merchants found'
+    assert wine_vintage_with_one, 'no wine with 1 merchant found'
+    return render(request, 'wine/price_widget_test.html', context={
+        'wine_vintage_with_nothing': wine_vintage_with_nothing,
+        'wine_vintage_with_one': wine_vintage_with_one,
+        'wine_vintage_with_two_or_more': wine_vintage_with_two_or_more,
+    })
 
 
 @require_GET

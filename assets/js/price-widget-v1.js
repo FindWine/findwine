@@ -62,23 +62,26 @@ window.FindWine = (function() {
     function init(partnerId) {
         addStyles();
         // swap these for development
-        // let apiRoot = 'http://localhost:8000/api/wine-prices/';
-        let apiRoot = 'https://www.findwine.com/api/wine-prices/';
-        let widget = document.getElementById("findwine-price-widget");
-        if (!widget) {
+        let apiRoot = 'http://localhost:8000/api/wine-prices/';
+        // let apiRoot = 'https://www.findwine.com/api/wine-prices/';
+        let widgets = document.getElementsByClassName("findwine-price-widget");
+        if (!widgets.length) {
             // todo: improve this message
             console.error("Could not find price div. Did you include the right HTML snippet on the page?")
         } else {
-            let wineId = widget.dataset.findwineId;
-            let url = `${apiRoot}${wineId}/`;
-            console.log(url);
-            fetch(url).then((response) => {
-                if (response.ok) {
-                    response.json().then((responseJson) => {
-                        renderWidget(widget, partnerId, responseJson);
-                    });
-                }
-            });
+            for (let i = 0; i < widgets.length; i++) {
+                let widget = widgets[i];
+                let wineId = widget.dataset.findwineId;
+                let url = `${apiRoot}${wineId}/`;
+                console.log(url);
+                fetch(url).then((response) => {
+                    if (response.ok) {
+                        response.json().then((responseJson) => {
+                            renderWidget(widget, partnerId, responseJson);
+                        });
+                    }
+                });
+            }
         }
     }
 
