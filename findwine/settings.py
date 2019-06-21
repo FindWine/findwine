@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'content.apps.ContentConfig',
     'integrations.apps.IntegrationsConfig',
     'clickthrough.apps.ClickThroughConfig',
+    'partners.apps.PartnersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
