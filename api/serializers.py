@@ -39,7 +39,7 @@ class WineVintageSerializer(serializers.ModelSerializer):
 
 class MerchantWineVintageSerializer(serializers.ModelSerializer):
     """
-    Serializer used to provide details to merchants
+    Serializer used to provide details to partners
     """
     price_data = WinePriceSerializer(read_only=True, source='*')
     buy_url = serializers.SerializerMethodField()

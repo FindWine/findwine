@@ -1,4 +1,4 @@
-from django.db.models import Min, Avg, Q, Exists, OuterRef
+from django.db.models import Min, Avg, Q, Exists, OuterRef, Prefetch
 from rest_framework import viewsets
 from api.serializers import WineVintageSerializer, MerchantWineVintageSerializer
 from api.util import coerce_to_decimal
@@ -85,7 +85,7 @@ def _add_computed_columns(wines):
 
 
 class MerchantWineAPIViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = WineVintage.objects.all()
+    queryset = WineVintage.objects.prefetch_related('merchantwine_set')
     serializer_class = MerchantWineVintageSerializer
     lookup_field = 'slug'
 
