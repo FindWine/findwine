@@ -33,7 +33,11 @@ window.FindWine = (function() {
         a.findwine-buy-button:hover {
             background-color: #0a9761;
             text-decoration: inherit;
-        }`;
+        }
+        .findwine-no-data {
+            font-size: 1rem;
+        }
+        `;
         // append style to page
         // https://stackoverflow.com/a/524721/8207
         let style = document.createElement('style');
@@ -43,20 +47,26 @@ window.FindWine = (function() {
     }
 
     function renderWidget(widgetElement, partnerId, wineJson) {
-        console.log(wineJson);
-        function renderMerchantPrice(price) {
-            return `<li class="findwine-buy-item">
-      <div class="findwine-merchant-name"> ${price.merchant.name}</div>
-      <div class="findwine-merchant-price">
-         <span class="findwine-merchant-price-currency"> R</span>
-         <span class="findwine-merchant-price-value"> ${price.price}</span>
-         <a class="findwine-buy-button" href="${wineJson.buy_url}?from=${partnerId}&merchant=${price.merchant.id}" target="_blank" role="button"> Buy</a>
-      </div>
-    </li>`;
+        // console.log(wineJson);
+        if (wineJson.price_data.listings.length === 0) {
+            widgetElement.innerHTML = "<div class='findwine-no-data'>Sorry, no Merchants Available for this Wine</div>";
         }
-        let priceList = wineJson.price_data.listings.map(renderMerchantPrice);
-        let priceHtml = priceList.join('');
-        widgetElement.innerHTML = `<ul class="findwine-buy-list">${priceHtml}</ul>`;
+        else {
+            function renderMerchantPrice(price) {
+                return `<li class="findwine-buy-item">
+          <div class="findwine-merchant-name"> ${price.merchant.name}</div>
+          <div class="findwine-merchant-price">
+             <span class="findwine-merchant-price-currency"> R</span>
+             <span class="findwine-merchant-price-value"> ${price.price}</span>
+             <a class="findwine-buy-button" href="${wineJson.buy_url}?from=${partnerId}&merchant=${price.merchant.id}" target="_blank" role="button"> Buy</a>
+          </div>
+        </li>`;
+            }
+            let priceList = wineJson.price_data.listings.map(renderMerchantPrice);
+            let priceHtml = priceList.join('');
+
+            widgetElement.innerHTML = `<ul class="findwine-buy-list">${priceHtml}</ul>`;
+        }
     }
 
     function init(partnerId) {
@@ -73,7 +83,6 @@ window.FindWine = (function() {
                 let widget = widgets[i];
                 let wineId = widget.dataset.findwineId;
                 let url = `${apiRoot}${wineId}/`;
-                console.log(url);
                 fetch(url).then((response) => {
                     if (response.ok) {
                         response.json().then((responseJson) => {
