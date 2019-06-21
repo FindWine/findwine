@@ -43,7 +43,6 @@ class WineImageSerializer(serializers.ModelSerializer):
         return obj.image_label_horizontal.url if obj.image_label_horizontal else ''
 
 
-
 class MerchantSerializer(serializers.ModelSerializer):
 
     class Meta:
