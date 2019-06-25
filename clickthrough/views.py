@@ -28,5 +28,5 @@ def buy_wine(request, slug):
         return HttpResponseBadRequest('Unknown source partner ID: {}!'.format(source))
 
     Clickthrough.objects.create(partner=partner, merchant_wine=merchant_wine)
-    params = {'findwine_partner_name': Partner.slug}
+    params = {'findwine_partner_name': partner.slug}
     return HttpResponseRedirect(merchant_wine.get_url(params))
