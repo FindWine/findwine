@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+from collections import OrderedDict
 from urllib import parse
 from django.core.exceptions import ValidationError
 
@@ -454,13 +456,22 @@ class MerchantWine(models.Model):
     def rounded_price(self):
         return int(self.price) if self.price is not None else ''
 
-    def get_url(self):
+    def get_url(self, additional_params=None):
         """
         Constructs a URL, incorporating any affiliate logic, if necessary
         """
+        params = {}
+        if additional_params:
+            params.update(additional_params)
         if self.merchant.affiliate_params:
+            params.update(self.merchant.affiliate_params)
+        if params:
+            # sort for tests
+            sorted_params = OrderedDict()
+            for key in sorted(params.keys()):
+                sorted_params[key] = params[key]
             sep = '?' if '?' not in self.url else '&'
-            return '{}{}{}'.format(self.url, sep, parse.urlencode(self.merchant.affiliate_params))
+            return '{}{}{}'.format(self.url, sep, parse.urlencode(sorted_params))
         else:
             return self.url
 

@@ -36,7 +36,7 @@ class WineVintageSlugTest(TestCase):
             'p2': 'bar',
         }
         self.merchant.save()
-        self.assertEqual('http://www.example.com/a-nice-wine/?p2=bar&p1=foo',
+        self.assertEqual('http://www.example.com/a-nice-wine/?p1=foo&p2=bar',
                          MerchantWine.objects.get(pk=self.merchant_wine.pk).get_url())
 
     def test_params_aready_in_url(self):
@@ -47,5 +47,14 @@ class WineVintageSlugTest(TestCase):
         self.merchant.save()
         self.merchant_wine.url = 'http://www.example.com/a-nice-wine/?p3=bop'
         self.merchant_wine.save()
-        self.assertEqual('http://www.example.com/a-nice-wine/?p3=bop&p2=bar&p1=foo',
+        self.assertEqual('http://www.example.com/a-nice-wine/?p3=bop&p1=foo&p2=bar',
                          MerchantWine.objects.get(pk=self.merchant_wine.pk).get_url())
+
+    def test_pass_in_params(self):
+        self.merchant.affiliate_params = {
+            'p1': 'foo',
+            'p2': 'bar',
+        }
+        self.merchant.save()
+        self.assertEqual('http://www.example.com/a-nice-wine/?p1=foo&p2=bar&p3=baz',
+                         MerchantWine.objects.get(pk=self.merchant_wine.pk).get_url({'p3': 'baz'}))
