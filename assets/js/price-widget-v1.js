@@ -51,7 +51,7 @@ window.FindWine = (function() {
           <div class="findwine-merchant-price">
              <span class="findwine-merchant-price-currency"> R</span>
              <span class="findwine-merchant-price-value"> ${price.price}</span>
-             <a class="findwine-buy-button" href="${wineJson.buy_url}?from=${partnerId}&merchant=${price.merchant.id}" target="_blank" role="button"> Buy</a>
+             <a class="findwine-buy-button" href="${wineJson.buy_url}?from=${partnerId}&merchant_wine=${price.id}" target="_blank" role="button"> Buy</a>
           </div>
         </li>`;
             }

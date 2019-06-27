@@ -11,15 +11,15 @@ def buy_wine(request, slug):
     source = request.GET.get('from', '')
     if not source:
         return HttpResponseBadRequest('"source" parameter is required.')
-    merchant = request.GET.get('merchant', '')
-    if not merchant:
-        return HttpResponseBadRequest('"merchant" parameter is required.')
+    merchant_wine = request.GET.get('merchant_wine', '')
+    if not merchant_wine:
+        return HttpResponseBadRequest('"merchant_wine" parameter is required.')
     try:
-        merchant_id = int(merchant)
+        merchant_wine_id = int(merchant_wine)
     except ValueError:
-        return HttpResponseBadRequest('"merchant" must be a valid number.')
+        return HttpResponseBadRequest('"merchant_wine" must be a valid number.')
     try:
-        merchant_wine = MerchantWine.objects.get(wine_vintage__slug=slug, merchant__id=merchant_id)
+        merchant_wine = MerchantWine.objects.get(wine_vintage__slug=slug, id=merchant_wine_id)
     except MerchantWine.DoesNotExist:
         return HttpResponseBadRequest('The referenced wine and merchant combination could not be found.')
     try:
