@@ -55,7 +55,7 @@ class MerchantWinePriceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MerchantWine
-        fields = ('id', 'merchant', 'price', 'available')
+        fields = ('id', 'merchant', 'price', 'available', 'purchase_unit', 'minimum_purchase_unit')
 
 
 class WinePriceSerializer(serializers.ModelSerializer):
