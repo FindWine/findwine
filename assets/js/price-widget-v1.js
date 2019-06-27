@@ -21,18 +21,11 @@ window.FindWine = (function() {
             font-weight: bold;
         }
         a.findwine-buy-button {
-            font-size: 1rem;
-            color: #ffffff;
-            background-color: #00ad68;
-            padding: .5rem 1rem;
-            text-align: center;
-            outline: none;
-            border-radius: 4px;
-            margin: .5rem;
+            font-size: 1.5rem;
+            margin-left: .5rem;
         }
         a.findwine-buy-button:hover {
-            background-color: #0a9761;
-            text-decoration: inherit;
+            // text-decoration: underline;
         }
         .findwine-no-data {
             font-size: 1rem;
@@ -49,7 +42,7 @@ window.FindWine = (function() {
     function renderWidget(widgetElement, partnerId, wineJson) {
         // console.log(wineJson);
         if (wineJson.price_data.listings.length === 0) {
-            widgetElement.innerHTML = "<div class='findwine-no-data'>Sorry, no Merchants Available for this Wine</div>";
+            widgetElement.innerHTML = "<div class='findwine-no-data'>Out of Stock</div>";
         }
         else {
             function renderMerchantPrice(price) {
