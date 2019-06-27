@@ -1,21 +1,27 @@
 
 window.FindWine = (function() {
     function addStyles() {
-        let widgetCss = `li.findwine-buy-item {
+        let widgetCss = `
+        ul.findwine-buy-list {
+            padding-left: 0;
+        } 
+        li.findwine-buy-item {
             display: flex;
             min-width: 200px;
             max-width: 400px;
             justify-content: space-between;
-            align-items: center;
-            margin: 1rem;
+            align-items: top;
+            margin: 1rem 0;
+        }
+        .findwine-merchant-details {
+            line-height: 1.1;
         }
         .findwine-merchant-name {
             font-size: 1.5rem;
         }
-        .findwine-merchant-unit {
+        .findwine-merchant-extras {
             font-size: 1rem;
             color: grey;
-            margin-left: .5rem;
         }
         .findwine-merchant-price-currency {
             font-size: 1rem;
@@ -54,9 +60,11 @@ window.FindWine = (function() {
             function renderMerchantPrice(price) {
                 return `<li class="findwine-buy-item">
           <div class="findwine-merchant-details">
-             <span class="findwine-merchant-name"> ${price.merchant.name}</span>
-             <span class="findwine-merchant-unit"> ${price.purchase_unit} ml</span>
-             ${ price.minimum_purchase_unit > 1 ? `<span class="findwine-merchant-minimum"> ${price.purchase_unit} ml</span>` : '' }
+             <div class="findwine-merchant-name"> ${price.merchant.name}</div>
+             <div class="findwine-merchant-extras">
+                 <span class="findwine-merchant-unit"> ${price.purchase_unit} ml</span>
+                 ${ price.minimum_purchase_unit > 1 ? `<span class="findwine-merchant-minimum">(minimum ${price.minimum_purchase_unit})</span>` : '' }
+             </div>
           </div>
           <div class="findwine-merchant-price">
              <span class="findwine-merchant-price-currency"> R</span>
