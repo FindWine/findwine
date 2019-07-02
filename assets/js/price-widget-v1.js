@@ -37,6 +37,7 @@ window.FindWine = (function() {
         }
         a.findwine-buy-button:hover {
             // text-decoration: underline;
+            cursor: pointer;
         }
         li.findwine-no-data {
             font-size: 1em;
