@@ -11,35 +11,35 @@ window.FindWine = (function() {
             max-width: 400px;
             justify-content: space-between;
             align-items: top;
-            margin: 1rem 0;
+            margin: 1em 0;
         }
         .findwine-merchant-details {
             line-height: 1.1;
         }
         .findwine-merchant-name {
-            font-size: 1rem;
+            font-size: 1em;
         }
         .findwine-merchant-extras {
-            font-size: .75rem;
+            font-size: .75em;
             color: grey;
         }
         .findwine-merchant-price-currency {
-            font-size: .75rem;
+            font-size: .75em;
             color: grey;
         }
         .findwine-merchant-price-value {
-            font-size: 1rem;
+            font-size: 1em;
             font-weight: bold;
         }
         a.findwine-buy-button {
-            font-size: 1rem;
-            margin-left: .5rem;
+            font-size: 1em;
+            margin-left: .5em;
         }
         a.findwine-buy-button:hover {
             // text-decoration: underline;
         }
         li.findwine-no-data {
-            font-size: 1rem;
+            font-size: 1em;
         }
         `;
         // append style to page
