@@ -17,22 +17,22 @@ window.FindWine = (function() {
             line-height: 1.1;
         }
         .findwine-merchant-name {
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
         .findwine-merchant-extras {
-            font-size: 1rem;
+            font-size: .75rem;
             color: grey;
         }
         .findwine-merchant-price-currency {
-            font-size: 1rem;
+            font-size: .75rem;
             color: grey;
         }
         .findwine-merchant-price-value {
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: bold;
         }
         a.findwine-buy-button {
-            font-size: 1.5rem;
+            font-size: 1rem;
             margin-left: .5rem;
         }
         a.findwine-buy-button:hover {
