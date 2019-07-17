@@ -63,12 +63,12 @@ class MerchantWineInline(admin.StackedInline):
 
 class WineVintageAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     fieldsets = [
-        ('Name',        {'fields': ['wine', 'year', 'last_modified_by']}),
+        ('Name',        {'fields': ['wine', 'vintage_type', 'year', 'release_year', 'last_modified_by']}),
         ('Category',    {'fields': ['category', 'sub_category', 'blend', 'appellation', 'winemakers']}),
         ('Attributes',  {'fields': ['sweetness', 'wooded', 'organic', 'contains_sulphites', 'vegetarian']}),
         ('Specs',       {'fields': ['optimal_year_start', 'optimal_year_end', 'temp_min', 'temp_max', 'alcohol_percentage', 'residual_sugar', 'ph', 'total_acidity', 'total_sulphur']}),
         ('Copy',        {'fields': ['notes', 'description']}),
-        ('Files',       {'fields': ['image_pack_shot', 'image_label_vertical', 'image_label_horizontal', 'tasting_notes']}),
+        ('Files',       {'fields': ['image_pack_shot', 'image_label_vertical', 'tasting_notes']}),
         ('Status',      {'fields': ['status']}),
     ]
     inlines = [WineGrapeInline, MerchantWineInline, WineAwardInline, WineFoodPairingInline]

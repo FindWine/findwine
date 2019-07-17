@@ -88,13 +88,32 @@ class Producer(models.Model):
         ).order_by('-avg_rating')
 
 
-class Wine(models.Model):
+class Range(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     last_modified_by = models.CharField(blank=True, default="", max_length=100)
     producer = models.ForeignKey("Producer")
     name = models.CharField(max_length=256)
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['producer', 'name']
+        unique_together = (("producer", "name"),)
+
+class Wine(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    last_modified_by = models.CharField(blank=True, default="", max_length=100)
+    producer = models.ForeignKey("Producer")
+    range = models.ForeignKey("Range")
+    name = models.CharField(max_length=256)
     wine_range = models.CharField(null=True, blank=True, max_length=256)
+    image_pack_shot = models.ImageField(upload_to='images/wine_packshots/', null=True, blank=True,
+                                        max_length=500)
+    image_label_vertical = models.ImageField(upload_to='images/wine_label_vertical/', null=True, blank=True,
+                                             max_length=500)
 
     def __str__(self):
         return self.producer.name + ' ' + self.name
@@ -156,7 +175,15 @@ class WineVintage(models.Model):
     blend = models.ForeignKey("Blend", null=True, blank=True)
     appellation = models.ForeignKey("Appellation", null=True, blank=True)
     winemakers = models.ManyToManyField("Winemaker", blank=True, related_name='winemakers')
-    year = models.PositiveIntegerField()
+    vintage_type = models.CharField(
+        choices=(
+            ('Vintage', "Vintage"),
+            ('NV', "NV"),
+        ),
+        max_length=20, default='Vintage'
+    )
+    year = models.PositiveIntegerField(help_text="This is the vintage i.e. when harvest took place")
+    release_year = models.PositiveIntegerField(null=True, blank=True, help_text="When the wine was released")
     notes = models.TextField(blank=True)
     description = models.TextField(blank=True)
     sweetness = models.CharField(
@@ -186,8 +213,6 @@ class WineVintage(models.Model):
                                         max_length=500)
     image_label_vertical = models.ImageField(upload_to='images/winevintage_label_vertical/', null=True, blank=True,
                                              max_length=500)
-    image_label_horizontal = models.ImageField(upload_to='images/winevintage_label_horizontal/', null=True,
-                                               blank=True, max_length=500)
     tasting_notes = models.FileField(upload_to='documents/tasting_notes/', null=True, blank=True, max_length=500)
     status = models.CharField(
         choices=(
@@ -574,7 +599,7 @@ class WineFoodPairing(models.Model):
     ('1', "Perfect"),
     ('2', "Ok"),
     ),
-                                max_length=2, blank=True,
+                                max_length=2, blank=True, default='2'
     )
 
     def __str__(self):
