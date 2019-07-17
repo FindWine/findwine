@@ -12,15 +12,18 @@ SOUTH_AFRICAN_RAND_CODE = 'ZAR'
 # 'currency': 'XXX' to set a merchant country's currency
 COUNTRY_DATA = [
     (SOUTH_AFRICA_CODE, "South Africa", {'is_merchant': True, 'currency': SOUTH_AFRICAN_RAND_CODE}),
+    ('AR', "Argentina"),
     ('AU', "Australia", {'is_merchant': True, 'currency': 'AUD'}),
-    ('NZ', "New Zealand"),
+    ('CL', "Chile"),
+    ('CN', "China"),
     ('FR', "France"),
-    ('ES', "Spain"),
     ('IT', "Italy"),
+    ('LB', "Lebanon"),
+    ('NZ', "New Zealand"),
+    ('PT', "Portugal"),
+    ('ES', "Spain"),
     ('GB', "United Kingdom", {'is_merchant': True, 'currency': 'GBP'}),
     ('US', "United States", {'is_merchant': True, 'currency': 'USD'}),
-    ('AR', "Argentina"),
-    ('CL', "Chile"),
 ]
 
 

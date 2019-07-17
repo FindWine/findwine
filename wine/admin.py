@@ -2,8 +2,10 @@
 
 from django.contrib import admin
 from django.urls import reverse
+from .models import Country
 from .models import Appellation
 from .models import Producer
+from .models import Range
 from .models import Wine
 from .models import Category
 from .models import SubCategory
@@ -74,7 +76,7 @@ class WineVintageAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     inlines = [WineGrapeInline, MerchantWineInline, WineAwardInline, WineFoodPairingInline]
     list_display = ('wine', 'year', 'category', 'sub_category', 'status', 'last_modified')
     list_filter = ('status', 'date_created', 'last_modified')
-    search_fields = ['wine__name', 'wine__producer__name']
+    search_fields = ['wine__name', 'wine__producer__name', 'year']
     readonly_fields = ['last_modified_by']
 
     def save_formset(self, request, form, formset, change):
@@ -96,17 +98,31 @@ class WineVintageAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
 
 class WineAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     list_display = ('producer', 'name', 'last_modified')
-    list_filter = ('producer', 'date_created', 'last_modified')
+    list_filter = ('date_created', 'last_modified')
+    search_fields = ('producer__name', 'name')
     readonly_fields = ['last_modified_by']
 
 
+class ProducerAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
+    list_display = ('name', )
+    list_filter = ('country',)
+    search_fields = ('name',)
+
+    
+class RangeAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
+    list_display = ('name', 'producer')
+    readonly_fields = ['last_modified_by']
+    search_fields = ('producer__name', 'name')
+    
+    
 class MerchantWineAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     list_display = ('wine_vintage', 'merchant', 'available', 'last_modified')
     list_filter = ('available', 'merchant', 'last_modified')
-    search_fields = ('wine_vintage__wine__name', 'wine_vintage__wine__producer__name', 'external_id')
+    search_fields = ('wine_vintage__wine__name', 'wine_vintage__wine__producer__name', 'wine_vintage__year', 'external_id')
     readonly_fields = ['last_modified_by']
 
 
+admin.site.register(Country)
 admin.site.register(Appellation)
 admin.site.register(Category)
 admin.site.register(SubCategory)
@@ -127,5 +143,6 @@ admin.site.register(FoodPairing)
 admin.site.register(WineFoodPairing)
 admin.site.register(WineGrape)
 admin.site.register(Producer, ProducerAdmin)
+admin.site.register(Range, RangeAdmin)
 admin.site.register(Wine, WineAdmin)
 admin.site.register(WineVintage, WineVintageAdmin)

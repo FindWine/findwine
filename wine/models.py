@@ -21,6 +21,22 @@ class Round(Func):
     template = '%(function)s(%(expressions)s, 1)'
 
 
+class Country(models.Model):
+    name = models.CharField(max_length=256)
+    code = models.CharField(max_length=2, help_text="2 digit ISO e.g. ZA for South Africa")
+    currency_name = models.CharField(max_length=256, null=True, blank=True)
+    currency_code = models.CharField(max_length=3, help_text="3 digit ISO e.g. ZAR for South Africa")
+    currency_symbol = models.CharField(null=True, blank=True, max_length=1)
+    is_producer = models.NullBooleanField(help_text="No for a country that should not show up in Wine Vintage choices")
+    is_merchant = models.NullBooleanField(help_text="Yes to add a country that should show up in Merchant choices")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+
+
 class Appellation(models.Model):
     name = models.CharField(max_length=256)
     country = models.CharField(choices=get_all_country_wine_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
@@ -29,6 +45,7 @@ class Appellation(models.Model):
     level3 = models.CharField(null=True, blank=True, max_length=256)
     level4 = models.CharField(null=True, blank=True, max_length=256)
     level5 = models.CharField(null=True, blank=True, max_length=256)
+    country_model = models.ForeignKey("Country", null=True, blank=True)    
 
     def __str__(self):
         return self.name + ', ' + self.country
@@ -41,8 +58,9 @@ class Producer(models.Model):
     slug = models.CharField(max_length=MAX_UNIQUE_CHARFIELD, unique=True, editable=False)
     name = models.CharField(max_length=256)
     country = models.CharField(choices=get_all_country_wine_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
-    appellation_primary = models.ForeignKey("Appellation", null=True)
-    address = models.CharField(max_length=256)
+    country_model = models.ForeignKey("Country", null=True, blank=True)
+    appellation_primary = models.ForeignKey("Appellation", null=True, blank=True)
+    address = models.CharField(null=True, blank=True, max_length=256)
     coordinates_google = GeopositionField(null=True, blank=True)
     google_place_id = models.CharField(null=True, blank=True, max_length=256)
     opening_hours_mon = models.CharField(null=True, blank=True, max_length=256)
@@ -107,7 +125,7 @@ class Wine(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     last_modified_by = models.CharField(blank=True, default="", max_length=100)
     producer = models.ForeignKey("Producer")
-    range = models.ForeignKey("Range")
+    range = models.ForeignKey("Range", null=True, blank=True)
     name = models.CharField(max_length=256)
     wine_range = models.CharField(null=True, blank=True, max_length=256)
     image_pack_shot = models.ImageField(upload_to='images/wine_packshots/', null=True, blank=True,
@@ -399,6 +417,7 @@ class WineAward(models.Model):
 class Merchant(models.Model):
     name = models.CharField(max_length=256)
     country = models.CharField(choices=get_all_merchant_country_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
+    country_model = models.ForeignKey("Country", null=True, blank=True)
     priority = models.PositiveIntegerField()
     sales_commission_percentage = models.DecimalField(null=True, blank=True, max_digits=5, decimal_places=2,
                                                       help_text="Full percentage e.g. 8 for 8%")
@@ -451,6 +470,8 @@ class Customer(models.Model):
 class MerchantWine(models.Model):
     merchant = models.ForeignKey("Merchant")
     wine_vintage = models.ForeignKey("WineVintage")
+    # Add Country table in place and use currency from that
+    country_model = models.ForeignKey("Country", null=True, blank=True)
     country = models.CharField(choices=get_all_merchant_country_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
     currency = models.CharField(choices=get_all_currency_choices(), max_length=3, default=SOUTH_AFRICAN_RAND_CODE)
     price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2, help_text="e.g. 150.00")
