@@ -111,7 +111,7 @@ class Range(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     last_modified_by = models.CharField(blank=True, default="", max_length=100)
     producer = models.ForeignKey("Producer")
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=MAX_UNIQUE_CHARFIELD)
     
     def __str__(self):
         return self.name
