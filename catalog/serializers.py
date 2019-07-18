@@ -59,13 +59,15 @@ class MerchantWinePriceSerializer(serializers.ModelSerializer):
 
 
 class WinePriceSerializer(serializers.ModelSerializer):
+    lowest_price = serializers.DecimalField(read_only=True, max_digits=10, decimal_places=2,
+                                            source='get_price')
     average_price = serializers.DecimalField(read_only=True, max_digits=10, decimal_places=2)
     listings = MerchantWinePriceSerializer(read_only=True, many=True,
                                            source='get_prioritized_purchase_options')
 
     class Meta:
         model = WineVintage
-        fields = ('average_price', 'listings')
+        fields = ('lowest_price', 'average_price', 'listings')
 
 
 class AwardSerializer(serializers.ModelSerializer):
