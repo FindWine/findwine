@@ -38,19 +38,26 @@
               2. Embed HTML
           </h4>
           <p class="findwine_contact-paragraph">
-              Now, wherever you want to display the wine price widget you can put the following HTML code:
+              Now, wherever you want to display the wine price widget you can paste the following HTML code.
+              Note that there are two different formats&mdash;one for a button with a popup modal and another for a directly
+              embedded listing. See <a href="{% url 'wine:price_widget_test' %}">example demo here</a>:
           </p>
           <pre class="findwine_contact-paragraph"><code>
+              &lt;!-- for a popup "buy" button --&gt;
+              &lt;div id=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{wine-id}&quot; data-findwine-is-modal &gt;&lt;/div&gt;
+          </code></pre>
+          <pre class="findwine_contact-paragraph"><code>
+              &lt;!-- or, for directly embedded listings --&gt;
               &lt;div id=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{wine-id}&quot; &gt;&lt;/div&gt;
           </code></pre>
           <p class="findwine_contact-paragraph">
               The <code>wine-id</code> that should be used can be copied from the URL of the wine listing
               on <a href="https://www.findwine.com/">findwine.com</a>.
               For example, to list <a href="https://www.findwine.com/wine/tokara-cabernet-sauvignon-2014/">Tokara Cabernet Sauvignon 2014</a>
-              you would use the following code snippet:
+              with a popup button you would use the following code snippet:
           </p>
           <pre class="findwine_contact-paragraph"><code>
-              &lt;div class=&quot;findwine-price-widget&quot; data-findwine-id=&quot;<strong>tokara-cabernet-sauvignon-2014</strong>&quot; &gt;&lt;/div&gt;
+              &lt;div class=&quot;findwine-price-widget&quot; data-findwine-id=&quot;<strong>tokara-cabernet-sauvignon-2014</strong>&quot; data-findwine-is-modal &gt;&lt;/div&gt;
           </code></pre>
       </div>
   </div>
