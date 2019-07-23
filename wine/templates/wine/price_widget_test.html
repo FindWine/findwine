@@ -12,24 +12,30 @@
     <hr>
     <h4>{{ wine_vintage_with_one.long_name }}</h4>
     <p>
-        This wine was chosen because it has exactly one available merchant.
+        This wine has exactly one available merchant.
     </p>
-    <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_one.slug}}" ></div>
+    <h5>Modal button</h5>
     <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_one.slug}}" data-findwine-is-modal></div>
+    <h5>Inline listing</h5>
+    <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_one.slug}}" ></div>
     <hr>
     <h4>{{ wine_vintage_with_two_or_more.long_name }}</h4>
     <p>
         This wine was chosen because it has more than one available merchant.
     </p>
-    <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_two_or_more.slug}}" ></div>
+    <h5>Modal button</h5>
     <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_two_or_more.slug}}" data-findwine-is-modal></div>
+    <h5>Inline listing</h5>
+    <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_two_or_more.slug}}" ></div>
     <hr>
     <h4>{{ wine_vintage_with_nothing.long_name }}</h4>
     <p>
         This wine was chosen because it has no available merchants.
     </p>
+    <h5>Modal button</h5>
+    <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_nothing.slug}}" data-findwine-is-modal ></div>
+    <h5>Inline listing</h5>
     <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_nothing.slug}}" ></div>
-    <div class="findwine-price-widget" data-findwine-id="{{wine_vintage_with_nothing.slug}} data-findwine-is-modal" ></div>
 </div>
 {% endblock %}
 {% block page_scripts %}
