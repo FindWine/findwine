@@ -216,6 +216,8 @@ yarn add css-loader --dev
 
 ## Building Front end
 
+### JavaScript
+
 Watch for changes in develop mode:
 
 `./node_modules/webpack/bin/webpack.js --watch`
@@ -224,6 +226,15 @@ Watch for changes in develop mode:
 Build for production:
 
 `./node_modules/webpack/bin/webpack.js --watch --optimize-minimize -p`
+
+
+### Styles
+
+Compile CSS with the following:
+
+```
+sass --watch wine/static/wine/findwine.scss:wine/static/wine/findwine.css
+```
 
 # Todos
 
