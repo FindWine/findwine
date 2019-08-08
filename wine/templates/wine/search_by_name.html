@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <div id="search-bar" data-search-url="/api/search/">
+    <div id="search-bar" data-search-url="/api/search/" data-url-base="{{ request.path }}">
     </div>
 
 {% endblock %}

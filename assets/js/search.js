@@ -197,8 +197,9 @@ class SearchByNamePage extends React.Component {
     });
 
     let params = queryString.stringify({q: this.state.searchText});
+
     fetch(this.props.searchUrl + '?' + params).then((response) => this._updateResultsFromResponse(response));
-    window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`);
+    window.history.replaceState(params, 'Search Results', `${this.props.urlBase}?${params}`);
 
     return(
       <div className="container">
@@ -241,7 +242,7 @@ class SearchByNamePage extends React.Component {
 let container = document.getElementById('search-bar');
 if (container) {
   ReactDOM.render(
-    <SearchByNamePage searchUrl={container.dataset.searchUrl} />,
+    <SearchByNamePage searchUrl={container.dataset.searchUrl} urlBase={container.dataset.urlBase}/>,
     document.getElementById('search-bar')
   );
 }
