@@ -1600,7 +1600,13 @@ select:-webkit-autofill {
 .findwine_search-results {
   display: flex;
   align-items: flex-start;
-  border-bottom: 1px solid #dbe0e4; }
+  border-bottom: 1px solid #dbe0e4;
+  flex-direction: column; }
+  .findwine_search-results .embed-info {
+    align-self: start;
+    margin-top: 1em; }
+    .findwine_search-results .embed-info:last-child {
+      margin-bottom: 1em; }
   .findwine_search-results:last-child {
     border-bottom: 1px solid #dbe0e4; }
   @media (min-width: 992px) {
