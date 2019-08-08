@@ -75,6 +75,20 @@ class WineVintageSearchViewSet(viewsets.ReadOnlyModelViewSet):
         return wines.order_by('-available', *DEFAULT_SORT)
 
 
+class WineVintagePartnerSearchViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = WineVintage.objects.all()
+    serializer_class = WineVintageSerializer
+
+    def get_queryset(self):
+        query_text = self.request.GET.get('q', '')
+        wines = WineVintage.objects.all()
+        for term in query_text.split():
+             query = Q(wine__name__icontains=term) | Q(wine__producer__name__icontains=term)
+             wines = wines.filter(query)
+        wines = _add_computed_columns(wines)
+        return wines.order_by('-available', *DEFAULT_SORT)
+
+
 def _add_computed_columns(wines):
     return wines.annotate(
         available=Exists(MerchantWine.objects.filter(available=True, wine_vintage=OuterRef('pk'))),
