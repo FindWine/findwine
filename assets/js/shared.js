@@ -1,6 +1,60 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+export class WineRow extends React.Component {
+  render() {
+      var getPriceElement = function(winevintage) {
+        var currencyDisplay = winevintage.available ? 'R' : 'Unavailable';
+        var priceDisplay = winevintage.available ? winevintage.price : '';
+        return (
+          <div>
+            <div className="findwine_vintage-currency"> {currencyDisplay} </div>
+            <div className="findwine_vintage-price"> {priceDisplay} </div>
+          </div>
+        );
+      };
+
+      const imageUrl = this.props.wineVintage.image_url ? this.props.wineVintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
+      return (
+          <a href={this.props.wineVintage.details_url} target="_blank">
+            <div className="findwine_search-results">
+              <div className="findwine_search-result--table">
+                <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${this.props.wineVintage.rating_category}`}> {this.props.wineVintage.rating_display} </div>
+                <div className="findwine_vintage--image">
+                  <img src={ imageUrl } alt={this.props.wineVintage.wine.name } className="img-fluid rounded findwine_vintage--image-img" id="image"/>
+                </div>
+                <div className="findwine_vintage-details">
+                  <div className="findwine_vintage-producer">
+                    {this.props.wineVintage.wine.producer}
+                  </div>
+                  <h4 className="findwine_vintage-vintage" id="wine">
+                    {this.props.wineVintage.wine.name } { this.props.wineVintage.year }
+                  </h4>
+                  <div className="findwine_vintage-row">
+                    <p className="findwine_vintage-category">
+                      { this.props.wineVintage.sub_category }
+                    </p>
+                    <div className="findwine_vintage-table--display hidden-sm-up">
+                        {getPriceElement(this.props.wineVintage)}
+                    </div>
+                  </div>
+                </div>
+                <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
+                  {getPriceElement(this.props.wineVintage)}
+                  <button className="btn findwine_view-button"
+                          href={this.props.wineVintage.details_url} target="_blank"
+                          role="button"> View
+                    <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
+                         className="findwine_view-button-arrow"></img>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </a>
+      );
+  }
+}
+
 
 export class WineList extends React.Component {
   render() {
@@ -13,56 +67,11 @@ export class WineList extends React.Component {
       );
     }
     else if (this.props.wines.length > 0) {
-      var getPriceElement = function(winevintage) {
-        var currencyDisplay = winevintage.available ? 'R' : 'Unavailable';
-        var priceDisplay = winevintage.available ? winevintage.price : '';
-        return (
-          <div>
-            <div className="findwine_vintage-currency"> {currencyDisplay} </div>
-            <div className="findwine_vintage-price"> {priceDisplay} </div>
-          </div>
-        );
-      };
       return (
         <div className="findwine_vintage-table">
           {this.props.wines.map((winevintage, index) => {
-            const imageUrl = winevintage.image_url ? winevintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
             return (
-              <a href={winevintage.details_url} key={index} target="_blank">
-                <div className="findwine_search-results">
-                  <div className="findwine_search-result--table">
-                    <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${winevintage.rating_category}`}> {winevintage.rating_display} </div>
-                    <div className="findwine_vintage--image">
-                      <img src={ imageUrl } alt={winevintage.wine.name } className="img-fluid rounded findwine_vintage--image-img" id="image"/>
-                    </div>
-                    <div className="findwine_vintage-details">
-                      <div className="findwine_vintage-producer">
-                        {winevintage.wine.producer}
-                      </div>
-                      <h4 className="findwine_vintage-vintage" id="wine">
-                        {winevintage.wine.name } { winevintage.year }
-                      </h4>
-                      <div className="findwine_vintage-row">
-                        <p className="findwine_vintage-category">
-                          { winevintage.sub_category }
-                        </p>
-                        <div className="findwine_vintage-table--display hidden-sm-up">
-                            {getPriceElement(winevintage)}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
-                      {getPriceElement(winevintage)}
-                      <button className="btn findwine_view-button"
-                              href={winevintage.details_url} target="_blank"
-                              role="button"> View
-                        <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
-                             className="findwine_view-button-arrow"></img>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </a>
+                <WineRow wineVintage={winevintage} key={index} />
             );
           })}
         </div>
@@ -77,6 +86,7 @@ export class WineList extends React.Component {
       );
     }
   }
+
 }
 
 export class Paginator extends React.Component {
@@ -120,4 +130,3 @@ export function constructImagePath(path) {
   // assumes defined on the page.
   return `${STATIC_BASE_PATH}${path}`;
 }
-
