@@ -3,14 +3,12 @@
 
 {% block content %}
 
-    <div id="search-bar">
+    <div id="search-bar" data-search-url="/api/search/">
     </div>
 
 {% endblock %}
 {% block page_scripts %}
 <script>
-    // var CATEGORY_CHOICES = {{ categories|safe }}; // must be a list since these are ordered
-    // var CATEGORY_MAP = {{ category_mapping|safe }};
     var STATIC_BASE_PATH = "{% static '' %}";
     $(function () {
         // show nav

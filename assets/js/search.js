@@ -6,9 +6,6 @@ import {WineList, Paginator, constructImagePath} from "./shared";
 
 const queryString = require('query-string');
 
-// todo: figure out how to django-ize these
-const SEARCH_API_URL = '/api/search/';
-
 class SearchByNameControl extends React.Component {
   render() {
     return (
@@ -200,7 +197,7 @@ class SearchByNamePage extends React.Component {
     });
 
     let params = queryString.stringify({q: this.state.searchText});
-    fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
+    fetch(this.props.searchUrl + '?' + params).then((response) => this._updateResultsFromResponse(response));
     window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`);
 
     return(
@@ -241,7 +238,10 @@ class SearchByNamePage extends React.Component {
 
 }
 
-ReactDOM.render(
-  <SearchByNamePage/>,
-  document.getElementById('search-bar')
-);
+let container = document.getElementById('search-bar');
+if (container) {
+  ReactDOM.render(
+    <SearchByNamePage searchUrl={container.dataset.searchUrl} />,
+    document.getElementById('search-bar')
+  );
+}
