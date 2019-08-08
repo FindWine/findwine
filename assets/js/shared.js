@@ -3,56 +3,93 @@ import ReactDOM from 'react-dom';
 
 export class WineRow extends React.Component {
   render() {
-      var getPriceElement = function(winevintage) {
-        var currencyDisplay = winevintage.available ? 'R' : 'Unavailable';
-        var priceDisplay = winevintage.available ? winevintage.price : '';
-        return (
-          <div>
-            <div className="findwine_vintage-currency"> {currencyDisplay} </div>
-            <div className="findwine_vintage-price"> {priceDisplay} </div>
-          </div>
-        );
-      };
+      if (this.props.partnerMode) {
+          return this._renderPartnerMode();
+      } else {
+          return this._render();
+      }
+  }
 
+  _render() {
       const imageUrl = this.props.wineVintage.image_url ? this.props.wineVintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
       return (
           <a href={this.props.wineVintage.details_url} target="_blank">
             <div className="findwine_search-results">
-              <div className="findwine_search-result--table">
-                <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${this.props.wineVintage.rating_category}`}> {this.props.wineVintage.rating_display} </div>
-                <div className="findwine_vintage--image">
-                  <img src={ imageUrl } alt={this.props.wineVintage.wine.name } className="img-fluid rounded findwine_vintage--image-img" id="image"/>
-                </div>
-                <div className="findwine_vintage-details">
-                  <div className="findwine_vintage-producer">
-                    {this.props.wineVintage.wine.producer}
-                  </div>
-                  <h4 className="findwine_vintage-vintage" id="wine">
-                    {this.props.wineVintage.wine.name } { this.props.wineVintage.year }
-                  </h4>
-                  <div className="findwine_vintage-row">
-                    <p className="findwine_vintage-category">
-                      { this.props.wineVintage.sub_category }
-                    </p>
-                    <div className="findwine_vintage-table--display hidden-sm-up">
-                        {getPriceElement(this.props.wineVintage)}
-                    </div>
-                  </div>
-                </div>
-                <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
-                  {getPriceElement(this.props.wineVintage)}
-                  <button className="btn findwine_view-button"
-                          href={this.props.wineVintage.details_url} target="_blank"
-                          role="button"> View
-                    <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
-                         className="findwine_view-button-arrow"></img>
-                  </button>
-                </div>
-              </div>
+                {this._renderWine()}
             </div>
           </a>
       );
   }
+
+  _renderPartnerMode() {
+      return (
+          <div>
+              <div className="findwine_search-results">
+                {this._renderWine()}
+                <div className="embed-info">
+                    <strong>Embed code (popup)</strong>
+                    <pre><code>
+                        &lt;div class=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{this.props.wineVintage.slug}&quot; data-findwine-is-modal &gt;&lt;/div&gt;
+                    </code></pre>
+                </div>
+                <div className="embed-info">
+                    <strong>Embed code (direct)</strong>
+                    <pre><code>
+                        &lt;div class=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{this.props.wineVintage.slug}&quot; &gt;&lt;/div&gt;
+                    </code></pre>
+                </div>
+            </div>
+          </div>
+      );
+  }
+
+  _renderWine() {
+      const imageUrl = this.props.wineVintage.image_url ? this.props.wineVintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
+      return (
+          <div className="findwine_search-result--table">
+            <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${this.props.wineVintage.rating_category}`}> {this.props.wineVintage.rating_display} </div>
+            <div className="findwine_vintage--image">
+              <img src={ imageUrl } alt={this.props.wineVintage.wine.name } className="img-fluid rounded findwine_vintage--image-img" id="image"/>
+            </div>
+            <div className="findwine_vintage-details">
+              <div className="findwine_vintage-producer">
+                {this.props.wineVintage.wine.producer}
+              </div>
+              <h4 className="findwine_vintage-vintage" id="wine">
+                {this.props.wineVintage.wine.name } { this.props.wineVintage.year }
+              </h4>
+              <div className="findwine_vintage-row">
+                <p className="findwine_vintage-category">
+                  { this.props.wineVintage.sub_category }
+                </p>
+                <div className="findwine_vintage-table--display hidden-sm-up">
+                    {this._getPriceElement(this.props.wineVintage)}
+                </div>
+              </div>
+            </div>
+            <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
+              {this._getPriceElement(this.props.wineVintage)}
+              <button className="btn findwine_view-button"
+                      href={this.props.wineVintage.details_url} target="_blank"
+                      role="button"> View
+                <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
+                     className="findwine_view-button-arrow"></img>
+              </button>
+            </div>
+          </div>
+      );
+  }
+  _getPriceElement(winevintage) {
+    var currencyDisplay = winevintage.available ? 'R' : 'Unavailable';
+    var priceDisplay = winevintage.available ? winevintage.price : '';
+    return (
+      <div>
+        <div className="findwine_vintage-currency"> {currencyDisplay} </div>
+        <div className="findwine_vintage-price"> {priceDisplay} </div>
+      </div>
+    );
+  };
+
 }
 
 
@@ -72,7 +109,7 @@ export class WineList extends React.Component {
           {this._renderPartnerInfo()}
           {this.props.wines.map((winevintage, index) => {
             return (
-                <WineRow wineVintage={winevintage} key={index} />
+                <WineRow wineVintage={winevintage} partnerMode={this.props.partnerMode} key={index} />
             );
           })}
         </div>
