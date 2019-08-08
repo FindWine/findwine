@@ -1,9 +1,7 @@
 {% extends 'wine/base.html' %}
 {% load staticfiles %}
-
 {% block content %}
-
-    <div id="search-bar" data-search-url="/api/search/" data-url-base="{{ request.path }}">
+    <div id="search-bar" data-search-url="/api/partner-search/" data-url-base="{{ request.path }}" data-partner-mode>
     </div>
 
 {% endblock %}
@@ -12,7 +10,7 @@
     var STATIC_BASE_PATH = "{% static '' %}";
     $(function () {
         // show nav
-        $('#top').show();
+        // $('#top').show();
     });
 </script>
 <script src="{% static 'js/search-bundle.js' %}"></script>

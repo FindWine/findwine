@@ -6,9 +6,6 @@ import {WineList, Paginator, constructImagePath} from "./shared";
 
 const queryString = require('query-string');
 
-// todo: figure out how to django-ize these
-const SEARCH_API_URL = '/api/search/';
-
 class SearchByNameControl extends React.Component {
   render() {
     return (
@@ -61,6 +58,7 @@ class SearchByNamePage extends React.Component {
 
   render() {
     let showPaginator = (this.state.wines.length);
+    let partnerMode = this.props.partnerMode;
     let paginator = showPaginator ? <Paginator
       nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
       prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
@@ -170,7 +168,7 @@ class SearchByNamePage extends React.Component {
         </nav>
         <div className="container">
            <div className="findwine_search-results-holder">
-             <WineList wines={this.state.wines} isLoading={this.state.isLoading}/>
+             <WineList wines={this.state.wines} isLoading={this.state.isLoading} partnerMode={this.props.partnerMode}/>
             {paginator}
           </div>
         </div>
@@ -200,8 +198,9 @@ class SearchByNamePage extends React.Component {
     });
 
     let params = queryString.stringify({q: this.state.searchText});
-    fetch(SEARCH_API_URL + '?' + params).then((response) => this._updateResultsFromResponse(response));
-    window.history.replaceState(params, 'Search Results', `/search-by-name/?${params}`);
+
+    fetch(this.props.searchUrl + '?' + params).then((response) => this._updateResultsFromResponse(response));
+    window.history.replaceState(params, 'Search Results', `${this.props.urlBase}?${params}`);
 
     return(
       <div className="container">
@@ -241,7 +240,11 @@ class SearchByNamePage extends React.Component {
 
 }
 
-ReactDOM.render(
-  <SearchByNamePage/>,
-  document.getElementById('search-bar')
-);
+let container = document.getElementById('search-bar');
+if (container) {
+  ReactDOM.render(
+    <SearchByNamePage searchUrl={container.dataset.searchUrl} urlBase={container.dataset.urlBase}
+                      partnerMode={container.dataset.partnerMode !== undefined}/>,
+    document.getElementById('search-bar')
+  );
+}

@@ -2286,6 +2286,16 @@ select:-webkit-autofill {
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid $lightest-grey-border;
+    flex-direction: column;
+
+    .embed-info {
+      align-self: start;
+      margin-top: 1em;
+
+      &:last-child {
+        margin-bottom: 1em;
+      }
+    }
 
     &:last-child {
       border-bottom: 1px solid $lightest-grey-border;
