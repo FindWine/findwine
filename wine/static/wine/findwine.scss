@@ -2286,6 +2286,7 @@ select:-webkit-autofill {
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid $lightest-grey-border;
+    flex-direction: column;
 
     &:last-child {
       border-bottom: 1px solid $lightest-grey-border;
