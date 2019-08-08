@@ -69,12 +69,14 @@ export class WineRow extends React.Component {
             </div>
             <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
               {this._getPriceElement(this.props.wineVintage)}
-              <button className="btn findwine_view-button"
-                      href={this.props.wineVintage.details_url} target="_blank"
-                      role="button"> View
-                <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
-                     className="findwine_view-button-arrow"></img>
-              </button>
+              <a href={this.props.wineVintage.details_url} target="_blank">
+                  <button className="btn findwine_view-button"
+                          href={this.props.wineVintage.details_url} target="_blank"
+                          role="button"> View
+                    <img src={ constructImagePath('wine/images/SVGs/arrow-right-white.svg') }
+                         className="findwine_view-button-arrow"></img>
+                  </button>
+              </a>
             </div>
           </div>
       );
