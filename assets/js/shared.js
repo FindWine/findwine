@@ -69,6 +69,7 @@ export class WineList extends React.Component {
     else if (this.props.wines.length > 0) {
       return (
         <div className="findwine_vintage-table">
+          {this._renderPartnerInfo()}
           {this.props.wines.map((winevintage, index) => {
             return (
                 <WineRow wineVintage={winevintage} key={index} />
@@ -87,6 +88,13 @@ export class WineList extends React.Component {
     }
   }
 
+  _renderPartnerInfo() {
+      if (this.props.partnerMode) {
+          return <p>For more details on how to use embed codes see <a href="/partners/" target="_blank">this page</a>.</p>
+      } else {
+          return '';
+      }
+  }
 }
 
 export class Paginator extends React.Component {
