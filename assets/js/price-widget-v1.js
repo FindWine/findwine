@@ -7,10 +7,8 @@ window.FindWine = (function() {
         } 
         li.findwine-buy-item {
             display: flex;
-            min-width: 200px;
-            max-width: 400px;
             justify-content: space-between;
-            align-items: top;
+            align-items: baseline;
             margin: 1em 0;
         }
         .findwine-merchant-details {
@@ -18,25 +16,22 @@ window.FindWine = (function() {
         }
         .findwine-merchant-name {
             font-size: 1em;
+            font-weight: bold;   
         }
         .findwine-merchant-extras {
             font-size: .75em;
             color: grey;
         }
-        .findwine-merchant-price-currency {
-            font-size: .75em;
-            color: grey;
-        }
-        .findwine-merchant-price-value {
+        .findwine-merchant-price {
+            margin-left: 2em;
             font-size: 1em;
-            font-weight: bold;
+            white-space: nowrap
         }
         a.findwine-buy-button {
             font-size: 1em;
             margin-left: .5em;
         }
         a.findwine-buy-button:hover {
-            // text-decoration: underline;
             cursor: pointer;
         }
         li.findwine-no-data {
@@ -58,16 +53,20 @@ window.FindWine = (function() {
         }
         
         .findwine-modal.is-open {
-            display: block;
+            display: inline-block;
+        }
+        
+        .findwine-modal-wrapper {
+            margin: 15% auto; /* 15% from the top and centered */
+            display: flex;
+            justify-content: center;
         }
         
         .findwine-modal-content {
+            display: inline-block;
             background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
-            border: 1px solid #888;
-            min-width: 300px; /* Could be more or less, depending on screen size */
-            max-width: 500px; /* Could be more or less, depending on screen size */
+            border: 1px solid #888;            
         }
         .findwine-modal-close {
           color: #aaa;
@@ -109,8 +108,7 @@ window.FindWine = (function() {
              </div>
           </div>
           <div class="findwine-merchant-price">
-             <span class="findwine-merchant-price-currency"> R</span>
-             <span class="findwine-merchant-price-value"> ${price.price}</span>
+             R${price.price}
              <a class="findwine-buy-button" href="${wineJson.buy_url}?from=${partnerId}&merchant_wine=${price.id}" target="_blank" role="button"> Buy</a>
           </div>          
         </li>`;
@@ -124,9 +122,12 @@ window.FindWine = (function() {
     function renderModal(widgetElement, partnerId, wineJson) {
         let modalElt = document.createElement('div');
         modalElt.classList.add('findwine-modal');
+        let modalWrapper = document.createElement('div');
+        modalWrapper.classList.add('findwine-modal-wrapper');
+        modalElt.appendChild(modalWrapper);
         let modalInner = document.createElement('div');
         modalInner.classList.add('findwine-modal-content');
-        modalElt.appendChild(modalInner);
+        modalWrapper.appendChild(modalInner);
         let closeButton = document.createElement('span');
         closeButton.classList.add('findwine-modal-close');
         closeButton.innerHTML = '&times;';
@@ -166,7 +167,6 @@ window.FindWine = (function() {
                 let wineId = widget.dataset.findwineId;
                 // https://stackoverflow.com/a/18007234/8207
                 let isModal = widget.dataset.findwineIsModal !== undefined;
-                console.log("is modal", isModal);
                 let url = `${apiRoot}${wineId}/`;
                 fetch(url).then((response) => {
                     if (response.ok) {
