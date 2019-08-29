@@ -83,8 +83,17 @@ class WineVintagePartnerSearchViewSet(viewsets.ReadOnlyModelViewSet):
         query_text = self.request.GET.get('q', '')
         wines = WineVintage.objects.all()
         for term in query_text.split():
-             query = Q(wine__name__icontains=term) | Q(wine__producer__name__icontains=term)
-             wines = wines.filter(query)
+            query = (
+                Q(wine__name__icontains=term) |
+                Q(wine__producer__name__icontains=term)
+            )
+            # if it looks like a number add year search
+            try:
+                year = int(term)
+                query |= Q(year=year)
+            except ValueError:
+                pass
+            wines = wines.filter(query)
         wines = _add_computed_columns(wines)
         return wines.order_by('-available', *DEFAULT_SORT)
 
