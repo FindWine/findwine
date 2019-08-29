@@ -58,7 +58,6 @@ class SearchByNamePage extends React.Component {
 
   render() {
     let showPaginator = (this.state.wines.length);
-    let partnerMode = this.props.partnerMode;
     let paginator = showPaginator ? <Paginator
       nextPage={() => this.nextPage()} showNext={Boolean(this.state.nextPageUrl)}
       prevPage={() => this.prevPage()} showPrevious={Boolean(this.state.prevPageUrl)}
