@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 export class WineRow extends React.Component {
   render() {
+      // this separation is necessary because otherwise the whole row is clickable in partner mode
       if (this.props.partnerMode) {
           return this._renderPartnerMode();
       } else {
@@ -26,28 +27,24 @@ export class WineRow extends React.Component {
           <div>
               <div className="findwine_search-results">
                 {this._renderWine()}
-                <div className="embed-info">
-                    <strong>Embed code (popup)</strong>
-                    <pre><code>
-                        &lt;div class=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{this.props.wineVintage.slug}&quot; data-findwine-is-modal &gt;&lt;/div&gt;
-                    </code></pre>
-                </div>
-                <div className="embed-info">
-                    <strong>Embed code (direct)</strong>
-                    <pre><code>
-                        &lt;div class=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{this.props.wineVintage.slug}&quot; &gt;&lt;/div&gt;
-                    </code></pre>
-                </div>
             </div>
           </div>
       );
+  }
+
+  _getDisplayClassPartnerHidden() {
+      return this.props.partnerMode ? 'd-none' : '';
+  }
+
+  _getDisplayClassPartnerVisible() {
+      return this.props.partnerMode ? '': 'd-none';
   }
 
   _renderWine() {
       const imageUrl = this.props.wineVintage.image_url ? this.props.wineVintage.image_url : constructImagePath('wine/images/other/placeholder.jpg');
       return (
           <div className="findwine_search-result--table">
-            <div className={`findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${this.props.wineVintage.rating_category}`}> {this.props.wineVintage.rating_display} </div>
+            <div className={`${this._getDisplayClassPartnerHidden()} findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${this.props.wineVintage.rating_category}`}> {this.props.wineVintage.rating_display} </div>
             <div className="findwine_vintage--image">
               <img src={ imageUrl } alt={this.props.wineVintage.wine.name } className="img-fluid rounded findwine_vintage--image-img" id="image"/>
             </div>
@@ -58,7 +55,7 @@ export class WineRow extends React.Component {
               <h4 className="findwine_vintage-vintage" id="wine">
                 {this.props.wineVintage.wine.name } { this.props.wineVintage.year }
               </h4>
-              <div className="findwine_vintage-row">
+              <div className={`findwine_vintage-row ${this._getDisplayClassPartnerHidden()}`}>
                 <p className="findwine_vintage-category">
                   { this.props.wineVintage.sub_category }
                 </p>
@@ -67,7 +64,7 @@ export class WineRow extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down">
+            <div className={`findwine_vintage-table--display findwine_vintage-table--display-search hidden-sm-down ${this._getDisplayClassPartnerHidden()}`}>
               {this._getPriceElement(this.props.wineVintage)}
               <a href={this.props.wineVintage.details_url} target="_blank">
                   <button className="btn findwine_view-button"
@@ -77,6 +74,18 @@ export class WineRow extends React.Component {
                          className="findwine_view-button-arrow"></img>
                   </button>
               </a>
+            </div>
+            <div className={`embed-info ${this._getDisplayClassPartnerVisible()}`}>
+                <strong>Embed code (popup)</strong>
+                <pre><code>
+                    &lt;div class=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{this.props.wineVintage.slug}&quot; data-findwine-is-modal &gt;&lt;/div&gt;
+                </code></pre>
+            </div>
+            <div className={`embed-info ${this._getDisplayClassPartnerVisible()}`}>
+                <strong>Embed code (direct)</strong>
+                <pre><code>
+                    &lt;div class=&quot;findwine-price-widget&quot; data-findwine-id=&quot;{this.props.wineVintage.slug}&quot; &gt;&lt;/div&gt;
+                </code></pre>
             </div>
           </div>
       );
