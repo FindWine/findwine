@@ -30,6 +30,7 @@ window.FindWine = (function() {
         a.findwine-buy-button {
             font-size: 1em;
             margin-left: .5em;
+            display: inline;
         }
         a.findwine-buy-button:hover {
             cursor: pointer;
