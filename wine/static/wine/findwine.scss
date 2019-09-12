@@ -2291,6 +2291,8 @@ select:-webkit-autofill {
     .embed-info {
       align-self: start;
       margin-top: 1em;
+      max-width: 20em;
+      padding-right: 1em;
 
       &:last-child {
         margin-bottom: 1em;
