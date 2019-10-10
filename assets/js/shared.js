@@ -45,7 +45,7 @@ export class WineRow extends React.Component {
       return (
           <div className="findwine_search-result--table">
             <div className={`${this._getDisplayClassPartnerHidden()} findwine_vintage-rating--box findwine_vintage-rating findwine_rating-box-${this.props.wineVintage.rating_category}`}> {this.props.wineVintage.rating_display} </div>
-            <div className="findwine_vintage--image">
+            <div className={`findwine_vintage--image ${this.props.partnerMode ? 'partner-mode' : ''}`}>
               <img src={ imageUrl } alt={this.props.wineVintage.wine.name } className="img-fluid rounded findwine_vintage--image-img" id="image"/>
             </div>
             <div className="findwine_vintage-details">

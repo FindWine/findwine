@@ -2094,11 +2094,15 @@ select:-webkit-autofill {
     text-align: center;
     overflow: hidden;
     align-self: flex-end;
-
     @include breakpoint(lg) {
       width: 80px;
       height: 120px;
-      margin: 0px 50px;
+      &:not(.partner-mode) {
+        margin: 0px 50px;
+      }
+      &.partner-mode {
+        margin-right: 50px;
+      }
     }
   }
 
