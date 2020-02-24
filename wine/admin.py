@@ -11,6 +11,7 @@ from .models import Category
 from .models import SubCategory
 from .models import Blend
 from .models import Winemaker
+from .models import Viticulturist
 from .models import WineVintage
 from .models import Awardification
 from .models import AwardBody
@@ -26,6 +27,9 @@ from .models import Grape
 from .models import WineGrape
 from .models import FoodPairing
 from .models import WineFoodPairing
+from .models import Critic
+from .models import CriticReport
+from .models import CriticReview
 
 
 class ModelSaveRecordingMixIn(object):
@@ -57,6 +61,11 @@ class WineAwardInline(admin.TabularInline):
     extra = 0
 
 
+class CriticReviewInline(admin.TabularInline):
+    model = CriticReview
+    extra = 0
+
+
 class MerchantWineInline(admin.StackedInline):
     model = MerchantWine
     extra = 0
@@ -66,14 +75,14 @@ class MerchantWineInline(admin.StackedInline):
 class WineVintageAdmin(ModelSaveRecordingMixIn, admin.ModelAdmin):
     fieldsets = [
         ('Name',        {'fields': ['wine', 'vintage_type', 'year', 'release_year', 'last_modified_by']}),
-        ('Category',    {'fields': ['category', 'sub_category', 'blend', 'appellation', 'winemakers']}),
-        ('Attributes',  {'fields': ['sweetness', 'wooded', 'organic', 'contains_sulphites', 'vegetarian']}),
-        ('Specs',       {'fields': ['optimal_year_start', 'optimal_year_end', 'temp_min', 'temp_max', 'alcohol_percentage', 'residual_sugar', 'ph', 'total_acidity', 'total_sulphur']}),
+        ('Category',    {'fields': ['category', 'sub_category', 'blend', 'appellation', 'winemakers', 'viticulturists']}),
+        ('Attributes',  {'fields': ['sweetness', 'wooded', 'organic', 'biodynamic','contains_sulphites', 'vegetarian', 'vegan']}),
+        ('Specs',       {'fields': ['optimal_year_start', 'optimal_year_end', 'temp_min', 'temp_max', 'alcohol_percentage', 'residual_sugar', 'ph', 'volatile_acidity', 'total_acidity', 'total_sulphur']}),
         ('Copy',        {'fields': ['notes', 'description']}),
         ('Files',       {'fields': ['image_pack_shot', 'image_label_vertical', 'tasting_notes']}),
         ('Status',      {'fields': ['status']}),
     ]
-    inlines = [WineGrapeInline, MerchantWineInline, WineAwardInline, WineFoodPairingInline]
+    inlines = [WineGrapeInline, MerchantWineInline, WineAwardInline, CriticReviewInline, WineFoodPairingInline]
     list_display = ('wine', 'year', 'category', 'sub_category', 'status', 'last_modified')
     list_filter = ('status', 'date_created', 'last_modified')
     search_fields = ['wine__name', 'wine__producer__name', 'year']
@@ -128,6 +137,7 @@ admin.site.register(Category)
 admin.site.register(SubCategory)
 admin.site.register(Blend)
 admin.site.register(Winemaker)
+admin.site.register(Viticulturist)
 admin.site.register(Award)
 admin.site.register(Awardification)
 admin.site.register(AwardBody)
@@ -146,3 +156,6 @@ admin.site.register(Producer, ProducerAdmin)
 admin.site.register(Range, RangeAdmin)
 admin.site.register(Wine, WineAdmin)
 admin.site.register(WineVintage, WineVintageAdmin)
+admin.site.register(Critic)
+admin.site.register(CriticReport)
+admin.site.register(CriticReview)
