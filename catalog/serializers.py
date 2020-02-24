@@ -27,20 +27,16 @@ class WineSerializer(serializers.ModelSerializer):
 class WineImageSerializer(serializers.ModelSerializer):
     pack_shot = serializers.SerializerMethodField()
     label_vertical = serializers.SerializerMethodField()
-    label_horizontal = serializers.SerializerMethodField()
 
     class Meta:
         model = WineVintage
-        fields = ('pack_shot', 'label_vertical', 'label_horizontal')
+        fields = ('pack_shot', 'label_vertical')
 
     def get_pack_shot(self, obj):
         return obj.image_pack_shot.url if obj.image_pack_shot else ''
 
     def get_label_vertical(self, obj):
         return obj.image_label_vertical.url if obj.image_label_vertical else ''
-
-    def get_label_horizontal(self, obj):
-        return obj.image_label_horizontal.url if obj.image_label_horizontal else ''
 
 
 class MerchantSerializer(serializers.ModelSerializer):
