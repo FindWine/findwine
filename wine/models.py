@@ -177,7 +177,7 @@ class Blend(models.Model):
 
 class Winemaker(models.Model):
     forename_1 = models.CharField(max_length=256)
-    forename_2 = models.CharField(max_length=256, blank=True)
+    forename_2 = models.CharField(null=True, blank=True, max_length=256)
     surname = models.CharField(max_length=256)
     facebook = models.URLField(null=True, blank=True, max_length=256)
     twitter = models.URLField(null=True, blank=True, max_length=256)
@@ -193,7 +193,7 @@ class Winemaker(models.Model):
 
 class Viticulturist(models.Model):
     forename_1 = models.CharField(max_length=256)
-    forename_2 = models.CharField(max_length=256, blank=True)
+    forename_2 = models.CharField(null=True, blank=True, max_length=256)
     surname = models.CharField(max_length=256)
     facebook = models.URLField(null=True, blank=True, max_length=256)
     twitter = models.URLField(null=True, blank=True, max_length=256)
@@ -664,7 +664,7 @@ class WineFoodPairing(models.Model):
 
 class Critic(models.Model):
     forename_1 = models.CharField(max_length=256)
-    forename_2 = models.CharField(max_length=256, blank=True)
+    forename_2 = models.CharField(null=True, blank=True, max_length=256)
     surname = models.CharField(max_length=256)
     initials = models.CharField(max_length=3)
     url = models.URLField(null=True, blank=True, max_length=256)
