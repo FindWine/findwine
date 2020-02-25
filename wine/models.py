@@ -687,7 +687,7 @@ class CriticReport(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     last_modified_by = models.CharField(blank=True, default="", max_length=100)
     critic = models.ForeignKey("Critic")
-    name = models.CharField(max_length=256, blank=True)
+    name = models.CharField(max_length=MAX_UNIQUE_CHARFIELD, blank=True)
     year = models.PositiveIntegerField(null=True, blank=True)
     
     def __str__(self):
