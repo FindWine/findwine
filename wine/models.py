@@ -30,6 +30,12 @@ class Country(models.Model):
     is_producer = models.NullBooleanField(help_text="No for a country that should not show up in Wine Vintage choices")
     is_merchant = models.NullBooleanField(help_text="Yes to add a country that should show up in Merchant choices")
 
+    @classmethod
+    def get_default(cls):
+        return cls.objects.get_or_create(
+            code='ZA', defaults={'name': 'South Africa', 'currency_code': 'ZAR'}
+        )[0].pk
+
     def __str__(self):
         return self.name
 
@@ -501,7 +507,7 @@ class MerchantWine(models.Model):
     merchant = models.ForeignKey("Merchant")
     wine_vintage = models.ForeignKey("WineVintage")
     # Add Country table in place and use currency from that
-    country_model = models.ForeignKey("Country", default="South Africa", null=True, blank=True)
+    country_model = models.ForeignKey("Country", default=Country.get_default, null=True, blank=True)
     country = models.CharField(choices=get_all_merchant_country_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
     currency = models.CharField(choices=get_all_currency_choices(), max_length=3, default=SOUTH_AFRICAN_RAND_CODE)
     price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2, help_text="e.g. 150.00")
