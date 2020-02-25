@@ -26,9 +26,15 @@ class Country(models.Model):
     code = models.CharField(max_length=2, help_text="2 digit ISO e.g. ZA for South Africa")
     currency_name = models.CharField(max_length=256, null=True, blank=True)
     currency_code = models.CharField(max_length=3, help_text="3 digit ISO e.g. ZAR for South Africa")
-    currency_symbol = models.CharField(null=True, blank=True, max_length=1)
+    currency_symbol = models.CharField(null=True, blank=True, max_length=3)
     is_producer = models.NullBooleanField(help_text="No for a country that should not show up in Wine Vintage choices")
     is_merchant = models.NullBooleanField(help_text="Yes to add a country that should show up in Merchant choices")
+
+    @classmethod
+    def get_default(cls):
+        return cls.objects.get_or_create(
+            code='ZA', defaults={'name': 'South Africa', 'currency_code': 'ZAR'}
+        )[0].pk
 
     def __str__(self):
         return self.name
@@ -45,6 +51,7 @@ class Appellation(models.Model):
     level3 = models.CharField(null=True, blank=True, max_length=256)
     level4 = models.CharField(null=True, blank=True, max_length=256)
     level5 = models.CharField(null=True, blank=True, max_length=256)
+    type = models.CharField(null=True, blank=True, max_length=256)
     country_model = models.ForeignKey("Country", null=True, blank=True)    
 
     def __str__(self):
@@ -75,9 +82,12 @@ class Producer(models.Model):
     telephone_tasting = models.CharField(null=True, blank=True, max_length=64)
     email_tasting = models.EmailField(max_length=254, null=True, blank=True)
     url = models.URLField(null=True, blank=True, max_length=256)
+    facebook = models.URLField(null=True, blank=True, max_length=256)
+    twitter = models.URLField(null=True, blank=True, max_length=256)
+    instagram = models.URLField(null=True, blank=True, max_length=256)
+    linkedin = models.URLField(null=True, blank=True, max_length=256)
     tasting_price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
-    tasting_currency = models.CharField(null=True, blank=True, choices=get_all_currency_choices(), max_length=3,
-                                        default=SOUTH_AFRICAN_RAND_CODE)
+    tasting_currency = models.CharField(null=True, blank=True, choices=get_all_currency_choices(), max_length=3)
     logo = models.ImageField(upload_to='images/producer_logos/', null=True, blank=True, max_length=500)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='images/producer_images/', null=True, blank=True, max_length=500)
@@ -114,7 +124,7 @@ class Range(models.Model):
     name = models.CharField(max_length=MAX_UNIQUE_CHARFIELD)
     
     def __str__(self):
-        return self.name
+        return self.producer.name + ' ' + self.name
 
     class Meta:
         ordering = ['producer', 'name']
@@ -132,6 +142,7 @@ class Wine(models.Model):
                                         max_length=500)
     image_label_vertical = models.ImageField(upload_to='images/wine_label_vertical/', null=True, blank=True,
                                              max_length=500)
+    fact_sheet = models.FileField(upload_to='documents/wine_fact_sheets/', null=True, blank=True, max_length=500)
 
     def __str__(self):
         return self.producer.name + ' ' + self.name
@@ -172,8 +183,12 @@ class Blend(models.Model):
 
 class Winemaker(models.Model):
     forename_1 = models.CharField(max_length=256)
-    forename_2 = models.CharField(max_length=256, blank=True)
+    forename_2 = models.CharField(null=True, blank=True, max_length=256)
     surname = models.CharField(max_length=256)
+    facebook = models.URLField(null=True, blank=True, max_length=256)
+    twitter = models.URLField(null=True, blank=True, max_length=256)
+    instagram = models.URLField(null=True, blank=True, max_length=256)
+    linkedin = models.URLField(null=True, blank=True, max_length=256)
 
     def __str__(self):
         return '{} {} {}'.format(self.forename_1, '' if not self.forename_2 else ' {}'.format(self.forename_2), self.surname)
@@ -181,6 +196,22 @@ class Winemaker(models.Model):
     class Meta:
         ordering = ['surname', 'forename_1', 'forename_2']
 
+
+class Viticulturist(models.Model):
+    forename_1 = models.CharField(max_length=256)
+    forename_2 = models.CharField(null=True, blank=True, max_length=256)
+    surname = models.CharField(max_length=256)
+    facebook = models.URLField(null=True, blank=True, max_length=256)
+    twitter = models.URLField(null=True, blank=True, max_length=256)
+    instagram = models.URLField(null=True, blank=True, max_length=256)
+    linkedin = models.URLField(null=True, blank=True, max_length=256)
+
+    def __str__(self):
+        return '{} {} {}'.format(self.forename_1, '' if not self.forename_2 else ' {}'.format(self.forename_2), self.surname)
+
+    class Meta:
+        ordering = ['surname', 'forename_1', 'forename_2']
+        
 
 class WineVintage(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
@@ -193,6 +224,7 @@ class WineVintage(models.Model):
     blend = models.ForeignKey("Blend", null=True, blank=True)
     appellation = models.ForeignKey("Appellation", null=True, blank=True)
     winemakers = models.ManyToManyField("Winemaker", blank=True, related_name='winemakers')
+    viticulturists = models.ManyToManyField("Viticulturist", blank=True, related_name='viticulturists')
     vintage_type = models.CharField(
         choices=(
             ('Vintage', "Vintage"),
@@ -216,8 +248,10 @@ class WineVintage(models.Model):
     )
     wooded = models.NullBooleanField()
     organic = models.NullBooleanField()
+    biodynamic = models.NullBooleanField()
     contains_sulphites = models.NullBooleanField()
     vegetarian = models.NullBooleanField()
+    vegan = models.NullBooleanField()
     optimal_year_start = models.PositiveIntegerField(null=True, blank=True)
     optimal_year_end = models.PositiveIntegerField(null=True, blank=True)
     temp_min = models.PositiveIntegerField(null=True, blank=True)
@@ -225,6 +259,7 @@ class WineVintage(models.Model):
     alcohol_percentage = models.DecimalField(null=True, blank=True, max_digits=5, decimal_places=2)
     residual_sugar = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     ph = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
+    volatile_acidity = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     total_acidity = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     total_sulphur = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     image_pack_shot = models.ImageField(upload_to='images/winevintage_packshots/', null=True, blank=True,
@@ -418,6 +453,7 @@ class Merchant(models.Model):
     name = models.CharField(max_length=256)
     country = models.CharField(choices=get_all_merchant_country_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
     country_model = models.ForeignKey("Country", null=True, blank=True)
+    is_active = models.NullBooleanField(help_text="Yes to add a merchant that should show up in MerchantWine choices")
     priority = models.PositiveIntegerField()
     sales_commission_percentage = models.DecimalField(null=True, blank=True, max_digits=5, decimal_places=2,
                                                       help_text="Full percentage e.g. 8 for 8%")
@@ -471,7 +507,7 @@ class MerchantWine(models.Model):
     merchant = models.ForeignKey("Merchant")
     wine_vintage = models.ForeignKey("WineVintage")
     # Add Country table in place and use currency from that
-    country_model = models.ForeignKey("Country", null=True, blank=True)
+    country_model = models.ForeignKey("Country", default=Country.get_default, null=True, blank=True)
     country = models.CharField(choices=get_all_merchant_country_choices(), max_length=2, default=SOUTH_AFRICA_CODE)
     currency = models.CharField(choices=get_all_currency_choices(), max_length=3, default=SOUTH_AFRICAN_RAND_CODE)
     price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2, help_text="e.g. 150.00")
@@ -486,9 +522,11 @@ class MerchantWine(models.Model):
         ('187', "Split 187ml"),
         ('375', "Half-Bottle 375ml"),
         ('500', "Bottle 500ml"),
+        ('1000', "Growler 1 litre"),
         ('1500', "Magnum 1.5 litres"),
         ('3000', "Jeroboam or Double Magnum 3 litres"),
         ('4500', "Rehoboam 4.5 litres"),
+        ('5000', "5 litres"),
         ('6000', "Imperial or Methuselah 6 litres"),
         ('9000', "Salmanazar 9 litres"),
         ('12000', "Balthazar 12 litres"),
@@ -628,3 +666,50 @@ class WineFoodPairing(models.Model):
 
     class Meta:
         ordering = ['wine_vintage', 'food_pairing']
+
+
+class Critic(models.Model):
+    forename_1 = models.CharField(max_length=256)
+    forename_2 = models.CharField(null=True, blank=True, max_length=256)
+    surname = models.CharField(max_length=256)
+    initials = models.CharField(max_length=3)
+    url = models.URLField(null=True, blank=True, max_length=256)
+
+    def __str__(self):
+        return '{} {} {}'.format(self.forename_1, '' if not self.forename_2 else ' {}'.format(self.forename_2), self.surname)
+
+    class Meta:
+        ordering = ['surname', 'forename_1', 'forename_2']
+
+
+class CriticReport(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    last_modified_by = models.CharField(blank=True, default="", max_length=100)
+    critic = models.ForeignKey("Critic")
+    name = models.CharField(max_length=256, blank=True)
+    year = models.PositiveIntegerField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.critic.name + ' ' + self.name + ' ' + self.year
+
+    class Meta:
+        ordering = ['critic', 'name', 'year']
+        unique_together = (("critic", "name", "year"),)
+
+
+class CriticReview(models.Model):
+    wine_vintage = models.ForeignKey("WineVintage")
+    critic = models.ForeignKey("Critic")
+    score = models.CharField(max_length=4)
+    score_max = models.CharField(max_length=4, default="100")
+    review = models.TextField(blank=True)
+    year = models.PositiveIntegerField(null=True, blank=True)
+    month = models.PositiveIntegerField(null=True, blank=True)
+    recognition_url = models.URLField(null=True, blank=True, max_length=256)
+
+    def __str__(self):
+        return str(self.critic) + ' -> ' + str(self.score)
+
+    class Meta:
+        ordering = ['wine_vintage', 'critic']
